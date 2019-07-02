@@ -1,4 +1,4 @@
-﻿// ACPyModuleTutorials.cpp : 定义 DLL 应用程序的导出函数。
+﻿// DGLib.cpp : 定义 DLL 应用程序的导出函数。
 //
 
 #include "stdafx.h"
@@ -29,13 +29,13 @@ void load_dg_point(py::module m) {
 }
 
 
-PYBIND11_MODULE(ACPyModuleTutorials, m) {
+PYBIND11_MODULE(DGLib, m) {
 
 	m.doc() = "pybind11 example module";
 
 	// Add bindings here
 	m.def("foo", []() {
-		return "Hello, World! ACPyModuleTutorials";
+		return "Hello, World! DGLib";
 	});
 
 	load_dg_point(m);

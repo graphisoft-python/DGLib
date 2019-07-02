@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.705
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ACPyModuleTutorials", "ACPyModuleTutorials\ACPyModuleTutorials.vcxproj", "{89E03984-4923-4B3E-BC51-8CBEACB91735}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "DGLib", "DGLib\DGLib.vcxproj", "{89E03984-4923-4B3E-BC51-8CBEACB91735}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
