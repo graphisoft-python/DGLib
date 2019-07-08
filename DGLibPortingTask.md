@@ -187,6 +187,7 @@
 
 * Point (short x, short y)
 * Scale
+* __str__
 
 ## NativeRect ( DGUtility.h )
 
@@ -202,6 +203,7 @@
 * Rect (const Point& pt, const short width, short height)
 * Rect (short left, short top, short right, short bottom)
 * Scale
+* __str__
 
 ## ItemBase ( Item.h )
 
