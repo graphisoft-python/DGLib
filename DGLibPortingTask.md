@@ -116,7 +116,7 @@
 * operator>=
 * operator<
 * operator<=
-* operator=
+* operator=             /*无法重载 = */
 * operator+=
 * operator-=
 * operator+
@@ -265,7 +265,7 @@
 * SetItemStatus
 * MoveItems
 * RedrawItems
-* RegisterHotKey (Key::Special keyCode)
+* RegisterHotKey (Key::Special keyCode)     
 * RegisterHotKey (Key::Special keyCode, Key::Modifier mod1)
 * RegisterHotKey (Key::Special keyCode, Key::Modifier mod1,Key::Modifier mod2)
 * RegisterHotKey (Key::Special keyCode, Key::Modifier mod1,Key::Modifier mod2, Key::Modifier mod3)

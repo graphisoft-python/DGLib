@@ -10,8 +10,7 @@ using namespace DG;
 
 //namespace DG::Key
 void load_dg_KeySpecial(py::module m) {
-	py::enum_<Key::Special> m_special(m, "Special");
-	m_special
+	py::enum_<Key::Special> (m, "Special")
 		.value("Back", Key::Special::Back)
 		.value("Tab", Key::Special::Tab)
 		.value("Enter", Key::Special::Enter)
@@ -51,8 +50,7 @@ void load_dg_KeySpecial(py::module m) {
 }
 
 void load_dg_KeyModifier(py::module m) {
-	py::enum_<Key::Modifier> m_modifier(m, "Modifier");
-	m_modifier
+	py::enum_<Key::Modifier>(m, "Modifier")
 		.value("NoModifier", Key::Modifier::NoModifier)
 		.value("Command", Key::Modifier::Command)
 		.value("Option", Key::Modifier::Option)
@@ -62,8 +60,7 @@ void load_dg_KeyModifier(py::module m) {
 }
 
 void load_dg_KeyCode(py::module m) {
-	py::class_<Key::Code> m_code(m, "Code");
-	m_code
+	py::class_<Key::Code>(m, "Code")
 		.def(py::init<>())
 		.def(py::init<Key::Special>())
 		.def(py::init<char>())
@@ -78,10 +75,8 @@ void load_dg_KeyCode(py::module m) {
 }
 //namespace DG::Key
 
-
 void load_dg_CharRange(py::module m) {
-	py::class_<CharRange> m_charRang(m, "CharRange");
-	m_charRang
+	py::class_<CharRange>(m, "CharRange")
 		.def(py::init<>())
 		.def(py::init<Int32 &, Int32 &>())
 
@@ -94,7 +89,6 @@ void load_dg_CharRange(py::module m) {
 
 		.def(py::self == py::self)
 		.def(py::self != py::self)
-
 		.def("IsOverlapping", &CharRange::IsOverlapping)
 		.def("IsInside", &CharRange::IsInside)
 		.def("IsEmpty", &CharRange::IsEmpty)
@@ -106,13 +100,8 @@ void load_dg_CharRange(py::module m) {
 		.def("Intersect", &CharRange::Intersect);
 }
 
-
 void load_dg_ShortPoint(py::module m) {
-
-	py::class_<TPoint<short>> m_shortPoint(m, "ShortPoint");
-
-	m_shortPoint
-
+	py::class_<TPoint<short>> (m, "ShortPoint")
 		.def(py::self == py::self)
 		.def(py::self != py::self)
 
@@ -128,8 +117,7 @@ void load_dg_ShortPoint(py::module m) {
 }
 
 void load_dg_NativeUnit(py::module m) {
-	py::class_<NativeUnit> m_nativeUnit(m, "NativeUnit");
-	m_nativeUnit
+	py::class_<NativeUnit>(m, "NativeUnit")
 		.def(py::init<>())
 		.def(py::init<short>())
 		.def(py::init<short, double>())
@@ -155,9 +143,7 @@ void load_dg_NativeUnit(py::module m) {
 }
 
 void load_dg_NativeUnitPoint(py::module m) {
-	py::class_<TPoint<NativeUnit>> m_nativeUnitPoint(m, "NativeUnitPoint");
-	m_nativeUnitPoint
-
+	py::class_<TPoint<NativeUnit>>(m, "NativeUnitPoint")
 		.def(py::self == py::self)
 		.def(py::self != py::self)
 
@@ -173,8 +159,7 @@ void load_dg_NativeUnitPoint(py::module m) {
 }
 
 void load_dg_NativeUnitRect(py::module m) {
-	py::class_<TRect<NativeUnit>> m_nativeUnitRect(m, "NativeUnitRect");
-	m_nativeUnitRect
+	py::class_<TRect<NativeUnit>>(m, "NativeUnitRect")
 		.def(py::self == py::self)
 		.def(py::self != py::self)
 
@@ -218,6 +203,9 @@ void load_dg_NativeUnitRect(py::module m) {
 		.def("SetCenter", &TRect<NativeUnit>::SetCenter)
 		.def("GetCenter", &TRect<NativeUnit>::GetCenter)
 
+		.def("SetWidth", &TRect<NativeUnit>::SetWidth)
+		.def("GetWidth", &TRect<NativeUnit>::GetWidth)
+
 		.def("SetHeight", &TRect<NativeUnit>::SetHeight)
 		.def("GetHeight", &TRect<NativeUnit>::GetHeight)
 
@@ -228,34 +216,121 @@ void load_dg_NativeUnitRect(py::module m) {
 		.def("Inflate", &TRect<NativeUnit>::Inflate)
 
 		.def("IsEmpty", &TRect<NativeUnit>::IsEmpty)
-		.def("Contains", (bool (TRect<NativeUnit>::*)
-		(const TPoint<NativeUnit> &)const)
+		.def("Contains", (bool (TRect<NativeUnit>::*)(const TPoint<NativeUnit> &)const)
 			&TRect<NativeUnit>::Contains)
-		.def("Contains", (bool (TRect<NativeUnit>::*)
-		(const NativeUnit &, const NativeUnit &)const)
+		.def("Contains", (bool (TRect<NativeUnit>::*)(const NativeUnit &, const NativeUnit &)const)
 			&TRect<NativeUnit>::Contains)
 
 		.def("IsIntersecting", &TRect<NativeUnit>::IsIntersecting)
 		.def("Intersect", &TRect<NativeUnit>::Intersect);
 }
 
+void load_dg_ShortRect(py::module m) {
+	py::class_<TRect<short>>(m, "ShortRect")
+		.def(py::self == py::self)
+		.def(py::self != py::self)
+
+		.def("Set", (void (TRect<short>::*)
+		(const TRect<short> &))
+			&TRect<short>::Set)
+		.def("Set", (void (TRect<short>::*)
+		(const TPoint<short> &, const TPoint<short> &))
+			&TRect<short>::Set)
+		.def("Set", (void (TRect<short>::*)
+		(const TPoint<short> &, const short &, const short &))
+			&TRect<short>::Set)
+		.def("Set", (void (TRect<short>::*)
+		(const short &, const short &, const short &, const short &))
+			&TRect<short>::Set)
+
+		.def("SetLeft", &TRect<short>::SetLeft)
+		.def("GetLeft", &TRect<short>::GetLeft)
+
+		.def("SetTop", &TRect<short>::SetTop)
+		.def("GetTop", &TRect<short>::GetTop)
+
+		.def("SetRight", &TRect<short>::SetRight)
+		.def("GetRight", &TRect<short>::GetRight)
+
+		.def("SetBottom", &TRect<short>::SetBottom)
+		.def("GetBottom", &TRect<short>::GetBottom)
+
+		.def("SetLeftTop", &TRect<short>::SetLeftTop)
+		.def("GetLeftTop", &TRect<short>::GetLeftTop)
+
+		.def("SetLeftBottom", &TRect<short>::SetLeftBottom)
+		.def("GetLeftBottom", &TRect<short>::GetLeftBottom)
+
+		.def("SetRightTop", &TRect<short>::SetRightTop)
+		.def("GetRightTop", &TRect<short>::GetRightTop)
+
+		.def("SetRightBottom", &TRect<short>::SetRightBottom)
+		.def("GetRightBottom", &TRect<short>::GetRightBottom)
+
+		.def("SetCenter", &TRect<short>::SetCenter)
+		.def("GetCenter", &TRect<short>::GetCenter)
+
+		.def("SetWidth", &TRect<short>::SetWidth)
+		.def("GetWidth", &TRect<short>::GetWidth)
+
+		.def("SetHeight", &TRect<short>::SetHeight)
+		.def("GetHeight", &TRect<short>::GetHeight)
+
+		.def("SetSize", &TRect<short>::SetSize)
+
+		.def("Move", &TRect<short>::Move)
+		.def("Resize", &TRect<short>::Resize)
+		.def("Inflate", &TRect<short>::Inflate)
+
+		.def("IsEmpty", &TRect<short>::IsEmpty)
+		.def("Contains", (bool (TRect<short>::*)(const TPoint<short> &)const)
+			&TRect<short>::Contains)
+		.def("Contains", (bool (TRect<short>::*)(const short &, const short &)const)
+			&TRect<short>::Contains)
+
+		.def("IsIntersecting", &TRect<short>::IsIntersecting)
+		.def("Intersect", &TRect<short>::Intersect);
+}
+
 void load_dg_NativePoint(py::module m) {
-	py::class_<NativePoint, TPoint<NativeUnit>> m_nativepoint(m, "NativePoint");
-	m_nativepoint
+	py::class_<NativePoint, TPoint<NativeUnit>>(m, "NativePoint")
 		.def(py::init<NativeUnit &, NativeUnit &>())
 
 		.def("Scale", &NativePoint::Scale);
 }
 
 void load_dg_Point(py::module m) {
-	py::class_<Point, TPoint<short>> m_point(m, "Point");
-	m_point
+	py::class_<Point, TPoint<short>>(m, "Point")
 		.def(py::init<short, short>())
 
 		.def("Scale", &Point::Scale)
 
 		.def("__str__", [](const Point &p) {
-			return "X = " + std::to_string(p.GetX()) + "Y = " + std::to_string(p.GetY());
+			return "Point = ( " + std::to_string(p.GetX()) + " , " + std::to_string(p.GetY()) + " )";
+		});
+}
+
+void load_dg_NativeRect(py::module m) {
+	py::class_<NativeRect, TRect<NativeUnit>> (m, "NativeRect")
+		.def(py::init<>())
+		.def(py::init< NativePoint &, NativePoint &>())
+		.def(py::init< NativePoint &, NativeUnit &, NativeUnit &>())
+		.def(py::init<NativeUnit &, NativeUnit &, NativeUnit &, NativeUnit &>())
+
+		.def("Scale", &NativeRect::Scale);
+}
+
+void load_dg_Rect(py::module m) {
+	py::class_<Rect, TRect<short>>(m, "Rect")
+		.def(py::init<Point &,Point &>())
+		.def(py::init<Point &,short,short>())
+		.def(py::init<short,short,short,short>())
+
+		.def("Scale",&Rect::Scale)
+
+		.def("__str__", [](const Rect &r) {
+			return "Rect = ( " + std::to_string(r.GetLeft()) + " , " + std::to_string(r.GetTop())
+				+ " , " + std::to_string(r.GetWidth())  + " , "+ std::to_string(r.GetHeight())+" )";
 		});
 }
 

@@ -30,6 +30,15 @@
     <ClInclude Include="implementations\dgUtilityFunc.hpp">
       <Filter>源文件</Filter>
     </ClInclude>
+    <ClInclude Include="implementations\dgItemFunc.hpp">
+      <Filter>源文件</Filter>
+    </ClInclude>
+    <ClInclude Include="implementations\dgPanelFunc.hpp">
+      <Filter>源文件</Filter>
+    </ClInclude>
+    <ClInclude Include="implementations\dgDialogFunc.hpp">
+      <Filter>源文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">

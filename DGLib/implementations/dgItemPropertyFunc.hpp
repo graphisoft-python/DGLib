@@ -9,9 +9,8 @@ using namespace DG;
 
 //namespace DG::Font
 void load_dg_FontSize(py::module m) {
-	py::enum_<Font::Size> m_size(m, "Size");
-	m_size.
-		value("Large", Font::Size::Large)
+	py::enum_<Font::Size>(m, "Size")
+		.value("Large", Font::Size::Large)
 		.value("Small", Font::Size::Small)
 		.value("ExtraSmall", Font::Size::ExtraSmall)
 		.value("DefaultSize", Font::Size::DefaultSize)
@@ -19,9 +18,8 @@ void load_dg_FontSize(py::module m) {
 }
 
 void load_dg_FontStyle(py::module m) {
-	py::enum_<Font::Style> m_style(m, "Style");
-	m_style.
-		value("Plain", Font::Style::Plain)
+	py::enum_<Font::Style>(m, "Style")
+		.value("Plain", Font::Style::Plain)
 		.value("Bold", Font::Style::Bold)
 		.value("Italic", Font::Style::Italic)
 		.value("Underline", Font::Style::Underline)
