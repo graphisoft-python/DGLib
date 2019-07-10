@@ -554,6 +554,12 @@
 * SetMaxTextLength
 * GetMaxTextLength
 
+## ItemTextProperty (DGItemProperty.h)
+
+* SetText
+* CatText
+* GetText
+
 ## EditControl.FrameType (DGEditControl.h)
 
 * Frame

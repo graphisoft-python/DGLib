@@ -5,7 +5,7 @@
 * Guid ()
 * Guid (const char* string)
 * operator=
-* **Generate**
+* **Generate** bool
 * Clear
 * **ConvertToString**
 * **ConvertFromString (const char* string)**
@@ -25,3 +25,4 @@
 * GetPrefix
 * SetPrefix
 
+*******pybind11/cast.h line1156

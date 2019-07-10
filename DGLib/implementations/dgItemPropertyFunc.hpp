@@ -1,10 +1,7 @@
 #include "../stdafx.h"
-#include <pybind11/pybind11.h>
-#include <pybind11/operators.h>
-
 #include "DGItemProperty.hpp"
+#include "DGItem.hpp"
 
-namespace py = pybind11;
 using namespace DG;
 
 //namespace DG::Font
@@ -29,3 +26,38 @@ void load_dg_FontStyle(py::module m) {
 		.export_values();
 }
 //namespace DG::Font
+
+void load_dg_ItemFontProperty(py::module m) {
+	py::class_<ItemFontProperty, ItemBase>(m, "ItemFontProperty")
+		.def("SetFontSize", &ItemFontProperty::SetFontSize)
+		.def("GetFontSize", &ItemFontProperty::GetFontSize)
+
+		.def("SetFontStyle", &ItemFontProperty::SetFontStyle)
+		.def("GetFontStyle", &ItemFontProperty::GetFontStyle);
+}
+
+void load_dg_FocusableProperty(py::module m) {
+	py::class_<FocusableProperty, ItemBase>(m, "FocusableProperty")
+		.def("SetFocus", &FocusableProperty::SetFocus)
+		.def("IsFocused", &FocusableProperty::IsFocused);
+}
+
+void load_dg_ItemVariousProperty(py::module m) {
+	py::class_<ItemVariousProperty, ItemBase>(m, "ItemVariousProperty")
+		.def("SetVariousState", &ItemVariousProperty::SetVariousState)
+		.def("GetVariousState", &ItemVariousProperty::GetVariousState);
+}
+
+void load_dg_ItemTextLengthLimitProperty(py::module m) {
+	py::class_<ItemTextLengthLimitProperty, ItemBase>(m, "ItemTextLengthLimitProperty")
+		.def("SetMaxTextLength", &ItemTextLengthLimitProperty::SetMaxTextLength)
+		.def("GetMaxTextLength", &ItemTextLengthLimitProperty::GetMaxTextLength);
+}
+
+void load_dg_ItemTextProperty(py::module m) {
+	py::class_<ItemTextProperty, ItemBase>(m, "ItemTextProperty");
+		//.def("SetText", &ItemTextProperty::SetText)
+		//.def("CatText", &ItemTextProperty::CatText)
+
+		//.def("GetText", &ItemTextProperty::GetText);
+}

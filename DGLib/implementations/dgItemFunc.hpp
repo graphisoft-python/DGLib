@@ -1,11 +1,7 @@
 #include "../stdafx.h"
-#include <pybind11/pybind11.h>
-#include <pybind11/operators.h>
-
-#include "DGItem.hpp"
 #include "DGPanel.hpp"
+#include "DGItem.hpp"
 
-namespace py = pybind11;
 using namespace DG;
 
 void load_dg_ItemBase(py::module m) {
@@ -39,8 +35,10 @@ void load_dg_Item(py::module m) {
 		.def("Resize", &Item::Resize)
 		.def("MoveAndResize", &Item::MoveAndResize)
 
-		.def("SetPosition", (void (Item::*)(const Point &)) &Item::SetPosition)
-		.def("SetPosition", (void (Item::*)(short, short)) &Item::SetPosition)
+		.def("SetPosition", (void (Item::*)
+			(const Point &)) &Item::SetPosition)
+		.def("SetPosition", (void (Item::*)
+			(short, short)) &Item::SetPosition)
 		.def("SetRect", &Item::SetRect)
 		.def("SetSize", &Item::SetSize)
 		.def("SetWidth", &Item::SetWidth)

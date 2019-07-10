@@ -1,11 +1,7 @@
 #include "../stdafx.h"
-#include <pybind11/pybind11.h>
-#include <pybind11/operators.h>
-
 #include "DGWImageCache.hpp"
 #include "DGUtility.hpp"
 
-namespace py = pybind11;
 using namespace DG;
 
 //namespace DG::Key
@@ -164,17 +160,13 @@ void load_dg_NativeUnitRect(py::module m) {
 		.def(py::self != py::self)
 
 		.def("Set", (void (TRect<NativeUnit>::*)
-		(const TRect<NativeUnit> &))
-			&TRect<NativeUnit>::Set)
+			(const TRect<NativeUnit> &))&TRect<NativeUnit>::Set)
 		.def("Set", (void (TRect<NativeUnit>::*)
-		(const TPoint<NativeUnit> &, const TPoint<NativeUnit> &))
-			&TRect<NativeUnit>::Set)
+			(const TPoint<NativeUnit> &, const TPoint<NativeUnit> &))&TRect<NativeUnit>::Set)
 		.def("Set", (void (TRect<NativeUnit>::*)
-		(const TPoint<NativeUnit> &, const NativeUnit &, const NativeUnit &))
-			&TRect<NativeUnit>::Set)
+			(const TPoint<NativeUnit> &, const NativeUnit &, const NativeUnit &))&TRect<NativeUnit>::Set)
 		.def("Set", (void (TRect<NativeUnit>::*)
-		(const NativeUnit &, const NativeUnit &, const NativeUnit &, const NativeUnit &))
-			&TRect<NativeUnit>::Set)
+			(const NativeUnit &, const NativeUnit &, const NativeUnit &, const NativeUnit &))&TRect<NativeUnit>::Set)
 
 		.def("SetLeft", &TRect<NativeUnit>::SetLeft)
 		.def("GetLeft", &TRect<NativeUnit>::GetLeft)
@@ -216,10 +208,10 @@ void load_dg_NativeUnitRect(py::module m) {
 		.def("Inflate", &TRect<NativeUnit>::Inflate)
 
 		.def("IsEmpty", &TRect<NativeUnit>::IsEmpty)
-		.def("Contains", (bool (TRect<NativeUnit>::*)(const TPoint<NativeUnit> &)const)
-			&TRect<NativeUnit>::Contains)
-		.def("Contains", (bool (TRect<NativeUnit>::*)(const NativeUnit &, const NativeUnit &)const)
-			&TRect<NativeUnit>::Contains)
+		.def("Contains", (bool (TRect<NativeUnit>::*)
+			(const TPoint<NativeUnit> &)const)&TRect<NativeUnit>::Contains)
+		.def("Contains", (bool (TRect<NativeUnit>::*)
+			(const NativeUnit &, const NativeUnit &)const)&TRect<NativeUnit>::Contains)
 
 		.def("IsIntersecting", &TRect<NativeUnit>::IsIntersecting)
 		.def("Intersect", &TRect<NativeUnit>::Intersect);
@@ -231,17 +223,13 @@ void load_dg_ShortRect(py::module m) {
 		.def(py::self != py::self)
 
 		.def("Set", (void (TRect<short>::*)
-		(const TRect<short> &))
-			&TRect<short>::Set)
+			(const TRect<short> &))&TRect<short>::Set)
 		.def("Set", (void (TRect<short>::*)
-		(const TPoint<short> &, const TPoint<short> &))
-			&TRect<short>::Set)
+			(const TPoint<short> &, const TPoint<short> &))&TRect<short>::Set)
 		.def("Set", (void (TRect<short>::*)
-		(const TPoint<short> &, const short &, const short &))
-			&TRect<short>::Set)
+			(const TPoint<short> &, const short &, const short &))&TRect<short>::Set)
 		.def("Set", (void (TRect<short>::*)
-		(const short &, const short &, const short &, const short &))
-			&TRect<short>::Set)
+			(const short &, const short &, const short &, const short &))&TRect<short>::Set)
 
 		.def("SetLeft", &TRect<short>::SetLeft)
 		.def("GetLeft", &TRect<short>::GetLeft)
@@ -283,10 +271,10 @@ void load_dg_ShortRect(py::module m) {
 		.def("Inflate", &TRect<short>::Inflate)
 
 		.def("IsEmpty", &TRect<short>::IsEmpty)
-		.def("Contains", (bool (TRect<short>::*)(const TPoint<short> &)const)
-			&TRect<short>::Contains)
-		.def("Contains", (bool (TRect<short>::*)(const short &, const short &)const)
-			&TRect<short>::Contains)
+		.def("Contains", (bool (TRect<short>::*)
+			(const TPoint<short> &)const)&TRect<short>::Contains)
+		.def("Contains", (bool (TRect<short>::*)
+			(const short &, const short &)const)&TRect<short>::Contains)
 
 		.def("IsIntersecting", &TRect<short>::IsIntersecting)
 		.def("Intersect", &TRect<short>::Intersect);

@@ -84,7 +84,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
     <TargetExt>.pyd</TargetExt>
-    <OutDir>C:\Program Files\GRAPHISOFT\ARCHICAD 22\Add-Ons\GraphisoftPython\ACLibs</OutDir>
+    <OutDir>C:\Program Files\GRAPHISOFT\ARCHICAD 22\Add-Ons\GraphisoftPython\ACLibs\</OutDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -156,6 +156,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="implementations\dgDialogFunc.hpp" />
+    <ClInclude Include="implementations\dgEditControlFunc.hpp" />
     <ClInclude Include="implementations\dgItemFunc.hpp" />
     <ClInclude Include="implementations\dgItemPropertyFunc.hpp" />
     <ClInclude Include="implementations\dgPanelFunc.hpp" />

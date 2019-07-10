@@ -1,10 +1,6 @@
 #include "../stdafx.h"
-#include <pybind11/pybind11.h>
-#include <pybind11/operators.h>
-
 #include "DGPanel.hpp"
 
-namespace py = pybind11;
 using namespace DG;
 
 void load_dg_Panel(py::module m) {
@@ -36,14 +32,16 @@ void load_dg_Panel(py::module m) {
 		.def("RedrawItems", &Panel::RedrawItems)
 
 		.def("RegisterHotKey",
-		(short (Panel::*)(Key::Special, Key::Modifier, Key::Modifier, Key::Modifier))
-			&Panel::RegisterHotKey,
-			py::arg("keyCode"), py::arg("mod1")=Key::NoModifier, py::arg("mod2")= Key::NoModifier, 
+			(short (Panel::*)(Key::Special, Key::Modifier, Key::Modifier, Key::Modifier))&Panel::RegisterHotKey,
+			py::arg("keyCode"), 
+			py::arg("mod1")=Key::NoModifier, 
+			py::arg("mod2")= Key::NoModifier, 
 			py::arg("mod3")= Key::NoModifier)
 		.def("RegisterHotKey",
-		(short (Panel::*)(short, Key::Modifier, Key::Modifier, Key::Modifier))
-			&Panel::RegisterHotKey,
-			py::arg("keyCode"), py::arg("mod1") = Key::NoModifier, py::arg("mod2") = Key::NoModifier,
+			(short (Panel::*)(short, Key::Modifier, Key::Modifier, Key::Modifier))&Panel::RegisterHotKey,
+			py::arg("keyCode"), 
+			py::arg("mod1") = Key::NoModifier, 
+			py::arg("mod2") = Key::NoModifier,
 			py::arg("mod3") = Key::NoModifier)
 
 		.def("UnregisterHotKey", &Panel::UnregisterHotKey)

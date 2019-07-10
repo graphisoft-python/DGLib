@@ -1,20 +1,13 @@
 ﻿// DGLib.cpp : 定义 DLL 应用程序的导出函数。
-//
 
 #include "../stdafx.h"
-#include <pybind11/pybind11.h>
-#include <pybind11/operators.h>
 
 #include "../implementations/dgUtilityFunc.hpp"
 #include "../implementations/dgItemPropertyFunc.hpp"
 #include "../implementations/dgItemFunc.hpp"
 #include "../implementations/dgPanelFunc.hpp"
 #include "../implementations/dgDialogFunc.hpp"
-
-
-
-
-namespace py = pybind11;
+#include "../implementations/dgEditControlFunc.hpp"
 
 #define TEST 0;
 
@@ -54,9 +47,9 @@ void load_test(py::module m) {
 
 PYBIND11_MODULE(DGLib, m) {
 
-	m.doc() = "version 2019.7.9";
+	m.doc() = "version 2019.7.10";
 
-	// Add bindings here
+	//Add bindings here
 	m.def("foo", []() {
 		return "Hello, World! DGLib";
 	});
@@ -64,11 +57,10 @@ PYBIND11_MODULE(DGLib, m) {
 #if  TEST == 1
 	load_test(m);
 #else
+	//DGUtility
 	load_dg_KeySpecial(m);
 	load_dg_KeyModifier(m);
 	load_dg_KeyCode(m);
-	load_dg_FontSize(m);
-	load_dg_FontStyle(m);
 	load_dg_CharRange(m);
 	load_dg_ShortPoint(m);
 	load_dg_NativeUnit(m);
@@ -78,13 +70,42 @@ PYBIND11_MODULE(DGLib, m) {
 	load_dg_Point(m);
 	load_dg_NativeRect(m);
 	load_dg_ShortRect(m);
+	load_dg_Rect(m);
+	//DGItem
 	load_dg_ItemBase(m);
 	load_dg_Item(m);
+	//DGItemProperty
+	load_dg_FontSize(m);
+	load_dg_FontStyle(m);
+	load_dg_ItemFontProperty(m);
+	load_dg_FocusableProperty(m);
+	load_dg_ItemVariousProperty(m);
+	load_dg_ItemTextLengthLimitProperty(m);
+	load_dg_ItemTextProperty(m);
+	//DGPanel
 	load_dg_Panel(m);
+	//DGDialog
 	load_dg_Dialog(m);
 	load_dg_ModaDialog(m);
 	load_dg_ModelessBase(m);
 	load_dg_ModelessDialog(m);
+	load_dg_Palette(m);
+	//DGEditControl	
+	load_dg_EditControl(m);
+	load_dg_PosIntEdit(m);
+	load_dg_IntEdit(m);
+	load_dg_RealEdit(m);
+	load_dg_LengthEdit(m);
+	load_dg_AreaEdit(m);
+	load_dg_VolumeEdit(m);
+	load_dg_AngleEdit(m);
+	load_dg_PolarAngleEdit(m);
+	load_dg_MMPointEdit(m);
+	load_dg_TextEditBase(m);
+	load_dg_TextEdit(m);
+	load_dg_PasswordEdit(m);
+	load_dg_ShortcutEdit(m);
+	load_dg_MultiLineEdit(m);
 
 #endif //  TEST == 1
 }
