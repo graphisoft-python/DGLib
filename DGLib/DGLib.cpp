@@ -6,11 +6,28 @@
 
 #include<pybind11/pybind11.h>
 #include<pybind11/operators.h>
+#include"ACCast.h"
 
 #include "DGWImageCache.hpp"
 #include "DGUtility.hpp"
 
+
+
 namespace py = pybind11;
+
+class CastTest {
+public:
+	CastTest(GS::UniString &ustr) {
+		this->m_ustr = ustr;
+	}
+
+	GS::UniString &Get() {
+		return this->m_ustr;
+	}
+
+private:
+	GS::UniString m_ustr;
+};
 
 
 void load_dg_point(py::module m) {
@@ -28,6 +45,14 @@ void load_dg_point(py::module m) {
 		;
 }
 
+void load_dg_cast_test(py::module m) {
+	py::class_< CastTest> c_cast(m, "CastTest");
+
+	c_cast
+		.def(py::init<GS::UniString &>())
+		.def("Get", &CastTest::Get)
+		;
+}
 
 PYBIND11_MODULE(DGLib, m) {
 
@@ -39,4 +64,5 @@ PYBIND11_MODULE(DGLib, m) {
 	});
 
 	load_dg_point(m);
+	load_dg_cast_test(m);
 }

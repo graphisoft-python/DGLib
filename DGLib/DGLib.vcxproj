@@ -108,7 +108,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;DGLib_EXPORTS;_WINDOWS;_USRDLL;NOMINMAX;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>..\Support\Inc;..\Support\Modules\GSRoot;..\Support\Modules\GSRoot\STL\imp;..\Support\Modules\GSUtils;..\Support\Modules\DGLib;..\Support\Modules\GX;..\Support\Modules\GXImage;..\Support\Modules\GXImageBase;..\Support\Modules\DGGraphix;..\Support\Modules\Graphix;..\Support\Modules\TextEngine;..\Support\Modules\InputOutput;..\Support\Modules\UCLib;..\Support\Modules\UDLib;..\Support\Modules\Pattern;..\Support\Modules\VBAttrDialogs;.\py2.7\include;.\pybind11\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\Support\Inc;..\Support\Modules\GSRoot;..\Support\Modules\GSRoot\STL\imp;..\Support\Modules\GSUtils;..\Support\Modules\DGLib;..\Support\Modules\GX;..\Support\Modules\GXImage;..\Support\Modules\GXImageBase;..\Support\Modules\DGGraphix;..\Support\Modules\Graphix;..\Support\Modules\TextEngine;..\Support\Modules\InputOutput;..\Support\Modules\UCLib;..\Support\Modules\UDLib;..\Support\Modules\Pattern;..\Support\Modules\VBAttrDialogs;.\py2.7\include;.\pybind11\include;.\pybind11\cast;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -144,7 +144,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;DGLib_EXPORTS;_WINDOWS;_USRDLL;NOMINMAX;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>..\Support\Inc;..\Support\Modules\GSRoot;..\Support\Modules\GSRoot\STL\imp;..\Support\Modules\GSUtils;..\Support\Modules\DGLib;..\Support\Modules\GX;..\Support\Modules\GXImage;..\Support\Modules\GXImageBase;..\Support\Modules\DGGraphix;..\Support\Modules\Graphix;..\Support\Modules\TextEngine;..\Support\Modules\InputOutput;..\Support\Modules\UCLib;..\Support\Modules\UDLib;..\Support\Modules\Pattern;..\Support\Modules\VBAttrDialogs;.\py2.7\include;.\pybind11\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\Support\Inc;..\Support\Modules\GSRoot;..\Support\Modules\GSRoot\STL\imp;..\Support\Modules\GSUtils;..\Support\Modules\DGLib;..\Support\Modules\GX;..\Support\Modules\GXImage;..\Support\Modules\GXImageBase;..\Support\Modules\DGGraphix;..\Support\Modules\Graphix;..\Support\Modules\TextEngine;..\Support\Modules\InputOutput;..\Support\Modules\UCLib;..\Support\Modules\UDLib;..\Support\Modules\Pattern;..\Support\Modules\VBAttrDialogs;.\py2.7\include;.\pybind11\include;.\pybind11\cast;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
