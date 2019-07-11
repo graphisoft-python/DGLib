@@ -35,7 +35,7 @@ namespace pybind11 {
 			static handle cast(GS::UniString src, return_value_policy /* policy */, handle /* parent */) {
 
 				const char *buffer = reinterpret_cast<const char *>(src.ToCStr().Get());
-				GS::Int32 nbytes = src.GetLength() * 2;
+				GS::Int32 nbytes = strlen(buffer);
 				return PyUnicode_DecodeUTF8(buffer, nbytes, nullptr);
 			}
 
