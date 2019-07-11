@@ -1,5 +1,7 @@
 #include "../stdafx.h"
+
 #include "DGDialog.hpp"
+#include "ACCast.h"
 
 using namespace DG;
 
@@ -73,8 +75,10 @@ void load_dg_Dialog(py::module m) {
 		.def("IsDGDialog", &Dialog::IsDGDialog)
 
 		.def("Center", &Dialog::Center)
-		.def("Move", (void (Dialog::*)(short, short))&Dialog::Move)
-		.def("Move", (void (Dialog::*)(const NativeUnit &, const NativeUnit &))&Dialog::Move)
+		.def("Move", (void (Dialog::*)
+			(short, short))	&Dialog::Move)
+		.def("Move", (void (Dialog::*)
+			(const NativeUnit &, const NativeUnit &)) &Dialog::Move)
 		.def("Resize", &Dialog::Resize,
 			py::arg("hGrow"), 
 			py::arg("vGrow"), 
@@ -95,9 +99,9 @@ void load_dg_Dialog(py::module m) {
 		.def("GetMinClientHeight", &Dialog::GetMinClientHeight)
 
 		.def("SetClientPosition", (void (Dialog::*)
-			(const NativePoint &))&Dialog::SetClientPosition)
+			(const NativePoint &)) &Dialog::SetClientPosition)
 		.def("SetClientPosition", (void (Dialog::*)
-			(const NativeUnit &, const NativeUnit &))&Dialog::SetClientPosition)
+			(const NativeUnit &, const NativeUnit &)) &Dialog::SetClientPosition)
 
 		.def("SetClientRect", &Dialog::SetClientRect,
 			py::arg("rect"),
@@ -136,9 +140,9 @@ void load_dg_Dialog(py::module m) {
 		.def("GetMinFrameHeight", &Dialog::GetMinFrameHeight)
 
 		.def("SetFramePosition", (void (Dialog::*)
-			(const NativePoint &))&Dialog::SetFramePosition)
+			(const NativePoint &)) &Dialog::SetFramePosition)
 		.def("SetFramePosition", (void (Dialog::*)
-			(const NativeUnit &, const NativeUnit &))&Dialog::SetFramePosition)
+			(const NativeUnit &, const NativeUnit &)) &Dialog::SetFramePosition)
 
 		.def("SetFrameRect", &Dialog::SetFrameRect, 
 			py::arg("rect"),
@@ -165,6 +169,9 @@ void load_dg_Dialog(py::module m) {
 
 		.def("BeginMoveResizeItems", &Dialog::BeginMoveResizeItems)
 		.def("EndMoveResizeItems", &Dialog::EndMoveResizeItems)
+
+		.def("SetTitle", &Dialog::SetTitle)
+		.def("GetTitle", &Dialog::GetTitle)
 
 		.def("EnableIdleEvent", &Dialog::EnableIdleEvent,
 			py::arg("sendForInactiveApp") = false)
@@ -237,6 +244,7 @@ void load_dg_ModelessBase(py::module m) {
 		.value("Disabled", ModelessBase::DialogStatus::Disabled)
 		.value("Edited", ModelessBase::DialogStatus::Edited)
 		.export_values();
+
 
 	m_modalDialog
 		.def("BeginEventProcessing", &ModelessBase::BeginEventProcessing)
@@ -325,7 +333,6 @@ void load_dg_ModelessDialog(py::module m) {
 }
 
 void load_dg_Palette(py::module m) {
-	
 	py::class_<Palette, ModelessBase>(m, "Palette")
 		.def(py::init<NativePoint &, short, short, GS::Guid &, Palette::GrowType, Palette::CloseType, Palette::CaptionType, Palette::FrameType, Palette::SpecialFeatures>(),
 			py::arg("position"), 
@@ -335,7 +342,7 @@ void load_dg_Palette(py::module m) {
 			py::arg("growType") = Palette::GrowType::NoGrow,
 			py::arg("closeType") = Palette::CloseType::NoClose,
 			py::arg("captionType") = Palette::CaptionType::TopCaption,
-			py::arg("frameType") = Palette::FrameType::NoFrame,
+			py::arg("frameType") = Palette::FrameType::NormalFrame,
 			py::arg("specialFeatures") = Palette::SpecialFeatures::NothingSpecial)
 
 		.def("SendBehind", &Palette::SendBehind)

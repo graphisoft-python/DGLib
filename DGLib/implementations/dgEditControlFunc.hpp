@@ -1,7 +1,9 @@
 #include "../stdafx.h"
+
 #include "DGItem.hpp"
 #include "DGItemProperty.hpp"
 #include "DGEditControl.hpp"
+#include "DGUtility.hpp"
 
 using namespace DG;
 
@@ -18,7 +20,6 @@ void load_dg_EditControl(py::module m) {
 		.value("NoUpdate", EditControl::UpdateType::NoUpdate)
 		.value("NoDelay", EditControl::UpdateType::NoDelay)
 		.export_values();
-
 
 	py::enum_<EditControl::ReadOnlyType>(m_editControl, "ReadOnlyType")
 		.value("Editable", EditControl::ReadOnlyType::Editable)
@@ -232,10 +233,14 @@ void load_dg_MultiLineEdit(py::module m) {
 	
 
 	m_multiLineEdit
-		.def(py::init<Panel &, Rect &, MultiLineEdit::ScrollType, MultiLineEdit::FrameType, MultiLineEdit::UpdateType>(),
+		.def(py::init<Panel &, Rect &, MultiLineEdit::ScrollType, MultiLineEdit::FrameType, MultiLineEdit::UpdateType, MultiLineEdit::ReadOnlyType>(),
 			py::arg("panel"),
 			py::arg("rect"),
 			py::arg("scroll") = MultiLineEdit::ScrollType::NoScroll,
 			py::arg("frame") = MultiLineEdit::FrameType::Frame,
-			py::arg("update") = MultiLineEdit::UpdateType::Update);
+			py::arg("update") = MultiLineEdit::UpdateType::Update,
+			py::arg("readOnly") = MultiLineEdit::ReadOnlyType::Editable)
+
+		.def("GetText", &MultiLineEdit::GetText,
+			py::arg("eolType") = EOL::Default);
 }

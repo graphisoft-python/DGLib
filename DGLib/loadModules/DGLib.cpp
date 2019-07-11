@@ -58,6 +58,7 @@ PYBIND11_MODULE(DGLib, m) {
 	load_test(m);
 #else
 	//DGUtility
+	load_dg_EolType(m);
 	load_dg_KeySpecial(m);
 	load_dg_KeyModifier(m);
 	load_dg_KeyCode(m);

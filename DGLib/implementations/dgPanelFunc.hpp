@@ -1,5 +1,8 @@
 #include "../stdafx.h"
+
 #include "DGPanel.hpp"
+
+#include "ACCast.h"
 
 using namespace DG;
 
@@ -9,6 +12,9 @@ void load_dg_Panel(py::module m) {
 		.def("IsExist", &Panel::IsExist)
 
 		.def("GetId", &Panel::GetId)
+		.def("GetResourceId", &Panel::GetResourceId)
+
+		.def("GetAnchorString", &Panel::GetAnchorString)
 
 		.def("GetItemCount", &Panel::GetItemCount)
 		.def("GetItem", &Panel::GetItem,py::return_value_policy::reference)
@@ -32,13 +38,13 @@ void load_dg_Panel(py::module m) {
 		.def("RedrawItems", &Panel::RedrawItems)
 
 		.def("RegisterHotKey",
-			(short (Panel::*)(Key::Special, Key::Modifier, Key::Modifier, Key::Modifier))&Panel::RegisterHotKey,
+			(short (Panel::*)(Key::Special, Key::Modifier, Key::Modifier, Key::Modifier)) &Panel::RegisterHotKey,
 			py::arg("keyCode"), 
 			py::arg("mod1")=Key::NoModifier, 
 			py::arg("mod2")= Key::NoModifier, 
 			py::arg("mod3")= Key::NoModifier)
 		.def("RegisterHotKey",
-			(short (Panel::*)(short, Key::Modifier, Key::Modifier, Key::Modifier))&Panel::RegisterHotKey,
+			(short (Panel::*)(short, Key::Modifier, Key::Modifier, Key::Modifier)) &Panel::RegisterHotKey,
 			py::arg("keyCode"), 
 			py::arg("mod1") = Key::NoModifier, 
 			py::arg("mod2") = Key::NoModifier,

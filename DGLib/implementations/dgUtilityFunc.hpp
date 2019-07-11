@@ -1,8 +1,19 @@
 #include "../stdafx.h"
+
 #include "DGWImageCache.hpp"
 #include "DGUtility.hpp"
 
 using namespace DG;
+
+//namespace DG::EOL;
+void load_dg_EolType(py::module m) {
+	py::enum_<EOL::Type>(m, "Type")
+		.value("Default", EOL::Type::Default)
+		.value("CR", EOL::Type::CR)
+		.value("CRLF", EOL::Type::CRLF)
+		.export_values();
+}
+//namespace DG::EOL
 
 //namespace DG::Key
 void load_dg_KeySpecial(py::module m) {
@@ -125,6 +136,7 @@ void load_dg_NativeUnit(py::module m) {
 		.def(py::self < py::self)
 		.def(py::self <= py::self)
 		
+		//.def(py::self = py::self)
 		.def(py::self += py::self)
 		.def(py::self -= py::self)
 		
@@ -160,13 +172,13 @@ void load_dg_NativeUnitRect(py::module m) {
 		.def(py::self != py::self)
 
 		.def("Set", (void (TRect<NativeUnit>::*)
-			(const TRect<NativeUnit> &))&TRect<NativeUnit>::Set)
+			(const TRect<NativeUnit> &)) &TRect<NativeUnit>::Set)
 		.def("Set", (void (TRect<NativeUnit>::*)
-			(const TPoint<NativeUnit> &, const TPoint<NativeUnit> &))&TRect<NativeUnit>::Set)
+			(const TPoint<NativeUnit> &, const TPoint<NativeUnit> &)) &TRect<NativeUnit>::Set)
 		.def("Set", (void (TRect<NativeUnit>::*)
-			(const TPoint<NativeUnit> &, const NativeUnit &, const NativeUnit &))&TRect<NativeUnit>::Set)
+			(const TPoint<NativeUnit> &, const NativeUnit &, const NativeUnit &)) &TRect<NativeUnit>::Set)
 		.def("Set", (void (TRect<NativeUnit>::*)
-			(const NativeUnit &, const NativeUnit &, const NativeUnit &, const NativeUnit &))&TRect<NativeUnit>::Set)
+			(const NativeUnit &, const NativeUnit &, const NativeUnit &, const NativeUnit &)) &TRect<NativeUnit>::Set)
 
 		.def("SetLeft", &TRect<NativeUnit>::SetLeft)
 		.def("GetLeft", &TRect<NativeUnit>::GetLeft)
@@ -209,9 +221,9 @@ void load_dg_NativeUnitRect(py::module m) {
 
 		.def("IsEmpty", &TRect<NativeUnit>::IsEmpty)
 		.def("Contains", (bool (TRect<NativeUnit>::*)
-			(const TPoint<NativeUnit> &)const)&TRect<NativeUnit>::Contains)
+			(const TPoint<NativeUnit> &)const) &TRect<NativeUnit>::Contains)
 		.def("Contains", (bool (TRect<NativeUnit>::*)
-			(const NativeUnit &, const NativeUnit &)const)&TRect<NativeUnit>::Contains)
+			(const NativeUnit &, const NativeUnit &)const) &TRect<NativeUnit>::Contains)
 
 		.def("IsIntersecting", &TRect<NativeUnit>::IsIntersecting)
 		.def("Intersect", &TRect<NativeUnit>::Intersect);
@@ -223,13 +235,13 @@ void load_dg_ShortRect(py::module m) {
 		.def(py::self != py::self)
 
 		.def("Set", (void (TRect<short>::*)
-			(const TRect<short> &))&TRect<short>::Set)
+			(const TRect<short> &)) &TRect<short>::Set)
 		.def("Set", (void (TRect<short>::*)
-			(const TPoint<short> &, const TPoint<short> &))&TRect<short>::Set)
+			(const TPoint<short> &, const TPoint<short> &)) &TRect<short>::Set)
 		.def("Set", (void (TRect<short>::*)
-			(const TPoint<short> &, const short &, const short &))&TRect<short>::Set)
+			(const TPoint<short> &, const short &, const short &)) &TRect<short>::Set)
 		.def("Set", (void (TRect<short>::*)
-			(const short &, const short &, const short &, const short &))&TRect<short>::Set)
+			(const short &, const short &, const short &, const short &)) &TRect<short>::Set)
 
 		.def("SetLeft", &TRect<short>::SetLeft)
 		.def("GetLeft", &TRect<short>::GetLeft)
@@ -272,9 +284,9 @@ void load_dg_ShortRect(py::module m) {
 
 		.def("IsEmpty", &TRect<short>::IsEmpty)
 		.def("Contains", (bool (TRect<short>::*)
-			(const TPoint<short> &)const)&TRect<short>::Contains)
+			(const TPoint<short> &)const) &TRect<short>::Contains)
 		.def("Contains", (bool (TRect<short>::*)
-			(const short &, const short &)const)&TRect<short>::Contains)
+			(const short &, const short &)const) &TRect<short>::Contains)
 
 		.def("IsIntersecting", &TRect<short>::IsIntersecting)
 		.def("Intersect", &TRect<short>::Intersect);
@@ -294,7 +306,7 @@ void load_dg_Point(py::module m) {
 		.def("Scale", &Point::Scale)
 
 		.def("__str__", [](const Point &p) {
-			return "Point = ( " + std::to_string(p.GetX()) + " , " + std::to_string(p.GetY()) + " )";
+			return "Point = (" + std::to_string(p.GetX()) + "," + std::to_string(p.GetY()) + ")";
 		});
 }
 
@@ -317,8 +329,8 @@ void load_dg_Rect(py::module m) {
 		.def("Scale",&Rect::Scale)
 
 		.def("__str__", [](const Rect &r) {
-			return "Rect = ( " + std::to_string(r.GetLeft()) + " , " + std::to_string(r.GetTop())
-				+ " , " + std::to_string(r.GetWidth())  + " , "+ std::to_string(r.GetHeight())+" )";
+			return "Rect = (" + std::to_string(r.GetLeft()) + "," + std::to_string(r.GetTop())
+				+ "," + std::to_string(r.GetWidth())  + ","+ std::to_string(r.GetHeight())+")";
 		});
 }
 

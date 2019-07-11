@@ -1,6 +1,9 @@
 #include "../stdafx.h"
+
 #include "DGItemProperty.hpp"
 #include "DGItem.hpp"
+
+#include "ACCast.h"
 
 using namespace DG;
 
@@ -45,7 +48,9 @@ void load_dg_FocusableProperty(py::module m) {
 void load_dg_ItemVariousProperty(py::module m) {
 	py::class_<ItemVariousProperty, ItemBase>(m, "ItemVariousProperty")
 		.def("SetVariousState", &ItemVariousProperty::SetVariousState)
-		.def("GetVariousState", &ItemVariousProperty::GetVariousState);
+		.def("GetVariousState", &ItemVariousProperty::GetVariousState)
+		.def("SetVariousText", &ItemVariousProperty::SetVariousText)
+		.def("GetVariousText", &ItemVariousProperty::GetVariousText);
 }
 
 void load_dg_ItemTextLengthLimitProperty(py::module m) {
@@ -55,9 +60,9 @@ void load_dg_ItemTextLengthLimitProperty(py::module m) {
 }
 
 void load_dg_ItemTextProperty(py::module m) {
-	py::class_<ItemTextProperty, ItemBase>(m, "ItemTextProperty");
-		//.def("SetText", &ItemTextProperty::SetText)
-		//.def("CatText", &ItemTextProperty::CatText)
+	py::class_<ItemTextProperty, ItemBase>(m, "ItemTextProperty")
+		.def("SetText", &ItemTextProperty::SetText)
+		.def("CatText", &ItemTextProperty::CatText)
 
-		//.def("GetText", &ItemTextProperty::GetText);
+		.def("GetText", &ItemTextProperty::GetText);
 }

@@ -1,11 +1,14 @@
 #include "../stdafx.h"
+
 #include "DGPanel.hpp"
 #include "DGItem.hpp"
+
+#include "ACCast.h"
 
 using namespace DG;
 
 void load_dg_ItemBase(py::module m) {
-	py::class_<ItemBase> (m, "ItemBse")
+	py::class_<ItemBase> (m, "ItemBase")
 		.def("IsValid", &ItemBase::IsValid)
 
 		.def("GetPanel", &ItemBase::GetPanel, py::return_value_policy::reference)
@@ -57,6 +60,10 @@ void load_dg_Item(py::module m) {
 		.def("ResetModified", &Item::ResetModified)
 		.def("IsModified", &Item::IsModified)
 
+		.def("GetTooltipString", &Item::GetTooltipString)
+		.def("GetAnchorString", &Item::GetAnchorString)
+
 		.def("InvokeDragDrop", &Item::InvokeDragDrop)
+
 		.def("GetResolutionFactor", &Item::GetResolutionFactor);
 }
