@@ -167,9 +167,11 @@ inline internals **&get_internals_pp() {
 
 /// Return a reference to the current `internals` data
 PYBIND11_NOINLINE inline internals &get_internals() {
-    auto **&internals_pp = get_internals_pp();
-    if (internals_pp && *internals_pp)
-        return **internals_pp;
+    //auto **&internals_pp = get_internals_pp();
+    //if (internals_pp && *internals_pp)
+    //    return **internals_pp;
+
+	internals **internals_pp = nullptr;
 
     constexpr auto *id = PYBIND11_INTERNALS_ID;
     auto builtins = handle(PyEval_GetBuiltins());
