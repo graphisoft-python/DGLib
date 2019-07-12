@@ -8,12 +8,12 @@
 #include "DGItemProperty.hpp"
 #include "DGButton.hpp"
 
-//#include "ACCast.h"
-
 using namespace DG;
 
 void load_dg_ButtonItem(py::module m) {
 	py::class_<ButtonItem, Item>(m, "ButtonItem");
+		//.def("Attach", &SplitButton::Attach)	***
+		//.def("Detach", &SplitButton::Detach)	***
 }
 
 void load_dg_Button(py::module m) {
@@ -47,8 +47,32 @@ void load_dg_Button(py::module m) {
 
 		.def("SetAsDefault", &Button::SetAsDefault)
 		.def("SetAsCancel", &Button::SetAsCancel)
+
 		.def("SetAlignment", &Button::SetAlignment)
 		.def("GetAlignment", &Button::GetAlignment);
+}
+
+void load_dg_IconButton(py::module m) {
+	py::class_<IconButton, ButtonItem/*, ItemIconProperty*/> m_IconButton(m, "IconButton");
+
+	py::enum_<IconButton::ButtonForm>(m_IconButton, "ButtonForm")
+		.value("BevelEdge", IconButton::ButtonForm::BevelEdge)
+		.value("RoundedBevelEdge", IconButton::ButtonForm::RoundedBevelEdge)
+		.export_values();
+
+	py::enum_<IconButton::FrameType>(m_IconButton, "FrameType")
+		.value("NoFrame", IconButton::FrameType::NoFrame)
+		.value("Frame", IconButton::FrameType::Frame)
+		.export_values();
+
+
+	m_IconButton
+		.def(py::init<Panel &, short>())
+		.def(py::init<Panel &, Rect &, IconButton::ButtonForm, IconButton::FrameType>(),
+			py::arg("panel"),
+			py::arg("rect"),
+			py::arg("form") = IconButton::ButtonForm::BevelEdge,
+			py::arg("frameType") = IconButton::FrameType::Frame);
 }
 
 void load_dg_SplitButtonBase(py::module m) {
@@ -76,33 +100,71 @@ void load_dg_SplitButtonBase(py::module m) {
 
 		.def("SetButtonAlignment", &SplitButtonBase::SetButtonAlignment)
 		.def("GetButtonAlignment", &SplitButtonBase::GetButtonAlignment)
+
 		.def("SetArrowPartWidth", &SplitButtonBase::SetArrowPartWidth)
 		.def("GetArrowPartWidth", &SplitButtonBase::GetArrowPartWidth);
 }
 
 void load_dg_SplitButton(py::module m) {
-	//py::class_<SplitButton, SplitButtonBase>(m, "SplitButton")
-	//	.def(py::init<Panel &, short>())
-	//	.def(py::init<Panel &, Rect &, SplitButton::ButtonForm>(),
-	//		py::arg("panel"),
-	//		py::arg("rect"),
-	//		py::arg("type") = SplitButton::ButtonForm::Normal)
+	py::class_<SplitButton, SplitButtonBase>(m, "SplitButton")
+		.def(py::init<Panel &, short>())
+		.def(py::init<Panel &, Rect &, SplitButton::ButtonForm>(),
+			py::arg("panel"),
+			py::arg("rect"),
+			py::arg("type") = SplitButton::ButtonForm::Normal)
 
-	//	.def("AppendSeparator", &SplitButton::AppendSeparator)
-	//	.def("InsertSeparator", &SplitButton::InsertSeparator)
-	//	.def("DeleteItem", &SplitButton::DeleteItem)
-	//	.def("DeleteAllItems", &SplitButton::DeleteAllItems)
+		//.def("Attach", &SplitButton::Attach)	***
+		//.def("Detach", &SplitButton::Detach)	***
 
-		//.def("DeleteItem", &SplitButton::DeleteItem)
-		//.def("DeleteItem", &SplitButton::DeleteItem)
-		//.def("DeleteItem", &SplitButton::DeleteItem)
-		//.def("DeleteItem", &SplitButton::DeleteItem)
-		//.def("DeleteItem", &SplitButton::DeleteItem)
-		//.def("DeleteItem", &SplitButton::DeleteItem)
-		//.def("DeleteItem", &SplitButton::DeleteItem)
-		//.def("DeleteItem", &SplitButton::DeleteItem)
-		//.def("DeleteItem", &SplitButton::DeleteItem)
-		//.def("DeleteItem", &SplitButton::DeleteItem)
-		//.def("DeleteItem", &SplitButton::DeleteItem)
-		//.def("DeleteItem", &SplitButton::DeleteItem)
+		//.def("AppendItem", &SplitButton::AppendItem)	***
+		.def("AppendSeparator", &SplitButton::AppendSeparator)
+		//.def("InsertItem", &SplitButton::InsertItem)	***
+		.def("InsertSeparator", &SplitButton::InsertSeparator)
+		.def("DeleteItem", &SplitButton::DeleteItem)
+		.def("DeleteAllItems", &SplitButton::DeleteAllItems)
+
+		//.def("SetItemIcon", &SplitButton::SetItemIcon)	***
+		//.def("GetItemIcon", &SplitButton::GetItemIcon)	***
+
+		.def("SetItemText", &SplitButton::SetItemText)
+		.def("GetItemText", &SplitButton::GetItemText)
+
+		.def("SetItemTextSize", &SplitButton::SetItemTextSize)
+		.def("GetItemTextSize", &SplitButton::GetItemTextSize)
+
+		.def("SetItemTextStyle", &SplitButton::SetItemTextStyle)
+		.def("GetItemTextStyle", &SplitButton::GetItemTextStyle)
+
+		//.def("SetItemData", &SplitButton::SetItemData)	***
+		//.def("GetItemData", &SplitButton::GetItemData)	***
+
+		//.def("SetItemObjectData", &SplitButton::SetItemObjectData)	***
+		//.def("GetItemObjectData", &SplitButton::GetItemObjectData)	***
+
+		.def("EnableItem", &SplitButton::EnableItem)
+		.def("DisableItem", &SplitButton::DisableItem)
+		.def("SetItemStatus", &SplitButton::SetItemStatus)
+		.def("IsItemEnabled", &SplitButton::IsItemEnabled)
+
+		.def("IsSeparatorItem", &SplitButton::IsSeparatorItem)
+
+		.def("EnableDraw", &SplitButton::EnableDraw)
+		.def("DisableDraw", &SplitButton::DisableDraw);
+}
+
+void load_dg_CustomSplitButton(py::module m) {
+	py::class_<CustomSplitButton, SplitButtonBase>(m, "SplitButton")
+		.def(py::init<Panel &, short>())
+		.def(py::init<Panel &, Rect &, SplitButton::ButtonForm>(),
+			py::arg("panel"),
+			py::arg("rect"),
+			py::arg("type") = SplitButton::ButtonForm::Normal)
+
+		//.def("Attach", &SplitButton::Attach)	***
+		//.def("Detach", &SplitButton::Detach)	***
+
+		.def("EnableArrowPart", &CustomSplitButton::EnableArrowPart)
+		.def("DisableArrowPart", &CustomSplitButton::DisableArrowPart)
+		.def("SetArrowPartStatus", &CustomSplitButton::SetArrowPartStatus)
+		.def("IsArrowPartEnabled", &CustomSplitButton::IsArrowPartEnabled);
 }

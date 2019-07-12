@@ -111,7 +111,13 @@ PYBIND11_MODULE(DGLib, m) {
 	//DGButton
 	//load_dg_ButtonItem(m);
 	//load_dg_Button(m);
+	//load_dg_IconButton(m);
 	//load_dg_SplitButtonBase(m);
+	//load_dg_SplitButton(m);
+	//load_dg_CustomSplitButton(m);
+	//DGListBox
+	//
+
 
 #endif //  TEST == 1
 }

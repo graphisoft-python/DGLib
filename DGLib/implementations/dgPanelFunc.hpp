@@ -4,8 +4,6 @@
 
 #include "DGPanel.hpp"
 
-#include "ACCast.h"
-
 using namespace DG;
 
 void load_dg_Panel(py::module m) {

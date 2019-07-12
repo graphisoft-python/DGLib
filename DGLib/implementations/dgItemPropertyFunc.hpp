@@ -5,8 +5,6 @@
 #include "DGItemProperty.hpp"
 #include "DGItem.hpp"
 
-#include "ACCast.h"
-
 using namespace DG;
 
 //namespace DG::Font

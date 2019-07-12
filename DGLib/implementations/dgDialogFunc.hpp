@@ -3,7 +3,6 @@
 #include "../stdafx.h"
 
 #include "DGDialog.hpp"
-#include "ACCast.h"
 
 using namespace DG;
 
