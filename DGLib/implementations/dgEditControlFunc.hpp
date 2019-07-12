@@ -1,3 +1,5 @@
+#pragma once
+
 #include "../stdafx.h"
 
 #include "DGItem.hpp"
@@ -37,6 +39,7 @@ void load_dg_PosIntEdit(py::module m) {
 
 
 	m_posIntEdit
+		//.def(py::init<Panel &, short>())	***
 		.def(py::init<Panel &, Rect &, PosIntEdit::FrameType, PosIntEdit::AbsRelType, PosIntEdit::UpdateType, PosIntEdit::ReadOnlyType>(),
 			py::arg("panel"), 
 			py::arg("rect"),
@@ -44,6 +47,9 @@ void load_dg_PosIntEdit(py::module m) {
 			py::arg("absRel") = PosIntEdit::AbsRelType::Absolute,
 			py::arg("update") = PosIntEdit::UpdateType::Update,
 			py::arg("readOnly") = PosIntEdit::ReadOnlyType::Editable)
+
+		//.def("Attach", &PosIntEdit::Attach)	***
+		//.def("Detach", &PosIntEdit::Detach)	***
 
 		.def("SetMin", &PosIntEdit::SetMin)
 		.def("SetMax", &PosIntEdit::SetMax)
@@ -64,6 +70,7 @@ void load_dg_IntEdit(py::module m) {
 
 
 	m_intEdit
+		//.def(py::init<Panel &, short>())	***
 		.def(py::init<Panel &, Rect &, IntEdit::FrameType, IntEdit::AbsRelType, IntEdit::UpdateType, IntEdit::ReadOnlyType>(),
 			py::arg("panel"), 
 			py::arg("rect"),
@@ -71,6 +78,9 @@ void load_dg_IntEdit(py::module m) {
 			py::arg("absRel") = IntEdit::AbsRelType::Absolute,
 			py::arg("update") = IntEdit::UpdateType::Update,
 			py::arg("readOnly") = IntEdit::ReadOnlyType::Editable)
+
+		//.def("Attach", &PosIntEdit::Attach)	***
+		//.def("Detach", &PosIntEdit::Detach)	***
 
 		.def("SetMin", &IntEdit::SetMin)
 		.def("SetMax", &IntEdit::SetMax)
@@ -91,6 +101,7 @@ void load_dg_RealEdit(py::module m) {
 
 
 	m_realEdit
+		//.def(py::init<Panel &, short>())	***
 		.def(py::init<Panel &, Rect &, RealEdit::FrameType, RealEdit::AbsRelType, RealEdit::UpdateType, RealEdit::ReadOnlyType>(), 
 			py::arg("panel"), 
 			py::arg("rect"),
@@ -98,6 +109,9 @@ void load_dg_RealEdit(py::module m) {
 			py::arg("absRel") = RealEdit::AbsRelType::Absolute,
 			py::arg("update") = RealEdit::UpdateType::Update,
 			py::arg("readOnly") = RealEdit::ReadOnlyType::Editable)
+
+		//.def("Attach", &PosIntEdit::Attach)	***
+		//.def("Detach", &PosIntEdit::Detach)	***
 
 		.def("SetMin", &RealEdit::SetMin)
 		.def("SetMax", &RealEdit::SetMax)
@@ -118,6 +132,7 @@ void load_dg_LengthEdit(py::module m) {
 
 
 	m_lengthEdit
+		//.def(py::init<Panel &, short>())	***
 		.def(py::init<Panel &, Rect &, LengthEdit::ChangeFontType, LengthEdit::FrameType, LengthEdit::AbsRelType, LengthEdit::UpdateType, LengthEdit::ReadOnlyType>(),
 			py::arg("panel"), 
 			py::arg("rect"),
@@ -130,6 +145,7 @@ void load_dg_LengthEdit(py::module m) {
 
 void load_dg_AreaEdit(py::module m) {
 	py::class_<AreaEdit, RealEdit> (m, "AreaEdit")
+		//.def(py::init<Panel &, short>())	***
 		.def(py::init<Panel &, Rect &, AreaEdit::FrameType, AreaEdit::AbsRelType, AreaEdit::UpdateType, AreaEdit::ReadOnlyType>(),
 			py::arg("panel"),
 			py::arg("rect"),
@@ -141,6 +157,7 @@ void load_dg_AreaEdit(py::module m) {
 
 void load_dg_VolumeEdit(py::module m) {
 	py::class_<VolumeEdit, RealEdit>(m, "VolumeEdit")
+		//.def(py::init<Panel &, short>())	***
 		.def(py::init<Panel &, Rect &, VolumeEdit::FrameType, VolumeEdit::AbsRelType, VolumeEdit::UpdateType, VolumeEdit::ReadOnlyType>(),
 			py::arg("panel"),
 			py::arg("rect"),
@@ -152,6 +169,7 @@ void load_dg_VolumeEdit(py::module m) {
 
 void load_dg_AngleEdit(py::module m) {
 	py::class_<AngleEdit, RealEdit>(m, "AngleEdit")
+		//.def(py::init<Panel &, short>())	***
 		.def(py::init<Panel &, Rect &, AngleEdit::FrameType, AngleEdit::AbsRelType, AngleEdit::UpdateType, AngleEdit::ReadOnlyType>(),
 			py::arg("panel"),
 			py::arg("rect"),
@@ -163,6 +181,7 @@ void load_dg_AngleEdit(py::module m) {
 
 void load_dg_PolarAngleEdit(py::module m) {
 	py::class_<PolarAngleEdit, RealEdit>(m, "PolarAngleEdit")
+		//.def(py::init<Panel &, short>())	***
 		.def(py::init<Panel &, Rect &, PolarAngleEdit::FrameType, PolarAngleEdit::AbsRelType, PolarAngleEdit::UpdateType, PolarAngleEdit::ReadOnlyType>(),
 			py::arg("panel"),
 			py::arg("rect"),
@@ -174,6 +193,7 @@ void load_dg_PolarAngleEdit(py::module m) {
 
 void load_dg_MMPointEdit(py::module m) {
 	py::class_<MMPointEdit, RealEdit>(m, "MMPointEdit")
+		//.def(py::init<Panel &, short>())	***
 		.def(py::init<Panel &, Rect &, MMPointEdit::FrameType, MMPointEdit::AbsRelType, MMPointEdit::UpdateType, MMPointEdit::ReadOnlyType>(),
 			py::arg("panel"),
 			py::arg("rect"),
@@ -185,12 +205,16 @@ void load_dg_MMPointEdit(py::module m) {
 
 void load_dg_TextEditBase(py::module m) {
 	py::class_<TextEditBase, EditControl, ItemTextProperty>(m, "TextEditBase")
+		//.def("Attach", &PosIntEdit::Attach)	***
+		//.def("Detach", &PosIntEdit::Detach)	***
+
 		.def("SetSelection", &TextEditBase::SetSelection)
 		.def("GetSelection", &TextEditBase::GetSelection);
 }
 
 void load_dg_TextEdit(py::module m) {
 	py::class_<TextEdit, TextEditBase, ItemVariousProperty, ItemTextLengthLimitProperty>(m, "TextEdit")
+		//.def(py::init<Panel &, short>())	***
 		.def(py::init<Panel &, Rect &, short, TextEdit::FrameType, TextEdit::UpdateType, TextEdit::ReadOnlyType>(),
 			py::arg("panel"),
 			py::arg("rect"),
@@ -202,6 +226,7 @@ void load_dg_TextEdit(py::module m) {
 
 void load_dg_PasswordEdit(py::module m) {
 	py::class_<PasswordEdit, TextEditBase, ItemTextLengthLimitProperty>(m, "PasswordEdit")
+		//.def(py::init<Panel &, short>())	***
 		.def(py::init<Panel &, Rect &, short, PasswordEdit::FrameType, PasswordEdit::UpdateType, PasswordEdit::ReadOnlyType>(),
 			py::arg("panel"),
 			py::arg("rect"),
@@ -213,12 +238,16 @@ void load_dg_PasswordEdit(py::module m) {
 
 void load_dg_ShortcutEdit(py::module m) {
 	py::class_<ShortcutEdit, TextEditBase, ItemTextLengthLimitProperty>(m, "ShortcutEdit")
+		//.def(py::init<Panel &, short>())	***
 		.def(py::init<Panel &, Rect &, short, ShortcutEdit::FrameType, ShortcutEdit::UpdateType>(),
 			py::arg("panel"),
 			py::arg("rect"),
 			py::arg("lengthLimit") = 0,
 			py::arg("frame") = ShortcutEdit::FrameType::Frame,
 			py::arg("update") = ShortcutEdit::UpdateType::Update);
+
+		//.def("Attach", &PosIntEdit::Attach)	***
+		//.def("Detach", &PosIntEdit::Detach)	***
 }
 
 void load_dg_MultiLineEdit(py::module m) {
@@ -233,6 +262,7 @@ void load_dg_MultiLineEdit(py::module m) {
 	
 
 	m_multiLineEdit
+		//.def(py::init<Panel &, short>())	***
 		.def(py::init<Panel &, Rect &, MultiLineEdit::ScrollType, MultiLineEdit::FrameType, MultiLineEdit::UpdateType, MultiLineEdit::ReadOnlyType>(),
 			py::arg("panel"),
 			py::arg("rect"),

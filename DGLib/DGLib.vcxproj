@@ -155,6 +155,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="implementations\dgButtonFunc.hpp" />
     <ClInclude Include="implementations\dgDialogFunc.hpp" />
     <ClInclude Include="implementations\dgEditControlFunc.hpp" />
     <ClInclude Include="implementations\dgItemFunc.hpp" />

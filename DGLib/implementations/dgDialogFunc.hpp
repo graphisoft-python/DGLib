@@ -1,3 +1,5 @@
+#pragma once
+
 #include "../stdafx.h"
 
 #include "DGDialog.hpp"
@@ -173,6 +175,9 @@ void load_dg_Dialog(py::module m) {
 		.def("SetTitle", &Dialog::SetTitle)
 		.def("GetTitle", &Dialog::GetTitle)
 
+		//.def("SetIcon", &Dialog::SetIcon)		***
+		//.def("GetIcon", &Dialog::GetIcon)		***
+
 		.def("EnableIdleEvent", &Dialog::EnableIdleEvent,
 			py::arg("sendForInactiveApp") = false)
 
@@ -217,6 +222,7 @@ void load_dg_ModaDialog(py::module m) {
 
 
 	m_modalDialog
+		//.def(py::init<GSResModule , short, GSResModule>())	***
 		.def(py::init<NativePoint &, short, short, GS::Guid &, ModalDialog::GrowType, ModalDialog::CaptionType, ModalDialog::FrameType>(),
 			py::arg("position"), 
 			py::arg("width"), 
@@ -283,6 +289,8 @@ void load_dg_ModelessDialog(py::module m) {
 
 
 	m_modelessDialog
+		//.def(py::init<GSResModule , short, GSResModule>())	***
+		//.def(py::init<GSResModule, short, GSResModule,GS::Guid &>())	***
 		.def(py::init<NativePoint &, short, short, GS::Guid &, ModelessDialog::GrowType, ModelessDialog::CloseType, ModelessDialog::MinimizeType, ModelessDialog::MaximizeType, ModelessDialog::CaptionType, ModelessDialog::FrameType, ModelessDialog::SpecialFeatures>(),
 			py::arg("position"), 
 			py::arg("width"), 
@@ -334,6 +342,8 @@ void load_dg_ModelessDialog(py::module m) {
 
 void load_dg_Palette(py::module m) {
 	py::class_<Palette, ModelessBase>(m, "Palette")
+		//.def(py::init<GSResModule , short, GSResModule>())	***
+		//.def(py::init<GSResModule, short, GSResModule,GS::Guid &>())	***
 		.def(py::init<NativePoint &, short, short, GS::Guid &, Palette::GrowType, Palette::CloseType, Palette::CaptionType, Palette::FrameType, Palette::SpecialFeatures>(),
 			py::arg("position"), 
 			py::arg("width"), 

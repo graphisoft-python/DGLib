@@ -1,3 +1,5 @@
+#pragma once
+
 #include "../stdafx.h"
 
 #include "DGPanel.hpp"
@@ -14,14 +16,16 @@ void load_dg_ItemBase(py::module m) {
 		.def("GetPanel", &ItemBase::GetPanel, py::return_value_policy::reference)
 
 		.def("GetPanelId", &ItemBase::GetPanelId)
-
 		.def("GetId", &ItemBase::GetId);
 }
 
 void load_dg_Item(py::module m) {
-	py::class_<Item, ItemBase>(m, "Item")
+	py::class_<Item, ItemBase/*, GS::EventSource*/>(m, "Item")
 		.def(py::self == py::self)
 		.def(py::self != py::self)
+
+		//.def("Attach", &Item::Attach)
+		//.def("Detach", &Item::Detach)
 
 		.def("Show", &Item::Show)
 		.def("Hide", &Item::Hide)

@@ -8,6 +8,7 @@
 #include "../implementations/dgPanelFunc.hpp"
 #include "../implementations/dgDialogFunc.hpp"
 #include "../implementations/dgEditControlFunc.hpp"
+#include "../implementations/dgButtonFunc.hpp"
 
 #define TEST 0;
 
@@ -107,6 +108,10 @@ PYBIND11_MODULE(DGLib, m) {
 	load_dg_PasswordEdit(m);
 	load_dg_ShortcutEdit(m);
 	load_dg_MultiLineEdit(m);
+	//DGButton
+	//load_dg_ButtonItem(m);
+	//load_dg_Button(m);
+	//load_dg_SplitButtonBase(m);
 
 #endif //  TEST == 1
 }

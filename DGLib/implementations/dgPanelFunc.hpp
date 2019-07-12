@@ -1,3 +1,5 @@
+#pragma once
+
 #include "../stdafx.h"
 
 #include "DGPanel.hpp"
@@ -7,12 +9,18 @@
 using namespace DG;
 
 void load_dg_Panel(py::module m) {
-	py::class_<Panel>(m, "Panel")
+	py::class_<Panel/*, GS::EventSource*/>(m, "Panel")
+		//.def("Attach", &Panel::Attach)
+		//.def("Detach", &Panel::Detach)
+
 		.def("IsValid", &Panel::IsValid)
 		.def("IsExist", &Panel::IsExist)
 
 		.def("GetId", &Panel::GetId)
-		.def("GetResourceId", &Panel::GetResourceId)
+		//.def("GetResourceId", &Panel::GetResourceId)
+
+		//.def("SetResourceModule", &Panel::SetResourceModule)
+		//.def("GetResourceModule", &Panel::GetResourceModule)
 
 		.def("GetAnchorString", &Panel::GetAnchorString)
 

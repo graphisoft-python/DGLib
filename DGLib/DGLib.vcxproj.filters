@@ -24,22 +24,25 @@
     <ClInclude Include="targetver.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="implementations\dgItemPropertyFunc.hpp">
-      <Filter>源文件</Filter>
-    </ClInclude>
-    <ClInclude Include="implementations\dgUtilityFunc.hpp">
-      <Filter>源文件</Filter>
-    </ClInclude>
-    <ClInclude Include="implementations\dgItemFunc.hpp">
-      <Filter>源文件</Filter>
-    </ClInclude>
-    <ClInclude Include="implementations\dgPanelFunc.hpp">
+    <ClInclude Include="implementations\dgButtonFunc.hpp">
       <Filter>源文件</Filter>
     </ClInclude>
     <ClInclude Include="implementations\dgDialogFunc.hpp">
       <Filter>源文件</Filter>
     </ClInclude>
     <ClInclude Include="implementations\dgEditControlFunc.hpp">
+      <Filter>源文件</Filter>
+    </ClInclude>
+    <ClInclude Include="implementations\dgItemFunc.hpp">
+      <Filter>源文件</Filter>
+    </ClInclude>
+    <ClInclude Include="implementations\dgItemPropertyFunc.hpp">
+      <Filter>源文件</Filter>
+    </ClInclude>
+    <ClInclude Include="implementations\dgPanelFunc.hpp">
+      <Filter>源文件</Filter>
+    </ClInclude>
+    <ClInclude Include="implementations\dgUtilityFunc.hpp">
       <Filter>源文件</Filter>
     </ClInclude>
   </ItemGroup>

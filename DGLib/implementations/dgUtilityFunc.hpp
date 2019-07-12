@@ -1,3 +1,5 @@
+#pragma once
+
 #include "../stdafx.h"
 
 #include "DGWImageCache.hpp"
@@ -109,6 +111,9 @@ void load_dg_CharRange(py::module m) {
 
 void load_dg_ShortPoint(py::module m) {
 	py::class_<TPoint<short>> (m, "ShortPoint")
+		//.def(py::init<>())
+		//.def(py::init<short &, short &>())
+
 		.def(py::self == py::self)
 		.def(py::self != py::self)
 
@@ -128,7 +133,6 @@ void load_dg_NativeUnit(py::module m) {
 		.def(py::init<>())
 		.def(py::init<short>())
 		.def(py::init<short, double>())
-
 		.def(py::self == py::self)
 		.def(py::self != py::self)
 		.def(py::self > py::self)
@@ -152,6 +156,9 @@ void load_dg_NativeUnit(py::module m) {
 
 void load_dg_NativeUnitPoint(py::module m) {
 	py::class_<TPoint<NativeUnit>>(m, "NativeUnitPoint")
+		//.def(py::init<>())
+		//.def(py::init<NativeUnit &, NativeUnit &>())
+
 		.def(py::self == py::self)
 		.def(py::self != py::self)
 
@@ -168,6 +175,11 @@ void load_dg_NativeUnitPoint(py::module m) {
 
 void load_dg_NativeUnitRect(py::module m) {
 	py::class_<TRect<NativeUnit>>(m, "NativeUnitRect")
+		//.def(py::init<>())
+		//.def(py::init<TPoint<NativeUnit> &, TPoint<NativeUnit> &>())
+		//.def(py::init<TPoint<NativeUnit> &, NativeUnit &, NativeUnit &>())
+		//.def(py::init<NativeUnit &, NativeUnit &, NativeUnit &, NativeUnit &>())
+
 		.def(py::self == py::self)
 		.def(py::self != py::self)
 
@@ -225,12 +237,19 @@ void load_dg_NativeUnitRect(py::module m) {
 		.def("Contains", (bool (TRect<NativeUnit>::*)
 			(const NativeUnit &, const NativeUnit &)const) &TRect<NativeUnit>::Contains)
 
+		//.def("ToGSRect", &TRect<NativeUnit>::ToGSRect)
+
 		.def("IsIntersecting", &TRect<NativeUnit>::IsIntersecting)
 		.def("Intersect", &TRect<NativeUnit>::Intersect);
 }
 
 void load_dg_ShortRect(py::module m) {
 	py::class_<TRect<short>>(m, "ShortRect")
+		//.def(py::init<>())
+		//.def(py::init<TPoint<short> &, TPoint<short> &>())
+		//.def(py::init<TPoint<short> &, short &, short &>())
+		//.def(py::init<short &, short &, short &, short &>())
+
 		.def(py::self == py::self)
 		.def(py::self != py::self)
 
@@ -288,12 +307,15 @@ void load_dg_ShortRect(py::module m) {
 		.def("Contains", (bool (TRect<short>::*)
 			(const short &, const short &)const) &TRect<short>::Contains)
 
+		//.def("ToGSRect", &TRect<short>::ToGSRect)
+
 		.def("IsIntersecting", &TRect<short>::IsIntersecting)
 		.def("Intersect", &TRect<short>::Intersect);
 }
 
 void load_dg_NativePoint(py::module m) {
 	py::class_<NativePoint, TPoint<NativeUnit>>(m, "NativePoint")
+		//.def(py::init<TPoint<NativeUnit> &>())
 		.def(py::init<NativeUnit &, NativeUnit &>())
 
 		.def("Scale", &NativePoint::Scale);
@@ -301,6 +323,8 @@ void load_dg_NativePoint(py::module m) {
 
 void load_dg_Point(py::module m) {
 	py::class_<Point, TPoint<short>>(m, "Point")
+		//.def(py::init<>())
+		//.def(py::init<TPoint<short> &>())
 		.def(py::init<short, short>())
 
 		.def("Scale", &Point::Scale)
@@ -313,6 +337,7 @@ void load_dg_Point(py::module m) {
 void load_dg_NativeRect(py::module m) {
 	py::class_<NativeRect, TRect<NativeUnit>> (m, "NativeRect")
 		.def(py::init<>())
+		//.def(py::init<TRect<NativeUnit> &>())
 		.def(py::init< NativePoint &, NativePoint &>())
 		.def(py::init< NativePoint &, NativeUnit &, NativeUnit &>())
 		.def(py::init<NativeUnit &, NativeUnit &, NativeUnit &, NativeUnit &>())
@@ -322,6 +347,8 @@ void load_dg_NativeRect(py::module m) {
 
 void load_dg_Rect(py::module m) {
 	py::class_<Rect, TRect<short>>(m, "Rect")
+		//.def(py::init<>())
+		//.def(py::init<TRect<short> &>())
 		.def(py::init<Point &,Point &>())
 		.def(py::init<Point &,short,short>())
 		.def(py::init<short,short,short,short>())

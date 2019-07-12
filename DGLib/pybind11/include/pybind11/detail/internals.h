@@ -193,9 +193,10 @@ PYBIND11_NOINLINE inline internals &get_internals() {
         );
 #endif
     } else {
+		internals* internals_ptr = nullptr;
         if (!internals_pp) {
             internals_pp = new internals*();
-            auto *&internals_ptr = *internals_pp;
+            internals_ptr = *internals_pp;
             internals_ptr = new internals();
         }else if(internals_pp && *internals_pp){
             return **internals_pp;
