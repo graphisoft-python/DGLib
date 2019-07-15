@@ -7,17 +7,17 @@
 
 using namespace DG;
 
+
 //namespace DG::Font
-void load_dg_FontSize(py::module m) {
+
+void load_dg_Font(py::module m) {
 	py::enum_<Font::Size>(m, "Size")
 		.value("Large", Font::Size::Large)
 		.value("Small", Font::Size::Small)
 		.value("ExtraSmall", Font::Size::ExtraSmall)
 		.value("DefaultSize", Font::Size::DefaultSize)
 		.export_values();
-}
 
-void load_dg_FontStyle(py::module m) {
 	py::enum_<Font::Style>(m, "Style")
 		.value("Plain", Font::Style::Plain)
 		.value("Bold", Font::Style::Bold)
@@ -28,7 +28,18 @@ void load_dg_FontStyle(py::module m) {
 		.value("DefaultStyle", Font::Style::DefaultStyle)
 		.export_values();
 }
-//namespace DG::Font
+
+
+// --- FocusableProperty
+
+void load_dg_FocusableProperty(py::module m) {
+	py::class_<FocusableProperty, ItemBase>(m, "FocusableProperty")
+		.def("SetFocus", &FocusableProperty::SetFocus)
+		.def("IsFocused", &FocusableProperty::IsFocused);
+}
+
+
+// --- ItemFontProperty
 
 void load_dg_ItemFontProperty(py::module m) {
 	py::class_<ItemFontProperty, ItemBase>(m, "ItemFontProperty")
@@ -39,11 +50,43 @@ void load_dg_ItemFontProperty(py::module m) {
 		.def("GetFontStyle", &ItemFontProperty::GetFontStyle);
 }
 
-void load_dg_FocusableProperty(py::module m) {
-	py::class_<FocusableProperty, ItemBase>(m, "FocusableProperty")
-		.def("SetFocus", &FocusableProperty::SetFocus)
-		.def("IsFocused", &FocusableProperty::IsFocused);
+
+// --- ItemIconProperty
+
+//void load_dg_ItemIconProperty(py::module m) {
+//	py::class_<ItemIconProperty, ItemBase>(m, "ItemIconProperty")
+//		.def("SetIcon", &ItemIconProperty::SetIcon)
+//		.def("GetIcon", &ItemIconProperty::GetIcon);
+//}
+
+
+// --- ItemTextProperty
+
+void load_dg_ItemTextProperty(py::module m) {
+	py::class_<ItemTextProperty, ItemBase>(m, "ItemTextProperty")
+		.def("SetText", &ItemTextProperty::SetText)
+		.def("CatText", &ItemTextProperty::CatText)
+
+		.def("GetText", &ItemTextProperty::GetText);
 }
+
+
+// --- ItemColorProperty
+
+//void load_dg_ItemColorProperty(py::module m) {
+//	py::class_<ItemColorProperty, ItemBase>(m, "ItemColorProperty")
+//		.def("SetTextColor", &ItemColorProperty::SetTextColor)
+//		.def("GetTextColor", &ItemColorProperty::GetTextColor)
+//
+//		.def("SetBackgroundColor", &ItemColorProperty::SetBackgroundColor)
+//		.def("GetBackgroundColor", &ItemColorProperty::GetBackgroundColor)
+//
+//		.def("ResetDefaultTextColor", &ItemColorProperty::ResetDefaultTextColor)
+//		.def("ResetDefaultBackgroundColor", &ItemColorProperty::ResetDefaultBackgroundColor);
+//}
+
+
+// --- ItemVariousProperty
 
 void load_dg_ItemVariousProperty(py::module m) {
 	py::class_<ItemVariousProperty, ItemBase>(m, "ItemVariousProperty")
@@ -53,16 +96,11 @@ void load_dg_ItemVariousProperty(py::module m) {
 		.def("GetVariousText", &ItemVariousProperty::GetVariousText);
 }
 
+
+// --- ItemTextLengthLimitProperty 
+
 void load_dg_ItemTextLengthLimitProperty(py::module m) {
 	py::class_<ItemTextLengthLimitProperty, ItemBase>(m, "ItemTextLengthLimitProperty")
 		.def("SetMaxTextLength", &ItemTextLengthLimitProperty::SetMaxTextLength)
 		.def("GetMaxTextLength", &ItemTextLengthLimitProperty::GetMaxTextLength);
-}
-
-void load_dg_ItemTextProperty(py::module m) {
-	py::class_<ItemTextProperty, ItemBase>(m, "ItemTextProperty")
-		.def("SetText", &ItemTextProperty::SetText)
-		.def("CatText", &ItemTextProperty::CatText)
-
-		.def("GetText", &ItemTextProperty::GetText);
 }

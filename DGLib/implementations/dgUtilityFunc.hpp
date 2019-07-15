@@ -7,18 +7,113 @@
 
 using namespace DG;
 
-//namespace DG::EOL;
-void load_dg_EolType(py::module m) {
+
+//namespace DG::EOL
+void load_dg_EOL(py::module m) {
 	py::enum_<EOL::Type>(m, "Type")
 		.value("Default", EOL::Type::Default)
 		.value("CR", EOL::Type::CR)
 		.value("CRLF", EOL::Type::CRLF)
 		.export_values();
 }
-//namespace DG::EOL
+
+
+// --- namespace DG::Search
+
+//void load_dg_Search(py::module m) {
+//	py::enum_<Search::Dir>(m, "Dir")
+//		.value("Down", Search::Dir::Down)
+//		.value("Up", Search::Dir::Up)
+//		.export_values();
+//
+//	py::enum_<Search::Case>(m, "Case")
+//		.value("InSensitive", Search::Case::InSensitive)
+//		.value("Sensitive", Search::Case::Sensitive)
+//		.export_values();
+//
+//	py::enum_<Search::Word>(m, "Word")
+//		.value("NoMatchWord", Search::Word::NoMatchWord)
+//		.value("MatchWord", Search::Word::MatchWord)
+//		.export_values();
+//}
+
+
+// --- namespace DG::UC
+
+//void load_dg_UC(py::module m) {
+//	py::enum_<UC::UC257CellSkinType>(m, "UC257CellSkinType")
+//		.value("FillSkin", UC::UC257CellSkinType::FillSkin)
+//		.value("EmptySkin", UC::UC257CellSkinType::EmptySkin)
+//		.value("SurfaceSkin", UC::UC257CellSkinType::SurfaceSkin)
+//		.value("MissingSkin", UC::UC257CellSkinType::MissingSkin)
+//		.value("DefaultSkin", UC::UC257CellSkinType::DefaultSkin)
+//		.export_values();
+//}
+
+
+// --- GS::Range<Int32> 
+
+void load_dg_CharRange(py::module m) {
+	py::class_<CharRange>(m, "CharRange")
+		.def(py::init<>())
+		.def(py::init<Int32 &, Int32 &>())
+
+		.def("Set", &CharRange::Set)
+		.def("SetWithLength", &CharRange::SetWithLength)
+
+		.def("GetMin", &CharRange::GetMin)
+		.def("GetMax", &CharRange::GetMax)
+		.def("GetLength", &CharRange::GetLength)
+
+		.def(py::self == py::self)
+		.def(py::self != py::self)
+		.def("IsOverlapping", &CharRange::IsOverlapping)
+		.def("IsInside", &CharRange::IsInside)
+		.def("IsEmpty", &CharRange::IsEmpty)
+
+		.def("Union", &CharRange::Union)
+		.def("Intersection", &CharRange::Intersection)
+
+		.def("Unify", &CharRange::Unify)
+		.def("Intersect", &CharRange::Intersect);
+}
+
+
+// --- namespace DG::Unit
+
+//void load_dg_Unit(py::module m) {
+//	py::enum_<Unit::Type>(m, "Type")
+//		.value("Unit_MM", Unit::Type::Unit_MM)
+//		.value("Unit_CM", Unit::Type::Unit_CM)
+//		.value("Unit_DM", Unit::Type::Unit_DM)
+//		.value("Unit_M", Unit::Type::Unit_M)
+//		.value("Unit_KM", Unit::Type::Unit_KM)
+//
+//		.value("Unit_DecInch", Unit::Type::Unit_DecInch)
+//		.value("Unit_FootInch", Unit::Type::Unit_FootInch)
+//		.value("Unit_Inch", Unit::Type::Unit_Inch)
+//		.value("Unit_FootDecInch", Unit::Type::Unit_FootDecInch)
+//		.value("Unit_DecFoot", Unit::Type::Unit_DecFoot)
+//
+//		.value("Unit_DecDegree", Unit::Type::Unit_DecDegree)
+//		.value("Unit_DegMinSec", Unit::Type::Unit_DegMinSec)
+//		.value("Unit_Grad", Unit::Type::Unit_Grad)
+//		.value("Unit_Radian", Unit::Type::Unit_Radian)
+//		.value("Unit_Surveyors", Unit::Type::Unit_Surveyors)
+//		.export_values();
+//}
+
 
 //namespace DG::Key
-void load_dg_KeySpecial(py::module m) {
+void load_dg_Key(py::module m) {
+	py::enum_<Key::Modifier>(m, "Modifier")
+		.value("NoModifier", Key::Modifier::NoModifier)
+		.value("Command", Key::Modifier::Command)
+		.value("Option", Key::Modifier::Option)
+		.value("Shift", Key::Modifier::Shift)
+		.value("Ctrl", Key::Modifier::Ctrl)
+		.export_values();
+
 	py::enum_<Key::Special> (m, "Special")
 		.value("Back", Key::Special::Back)
 		.value("Tab", Key::Special::Tab)
@@ -56,19 +151,7 @@ void load_dg_KeySpecial(py::module m) {
 
 		.value("Help", Key::Special::Help)
 		.export_values();
-}
 
-void load_dg_KeyModifier(py::module m) {
-	py::enum_<Key::Modifier>(m, "Modifier")
-		.value("NoModifier", Key::Modifier::NoModifier)
-		.value("Command", Key::Modifier::Command)
-		.value("Option", Key::Modifier::Option)
-		.value("Shift", Key::Modifier::Shift)
-		.value("Ctrl", Key::Modifier::Ctrl)
-		.export_values();
-}
-
-void load_dg_KeyCode(py::module m) {
 	py::class_<Key::Code>(m, "Code")
 		.def(py::init<>())
 		.def(py::init<Key::Special>())
@@ -82,32 +165,65 @@ void load_dg_KeyCode(py::module m) {
 		.def(py::self == py::self)
 		.def(py::self != py::self);
 }
-//namespace DG::Key
 
-void load_dg_CharRange(py::module m) {
-	py::class_<CharRange>(m, "CharRange")
-		.def(py::init<>())
-		.def(py::init<Int32 &, Int32 &>())
 
-		.def("Set", &CharRange::Set)
-		.def("SetWithLength", &CharRange::SetWithLength)
+// --- Image 
 
-		.def("GetMin", &CharRange::GetMin)
-		.def("GetMax", &CharRange::GetMax)
-		.def("GetLength", &CharRange::GetLength)
+//void load_dg_Image(py::module m) {
+//	py::class_<Image>(m, "Image")
+//		.def(py::init<>())
+//		.def(py::init<GSResModule, short>())
+//		.def(py::init<void*>())
+//
+//		.def(py::self == py::self)
+//		.def(py::self != py::self)
+//
+//		.def("GetResourceModule", &Image::GetResourceModule)
+//		.def("GetResourceId", &Image::GetResourceId)
+//		.def("GetData", &Image::GetData, py::return_value_policy::reference)
+//
+//		.def("IsEmpty", &Image::IsEmpty)
+//		.def("IsValid", &Image::IsValid);
+//}
 
-		.def(py::self == py::self)
-		.def(py::self != py::self)
-		.def("IsOverlapping", &CharRange::IsOverlapping)
-		.def("IsInside", &CharRange::IsInside)
-		.def("IsEmpty", &CharRange::IsEmpty)
 
-		.def("Union", &CharRange::Union)
-		.def("Intersection", &CharRange::Intersection)
+// --- Icon 
 
-		.def("Unify", &CharRange::Unify)
-		.def("Intersect", &CharRange::Intersect);
-}
+//void load_dg_Icon(py::module m) {
+//	py::class_<Icon, Image>(m, "Icon")
+//		.def(py::init<>())
+//		.def(py::init<GSResModule, short>())
+//		.def(py::init<void*>())
+//		
+//		.def("IsValid", &Icon::IsValid);
+//}
+
+
+// --- Picture
+
+//void load_dg_Picture(py::module m) {
+//	py::class_<Picture, Image>(m, "Picture")
+//		.def(py::init<>())
+//		.def(py::init<GSResModule, short>())
+//		.def(py::init<void*>());
+//}
+
+
+// --- NativeImage 
+
+//void load_dg_NativeImage(py::module m) {
+//	py::class_<NativeImage>(m, "NativeImage")
+//		.def(py::init<>())
+//		.def(py::init<void*, double>())
+//		.def(py::init<GSResModule, GSResID, double>())
+//		.def(py::init<GSResModule, GSResID, UInt32, UInt32, double>())
+//		.def(py::init<Image &, double>())
+//
+//		.def("GetNativeImage", &NativeImage::GetNativeImage);
+//}
+
+
+// --- TPoint<short>
 
 void load_dg_ShortPoint(py::module m) {
 	py::class_<TPoint<short>> (m, "ShortPoint")
@@ -127,6 +243,9 @@ void load_dg_ShortPoint(py::module m) {
 		
 		.def("Offset", &TPoint<short>::Offset);
 }
+
+
+// --- NativeUnit
 
 void load_dg_NativeUnit(py::module m) {
 	py::class_<NativeUnit>(m, "NativeUnit")
@@ -154,6 +273,9 @@ void load_dg_NativeUnit(py::module m) {
 		.def("GetValue",&NativeUnit::GetValue);
 }
 
+
+// --- TPoint<NativeUnit>
+
 void load_dg_NativeUnitPoint(py::module m) {
 	py::class_<TPoint<NativeUnit>>(m, "NativeUnitPoint")
 		//.def(py::init<>())
@@ -172,6 +294,9 @@ void load_dg_NativeUnitPoint(py::module m) {
 
 		.def("Offset", &TPoint<NativeUnit>::Offset);
 }
+
+
+// --- TRect<NativeUnit>
 
 void load_dg_NativeUnitRect(py::module m) {
 	py::class_<TRect<NativeUnit>>(m, "NativeUnitRect")
@@ -243,6 +368,9 @@ void load_dg_NativeUnitRect(py::module m) {
 		.def("Intersect", &TRect<NativeUnit>::Intersect);
 }
 
+
+// --- TRect<short>
+
 void load_dg_ShortRect(py::module m) {
 	py::class_<TRect<short>>(m, "ShortRect")
 		//.def(py::init<>())
@@ -313,6 +441,9 @@ void load_dg_ShortRect(py::module m) {
 		.def("Intersect", &TRect<short>::Intersect);
 }
 
+
+// --- NativePoint
+
 void load_dg_NativePoint(py::module m) {
 	py::class_<NativePoint, TPoint<NativeUnit>>(m, "NativePoint")
 		//.def(py::init<TPoint<NativeUnit> &>())
@@ -320,6 +451,8 @@ void load_dg_NativePoint(py::module m) {
 
 		.def("Scale", &NativePoint::Scale);
 }
+
+// --- Point
 
 void load_dg_Point(py::module m) {
 	py::class_<Point, TPoint<short>>(m, "Point")
@@ -334,6 +467,9 @@ void load_dg_Point(py::module m) {
 		});
 }
 
+
+// --- NativeRect
+
 void load_dg_NativeRect(py::module m) {
 	py::class_<NativeRect, TRect<NativeUnit>> (m, "NativeRect")
 		.def(py::init<>())
@@ -344,6 +480,9 @@ void load_dg_NativeRect(py::module m) {
 
 		.def("Scale", &NativeRect::Scale);
 }
+
+
+// --- Rect
 
 void load_dg_Rect(py::module m) {
 	py::class_<Rect, TRect<short>>(m, "Rect")
