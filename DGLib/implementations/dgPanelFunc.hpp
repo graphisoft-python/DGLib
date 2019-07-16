@@ -9,6 +9,8 @@
 
 using namespace DG;
 
+static GS::Lock	g_lock;
+
 class PyPanelObserver :PanelObserver {
 public:
 	PyPanelObserver(Panel &item,UINT64 vState)
@@ -75,29 +77,32 @@ public:
 	}
 
 	void PanelResizing(const PanelResizeEvent& ev, Point* growValues) override {
-		m_lock.Acquire(true);
-		PyThreadState *cstate = py::detail::get_thread_state_unchecked();
-		bool swap = false;
-		if (cstate != this->m_state) {
+		//py::gil_scoped_acquire acq;
+		//g_lock.Acquire(true);
+		PyThreadState *_ts = PyThreadState_GET();
+
+		if (_ts != this->m_state) {
 			PyThreadState_Swap(this->m_state);
-			swap = true;
 		}
 
-		{
-			try {
-				py::object py_obsr = py::cast(this);
-				if (py::hasattr(py_obsr, "PanelResizing")) {
-					py_obsr.attr("PanelResizing")(ev);
-				}
-			}
-			catch (py::error_already_set & err) {
-				err.restore();
-				if (PyErr_Occurred()) {
-					PyErr_Print();
+		//py::gil_scoped_acquire acq;
+		try {
+			py::object py_obsr = py::cast(this);
+			if (py::hasattr(py_obsr, "PanelResizing")) {
+				py::object result = py_obsr.attr("PanelResizing")(ev);
+				if (!result.is_none()) {
+					*growValues = result.cast<Point>();
 				}
 			}
 		}
-		m_lock.Release();
+		catch (py::error_already_set & err) {
+			err.restore();
+			if (PyErr_Occurred()) {
+				PyErr_Print();
+			}
+		}
+		//
+		//g_lock.Release();
 		
 		//OBSERVER_CALL_EVENT_WITH_RETURN("PanelResizing", ev, growValues, Point);
 	}
@@ -139,31 +144,29 @@ public:
 	}
 
 	void PanelTopStatusLost(const PanelTopStatusEvent& ev) override {
+		//g_lock.Acquire(true);
+		PyThreadState *_ts = PyThreadState_GET();
 
-		//PyThreadState *cstate = py::detail::get_thread_state_unchecked();
-		//bool swap = false;
-		//if (cstate != this->m_state) {
-		//	PyThreadState_Swap(this->m_state);
-		//	swap = true;
-		//}
+		if (_ts != this->m_state) {
+			PyThreadState_Swap(this->m_state);
+		}
 
-		//{
-		//	PyEval_AcquireLock();
-		//	try{
-		//		py::object py_obsr = py::cast(this);
-		//		if (py::hasattr(py_obsr, "PanelTopStatusLost")) {
-		//			py_obsr.attr("PanelTopStatusLost")(ev);
-		//		}
-		//	}
-		//	catch (py::error_already_set & err) {
-		//		err.restore();
-		//		if (PyErr_Occurred()) {
-		//			PyErr_Print();
-		//		}
-		//	}
-		//	PyEval_ReleaseLock();
-		//}
+		//py::gil_scoped_acquire acq;
+		try {
+			py::object py_obsr = py::cast(this);
+			if (py::hasattr(py_obsr, "PanelTopStatusLost")) {
+				py_obsr.attr("PanelTopStatusLost")(ev);
+			}
+		}
+		catch (py::error_already_set & err) {
+			err.restore();
+			if (PyErr_Occurred()) {
+				PyErr_Print();
+			}
+		}
 
+		//g_lock.Release();
+		//OBSERVER_CALL_EVENT("PanelTopStatusLost", ev);
 	}
 
 	void PanelWheelTrackEntered(const PanelWheelEvent& ev, bool* processed) override {
@@ -197,7 +200,9 @@ public:
 private:
 	Panel			&m_parent;
 	PyThreadState	*m_state;
-	GS::Lock		m_lock;
+
+private:
+	
 };
 
 void load_dg_Panel(py::module m) {
@@ -285,7 +290,7 @@ void load_dg_Panel(py::module m) {
 		;
 
 	py::class_<PyPanelObserver>(m, "PanelObserver",py::dynamic_attr())
-		.def(py::init<Panel &, UINT64>())
+		.def(py::init<Panel &,UINT64>())
 		;
 
 

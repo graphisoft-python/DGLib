@@ -51,14 +51,16 @@ PYBIND11_MODULE(DGLib, m) {
 	m.doc() = "version 2019.7.10";
 
 	//Add bindings here
-	m.def("foo", []() {
-		return "Hello, World! DGLib";
-	});
+	//m.def("foo", []() {
+	//	return "Hello, World! DGLib";
+	//});
 
 #if  TEST == 1
 	load_test(m);
 #else
 	//DGUtility
+
+	//py::module m_key = m.def_submodule("Key");
 	load_dg_EolType(m);
 	load_dg_KeySpecial(m);
 	load_dg_KeyModifier(m);
