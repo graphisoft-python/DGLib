@@ -501,7 +501,144 @@ void load_dg_Rect(py::module m) {
 }
 
 
+// --- MousePosData
+
+//void load_dg_MousePosData(py::module m) {
+//	py::class_<MousePosData>(m, "MousePosData")
+//		.def(py::init<>())
+//
+//		.def("Retrieve", (bool (MousePosData::*)
+//		(void)) &MousePosData::Retrieve)
+//		.def("Retrieve", (bool (MousePosData::*)
+//		(const Panel &)) &MousePosData::Retrieve)
+//		.def("Retrieve", (bool (MousePosData::*)
+//		(const Item &)) &MousePosData::Retrieve)
+//
+//		.def("RetrieveFailSafe", (void (MousePosData::*)
+//		(void)) &MousePosData::RetrieveFailSafe)
+//		.def("RetrieveFailSafe", (void (MousePosData::*)
+//		(const Panel &)) &MousePosData::RetrieveFailSafe)
+//		.def("RetrieveFailSafe", (void (MousePosData::*)
+//		(const Item &)) &MousePosData::RetrieveFailSafe)
+//
+//		.def("GetPanel", &MousePosData::GetPanel, py::return_value_policy::reference)
+//		.def("GetItem", &MousePosData::GetItem, py::return_value_policy::reference)
+//
+//		.def("GetRect", &MousePosData::GetRect)
+//		.def("GetMouseOffsetInLogicalUnits", &MousePosData::GetMouseOffsetInLogicalUnits)
+//		.def("GetMouseOffsetInNativeUnits", &MousePosData::GetMouseOffsetInNativeUnits)
+//
+//		.def("IsCommandPressed", &MousePosData::IsCommandPressed)
+//		.def("IsOptionPressed", &MousePosData::IsOptionPressed)
+//		.def("IsShiftPressed", &MousePosData::IsShiftPressed)
+//
+//		.def("IsLeftButtonPressed", &MousePosData::IsLeftButtonPressed)
+//		.def("IsRightButtonPressed", &MousePosData::IsRightButtonPressed)
+//		.def("IsWheelButtonPressed", &MousePosData::IsWheelButtonPressed);
+//}
 
 
+// --- Definitions
 
+//void load_dg_DragDrop(py::module m) {
+//	py::enum_<DragDrop::Effect>(m, "Effect")
+//		.value("Reject", DragDrop::Effect::Reject)
+//		.value("Accept", DragDrop::Effect::Accept)
+//		.value("Copy", DragDrop::Effect::Copy)
+//		.value("Move", DragDrop::Effect::Move)
+//		.value("Link", DragDrop::Effect::Link)
+//		.value("Delete", DragDrop::Effect::Delete)
+//		.export_values();
+//
+//	py::enum_<DragDrop::Feedback>(m, "Feedback")
+//		.value("AcceptSelAndIns", DragDrop::Feedback::AcceptSelAndIns)
+//		.value("RejectSelection", DragDrop::Feedback::RejectSelection)
+//		.value("RejectInsertion", DragDrop::Feedback::RejectInsertion)
+//		.value("RejectSelAndIns", DragDrop::Feedback::RejectSelAndIns)
+//		.export_values();
+//
+//	py::enum_<DragDrop::RelativePos>(m, "RelativePos")
+//		.value("InsertOn", DragDrop::RelativePos::InsertOn)
+//		.value("InsertUnder", DragDrop::RelativePos::InsertUnder)
+//		.value("InsertAbove", DragDrop::RelativePos::InsertAbove)
+//		.export_values();
+//
+//	py::enum_<DragDrop::Scope>(m, "Scope")
+//		.value("Item", DragDrop::Scope::Item)
+//		.value("Dialog", DragDrop::Scope::Dialog)
+//		.value("Module", DragDrop::Scope::Module)
+//		.value("Application", DragDrop::Scope::Application)
+//		.value("System", DragDrop::Scope::System)
+//		.export_values();
+//}
+
+
+// --- ItemDragDropData
+
+//void load_dg_ItemDragDropData(py::module m) {
+//	py::class_<ItemDragDropData>(m, "ItemDragDropData")
+//		.def("HasDataFormat", &ItemDragDropData::HasDataFormat)
+//		.def("GetDataSize", &ItemDragDropData::GetDataSize)
+//		.def("GetData", &ItemDragDropData::GetData)
+//		.def("GetFileData", &ItemDragDropData::GetFileData)
+//
+//		.def("GetText", &ItemDragDropData::GetText)
+//
+//		.def("GetLocationCount", &ItemDragDropData::GetLocationCount)
+//		.def("GetLocation", &ItemDragDropData::GetLocation)
+//
+//		.def("GetSourceItem", &ItemDragDropData::GetSourceItem, py::return_value_policy::reference)
+//		.def("GetListBoxSource", &ItemDragDropData::GetListBoxSource, py::return_value_policy::reference)
+//		.def("GetListViewSource", &ItemDragDropData::GetListViewSource, py::return_value_policy::reference)
+//		.def("GetTreeViewSource", &ItemDragDropData::GetTreeViewSource, py::return_value_policy::reference)
+//
+//		.def("GetItemCount", &ItemDragDropData::GetItemCount)
+//		.def("GetTreeViewItem", &ItemDragDropData::GetTreeViewItem)
+//		.def("GetListBoxItem", &ItemDragDropData::GetListBoxItem)
+//		.def("GetListViewItem", &ItemDragDropData::GetListViewItem);
+//}
+
+
+// --- DragSourceEventProperty
+
+//void load_dg_DragSourceEventProperty(py::module m) {
+//	py::class_<DragSourceEventProperty>(m, "DragSourceEventProperty")
+//		.def(py::init<>())
+//
+//		.def("Init", &DragSourceEventProperty::Init)
+//
+//		.def("SetData", &DragSourceEventProperty::SetData)
+//		.def("SetDelayedData", &DragSourceEventProperty::SetDelayedData)
+//		.def("SetLocationData", &DragSourceEventProperty::SetLocationData)
+//		.def("ModifyBaseFormat", &DragSourceEventProperty::ModifyBaseFormat)
+//
+//		.def("GetSourcePosition", &DragSourceEventProperty::GetSourcePosition)
+//		.def("GetRequestedDragFormat", &DragSourceEventProperty::GetRequestedDragFormat)
+//		.def("GetFolderPath", &DragSourceEventProperty::GetFolderPath, py::return_value_policy::reference)
+//		.def("SetSourceFeedback", &DragSourceEventProperty::SetSourceFeedback);
+//}
+
+
+// --- DropTargetEventProperty
+
+//void load_dg_DropTargetEventProperty(py::module m) {
+//	py::class_<DropTargetEventProperty, ItemDragDropData>(m, "DropTargetEventProperty")
+//		.def("GetTargetPosition", &DropTargetEventProperty::GetTargetPosition);
+//}
+
+
+// --- CompoundItemObserver
+
+//void load_dg_CompoundItemObserver(py::module m) {
+//	py::class_<CompoundItemObserver>(m, "CompoundItemObserver")
+//		.def("AttachToAllItems", &CompoundItemObserver::AttachToAllItems)
+//		.def("DetachFromAllItems", &CompoundItemObserver::DetachFromAllItems);
+//}
+
+
+// ---- SetAndRestoreEditUpdateDelay
+
+//void load_dg_SetAndRestoreEditUpdateDelay(py::module m) {
+//	py::class_<SetAndRestoreEditUpdateDelay>(m, "SetAndRestoreEditUpdateDelay");
+//}
 
