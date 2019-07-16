@@ -9,6 +9,7 @@
 #include "../implementations/dgDialogFunc.hpp"
 #include "../implementations/dgEditControlFunc.hpp"
 #include "../implementations/dgButtonFunc.hpp"
+#include "../implementations/dgListBoxFunc.hpp"
 
 #define TEST 0;
 
@@ -51,18 +52,15 @@ PYBIND11_MODULE(DGLib, m) {
 	m.doc() = "version 2019.7.10";
 
 	//Add bindings here
-	m.def("foo", []() {
-		return "Hello, World! DGLib";
-	});
-
 #if  TEST == 1
 	load_test(m);
 #else
-	//DGUtility
-	load_dg_EolType(m);
-	load_dg_KeySpecial(m);
-	load_dg_KeyModifier(m);
-	load_dg_KeyCode(m);
+	// --- DGUtility
+	py::module EOL = m.def_submodule("EOL");
+	load_dg_EOL(EOL);
+	py::module Key = m.def_submodule("Key");
+	load_dg_Key(Key);
+
 	load_dg_CharRange(m);
 	load_dg_ShortPoint(m);
 	load_dg_NativeUnit(m);
@@ -73,26 +71,27 @@ PYBIND11_MODULE(DGLib, m) {
 	load_dg_NativeRect(m);
 	load_dg_ShortRect(m);
 	load_dg_Rect(m);
-	//DGItem
+	// --- DGItem
 	load_dg_ItemBase(m);
 	load_dg_Item(m);
-	//DGItemProperty
-	load_dg_FontSize(m);
-	load_dg_FontStyle(m);
+	// --- DGItemProperty
+	py::module Font = m.def_submodule("Font");
+	load_dg_Font(Font);
+
 	load_dg_ItemFontProperty(m);
 	load_dg_FocusableProperty(m);
 	load_dg_ItemVariousProperty(m);
 	load_dg_ItemTextLengthLimitProperty(m);
 	load_dg_ItemTextProperty(m);
-	//DGPanel
+	// --- DGPanel
 	load_dg_Panel(m);
-	//DGDialog
+	// --- DGDialog
 	load_dg_Dialog(m);
 	load_dg_ModaDialog(m);
 	load_dg_ModelessBase(m);
 	load_dg_ModelessDialog(m);
 	load_dg_Palette(m);
-	//DGEditControl	
+	// --- DGEditControl	
 	load_dg_EditControl(m);
 	load_dg_PosIntEdit(m);
 	load_dg_IntEdit(m);
@@ -108,16 +107,17 @@ PYBIND11_MODULE(DGLib, m) {
 	load_dg_PasswordEdit(m);
 	load_dg_ShortcutEdit(m);
 	load_dg_MultiLineEdit(m);
-	//DGButton
-	//load_dg_ButtonItem(m);
-	//load_dg_Button(m);
-	//load_dg_IconButton(m);
-	//load_dg_SplitButtonBase(m);
-	//load_dg_SplitButton(m);
-	//load_dg_CustomSplitButton(m);
-	//DGListBox
-	//
-
+	// --- DGButton
+	load_dg_ButtonItem(m);
+	load_dg_Button(m);
+	load_dg_IconButton(m);
+	load_dg_SplitButtonBase(m);
+	load_dg_SplitButton(m);
+	load_dg_CustomSplitButton(m);
+	// --- DGListBox
+	load_dg_ListBox(m);
+	load_dg_SingleSelListBox(m);
+	load_dg_MultiSelListBox(m);
 
 #endif //  TEST == 1
 }
