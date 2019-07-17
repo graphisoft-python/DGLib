@@ -155,10 +155,10 @@ void load_dg_SplitButtonBase(py::module m) {
 void load_dg_SplitButton(py::module m) {
 	py::class_<SplitButton, SplitButtonBase>(m, "SplitButton")
 		//.def(py::init<Panel &, short>())
-		.def(py::init<Panel &, Rect &, SplitButton::ButtonForm>(),
+		.def(py::init<Panel &, Rect &, SplitButtonBase::ButtonForm>(),
 			py::arg("panel"),
 			py::arg("rect"),
-			py::arg("type") = SplitButton::ButtonForm::Normal)
+			py::arg("type") = SplitButtonBase::ButtonForm::Normal)
 
 		//.def("Attach", &SplitButton::Attach)
 		//.def("Detach", &SplitButton::Detach)
@@ -224,10 +224,10 @@ void load_dg_SplitButton(py::module m) {
 void load_dg_CustomSplitButton(py::module m) {
 	py::class_<CustomSplitButton, SplitButtonBase>(m, "CustomSplitButton")
 		//.def(py::init<Panel &, short>())
-		.def(py::init<Panel &, Rect &, SplitButton::ButtonForm>(),
+		.def(py::init<Panel &, Rect &, SplitButtonBase::ButtonForm>(),
 			py::arg("panel"),
 			py::arg("rect"),
-			py::arg("type") = SplitButton::ButtonForm::Normal)
+			py::arg("type") = SplitButtonBase::ButtonForm::Normal)
 
 		//.def("Attach", &SplitButton::Attach)
 		//.def("Detach", &SplitButton::Detach)

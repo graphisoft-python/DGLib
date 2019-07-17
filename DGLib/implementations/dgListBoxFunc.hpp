@@ -474,7 +474,8 @@ void load_dg_ListBox(py::module m) {
 		.def("GetSelectedCount", &ListBox::GetSelectedCount)
 		.def("GetSelectedItem", &ListBox::GetSelectedItem,
 			py::arg("listItem") = ListBox::ItemType::TopItem)
-		.def("GetSelectedItems", (short (ListBox::*)(short *, short) const) &ListBox::GetSelectedItems)
+		.def("GetSelectedItems", (short (ListBox::*)
+			(short *, short) const) &ListBox::GetSelectedItems)
 		//.def("GetSelectedItems", (GS::Array<short> (ListBox::*)(void) const) &ListBox::GetSelectedItems)
 
 		.def("EnableDraw", &ListBox::EnableDraw)
@@ -504,14 +505,14 @@ void load_dg_ListBox(py::module m) {
 void load_dg_SingleSelListBox(py::module m) {
 	py::class_<SingleSelListBox, ListBox>(m, "SingleSelListBox")
 		//.def(py::init<Panel &, short>())
-		.def(py::init<Panel &, Rect &, SingleSelListBox::ScrollType, SingleSelListBox::PartialItemType, SingleSelListBox::HeaderFlag, short, SingleSelListBox::FrameType>(),
+		.def(py::init<Panel &, Rect &, ListBox::ScrollType, ListBox::PartialItemType, ListBox::HeaderFlag, short, ListBox::FrameType>(),
 			py::arg("panel"),
 			py::arg("rect"),
-			py::arg("scroll") = SingleSelListBox::ScrollType::VScroll,
-			py::arg("part") = SingleSelListBox::PartialItemType::PartialItems,
-			py::arg("headerFlag") = SingleSelListBox::HeaderFlag::NoHeader,
+			py::arg("scroll") = ListBox::ScrollType::VScroll,
+			py::arg("part") = ListBox::PartialItemType::PartialItems,
+			py::arg("headerFlag") = ListBox::HeaderFlag::NoHeader,
 			py::arg("headerSize") = 0,
-			py::arg("frameType") = SingleSelListBox::FrameType::NoFrame);
+			py::arg("frameType") = ListBox::FrameType::NoFrame);
 }
 
 
@@ -520,12 +521,12 @@ void load_dg_SingleSelListBox(py::module m) {
 void load_dg_MultiSelListBox(py::module m) {
 	py::class_<MultiSelListBox, ListBox>(m, "MultiSelListBox")
 		//.def(py::init<Panel &, short>())
-		.def(py::init<Panel &, Rect &, MultiSelListBox::ScrollType, MultiSelListBox::PartialItemType, MultiSelListBox::HeaderFlag, short, MultiSelListBox::FrameType>(),
+		.def(py::init<Panel &, Rect &, ListBox::ScrollType, ListBox::PartialItemType, ListBox::HeaderFlag, short, ListBox::FrameType>(),
 			py::arg("panel"),
 			py::arg("rect"),
-			py::arg("scroll") = MultiSelListBox::ScrollType::VScroll,
-			py::arg("part") = MultiSelListBox::PartialItemType::PartialItems,
-			py::arg("headerFlag") = MultiSelListBox::HeaderFlag::NoHeader,
+			py::arg("scroll") = ListBox::ScrollType::VScroll,
+			py::arg("part") = ListBox::PartialItemType::PartialItems,
+			py::arg("headerFlag") = ListBox::HeaderFlag::NoHeader,
 			py::arg("headerSize") = 0,
-			py::arg("frameType") = MultiSelListBox::FrameType::NoFrame);
+			py::arg("frameType") = ListBox::FrameType::NoFrame);
 }

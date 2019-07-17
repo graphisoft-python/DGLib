@@ -94,12 +94,12 @@ void load_dg_StaticText(py::module m) {
 void load_dg_CenterText(py::module m) {
 	py::class_<CenterText, StaticText>(m, "CenterText")
 		//.def(py::init<Panel &, short>())
-		.def(py::init<Panel &, Rect &, CenterText::FrameType, CenterText::VAlignType, CenterText::Truncation>(),
+		.def(py::init<Panel &, Rect &, StaticText::FrameType, StaticText::VAlignType, StaticText::Truncation>(),
 			py::arg("panel"),
 			py::arg("rect"),
-			py::arg("type") = CenterText::FrameType::NoFrame,
-			py::arg("align") = CenterText::VAlignType::VTop,
-			py::arg("truncate") = CenterText::Truncation::NoTruncate);
+			py::arg("type") = StaticText::FrameType::NoFrame,
+			py::arg("align") = StaticText::VAlignType::VTop,
+			py::arg("truncate") = StaticText::Truncation::NoTruncate);
 }
 
 
@@ -108,12 +108,12 @@ void load_dg_CenterText(py::module m) {
 void load_dg_LeftText(py::module m) {
 	py::class_<LeftText, StaticText>(m, "LeftText")
 		//.def(py::init<Panel &, short>())
-		.def(py::init<Panel &, Rect &, LeftText::FrameType, LeftText::VAlignType, LeftText::Truncation>(),
+		.def(py::init<Panel &, Rect &, StaticText::FrameType, StaticText::VAlignType, StaticText::Truncation>(),
 			py::arg("panel"),
 			py::arg("rect"),
-			py::arg("type") = LeftText::FrameType::NoFrame,
-			py::arg("align") = LeftText::VAlignType::VTop,
-			py::arg("truncate") = LeftText::Truncation::NoTruncate);
+			py::arg("type") = StaticText::FrameType::NoFrame,
+			py::arg("align") = StaticText::VAlignType::VTop,
+			py::arg("truncate") = StaticText::Truncation::NoTruncate);
 }
 
 
@@ -122,12 +122,12 @@ void load_dg_LeftText(py::module m) {
 void load_dg_RightText(py::module m) {
 	py::class_<RightText, StaticText>(m, "RightText")
 		//.def(py::init<Panel &, short>())
-		.def(py::init<Panel &, Rect &, RightText::FrameType, RightText::VAlignType, RightText::Truncation>(),
+		.def(py::init<Panel &, Rect &, StaticText::FrameType, StaticText::VAlignType, StaticText::Truncation>(),
 			py::arg("panel"),
 			py::arg("rect"),
-			py::arg("type") = RightText::FrameType::NoFrame,
-			py::arg("align") = RightText::VAlignType::VTop,
-			py::arg("truncate") = RightText::Truncation::NoTruncate);
+			py::arg("type") = StaticText::FrameType::NoFrame,
+			py::arg("align") = StaticText::VAlignType::VTop,
+			py::arg("truncate") = StaticText::Truncation::NoTruncate);
 }
 
 
