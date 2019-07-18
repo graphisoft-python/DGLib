@@ -25,7 +25,7 @@ public:
 	}
 
 	void PanelClosed(const PanelCloseEvent& ev) override {
-		//OBSERVER_CALL_EVENT("PanelClosed", ev);
+		
 	}
 
 	void PanelCloseRequested(const PanelCloseRequestEvent& ev, bool* accepted) override {
@@ -65,74 +65,91 @@ public:
 	}
 
 	void PanelIdle(const PanelIdleEvent& ev) override {
-		//OBSERVER_CALL_EVENT("PanelIdle", ev);
+		OBSERVER_CALL_EVENT("PanelIdle", ev);
 	}
 
 	void PanelOpened(const PanelOpenEvent& ev) override {
-		//OBSERVER_CALL_EVENT("PanelOpened", ev);
+		OBSERVER_CALL_EVENT("PanelOpened", ev);
 	}
 
 	void PanelResizeEntered(const PanelResizeEvent& ev) override {
-		//OBSERVER_CALL_EVENT("PanelResizeEntered", ev);
+		OBSERVER_CALL_EVENT("PanelResizeEntered", ev);
 	}
 
 	void PanelResizing(const PanelResizeEvent& ev, Point* growValues) override {
-		//py::gil_scoped_acquire acq;
-		//g_lock.Acquire(true);
-		PyThreadState *_ts = PyThreadState_GET();
+		OBSERVER_CALL_EVENT("PanelResizing", ev);
 
-		if (_ts != this->m_state) {
-			PyThreadState_Swap(this->m_state);
-		}
+		//PyThreadState *cure_state = PyThreadState_GET();
+		//PyThreadState *save_state = NULL, *old_state = NULL;
+		//bool lock_thread = false;
 
-		//py::gil_scoped_acquire acq;
-		try {
-			py::object py_obsr = py::cast(this);
-			if (py::hasattr(py_obsr, "PanelResizing")) {
-				py::object result = py_obsr.attr("PanelResizing")(ev);
-				if (!result.is_none()) {
-					*growValues = result.cast<Point>();
-				}
-			}
-		}
-		catch (py::error_already_set & err) {
-			err.restore();
-			if (PyErr_Occurred()) {
-				PyErr_Print();
-			}
-		}
-		//
-		//g_lock.Release();
+		//if (cure_state&&cure_state->interp != this->m_state->interp) {
+		//	PyEval_AcquireLock();
+		//	//PyEval_ReleaseThread(cure_state);
+		//	//old_state = PyThreadState_Swap(NULL);
+		//	//PyEval_AcquireThread(this->m_state);
+		//	//save_state = PyThreadState_Swap(this->m_state);
+		//	lock_thread = true;
+		//}
+		//else {
+		//	PyEval_RestoreThread(this->m_state);
+		//}
+
+		//py::gil_scoped_acquire_for_archicad acq(this->m_state);
+
+		//py::object py_obsr = py::cast(this);
+
+		//if (PyObject_HasAttrString(py_obsr.ptr(), "PanelResizing")) {
+		//	PyObject *py_func = PyObject_GetAttrString(py_obsr.ptr(), "PanelResizing");
+		//	if (PyErr_Occurred()) {
+		//		PyErr_Print();
+		//	}
+		//	if (PyCallable_Check(py_func)) {
+		//		Py_XDECREF(PyEval_CallObject(py_func, NULL));
+		//	}
+		//	Py_XDECREF(py_func);
+		//}
+
+		//if (lock_thread) {
+		//	//PyThreadState_Swap(save_state);
+		//	//PyEval_ReleaseThread(this->m_state);
+		//	//PyThreadState_Swap(old_state);
+		//	//PyEval_AcquireThread(cure_state);
+		//	PyEval_ReleaseLock();
+		//}
+		//else {
+		//	PyEval_SaveThread();
+		//}
 		
 		//OBSERVER_CALL_EVENT_WITH_RETURN("PanelResizing", ev, growValues, Point);
 	}
 
 	void PanelResized(const PanelResizeEvent& ev) override {
-		//OBSERVER_CALL_EVENT("PanelResized", ev);
+		OBSERVER_CALL_EVENT("PanelResized", ev);
 	}
 
 	void PanelResizeExited(const PanelResizeEvent& ev) override {
-		//OBSERVER_CALL_EVENT("PanelResizeExited", ev);
+		OBSERVER_CALL_EVENT("PanelResizeExited", ev);
 	}
 
 	void PanelMoveEntered(const PanelMoveEvent& ev) override {
-		//OBSERVER_CALL_EVENT("PanelMoveEntered", ev);
+		OBSERVER_CALL_EVENT("PanelMoveEntered", ev);
 	}
 
 	void PanelMoving(const PanelMoveEvent& ev) override {
-		//OBSERVER_CALL_EVENT("PanelMoving", ev);
+		OBSERVER_CALL_EVENT("PanelMoving", ev);
 	}
 
 	void PanelMoved(const PanelMoveEvent& ev) override {
-		//OBSERVER_CALL_EVENT("PanelMoved", ev);
+		OBSERVER_CALL_EVENT("PanelMoved", ev);
 	}
 
 	void PanelMoveExited(const PanelMoveEvent& ev) override {
-		//OBSERVER_CALL_EVENT("PanelMoveExited", ev);
+		OBSERVER_CALL_EVENT("PanelMoveExited", ev);
 	}
 
 	void PanelScaleChanged(const PanelScaleChangeEvent& ev) override {
-		//OBSERVER_CALL_EVENT("PanelScaleChanged", ev);
+		OBSERVER_CALL_EVENT("PanelScaleChanged", ev);
 	}
 
 	void PanelToolTipRequested(const PanelHelpEvent& ev, GS::UniString* toolTipText) override {
@@ -140,33 +157,66 @@ public:
 	}
 
 	void PanelTopStatusGained(const PanelTopStatusEvent& ev) override {
-		//OBSERVER_CALL_EVENT("PanelTopStatusGained", ev);
+		//py::gil_scoped_acquire_for_archicad acq(this->m_state);
+
+		//py::object py_obsr = py::cast(this);
+
+		//if (PyObject_HasAttrString(py_obsr.ptr(), "PanelTopStatusGained")) {
+		//	PyObject *py_func = PyObject_GetAttrString(py_obsr.ptr(), "PanelTopStatusGained");
+		//	if (PyErr_Occurred()) {
+		//		PyErr_Print();
+		//	}
+		//	if (PyCallable_Check(py_func)) {
+		//		Py_XDECREF(PyEval_CallObject(py_func, NULL));
+		//	}
+		//	Py_XDECREF(py_func);
+		//}
+
+		OBSERVER_CALL_EVENT("PanelTopStatusGained", ev);
 	}
 
 	void PanelTopStatusLost(const PanelTopStatusEvent& ev) override {
-		//g_lock.Acquire(true);
-		PyThreadState *_ts = PyThreadState_GET();
+		//PyThreadState *cure_state = PyThreadState_GET();
+		//PyThreadState *save_state=NULL,*old_state=NULL;
+		//bool lock_thread = false;
 
-		if (_ts != this->m_state) {
-			PyThreadState_Swap(this->m_state);
-		}
+		//if (cure_state&&cure_state->interp != this->m_state->interp) {
+		//	PyEval_ReleaseThread(cure_state);
+		//	old_state = PyThreadState_Swap(NULL);
+		//	PyEval_AcquireThread(this->m_state);
+		//	save_state = PyThreadState_Swap(this->m_state);
+		//	lock_thread = true;
+		//}
+		//else {
+		//	PyEval_RestoreThread(this->m_state);
+		//}
 
-		//py::gil_scoped_acquire acq;
-		try {
-			py::object py_obsr = py::cast(this);
-			if (py::hasattr(py_obsr, "PanelTopStatusLost")) {
-				py_obsr.attr("PanelTopStatusLost")(ev);
-			}
-		}
-		catch (py::error_already_set & err) {
-			err.restore();
-			if (PyErr_Occurred()) {
-				PyErr_Print();
-			}
-		}
+		//py::gil_scoped_acquire_for_archicad acq(this->m_state);
 
-		//g_lock.Release();
-		//OBSERVER_CALL_EVENT("PanelTopStatusLost", ev);
+		//py::object py_obsr = py::cast(this);
+
+		//if (PyObject_HasAttrString(py_obsr.ptr(), "PanelTopStatusLost")) {
+		//	PyObject *py_func = PyObject_GetAttrString(py_obsr.ptr(), "PanelTopStatusLost");
+		//	if (PyErr_Occurred()) {
+		//		PyErr_Print();
+		//	}
+		//	if (PyCallable_Check(py_func)) {
+		//		Py_XDECREF(PyEval_CallObject(py_func, NULL));
+		//	}
+		//	Py_XDECREF(py_func);
+		//}
+
+		//if (lock_thread) {
+		//	PyThreadState_Swap(save_state);
+		//	PyEval_ReleaseThread(this->m_state);
+		//	PyThreadState_Swap(old_state);
+		//	PyEval_AcquireThread(cure_state);
+		//}
+		//else {
+		//	PyEval_SaveThread();
+		//}
+
+		OBSERVER_CALL_EVENT("PanelTopStatusLost", ev);
 	}
 
 	void PanelWheelTrackEntered(const PanelWheelEvent& ev, bool* processed) override {
@@ -186,11 +236,11 @@ public:
 	}
 
 	void PanelBackgroundPostPaint(const PanelBackgroundPaintEvent& ev) override {
-		//OBSERVER_CALL_EVENT("PanelBackgroundPostPaint", ev);
+		OBSERVER_CALL_EVENT("PanelBackgroundPostPaint", ev);
 	}
 
 	void PanelActivated(const PanelActivateEvent& ev) override {
-		//OBSERVER_CALL_EVENT("PanelActivated", ev);
+		OBSERVER_CALL_EVENT("PanelActivated", ev);
 	}
 
 	void PanelChangeRegistrationRequested(const Item* item, bool* allowRegistration) override {

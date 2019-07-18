@@ -1875,6 +1875,52 @@ void print(Args &&...args) {
  * execution to another thread (to run the event loop on the original thread,
  * in this case).
  */
+class gil_scoped_acquire_for_archicad {
+public:
+	PYBIND11_NOINLINE gil_scoped_acquire_for_archicad(PyThreadState *tState) {
+		this->m_state = tState;
+		this->m_cur_state = PyThreadState_GET();
+
+		if (this->m_cur_state&&this->m_cur_state->interp != this->m_state->interp) {
+			//PyEval_AcquireLock();
+			//this->m_sav_state = PyThreadState_Swap(this->m_state);
+			PyEval_ReleaseThread(this->m_cur_state);
+			this->m_old_state = PyThreadState_Swap(NULL);
+			PyEval_AcquireThread(this->m_state);
+			this->m_sav_state = PyThreadState_Swap(this->m_state);
+		}
+		else if (this->m_cur_state&&this->m_cur_state == this->m_state) {
+
+		}
+		else {
+			PyEval_RestoreThread(this->m_state);
+		}
+	}
+
+	PYBIND11_NOINLINE ~gil_scoped_acquire_for_archicad() {
+		if (this->m_cur_state&&this->m_cur_state->interp != this->m_state->interp) {
+			//PyEval_ReleaseLock();
+			//PyThreadState_Swap(this->m_sav_state);
+			
+			PyThreadState_Swap(this->m_sav_state);
+			PyEval_ReleaseThread(this->m_state);
+			PyThreadState_Swap(this->m_old_state);
+			PyEval_AcquireThread(this->m_cur_state);
+		}
+		else if (this->m_cur_state&&this->m_cur_state == this->m_state) {
+
+		}
+		else {
+			PyEval_SaveThread();
+		}
+	}
+private:
+	PyThreadState	*m_cur_state;
+	PyThreadState	*m_sav_state;
+	PyThreadState	*m_old_state;
+	PyThreadState	*m_state;
+};
+
 
 class gil_scoped_acquire {
 public:
