@@ -106,8 +106,8 @@ SetHeaderDragableButtons(self,bool) -> None
 HasHeaderDragableButtons(self) -> bool
 SetHeaderItemCount(self,ushort) -> None
 GetHeaderItemCount(self) -> ushort
-SetHeaderItemText(self,GS.UniString) -> None
-GetHeaderItemText(self) -> GS.UniString
+SetHeaderItemText(self,ushort,GS.UniString) -> None
+GetHeaderItemText(self,ushort) -> GS.UniString
 SetHeaderItemFont(self,ushort,Font.Size,Font.Style) -> None
 GetHeaderItemFontSize(self,ushort) -> Font.Size
 GetHeaderItemFontStyle(self,ushort) -> Font.Style

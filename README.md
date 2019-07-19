@@ -92,6 +92,32 @@
 
 [ShortRect](./docs/ShortRect.md)
 
+[BarControl](./docs/BarControl.md)
+
+[CenterText](./docs/CenterText.md)
+
+[EditSpin](./docs/EditSpin.md)
+
+[GroupBox](./docs/GroupBox.md)
+
+[LeftText](./docs/LeftText.md)
+
+[Point](./docs/Point.md)
+
+[ProgressBar](./docs/ProgressBar.md)
+
+[RightText](./docs/RightText.md)
+
+[ScrollBar](./docs/ScrollBar.md)
+
+[Separator](./docs/Separator.md)
+
+[SingleSpin](./docs/SingleSpin.md)
+
+[Slider](./docs/Slider.md)
+
+[StaticText](./docs/StaticText.md)
+
 ## Help Us
 
 * I hope someone can participate in the graphisoft-python project. Help us to write documents and code.
