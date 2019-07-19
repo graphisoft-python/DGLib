@@ -230,14 +230,14 @@ void load_dg_ModaDialog(py::module m) {
 
 	m_modalDialog
 		//.def(py::init<GSResModule , short, GSResModule>())
-		.def(py::init<NativePoint &, short, short, GS::Guid &, ModalDialog::GrowType, ModalDialog::CaptionType, ModalDialog::FrameType>(),
+		.def(py::init<NativePoint &, short, short, GS::Guid &, Dialog::GrowType, Dialog::CaptionType, Dialog::FrameType>(),
 			py::arg("position"), 
 			py::arg("width"), 
 			py::arg("height"), 
 			py::arg("guid"), 
-			py::arg("growType") = ModalDialog::GrowType::NoGrow,
-			py::arg("captionType") = ModalDialog::CaptionType::TopCaption,
-			py::arg("frameType") = ModalDialog::FrameType::NormalFrame)
+			py::arg("growType") = Dialog::GrowType::NoGrow,
+			py::arg("captionType") = Dialog::CaptionType::TopCaption,
+			py::arg("frameType") = Dialog::FrameType::NormalFrame)
 
 		.def("Invoke", &ModalDialog::Invoke)
 		.def("Abort", &ModalDialog::Abort)
@@ -304,18 +304,18 @@ void load_dg_ModelessDialog(py::module m) {
 	m_modelessDialog
 		//.def(py::init<GSResModule , short, GSResModule>())
 		//.def(py::init<GSResModule, short, GSResModule,GS::Guid &>())
-		.def(py::init<NativePoint &, short, short, GS::Guid &, ModelessDialog::GrowType, ModelessDialog::CloseType, ModelessDialog::MinimizeType, ModelessDialog::MaximizeType, ModelessDialog::CaptionType, ModelessDialog::FrameType, ModelessDialog::SpecialFeatures>(),
+		.def(py::init<NativePoint &, short, short, GS::Guid &, Dialog::GrowType, Dialog::CloseType, Dialog::MinimizeType, Dialog::MaximizeType, Dialog::CaptionType, Dialog::FrameType, Dialog::SpecialFeatures>(),
 			py::arg("position"), 
 			py::arg("width"), 
 			py::arg("height"), 
 			py::arg("guid"), 
-			py::arg("growType") = ModelessDialog::GrowType::NoGrow,
-			py::arg("closeType") = ModelessDialog::CloseType::NoClose,
-			py::arg("minimizeType") = ModelessDialog::MinimizeType::NoMinimize,
-			py::arg("maximizeType") = ModelessDialog::MaximizeType::NoMaximize,
-			py::arg("captionType") = ModelessDialog::CaptionType::TopCaption,
-			py::arg("frameType") = ModelessDialog::FrameType::NormalFrame,
-			py::arg("specialFeatures") = ModelessDialog::SpecialFeatures::NothingSpecial)
+			py::arg("growType") = Dialog::GrowType::NoGrow,
+			py::arg("closeType") = Dialog::CloseType::NoClose,
+			py::arg("minimizeType") = Dialog::MinimizeType::NoMinimize,
+			py::arg("maximizeType") = Dialog::MaximizeType::NoMaximize,
+			py::arg("captionType") = Dialog::CaptionType::TopCaption,
+			py::arg("frameType") = Dialog::FrameType::NormalFrame,
+			py::arg("specialFeatures") = Dialog::SpecialFeatures::NothingSpecial)
 
 		.def("SendBehind", &ModelessDialog::SendBehind)
 
@@ -360,16 +360,16 @@ void load_dg_Palette(py::module m) {
 	py::class_<Palette, ModelessBase>(m, "Palette")
 		//.def(py::init<GSResModule , short, GSResModule>())
 		//.def(py::init<GSResModule, short, GSResModule,GS::Guid &>())
-		.def(py::init<NativePoint &, short, short, GS::Guid &, Palette::GrowType, Palette::CloseType, Palette::CaptionType, Palette::FrameType, Palette::SpecialFeatures>(),
+		.def(py::init<NativePoint &, short, short, GS::Guid &, Dialog::GrowType, Dialog::CloseType, Dialog::CaptionType, Dialog::FrameType, Dialog::SpecialFeatures>(),
 			py::arg("position"), 
 			py::arg("width"), 
 			py::arg("height"), 
 			py::arg("guid"), 
-			py::arg("growType") = Palette::GrowType::NoGrow,
-			py::arg("closeType") = Palette::CloseType::NoClose,
-			py::arg("captionType") = Palette::CaptionType::TopCaption,
-			py::arg("frameType") = Palette::FrameType::NormalFrame,
-			py::arg("specialFeatures") = Palette::SpecialFeatures::NothingSpecial)
+			py::arg("growType") = Dialog::GrowType::NoGrow,
+			py::arg("closeType") = Dialog::CloseType::NoClose,
+			py::arg("captionType") = Dialog::CaptionType::TopCaption,
+			py::arg("frameType") = Dialog::FrameType::NormalFrame,
+			py::arg("specialFeatures") = Dialog::SpecialFeatures::NothingSpecial)
 
 		.def("SendBehind", &Palette::SendBehind)
 
