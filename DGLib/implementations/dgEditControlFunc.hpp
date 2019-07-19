@@ -225,7 +225,7 @@ private:
 // --- PosIntEdit
 
 void load_dg_PosIntEdit(py::module m) {
-	py::class_<PosIntEditChangeEvent, ItemChangeEvent>(m, "PosIntEditChangeEvent")
+	py::class_<PosIntEditChangeEvent/*, ItemChangeEvent*/>(m, "PosIntEditChangeEvent")
 		.def("GetSource", &PosIntEditChangeEvent::GetSource, py::return_value_policy::reference)
 		.def("GetPreviousValue", &PosIntEditChangeEvent::GetPreviousValue)
 		.def("WasRelativeInput", &PosIntEditChangeEvent::WasRelativeInput);

@@ -44,7 +44,7 @@ private:
 // --- ButtonItem -------------------------------------------------------------------
 
 void load_dg_ButtonItem(py::module m) {
-	py::class_<ButtonClickEvent, ItemClickEvent>(m, "ButtonClickEvent")
+	py::class_<ButtonClickEvent/*, ItemClickEvent*/>(m, "ButtonClickEvent")
 		.def("GetSource", &ButtonClickEvent::GetSource, py::return_value_policy::reference);
 
 	py::class_<PyButtonItemObserver>(m, "ButtonItemObserver", py::dynamic_attr())
@@ -181,7 +181,7 @@ private:
 // --- SplitButton -------------------------------------------------------------------
 
 void load_dg_SplitButton(py::module m) {
-	py::class_<SplitButtonChangeEvent, ItemChangeEvent>(m, "SplitButtonChangeEvent")
+	py::class_<SplitButtonChangeEvent/*, ItemChangeEvent*/>(m, "SplitButtonChangeEvent")
 		.def("GetSource", &SplitButtonChangeEvent::GetSource, py::return_value_policy::reference);
 
 	py::class_<PySplitButtonObserver>(m, "SplitButtonObserver", py::dynamic_attr())
@@ -252,7 +252,7 @@ private:
 // --- CustomSplitButton -------------------------------------------------------------------
 
 void load_dg_CustomSplitButton(py::module m) {
-	py::class_<CustomSplitButtonOpenRequestedEvent, ItemEvent>(m, "CustomSplitButtonOpenRequestedEvent")
+	py::class_<CustomSplitButtonOpenRequestedEvent/*, ItemEvent*/>(m, "CustomSplitButtonOpenRequestedEvent")
 		.def("GetSource", &CustomSplitButtonOpenRequestedEvent::GetSource, py::return_value_policy::reference);
 
 	py::class_<PyCustomSplitButtonObserver>(m, "CustomSplitButtonObserver", py::dynamic_attr())

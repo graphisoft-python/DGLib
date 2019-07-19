@@ -64,11 +64,11 @@ private:
 // --- BarControl ------------------------------------------------------
 
 void load_dg_BarControl(py::module m) {
-	py::class_<BarControlChangeEvent, ItemChangeEvent>(m, "BarControlChangeEvent")
+	py::class_<BarControlChangeEvent/*, ItemChangeEvent*/>(m, "BarControlChangeEvent")
 		.def("GetSource", &BarControlChangeEvent::GetSource, py::return_value_policy::reference)
 		.def("GetPreviousValue", &BarControlChangeEvent::GetPreviousValue);
 
-	py::class_<BarControlTrackEvent, ItemTrackEvent>(m, "BarControlTrackEvent")
+	py::class_<BarControlTrackEvent/*, ItemTrackEvent*/>(m, "BarControlTrackEvent")
 		.def("GetSource", &BarControlTrackEvent::GetSource, py::return_value_policy::reference);
 
 	py::class_<PyBarControlObserver>(m, "BarControlObserver", py::dynamic_attr())
@@ -179,11 +179,11 @@ private:
 // --- ScrollBar ------------------------------------------------------
 
 void load_dg_ScrollBar(py::module m) {
-	py::class_<ScrollBarChangeEvent, ItemChangeEvent>(m, "ScrollBarChangeEvent")
+	py::class_<ScrollBarChangeEvent/*, ItemChangeEvent*/>(m, "ScrollBarChangeEvent")
 		.def("GetSource", &ScrollBarChangeEvent::GetSource, py::return_value_policy::reference)
 		.def("GetPreviousValue", &ScrollBarChangeEvent::GetPreviousValue);
 
-	py::class_<ScrollBarTrackEvent, ItemTrackEvent>(m, "ScrollBarTrackEvent")
+	py::class_<ScrollBarTrackEvent/*, ItemTrackEvent*/>(m, "ScrollBarTrackEvent")
 		.def("GetSource", &ScrollBarTrackEvent::GetSource, py::return_value_policy::reference)
 		.def("IsLineUp", &ScrollBarTrackEvent::IsLineUp)
 		.def("IsLineLeft", &ScrollBarTrackEvent::IsLineLeft)

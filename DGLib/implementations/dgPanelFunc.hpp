@@ -14,7 +14,8 @@ class PyPanelObserver : PanelObserver {
 
 public:
 	PyPanelObserver(Panel &item,ACExport &acExport)
-		:m_parent(item) {
+		:m_parent(item)//,m_export(acExport)
+	{
 		this->m_parent.Attach(*this);
 		this->m_state =acExport.m_state;
 	}
@@ -151,7 +152,7 @@ public:
 private:
 	Panel			&m_parent;
 	PyThreadState	*m_state;
-	//ACExport		&m_export;
+	//ACExport		m_export;
 
 };
 
@@ -226,7 +227,8 @@ void load_dg_Panel(py::module m) {
 	py::class_< PanelActivateEvent, PanelEvent>(m, "PanelActivateEvent");
 
 	py::class_<PyPanelObserver>(m, "PanelObserver",py::dynamic_attr())
-		.def(py::init<Panel &, ACExport &>());
+		.def(py::init<Panel &, PyEnv::ACExport&>())
+		;
 
 
 	py::class_<Panel/*, GS::EventSource*/>(m, "Panel")
