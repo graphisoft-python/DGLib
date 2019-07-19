@@ -6,94 +6,86 @@
 #include "DGBarControl.hpp"
 
 using namespace DG;
+using namespace PyEnv;
 
 
-// --- BarControlChangeEvent
+// --- BarControlObserver ------------------------------------------------------
 
-//void load_dg_BarControlChangeEvent(py::module m) {
-//	py::class_<BarControlChangeEvent, ItemChangeEvent>(m, "BarControlChangeEvent")
-//		.def("GetSource", &BarControlChangeEvent::GetSource, py::return_value_policy::reference)
-//		.def("GetPreviousValue", &BarControlChangeEvent::GetPreviousValue);
-//}
+class PyBarControlObserver : BarControlObserver {
+public:
+	PyBarControlObserver(BarControl &item, ACExport &acExport)
+		:m_parent(item) {
+		this->m_parent.Attach(*this);
+		this->m_state = acExport.m_state;
+	}
 
+	~PyBarControlObserver() {
+		this->m_parent.Detach(*this);
+	}
 
-// --- BarControlTrackEvent
+	//short SpecChanged(const ItemChangeEvent& ev) override {
+	//	OBSERVER_CALL_EVENT("SpecChanged", ev);
+	//}
 
-//void load_dg_BarControlTrackEvent(py::module m) {
-//	py::class_<BarControlTrackEvent, ItemTrackEvent>(m, "BarControlTrackEvent")
-//		.def("GetSource", &BarControlTrackEvent::GetSource, py::return_value_policy::reference);
-//}
+	//short SpecTrackEntered(const ItemTrackEvent& ev) override {
+	//	OBSERVER_CALL_EVENT("SpecTrackEntered", ev);
+	//}
 
+	//short SpecTracked(const ItemTrackEvent& ev) override {
+	//	OBSERVER_CALL_EVENT("SpecTracked", ev);
+	//}
 
-// --- BarControlObserver
+	//short SpecTrackExited(const ItemTrackEvent& ev) override {
+	//	OBSERVER_CALL_EVENT("SpecTrackExited", ev);
+	//}
 
-//void load_dg_BarControlObserver(py::module m) {
-//	py::class_<BarControlObserver, ItemObserver>(m, "BarControlObserver")
-//		.def(py::init<>());
-//}
+	void BarControlChanged(const BarControlChangeEvent& ev) override {
+		OBSERVER_CALL_EVENT("BarControlChanged", ev);
+	}
 
+	void BarControlTrackEntered(const BarControlTrackEvent& ev) override {
+		OBSERVER_CALL_EVENT("BarControlTrackEntered", ev);
+	}
 
-// --- ScrollBarChangeEvent
+	void BarControlTracked(const BarControlTrackEvent& ev) override {
+		OBSERVER_CALL_EVENT("BarControlTracked", ev);
+	}
 
-//void load_dg_ScrollBarChangeEvent(py::module m) {
-//	py::class_<ScrollBarChangeEvent, ItemChangeEvent>(m, "ScrollBarChangeEvent")
-//		.def("GetSource", &ScrollBarChangeEvent::GetSource, py::return_value_policy::reference)
-//
-//		.def("GetPreviousValue", &ScrollBarChangeEvent::GetPreviousValue);
-//}
+	void BarControlTrackExited(const BarControlTrackEvent& ev) override {
+		OBSERVER_CALL_EVENT("BarControlTrackExited", ev);
+	}
 
-
-// --- ScrollBarTrackEvent
-
-//void load_dg_ScrollBarTrackEvent(py::module m) {
-//	py::class_<ScrollBarTrackEvent, ItemTrackEvent>(m, "ScrollBarTrackEvent")
-//		.def("GetSource", &ScrollBarTrackEvent::GetSource, py::return_value_policy::reference)
-//
-//		.def("IsLineUp", &ScrollBarTrackEvent::IsLineUp)
-//		.def("IsLineLeft", &ScrollBarTrackEvent::IsLineLeft)
-//		.def("IsLineDown", &ScrollBarTrackEvent::IsLineDown)
-//		.def("IsLineRight", &ScrollBarTrackEvent::IsLineRight)
-//
-//		.def("IsPageUp", &ScrollBarTrackEvent::IsPageUp)
-//		.def("IsPageLeft", &ScrollBarTrackEvent::IsPageLeft)
-//		.def("IsPageDown", &ScrollBarTrackEvent::IsPageDown)
-//		.def("IsPageRight", &ScrollBarTrackEvent::IsPageRight)
-//
-//		.def("IsTop", &ScrollBarTrackEvent::IsTop)
-//		.def("IsLeft", &ScrollBarTrackEvent::IsLeft)
-//		.def("IsBottom", &ScrollBarTrackEvent::IsBottom)
-//		.def("IsRight", &ScrollBarTrackEvent::IsRight)
-//
-//		.def("IsThumbTrack", &ScrollBarTrackEvent::IsThumbTrack);
-//}
+private:
+	BarControl		&m_parent;
+	PyThreadState	*m_state;
+};
 
 
-// --- ScrollBarObserver
-
-//void load_dg_ScrollBarObserver(py::module m) {
-//	py::class_<ScrollBarObserver, ItemObserver>(m, "ScrollBarObserver")
-//		.def(py::init<>());
-//}
-
-
-// --- BarControl
+// --- BarControl ------------------------------------------------------
 
 void load_dg_BarControl(py::module m) {
-	py::class_<BarControl, Item>(m, "BarControl")
-		//.def("Attach", &BarControl::Attach)
-		//.def("Detach", &BarControl::Detach)
-		
+	py::class_<BarControlChangeEvent/*, ItemChangeEvent*/>(m, "BarControlChangeEvent")
+		.def("GetSource", &BarControlChangeEvent::GetSource, py::return_value_policy::reference)
+		.def("GetPreviousValue", &BarControlChangeEvent::GetPreviousValue);
+
+	py::class_<BarControlTrackEvent/*, ItemTrackEvent*/>(m, "BarControlTrackEvent")
+		.def("GetSource", &BarControlTrackEvent::GetSource, py::return_value_policy::reference);
+
+	py::class_<PyBarControlObserver>(m, "BarControlObserver", py::dynamic_attr())
+		.def(py::init<BarControl &, ACExport &>());
+
+
+	py::class_<BarControl, Item>(m, "BarControl")		
 		.def("SetMin", &BarControl::SetMin)
 		.def("SetMax", &BarControl::SetMax)
 		.def("SetValue", &BarControl::SetValue)
-		
 		.def("GetMin", &BarControl::GetMin)
 		.def("GetMax", &BarControl::GetMax)
 		.def("GetValue", &BarControl::GetValue);
 }
 
 
-// --- SingleSpin
+// --- SingleSpin ------------------------------------------------------
 
 void load_dg_SingleSpin(py::module m) {
 	py::class_<SingleSpin, BarControl>(m, "SingleSpin")
@@ -102,7 +94,7 @@ void load_dg_SingleSpin(py::module m) {
 }
 
 
-// --- EditSpin
+// --- EditSpin ------------------------------------------------------
 
 void load_dg_EditSpin(py::module m) {
 	py::class_<EditSpin, BarControl>(m, "EditSpin")
@@ -112,7 +104,7 @@ void load_dg_EditSpin(py::module m) {
 }
 
 
-// --- Slider
+// --- Slider ------------------------------------------------------
 
 void load_dg_Slider(py::module m) {
 	py::class_<Slider, BarControl> m_Slider(m, "Slider");
@@ -132,9 +124,85 @@ void load_dg_Slider(py::module m) {
 }
 
 
-// --- ScrollBar
+// --- ScrollBarObserver ------------------------------------------------------
+
+class PyScrollBarObserver : ScrollBarObserver {
+public:
+	PyScrollBarObserver(ScrollBar &item, ACExport &acExport)
+		:m_parent(item) {
+		this->m_parent.Attach(*this);
+		this->m_state = acExport.m_state;
+	}
+
+	~PyScrollBarObserver() {
+		this->m_parent.Detach(*this);
+	}
+
+	//short SpecChanged(const ItemChangeEvent& ev) override {
+	//	OBSERVER_CALL_EVENT("SpecChanged", ev);
+	//}
+
+	//short SpecTrackEntered(const ItemTrackEvent& ev) override {
+	//	OBSERVER_CALL_EVENT("SpecTrackEntered", ev);
+	//}
+
+	//short SpecTracked(const ItemTrackEvent& ev) override {
+	//	OBSERVER_CALL_EVENT("SpecTracked", ev);
+	//}
+
+	//short SpecTrackExited(const ItemTrackEvent& ev) override {
+	//	OBSERVER_CALL_EVENT("SpecTrackExited", ev);
+	//}
+
+	void ScrollBarChanged(const ScrollBarChangeEvent& ev) override {
+		OBSERVER_CALL_EVENT("ScrollBarChanged", ev);
+	}
+
+	void ScrollBarTrackEntered(const ScrollBarTrackEvent& ev) override {
+		OBSERVER_CALL_EVENT("ScrollBarTrackEntered", ev);
+	}
+
+	void ScrollBarTracked(const ScrollBarTrackEvent& ev) override {
+		OBSERVER_CALL_EVENT("ScrollBarTracked", ev);
+	}
+
+	void ScrollBarTrackExited(const ScrollBarTrackEvent& ev) override {
+		OBSERVER_CALL_EVENT("ScrollBarTrackExited", ev);
+	}
+
+private:
+	ScrollBar		&m_parent;
+	PyThreadState	*m_state;
+};
+
+
+// --- ScrollBar ------------------------------------------------------
 
 void load_dg_ScrollBar(py::module m) {
+	py::class_<ScrollBarChangeEvent/*, ItemChangeEvent*/>(m, "ScrollBarChangeEvent")
+		.def("GetSource", &ScrollBarChangeEvent::GetSource, py::return_value_policy::reference)
+		.def("GetPreviousValue", &ScrollBarChangeEvent::GetPreviousValue);
+
+	py::class_<ScrollBarTrackEvent/*, ItemTrackEvent*/>(m, "ScrollBarTrackEvent")
+		.def("GetSource", &ScrollBarTrackEvent::GetSource, py::return_value_policy::reference)
+		.def("IsLineUp", &ScrollBarTrackEvent::IsLineUp)
+		.def("IsLineLeft", &ScrollBarTrackEvent::IsLineLeft)
+		.def("IsLineDown", &ScrollBarTrackEvent::IsLineDown)
+		.def("IsLineRight", &ScrollBarTrackEvent::IsLineRight)
+		.def("IsPageUp", &ScrollBarTrackEvent::IsPageUp)
+		.def("IsPageLeft", &ScrollBarTrackEvent::IsPageLeft)
+		.def("IsPageDown", &ScrollBarTrackEvent::IsPageDown)
+		.def("IsPageRight", &ScrollBarTrackEvent::IsPageRight)
+		.def("IsTop", &ScrollBarTrackEvent::IsTop)
+		.def("IsLeft", &ScrollBarTrackEvent::IsLeft)
+		.def("IsBottom", &ScrollBarTrackEvent::IsBottom)
+		.def("IsRight", &ScrollBarTrackEvent::IsRight)
+		.def("IsThumbTrack", &ScrollBarTrackEvent::IsThumbTrack);
+
+	py::class_<PyScrollBarObserver>(m, "ScrollBarObserver", py::dynamic_attr())
+		.def(py::init<ScrollBar &, ACExport &>());
+
+
 	py::class_<ScrollBar, Item> m_scrollBar(m, "ScrollBar");
 
 	py::enum_<ScrollBar::ThumbType>(m_scrollBar, "ThumbType")
@@ -161,24 +229,18 @@ void load_dg_ScrollBar(py::module m) {
 			py::arg("thumb") = ScrollBar::ThumbType::Normal,
 			py::arg("focus") = ScrollBar::FocusableType::Focusable,
 			py::arg("autoScroll") = ScrollBar::AutoScrollType::AutoScroll)
-
-		//.def("Attach", &ScrollBar::Attach)
-		//.def("Detach", &ScrollBar::Detach)
-
 		.def("SetMin", &ScrollBar::SetMin)
 		.def("SetMax", &ScrollBar::SetMax)
 		.def("SetValue", &ScrollBar::SetValue)
-
 		.def("GetMin", &ScrollBar::GetMin)
 		.def("GetMax", &ScrollBar::GetMax)
 		.def("GetValue", &ScrollBar::GetValue)
-
 		.def("SetPageSize", &ScrollBar::SetPageSize)
 		.def("GetPageSize", &ScrollBar::GetPageSize);
 }
 
 
-// --- ProgressBar
+// --- ProgressBar ------------------------------------------------------
 
 void load_dg_ProgressBar(py::module m) {
 	py::class_<ProgressBar, Item> m_progressBar(m, "ProgressBar");
@@ -197,11 +259,9 @@ void load_dg_ProgressBar(py::module m) {
 			py::arg("panel"),
 			py::arg("rect"),
 			py::arg("autoScroll") = ProgressBar::FrameType::NoFrame)
-
 		.def("SetMin", &ProgressBar::SetMin)
 		.def("SetMax", &ProgressBar::SetMax)
 		.def("SetValue", &ProgressBar::SetValue)
-
 		.def("GetMin", &ProgressBar::GetMin)
 		.def("GetMax", &ProgressBar::GetMax)
 		.def("GetValue", &ProgressBar::GetValue);

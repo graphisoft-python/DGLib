@@ -8,6 +8,8 @@
 #include "DGUtility.hpp"
 
 using namespace DG;
+using namespace PyEnv;
+
 
 
 // --- EditDragSourceEvent
@@ -53,17 +55,6 @@ using namespace DG;
 //		.def("EditDragMoved", &EditDropTargetObserver::EditDragMoved)
 //		.def("EditDragLeft", &EditDropTargetObserver::EditDragLeft)
 //		.def("EditDropped", &EditDropTargetObserver::EditDropped);
-//}
-
-
-// --- PosIntEditChangeEvent
-
-//void load_dg_PosIntEditChangeEvent(py::module m) {
-//	py::class_<PosIntEditChangeEvent, ItemChangeEvent>(m, "PosIntEditChangeEvent")
-//		.def("GetSource", &PosIntEditChangeEvent::GetSource, py::return_value_policy::reference)
-//
-//		.def("GetPreviousValue", &PosIntEditChangeEvent::GetPreviousValue)
-//		.def("WasRelativeInput", &PosIntEditChangeEvent::WasRelativeInput);
 //}
 
 
@@ -170,9 +161,79 @@ void load_dg_EditControl(py::module m) {
 }
 
 
+// --- PosIntEditObserver -------------------------------------------------------------------
+
+class PyPosIntEditObserver : PosIntEditObserver {
+
+public:
+	PyPosIntEditObserver(PosIntEdit &item, ACExport &acExport)
+		:m_parent(item) {
+		this->m_parent.Attach(*this);
+		this->m_state = acExport.m_state;
+	}
+
+	~PyPosIntEditObserver() {
+		this->m_parent.Detach(*this);
+	}
+
+	//short SpecChanged(const ItemChangeEvent& ev) override {
+	//	OBSERVER_CALL_EVENT("SpecChanged", ev);
+	//}
+
+	//short SpecDragStarting(const ItemDragSourceEvent& ev) override {
+	//	OBSERVER_CALL_EVENT("SpecDragStarting", ev);
+	//}
+
+	//short SpecDragStarted(const ItemDragSourceEvent& ev) override {
+	//	OBSERVER_CALL_EVENT("SpecDragStarted", ev);
+	//}
+
+	//short SpecDragEnded(const ItemDragSourceEvent& ev) override {
+	//	OBSERVER_CALL_EVENT("SpecDragEnded", ev);
+	//}
+
+	//short SpecDragSetDelayedData(const ItemDragSourceEvent& ev) override {
+	//	OBSERVER_CALL_EVENT("SpecDragSetDelayedData", ev);
+	//}
+
+	//short SpecDragEntered(const ItemDropTargetEvent& ev) override {
+	//	OBSERVER_CALL_EVENT("SpecDragEntered", ev);
+	//}
+
+	//short SpecDragMoved(const ItemDropTargetEvent& ev) override {
+	//	OBSERVER_CALL_EVENT("SpecDragMoved", ev);
+	//}
+
+	//short SpecDragLeft(const ItemDropTargetEvent& ev) override {
+	//	OBSERVER_CALL_EVENT("SpecDragLeft", ev);
+	//}
+
+	//short SpecDropped(const ItemDropTargetEvent& ev) override {
+	//	OBSERVER_CALL_EVENT("SpecDropped", ev);
+	//}
+
+	void  PosIntEditChanged(const PosIntEditChangeEvent& ev) override {
+		OBSERVER_CALL_EVENT("PosIntEditChanged", ev);
+	}
+
+private:
+	PosIntEdit		&m_parent;
+	PyThreadState	*m_state;
+};
+
+
 // --- PosIntEdit
 
 void load_dg_PosIntEdit(py::module m) {
+	py::class_<PosIntEditChangeEvent/*, ItemChangeEvent*/>(m, "PosIntEditChangeEvent")
+		.def("GetSource", &PosIntEditChangeEvent::GetSource, py::return_value_policy::reference)
+		.def("GetPreviousValue", &PosIntEditChangeEvent::GetPreviousValue)
+		.def("WasRelativeInput", &PosIntEditChangeEvent::WasRelativeInput);
+
+	py::class_<PyPosIntEditObserver>(m, "PosIntEditObserver", py::dynamic_attr())
+		.def(py::init<PosIntEdit &, ACExport &>());
+
+
 	py::class_<PosIntEdit, EditControl, ItemVariousProperty> m_posIntEdit(m, "PosIntEdit");
 
 	py::enum_<PosIntEdit::AbsRelType>(m_posIntEdit, "AbsRelType")
@@ -190,14 +251,9 @@ void load_dg_PosIntEdit(py::module m) {
 			py::arg("absRel") = PosIntEdit::AbsRelType::Absolute,
 			py::arg("update") = EditControl::UpdateType::Update,
 			py::arg("readOnly") = EditControl::ReadOnlyType::Editable)
-
-		//.def("Attach", &PosIntEdit::Attach)
-		//.def("Detach", &PosIntEdit::Detach)
-
 		.def("SetMin", &PosIntEdit::SetMin)
 		.def("SetMax", &PosIntEdit::SetMax)
 		.def("SetValue", &PosIntEdit::SetValue)
-
 		.def("GetMin", &PosIntEdit::GetMin)
 		.def("GetMax", &PosIntEdit::GetMax)
 		.def("GetValue", &PosIntEdit::GetValue);
