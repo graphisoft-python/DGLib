@@ -13,8 +13,7 @@ using namespace PyEnv;
 class PyPanelObserver :PanelObserver {
 public:
 	PyPanelObserver(Panel &item,ACExport &acExport)
-		:m_parent(item),
-		m_export(acExport)
+		:m_parent(item)
 	{
 		this->m_parent.Attach(*this);
 		this->m_state =acExport.m_state;
