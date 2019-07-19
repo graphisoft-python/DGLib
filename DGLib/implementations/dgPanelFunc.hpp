@@ -5,19 +5,19 @@
 #include "DGPanel.hpp"
 
 #include	"ACObserver.h"
-#include	"Lock.hpp"
+#include	"ACExport.h"
 
 using namespace DG;
-
-static GS::Lock	g_lock;
+using namespace PyEnv;
 
 class PyPanelObserver :PanelObserver {
 public:
-	PyPanelObserver(Panel &item,UINT64 vState)
-		:m_parent(item)
+	PyPanelObserver(Panel &item,ACExport &acExport)
+		:m_parent(item),
+		m_export(acExport)
 	{
 		this->m_parent.Attach(*this);
-		this->m_state = (PyThreadState *)vState;
+		this->m_state =acExport.m_state;
 	}
 
 	~PyPanelObserver() {
@@ -29,15 +29,17 @@ public:
 	}
 
 	void PanelCloseRequested(const PanelCloseRequestEvent& ev, bool* accepted) override {
-		//OBSERVER_CALL_EVENT_WITH_RETURN("PanelCloseRequested", ev, accepted, bool);
+		//this->m_export.WriteReport_Alert("message from AcExport");
+		OBSERVER_CALL_EVENT("PanelCloseRequested", ev);
+		
 	}
 
 	void PanelContextHelpRequested(const PanelHelpEvent& ev, GS::UniString* contextHelpAnchor) override {
-		//OBSERVER_CALL_EVENT_WITH_RETURN("PanelContextHelpRequested", ev, contextHelpAnchor, GS::UniString);
+		OBSERVER_CALL_EVENT_WITH_RETURN("PanelContextHelpRequested", ev, contextHelpAnchor, GS::UniString);
 	}
 
 	void PanelContextMenuRequested(const PanelContextMenuEvent& ev, bool* needHelp, bool* processed) override {
-		//OBSERVER_CALL_EVENT_WITH_RETURN_AND_SET_PROCESSED("PanelContextMenuRequested", ev, needHelp, bool, processed);
+		OBSERVER_CALL_EVENT_WITH_RETURN_AND_SET_PROCESSED("PanelContextMenuRequested", ev, needHelp, bool, processed);
 	}
 
 	void PanelDragEntered(const PanelDropTargetEvent& ev, DragDrop::Effect* effect, bool* handleEvent) override {
@@ -61,7 +63,7 @@ public:
 	}
 
 	void PanelHotkeyPressed(const PanelHotKeyEvent& ev, bool* processed) override {
-		//OBSERVER_CALL_EVENT_SET_PROCESSED("PanelHotkeyPressed", ev, processed);
+		OBSERVER_CALL_EVENT_SET_PROCESSED("PanelHotkeyPressed", ev, processed);
 	}
 
 	void PanelIdle(const PanelIdleEvent& ev) override {
@@ -77,51 +79,7 @@ public:
 	}
 
 	void PanelResizing(const PanelResizeEvent& ev, Point* growValues) override {
-		OBSERVER_CALL_EVENT("PanelResizing", ev);
-
-		//PyThreadState *cure_state = PyThreadState_GET();
-		//PyThreadState *save_state = NULL, *old_state = NULL;
-		//bool lock_thread = false;
-
-		//if (cure_state&&cure_state->interp != this->m_state->interp) {
-		//	PyEval_AcquireLock();
-		//	//PyEval_ReleaseThread(cure_state);
-		//	//old_state = PyThreadState_Swap(NULL);
-		//	//PyEval_AcquireThread(this->m_state);
-		//	//save_state = PyThreadState_Swap(this->m_state);
-		//	lock_thread = true;
-		//}
-		//else {
-		//	PyEval_RestoreThread(this->m_state);
-		//}
-
-		//py::gil_scoped_acquire_for_archicad acq(this->m_state);
-
-		//py::object py_obsr = py::cast(this);
-
-		//if (PyObject_HasAttrString(py_obsr.ptr(), "PanelResizing")) {
-		//	PyObject *py_func = PyObject_GetAttrString(py_obsr.ptr(), "PanelResizing");
-		//	if (PyErr_Occurred()) {
-		//		PyErr_Print();
-		//	}
-		//	if (PyCallable_Check(py_func)) {
-		//		Py_XDECREF(PyEval_CallObject(py_func, NULL));
-		//	}
-		//	Py_XDECREF(py_func);
-		//}
-
-		//if (lock_thread) {
-		//	//PyThreadState_Swap(save_state);
-		//	//PyEval_ReleaseThread(this->m_state);
-		//	//PyThreadState_Swap(old_state);
-		//	//PyEval_AcquireThread(cure_state);
-		//	PyEval_ReleaseLock();
-		//}
-		//else {
-		//	PyEval_SaveThread();
-		//}
-		
-		//OBSERVER_CALL_EVENT_WITH_RETURN("PanelResizing", ev, growValues, Point);
+		OBSERVER_CALL_EVENT_WITH_RETURN("PanelResizing", ev, growValues, Point);
 	}
 
 	void PanelResized(const PanelResizeEvent& ev) override {
@@ -153,86 +111,31 @@ public:
 	}
 
 	void PanelToolTipRequested(const PanelHelpEvent& ev, GS::UniString* toolTipText) override {
-		//OBSERVER_CALL_EVENT_WITH_RETURN("PanelToolTipRequested", ev, toolTipText, GS::UniString);
+		OBSERVER_CALL_EVENT_WITH_RETURN("PanelToolTipRequested", ev, toolTipText, GS::UniString);
 	}
 
 	void PanelTopStatusGained(const PanelTopStatusEvent& ev) override {
-		//py::gil_scoped_acquire_for_archicad acq(this->m_state);
-
-		//py::object py_obsr = py::cast(this);
-
-		//if (PyObject_HasAttrString(py_obsr.ptr(), "PanelTopStatusGained")) {
-		//	PyObject *py_func = PyObject_GetAttrString(py_obsr.ptr(), "PanelTopStatusGained");
-		//	if (PyErr_Occurred()) {
-		//		PyErr_Print();
-		//	}
-		//	if (PyCallable_Check(py_func)) {
-		//		Py_XDECREF(PyEval_CallObject(py_func, NULL));
-		//	}
-		//	Py_XDECREF(py_func);
-		//}
-
 		OBSERVER_CALL_EVENT("PanelTopStatusGained", ev);
 	}
 
 	void PanelTopStatusLost(const PanelTopStatusEvent& ev) override {
-		//PyThreadState *cure_state = PyThreadState_GET();
-		//PyThreadState *save_state=NULL,*old_state=NULL;
-		//bool lock_thread = false;
-
-		//if (cure_state&&cure_state->interp != this->m_state->interp) {
-		//	PyEval_ReleaseThread(cure_state);
-		//	old_state = PyThreadState_Swap(NULL);
-		//	PyEval_AcquireThread(this->m_state);
-		//	save_state = PyThreadState_Swap(this->m_state);
-		//	lock_thread = true;
-		//}
-		//else {
-		//	PyEval_RestoreThread(this->m_state);
-		//}
-
-		//py::gil_scoped_acquire_for_archicad acq(this->m_state);
-
-		//py::object py_obsr = py::cast(this);
-
-		//if (PyObject_HasAttrString(py_obsr.ptr(), "PanelTopStatusLost")) {
-		//	PyObject *py_func = PyObject_GetAttrString(py_obsr.ptr(), "PanelTopStatusLost");
-		//	if (PyErr_Occurred()) {
-		//		PyErr_Print();
-		//	}
-		//	if (PyCallable_Check(py_func)) {
-		//		Py_XDECREF(PyEval_CallObject(py_func, NULL));
-		//	}
-		//	Py_XDECREF(py_func);
-		//}
-
-		//if (lock_thread) {
-		//	PyThreadState_Swap(save_state);
-		//	PyEval_ReleaseThread(this->m_state);
-		//	PyThreadState_Swap(old_state);
-		//	PyEval_AcquireThread(cure_state);
-		//}
-		//else {
-		//	PyEval_SaveThread();
-		//}
-
 		OBSERVER_CALL_EVENT("PanelTopStatusLost", ev);
 	}
 
 	void PanelWheelTrackEntered(const PanelWheelEvent& ev, bool* processed) override {
-		//OBSERVER_CALL_EVENT_SET_PROCESSED("PanelWheelTrackEntered", ev, processed);
+		OBSERVER_CALL_EVENT_SET_PROCESSED("PanelWheelTrackEntered", ev, processed);
 	}
 
 	void PanelWheelTracked(const PanelWheelTrackEvent& ev, bool* processed) override {
-		//OBSERVER_CALL_EVENT_SET_PROCESSED("PanelWheelTracked", ev, processed);
+		OBSERVER_CALL_EVENT_SET_PROCESSED("PanelWheelTracked", ev, processed);
 	}
 
 	void PanelWheelTrackExited(const PanelWheelEvent& ev, bool* processed) override {
-		//OBSERVER_CALL_EVENT_SET_PROCESSED("PanelWheelTrackExited", ev, processed);
+		OBSERVER_CALL_EVENT_SET_PROCESSED("PanelWheelTrackExited", ev, processed);
 	}
 
 	void PanelBackgroundPaint(const PanelBackgroundPaintEvent& ev, bool* processed) override {
-		//OBSERVER_CALL_EVENT_SET_PROCESSED("PanelBackgroundPaint", ev, processed);
+		OBSERVER_CALL_EVENT_SET_PROCESSED("PanelBackgroundPaint", ev, processed);
 	}
 
 	void PanelBackgroundPostPaint(const PanelBackgroundPaintEvent& ev) override {
@@ -244,13 +147,13 @@ public:
 	}
 
 	void PanelChangeRegistrationRequested(const Item* item, bool* allowRegistration) override {
-		//OBSERVER_CALL_EVENT_WITH_RETURN("PanelChangeRegistrationRequested", item, allowRegistration, bool);
+		OBSERVER_CALL_EVENT_WITH_RETURN("PanelChangeRegistrationRequested", item, allowRegistration, bool);
 	}
 
 private:
 	Panel			&m_parent;
 	PyThreadState	*m_state;
-
+	//ACExport		&m_export;
 private:
 	
 };
@@ -340,7 +243,7 @@ void load_dg_Panel(py::module m) {
 		;
 
 	py::class_<PyPanelObserver>(m, "PanelObserver",py::dynamic_attr())
-		.def(py::init<Panel &,UINT64>())
+		.def(py::init<Panel &, ACExport&>())
 		;
 
 
