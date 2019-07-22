@@ -7,11 +7,11 @@
 using namespace DG;
 
 
-// --- Dialog
+// --- Dialog --------------------------------------------------------------
 
 void load_dg_Dialog(py::module m) {
 	py::class_<Dialog, Panel> m_dialog(m, "Dialog");
-	
+
 	py::enum_<Dialog::DialogType>(m_dialog, "DialogType")
 		.value("Modal",Dialog::DialogType::Modal)
 		.value("Modeless", Dialog::DialogType::Modeless)
@@ -72,14 +72,11 @@ void load_dg_Dialog(py::module m) {
 		.value("NoUpdate", Dialog::SpecialFeatures::NoUpdate)
 		.value("FrameDialog", Dialog::SpecialFeatures::FrameDialog)
 		.export_values();
-	
-	
+
 	m_dialog
 		.def("GetDialogType", &Dialog::GetDialogType)
 		.def("IsDGDialog", &Dialog::IsDGDialog)
-
 		//.def("GetWindow", &Dialog::GetWindow, py::return_value_policy::reference)
-
 		.def("Center", &Dialog::Center)
 		.def("Move", (void (Dialog::*)
 			(short, short))	&Dialog::Move)
@@ -90,30 +87,23 @@ void load_dg_Dialog(py::module m) {
 			py::arg("vGrow"), 
 			py::arg("fixPoint") = Dialog::FixPoint::TopLeft, 
 			py::arg("keepOld") = false)
-
 		.def("SetGrowType", &Dialog::SetGrowType)
 		.def("GetGrowType", &Dialog::GetGrowType)
-
 		.def("GetOriginalClientWidth", &Dialog::GetOriginalClientWidth)
 		.def("GetOriginalClientHeight", &Dialog::GetOriginalClientHeight)
-
 		.def("SetMinClientSize", &Dialog::SetMinClientSize)
 		.def("SetMinClientWidth", &Dialog::SetMinClientWidth)
 		.def("SetMinClientHeight", &Dialog::SetMinClientHeight)
-
 		.def("GetMinClientWidth", &Dialog::GetMinClientWidth)
 		.def("GetMinClientHeight", &Dialog::GetMinClientHeight)
-
 		.def("SetClientPosition", (void (Dialog::*)
 			(const NativePoint &)) &Dialog::SetClientPosition)
 		.def("SetClientPosition", (void (Dialog::*)
 			(const NativeUnit &, const NativeUnit &)) &Dialog::SetClientPosition)
-
 		.def("SetClientRect", &Dialog::SetClientRect,
 			py::arg("rect"),
 			py::arg("fixPoint") = Dialog::FixPoint::TopLeft, 
 			py::arg("keepOld") = false)
-
 		.def("SetClientSize", &Dialog::SetClientSize,
 			py::arg("width"), 
 			py::arg("height"),
@@ -127,29 +117,21 @@ void load_dg_Dialog(py::module m) {
 			py::arg("height"),
 			py::arg("fixPoint") = Dialog::FixPoint::TopLeft, 
 			py::arg("keepOld") = false)
-
 		.def("GetClientPosition", &Dialog::GetClientPosition)
-
 		.def("GetClientRect", &Dialog::GetClientRect)
-
 		.def("GetClientWidth", &Dialog::GetClientWidth)
 		.def("GetClientHeight", &Dialog::GetClientHeight)
-
 		.def("GetOriginalFrameWidth", &Dialog::GetOriginalFrameWidth)
 		.def("GetOriginalFrameHeight", &Dialog::GetOriginalFrameHeight)
-
 		.def("SetMinFrameSize", &Dialog::SetMinFrameSize)
 		.def("SetMinFrameWidth", &Dialog::SetMinFrameWidth)
 		.def("SetMinFrameHeight", &Dialog::SetMinFrameHeight)
-
 		.def("GetMinFrameWidth", &Dialog::GetMinFrameWidth)
 		.def("GetMinFrameHeight", &Dialog::GetMinFrameHeight)
-
 		.def("SetFramePosition", (void (Dialog::*)
 			(const NativePoint &)) &Dialog::SetFramePosition)
 		.def("SetFramePosition", (void (Dialog::*)
 			(const NativeUnit &, const NativeUnit &)) &Dialog::SetFramePosition)
-
 		.def("SetFrameRect", &Dialog::SetFrameRect, 
 			py::arg("rect"),
 			py::arg("fixPoint") = Dialog::FixPoint::TopLeft, 
@@ -167,66 +149,51 @@ void load_dg_Dialog(py::module m) {
 			py::arg("height"),
 			py::arg("fixPoint") = Dialog::FixPoint::TopLeft, 
 			py::arg("keepOld") = false)
-
 		.def("GetFramePosition", &Dialog::GetFramePosition)
 		.def("GetFrameRect", &Dialog::GetFrameRect)
 		.def("GetFrameWidth", &Dialog::GetFrameWidth)
 		.def("GetFrameHeight", &Dialog::GetFrameHeight)
-
 		.def("BeginMoveResizeItems", &Dialog::BeginMoveResizeItems)
 		.def("EndMoveResizeItems", &Dialog::EndMoveResizeItems)
-
 		.def("SetTitle", &Dialog::SetTitle)
 		.def("GetTitle", &Dialog::GetTitle)
-
 		//.def("SetIcon", &Dialog::SetIcon)
 		//.def("GetIcon", &Dialog::GetIcon)
-
 		.def("EnableIdleEvent", &Dialog::EnableIdleEvent,
 			py::arg("sendForInactiveApp") = false)
-
 		.def("EnableNormalUpdate", &Dialog::EnableNormalUpdate)
 		.def("DisableNormalUpdate", &Dialog::DisableNormalUpdate)
-
 		.def("SetPopupStyle", &Dialog::SetPopupStyle)
 		.def("HasPopupStyle", &Dialog::HasPopupStyle)
-
 		.def("EnableGrowBox", &Dialog::EnableGrowBox)
 		.def("DisableGrowBox", &Dialog::DisableGrowBox)
 		.def("IsGrowBoxEnabled", &Dialog::IsGrowBoxEnabled)
-
 		.def("SetGrowBoxSize", &Dialog::SetGrowBoxSize)
 		.def("GetGrowBoxSize", &Dialog::GetGrowBoxSize)
-
 		.def("SetGrowBoxForm", &Dialog::SetGrowBoxForm)
 		.def("GetGrowBoxForm", &Dialog::GetGrowBoxForm)
-
 		.def("RegisterDragAndDrop", &Dialog::RegisterDragAndDrop)
 		.def("RevokeDragAndDrop", &Dialog::RevokeDragAndDrop)
-
 		.def("EnableDraw", &Dialog::EnableDraw)
 		.def("DisableDraw", &Dialog::DisableDraw)
 		.def("Redraw", &Dialog::Redraw)
-
 		.def("SetCursorPosition", &Dialog::SetCursorPosition)
-
 		.def("KeepInScreen", &Dialog::KeepInScreen)
-
 		.def("HasChangedDialogItems", &Dialog::HasChangedDialogItems)
 		.def("ResetDialogItemChanges", &Dialog::ResetDialogItemChanges);
 }
 
 
-// --- ModalDialog
+// --- DialogEX ------------------------------------------------------------
 
-void load_dg_ModaDialog(py::module m) {
+void load_dg_DialogEX(py::module m) {
+	// --- ModalDialog -----------------------------------------------------
 	py::class_<ModalDialog, Dialog> m_modalDialog(m,"ModalDialog");
 	
 	py::enum_<ModalDialog::ModalResponse>(m_modalDialog, "ModalResponse")
 		.value("Accept", ModalDialog::ModalResponse::Accept)
 		.value("Cancel", ModalDialog::ModalResponse::Cancel)
 		.export_values();
-
 
 	m_modalDialog
 		//.def(py::init<GSResModule , short, GSResModule>())
@@ -238,55 +205,41 @@ void load_dg_ModaDialog(py::module m) {
 			py::arg("growType") = Dialog::GrowType::NoGrow,
 			py::arg("captionType") = Dialog::CaptionType::TopCaption,
 			py::arg("frameType") = Dialog::FrameType::NormalFrame)
-
 		.def("Invoke", &ModalDialog::Invoke)
 		.def("Abort", &ModalDialog::Abort)
-
 		.def("PostCloseRequest", &ModalDialog::PostCloseRequest)
-
 		.def("GetNextModalDialog", &ModalDialog::GetNextModalDialog, py::return_value_policy::reference)
 		.def("GetPrevModalDialog", &ModalDialog::GetPrevModalDialog, py::return_value_policy::reference);
-}
 
+	// --- ModelessBase ---------------------------------------------------
+	py::class_<ModelessBase, Dialog> m_modelessBase(m, "ModelessBase");
 
-// --- ModelessBase
-
-void load_dg_ModelessBase(py::module m) {
-	py::class_<ModelessBase, Dialog> m_modalDialog(m, "ModelessBase");
-
-	py::enum_<ModelessBase::DialogStatus>(m_modalDialog, "DialogStatus")
+	py::enum_<ModelessBase::DialogStatus>(m_modelessBase, "DialogStatus")
 		.value("Normal", ModelessBase::DialogStatus::Normal)
 		.value("Enabled", ModelessBase::DialogStatus::Enabled)
 		.value("Disabled", ModelessBase::DialogStatus::Disabled)
 		.value("Edited", ModelessBase::DialogStatus::Edited)
 		.export_values();
 
-
-	m_modalDialog
+	m_modelessBase
 		.def("BeginEventProcessing", &ModelessBase::BeginEventProcessing)
 		.def("EndEventProcessing", &ModelessBase::EndEventProcessing)
 		.def("SendCloseRequest", &ModelessBase::SendCloseRequest)
-
 		.def("BringToFront", &ModelessBase::BringToFront)
 		.def("SendToBack", &ModelessBase::SendToBack)
-
 		.def("Show", &ModelessBase::Show,
-			py::arg("refDialId")= DG_DF_FIRST)
+			py::arg("refDialId") = DG_DF_FIRST)
 		.def("Hide", &ModelessBase::Hide)
 		.def("SetVisibility", &ModelessBase::SetVisibility)
 		.def("IsVisible", &ModelessBase::IsVisible)
-
 		.def("Activate", &ModelessBase::Activate)
 		.def("IsActive", &ModelessBase::IsActive)
-
 		.def("SetStatus", &ModelessBase::SetStatus)
 		.def("GetStatus", &ModelessBase::GetStatus);
 }
 
-
-// --- ModelessDialog
-
-void load_dg_ModelessDialog(py::module m) {
+void load_dg_ModelessBaseEX(py::module m) {
+	// --- ModelessDialog -------------------------------------------------
 	py::class_<ModelessDialog, ModelessBase> m_modelessDialog(m, "ModelessDialog");
 
 	py::enum_<ModelessDialog::DialogState>(m_modelessDialog, "DialogState")
@@ -300,15 +253,14 @@ void load_dg_ModelessDialog(py::module m) {
 		.value("Undocked", ModelessDialog::DockState::Undocked)
 		.export_values();
 
-
 	m_modelessDialog
 		//.def(py::init<GSResModule , short, GSResModule>())
 		//.def(py::init<GSResModule, short, GSResModule,GS::Guid &>())
 		.def(py::init<NativePoint &, short, short, GS::Guid &, Dialog::GrowType, Dialog::CloseType, Dialog::MinimizeType, Dialog::MaximizeType, Dialog::CaptionType, Dialog::FrameType, Dialog::SpecialFeatures>(),
-			py::arg("position"), 
-			py::arg("width"), 
-			py::arg("height"), 
-			py::arg("guid"), 
+			py::arg("position"),
+			py::arg("width"),
+			py::arg("height"),
+			py::arg("guid"),
 			py::arg("growType") = Dialog::GrowType::NoGrow,
 			py::arg("closeType") = Dialog::CloseType::NoClose,
 			py::arg("minimizeType") = Dialog::MinimizeType::NoMinimize,
@@ -316,76 +268,58 @@ void load_dg_ModelessDialog(py::module m) {
 			py::arg("captionType") = Dialog::CaptionType::TopCaption,
 			py::arg("frameType") = Dialog::FrameType::NormalFrame,
 			py::arg("specialFeatures") = Dialog::SpecialFeatures::NothingSpecial)
-
 		.def("SendBehind", &ModelessDialog::SendBehind)
-
 		.def("GetNextModelessDialog", &ModelessDialog::GetNextModelessDialog, py::return_value_policy::reference)
 		.def("GetPrevModelessDialog", &ModelessDialog::GetPrevModelessDialog, py::return_value_policy::reference)
 		.def("GetNextVisibleModelessDialog", &ModelessDialog::GetNextVisibleModelessDialog, py::return_value_policy::reference)
 		.def("GetPrevVisibleModelessDialog", &ModelessDialog::GetPrevVisibleModelessDialog, py::return_value_policy::reference)
-
 		.def("GetRestoredClientPosition", &ModelessDialog::GetRestoredClientPosition)
 		.def("GetRestoredClientWidth", &ModelessDialog::GetRestoredClientWidth)
 		.def("GetRestoredClientHeight", &ModelessDialog::GetRestoredClientHeight)
-
 		.def("GetRestoredFramePosition", &ModelessDialog::GetRestoredFramePosition)
 		.def("GetRestoredFrameRect", &ModelessDialog::GetRestoredFrameRect)
 		.def("GetRestoredFrameWidth", &ModelessDialog::GetRestoredFrameWidth)
 		.def("GetRestoredFrameHeight", &ModelessDialog::GetRestoredFrameHeight)
-
-		.def("Maximize", &ModelessDialog::Maximize, 
+		.def("Maximize", &ModelessDialog::Maximize,
 			py::arg("beforeDock") = false)
 		.def("Minimize", &ModelessDialog::Minimize)
 		.def("Restore", &ModelessDialog::Restore)
-		.def("SetState", &ModelessDialog::SetState, 
-			py::arg("state"), 
+		.def("SetState", &ModelessDialog::SetState,
+			py::arg("state"),
 			py::arg("beforeDock") = false)
-
 		.def("IsMaximizedState", &ModelessDialog::IsMaximizedState)
 		.def("IsMinimizedState", &ModelessDialog::IsMinimizedState)
 		.def("IsRestoredState", &ModelessDialog::IsRestoredState)
 		.def("GetState", &ModelessDialog::GetState)
-
 		.def("Dock", &ModelessDialog::Dock)
 		.def("Undock", &ModelessDialog::Undock)
 		.def("IsDocked", &ModelessDialog::IsDocked)
 		.def("SetDockState", &ModelessDialog::SetDockState)
 		.def("GetDockState", &ModelessDialog::GetDockState);
-}
 
-
-// --- Palette
-
-void load_dg_Palette(py::module m) {
+	// --- Palette --------------------------------------------------------
 	py::class_<Palette, ModelessBase>(m, "Palette")
 		//.def(py::init<GSResModule , short, GSResModule>())
 		//.def(py::init<GSResModule, short, GSResModule,GS::Guid &>())
 		.def(py::init<NativePoint &, short, short, GS::Guid &, Dialog::GrowType, Dialog::CloseType, Dialog::CaptionType, Dialog::FrameType, Dialog::SpecialFeatures>(),
-			py::arg("position"), 
-			py::arg("width"), 
-			py::arg("height"), 
-			py::arg("guid"), 
+			py::arg("position"),
+			py::arg("width"),
+			py::arg("height"),
+			py::arg("guid"),
 			py::arg("growType") = Dialog::GrowType::NoGrow,
 			py::arg("closeType") = Dialog::CloseType::NoClose,
 			py::arg("captionType") = Dialog::CaptionType::TopCaption,
 			py::arg("frameType") = Dialog::FrameType::NormalFrame,
 			py::arg("specialFeatures") = Dialog::SpecialFeatures::NothingSpecial)
-
 		.def("SendBehind", &Palette::SendBehind)
-
 		.def("GetNextPalette", &Palette::GetNextPalette, py::return_value_policy::reference)
 		.def("GetPrevPalette", &Palette::GetPrevPalette, py::return_value_policy::reference)
 		.def("GetNextVisiblePalette", &Palette::GetNextVisiblePalette, py::return_value_policy::reference)
 		.def("GetPrevVisiblePalette", &Palette::GetPrevVisiblePalette, py::return_value_policy::reference)
-		
 		.def("DisableDock", &Palette::DisableDock)
-
 		.def("Dock", &Palette::Dock)
 		.def("UnDock", &Palette::UnDock)
-
 		.def("IsDocked", &Palette::IsDocked)
-
 		.def("GetCaptionType", &Palette::GetCaptionType);
 }
-
 

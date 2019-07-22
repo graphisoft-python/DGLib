@@ -64,11 +64,7 @@ PYBIND11_MODULE(DGLib, m) {
 
 // --- DGItemProperty
 	load_dg_Font(m.def_submodule("Font"));
-	load_dg_ItemFontProperty(m);
-	load_dg_FocusableProperty(m);
-	load_dg_ItemVariousProperty(m);
-	load_dg_ItemTextLengthLimitProperty(m);
-	load_dg_ItemTextProperty(m);
+	load_dg_ItemPropertyEX(m);
 
 // --- DGUtility
 	load_dg_EOL(m.def_submodule("EOL"));
@@ -89,16 +85,12 @@ PYBIND11_MODULE(DGLib, m) {
 
 // --- DGDialog
 	load_dg_Dialog(m);
-	load_dg_ModaDialog(m);
-	load_dg_ModelessBase(m);
-	load_dg_ModelessDialog(m);
-	load_dg_Palette(m);
+	load_dg_DialogEX(m);
+	load_dg_ModelessBaseEX(m);
 
 // --- DGButton
 	load_dg_ButtonItem(m);
-	load_dg_Button(m);
-	load_dg_IconButton(m);
-	load_dg_SplitButtonBase(m);
+	load_dg_ButtonItemEX(m);
 	load_dg_SplitButton(m);
 	load_dg_CustomSplitButton(m);
 
@@ -107,28 +99,18 @@ PYBIND11_MODULE(DGLib, m) {
 	load_dg_PosIntEdit(m);
 	load_dg_IntEdit(m);
 	load_dg_RealEdit(m);
-	load_dg_LengthEdit(m);
-	load_dg_AreaEdit(m);
-	load_dg_VolumeEdit(m);
-	load_dg_AngleEdit(m);
-	load_dg_PolarAngleEdit(m);
-	load_dg_MMPointEdit(m);
+	load_dg_RealEditEX(m);
 	load_dg_TextEditBase(m);
-	load_dg_TextEdit(m);
-	load_dg_PasswordEdit(m);
+	load_dg_TextEditBaseEX(m);
 	load_dg_ShortcutEdit(m);
-	load_dg_MultiLineEdit(m);
 
 // --- DGListBox
 	load_dg_ListBox(m);
-	load_dg_SingleSelListBox(m);
-	load_dg_MultiSelListBox(m);
+	load_dg_ListBoxEX(m);
 
 // --- BarControl
 	load_dg_BarControl(m);
-	load_dg_SingleSpin(m);
-	load_dg_EditSpin(m);
-	load_dg_Slider(m);
+	load_dg_BarControlEX(m);
 	load_dg_ScrollBar(m);
 	load_dg_ProgressBar(m);
 
