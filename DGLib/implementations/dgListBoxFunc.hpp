@@ -10,66 +10,7 @@
 using namespace DG;
 
 
-// --- ListBoxDragSourceEvent
-
-//void load_dg_ListBoxDragSourceEvent(py::module m) {
-//	py::class_<ListBoxDragSourceEvent, ItemDragSourceEvent>(m, "ListBoxDragSourceEvent")
-//		.def("GetSource", &ListBoxDragSourceEvent::GetSource, py::return_value_policy::reference);
-//}
-
-
-// --- ListBoxDragSourceObserver
-
-//void load_dg_ListBoxDragSourceObserver(py::module m) {
-//	py::class_<ListBoxDragSourceObserver>(m, "ListBoxDragSourceObserver")
-//		.def("ListBoxDragStarting", &ListBoxDragSourceObserver::ListBoxDragStarting)
-//		.def("ListBoxDragStarted", (void (ListBoxDragSourceObserver::*)
-//			(const ListBoxDragSourceEvent &, UShort *)) &ListBoxDragSourceObserver::ListBoxDragStarted)
-//		.def("ListBoxDragStarted", (void (ListBoxDragSourceObserver::*)
-//			(const ListBoxDragSourceEvent &, UShort *, bool *)) &ListBoxDragSourceObserver::ListBoxDragStarted)
-//		.def("ListBoxDragEnded", &ListBoxDragSourceObserver::ListBoxDragEnded)
-//		.def("ListBoxDragSetDelayedData", &ListBoxDragSourceObserver::ListBoxDragSetDelayedData);
-//}
-
-
-// --- ListBoxDropTargetEvent
-
-//void load_dg_ListBoxDropTargetEvent(py::module m) {
-//	py::class_<ListBoxDropTargetEvent, ItemDropTargetEvent>(m, "ListBoxDropTargetEvent")
-//		.def("GetInsertPosition", &ListBoxDropTargetEvent::GetInsertPosition)
-//		.def("GetRelativePosition", &ListBoxDropTargetEvent::GetRelativePosition)
-//		.def("GetSource", &ListBoxDropTargetEvent::GetSource, py::return_value_policy::reference);
-//}
-
-
-// --- ListBoxDropTargetObserver
-
-//void load_dg_ListBoxDropTargetObserver(py::module m) {
-//	py::class_<ListBoxDropTargetObserver>(m, "ListBoxDropTargetObserver")
-//		.def("ListBoxDragEntered", (void (ListBoxDropTargetObserver::*)
-//			(const ListBoxDropTargetEvent &, DragDrop::Effect *, bool *)) &ListBoxDropTargetObserver::ListBoxDragEntered)
-//		.def("ListBoxDragEntered", (void (ListBoxDropTargetObserver::*)
-//			(const ListBoxDropTargetEvent &, DragDrop::Effect *, bool *, bool *)) &ListBoxDropTargetObserver::ListBoxDragEntered)
-//		.def("ListBoxDragMoved", &ListBoxDropTargetObserver::ListBoxDragMoved)
-//		.def("ListBoxDragLeft", &ListBoxDropTargetObserver::ListBoxDragLeft)
-//		.def("ListBoxDropped", &ListBoxDropTargetObserver::ListBoxDropped);
-//}
-
-
-// --- ListBoxDragEvent
-
-//void load_dg_ListBoxDragEvent(py::module m) {
-//	py::class_<ListBoxDragEvent, ItemChangeEvent>(m, "ListBoxDragEvent")
-//		.def("GetSource", &ListBoxDragEvent::GetSource, py::return_value_policy::reference)
-//
-//		.def("GetPreviousIndex", &ListBoxDragEvent::GetPreviousIndex)
-//		.def("GetNewIndex", &ListBoxDragEvent::GetNewIndex);
-//}
-
-
-
-
-// --- PyListBoxObserver ----------------------------------------------------
+// --- PyListBoxObserver --------------------------------------------------------------------
 
 class PyListBoxObserver : ListBoxObserver {
 public:
@@ -83,36 +24,82 @@ public:
 		this->m_parent.Detach(*this);
 	}
 
+	// --- ListBoxDragSourceObserver --------------------------------------------------------
+
+	void ListBoxDragStarting(const ListBoxDragSourceEvent& ev, bool* canStart) override {
+
+	}
+
+	void ListBoxDragStarted(const ListBoxDragSourceEvent& ev, UShort* effect) override {
+
+	}
+
+	void ListBoxDragStarted(const ListBoxDragSourceEvent& ev, UShort* effect, bool* rightDragMenu) override {
+
+	}
+
+	void ListBoxDragEnded(const ListBoxDragSourceEvent& ev, DragDrop::Effect effect) override {
+
+	}
+
+	void ListBoxDragSetDelayedData(const ListBoxDragSourceEvent& ev) override {
+
+	}
+
+	// --- ListBoxDropTargetObserver --------------------------------------------------------
+
+	void ListBoxDragEntered(const ListBoxDropTargetEvent& ev, DragDrop::Effect* effect, bool* defBehaviour) override {
+
+	}
+
+	void ListBoxDragEntered(const ListBoxDropTargetEvent& ev, DragDrop::Effect* effect, bool* defBehaviour, bool* rightDragMenu) override {
+
+	}
+
+	void ListBoxDragMoved(const ListBoxDropTargetEvent& ev, DragDrop::Effect* effect, DragDrop::Feedback* denyFeedback) override {
+
+	}
+
+	void ListBoxDragLeft(const ListBoxDropTargetEvent& ev, DragDrop::Effect* effect) override {
+
+	}
+
+	void ListBoxDropped(const ListBoxDropTargetEvent& ev, DragDrop::Effect* effect) override {
+
+	}
+
+	// --- ListBoxObserver ------------------------------------------------------------------
+
 	//short SpecChangeRequested(const ItemMouseDownEvent& ev) override {
-	//	OBSERVER_CALL_EVENT("SpecChangeRequested", ev);
+	
 	//}
 
 	//short SpecChanged(const ItemChangeEvent& ev) override {
-	//	OBSERVER_CALL_EVENT("SpecChanged", ev);
+	
 	//}
 
 	//short SpecClicked(const ItemClickEvent& ev) override {
-	//	OBSERVER_CALL_EVENT("SpecClicked", ev);
+	
 	//}
 
 	//short SpecMouseDown(const ItemMouseDownEvent& ev, bool* processed) override {
-	//	OBSERVER_CALL_EVENT_SET_PROCESSED("SpecMouseDown", ev, processed);
+	
 	//}
 
 	//short SpecContextMenuRequested(const ItemContextMenuEvent& ev) override {
-	//	OBSERVER_CALL_EVENT("SpecContextMenuRequested", ev);
+	
 	//}
 
 	//short SpecDoubleClicked(const ItemDoubleClickEvent& ev) override {
-	//	OBSERVER_CALL_EVENT("SpecDoubleClicked", ev);
+	
 	//}
 
 	//short SpecMouseMoved(const ItemMouseMoveEvent& ev) override {
-	//	OBSERVER_CALL_EVENT("SpecMouseMoved", ev);
+	
 	//}
 
 	//short SpecUpdate(const ItemUpdateEvent& ev) override {
-	//	OBSERVER_CALL_EVENT("SpecUpdate", ev);
+	
 	//}
 
 	//short SpecDragStarting(const ItemDragSourceEvent& ev) override {
@@ -148,27 +135,28 @@ public:
 	//}
 
 	//short SpecHoverStarted(const ItemHoverEvent& ev) override {
-	//	OBSERVER_CALL_EVENT("SpecHoverStarted", ev);
+	
 	//}
 
 	//short SpecHoverEnded(const ItemHoverEvent& ev) override {
-	//	OBSERVER_CALL_EVENT("SpecHoverEnded", ev);
+	
 	//}
 
 	//short SpecOverlayUpdate(const ItemUpdateEvent& ev) override {
-	//	OBSERVER_CALL_EVENT("SpecOverlayUpdate", ev);
+	
 	//}
 
 	//bool ListBoxSelectionChangeRequested(const ListBoxMouseDownEvent& ev) override {
-	//	OBSERVER_CALL_EVENT("ListBoxSelectionChangeRequested", ev);
+	
 	//}
 
 	void ListBoxSelectionChanged(const ListBoxSelectionEvent& ev) override {
 		OBSERVER_CALL_EVENT("ListBoxSelectionChanged", ev);
 	}
 
-	//void ListBoxItemDragged(const ListBoxDragEvent& ev) override {
-	//}
+	void ListBoxItemDragged(const ListBoxDragEvent& ev) override {
+
+	}
 
 	void ListBoxClicked(const ListBoxClickEvent& ev) override {
 		OBSERVER_CALL_EVENT("ListBoxClicked", ev);
@@ -214,19 +202,20 @@ public:
 		OBSERVER_CALL_EVENT("ListBoxHeaderItemClicked", ev);
 	}
 
-	//void ListBoxHeaderItemDragged(const ListBoxHeaderItemDragEvent& ev) override {
-	//}
+	void ListBoxHeaderItemDragged(const ListBoxHeaderItemDragEvent& ev) override {
+
+	}
 
 	//short ListBoxHeaderItemResizeEntered(const ListBoxHeaderItemResizeEvent& ev) override {
-	//	OBSERVER_CALL_EVENT("ListBoxHeaderItemResizeEntered", ev);
+	
 	//}
 
 	//short ListBoxHeaderItemResized(const ListBoxHeaderItemResizeEvent& ev) override {
-	//	OBSERVER_CALL_EVENT("ListBoxHeaderItemResized", ev);
+	
 	//}
 
 	//short ListBoxHeaderItemResizeExited(const ListBoxHeaderItemResizeEvent& ev) override {
-	//	OBSERVER_CALL_EVENT("ListBoxHeaderItemResizeExited", ev);
+	
 	//}
 
 	void ListBoxHeaderButtonClicked(const ListBoxHeaderButtonClickEvent& ev) override {
@@ -239,10 +228,26 @@ private:
 };
 
 
-// --- ListBox --------------------------------------------------------------
+// --- ListBox ------------------------------------------------------------------------------
 
 void load_dg_ListBox(py::module m) {
-	// --- ListBoxEventProperty ---------------------------------------------
+	// --- ListBoxDragSourceEvent -----------------------------------------------------------
+	//py::class_<ListBoxDragSourceEvent, ItemDragSourceEvent>(m, "ListBoxDragSourceEvent")
+	//	.def("GetSource", &ListBoxDragSourceEvent::GetSource, py::return_value_policy::reference);
+
+	// --- ListBoxDropTargetEvent -----------------------------------------------------------
+	//py::class_<ListBoxDropTargetEvent, ItemDropTargetEvent>(m, "ListBoxDropTargetEvent")
+	//	.def("GetInsertPosition", &ListBoxDropTargetEvent::GetInsertPosition)
+	//	.def("GetRelativePosition", &ListBoxDropTargetEvent::GetRelativePosition)
+	//	.def("GetSource", &ListBoxDropTargetEvent::GetSource, py::return_value_policy::reference);
+
+	// --- ListBoxDragEvent -----------------------------------------------------------------
+	//py::class_<ListBoxDragEvent, ItemChangeEvent>(m, "ListBoxDragEvent")
+	//	.def("GetSource", &ListBoxDragEvent::GetSource, py::return_value_policy::reference)
+	//	.def("GetPreviousIndex", &ListBoxDragEvent::GetPreviousIndex)
+	//	.def("GetNewIndex", &ListBoxDragEvent::GetNewIndex);
+
+	// --- ListBoxEventProperty -------------------------------------------------------------
 	py::class_<ListBoxEventProperty>(m, "ListBoxEventProperty")
 		.def("GetListItem", &ListBoxEventProperty::GetListItem)
 		.def("GetMouseOffset", &ListBoxEventProperty::GetMouseOffset)
@@ -250,34 +255,34 @@ void load_dg_ListBox(py::module m) {
 		.def("IsOptionPressed", &ListBoxEventProperty::IsOptionPressed)
 		.def("IsShiftPressed", &ListBoxEventProperty::IsShiftPressed);
 
-	// --- ListBoxSelectionEvent --------------------------------------------
+	// --- ListBoxSelectionEvent ------------------------------------------------------------
 	py::class_<ListBoxSelectionEvent, ItemChangeEvent>(m, "ListBoxSelectionEvent")
 		.def("GetSource", &ListBoxSelectionEvent::GetSource, py::return_value_policy::reference);
 
-	// --- ListBoxClickEvent ------------------------------------------------
+	// --- ListBoxClickEvent ----------------------------------------------------------------
 	py::class_<ListBoxClickEvent, ItemClickEvent, ListBoxEventProperty>(m, "ListBoxClickEvent")
 		.def("GetSource", &ListBoxClickEvent::GetSource, py::return_value_policy::reference);
 
-	// --- ListBoxMouseDownEvent --------------------------------------------
+	// --- ListBoxMouseDownEvent ------------------------------------------------------------
 	py::class_<ListBoxMouseDownEvent, ItemMouseDownEvent, ListBoxEventProperty>(m, "ListBoxMouseDownEvent")
 		.def("GetSource", &ListBoxMouseDownEvent::GetSource, py::return_value_policy::reference);
 
-	// --- ListBoxContextMenuEvent ------------------------------------------
+	// --- ListBoxContextMenuEvent ----------------------------------------------------------
 	py::class_<ListBoxContextMenuEvent, ItemContextMenuEvent>(m, "ListBoxContextMenuEvent")
 		.def("GetSource", &ListBoxContextMenuEvent::GetSource, py::return_value_policy::reference)
 		.def("GetItem", &ListBoxContextMenuEvent::GetItem)
 		.def("GetHeaderItem", &ListBoxContextMenuEvent::GetHeaderItem)
 		.def("IsInHeaderButton", &ListBoxContextMenuEvent::IsInHeaderButton);
 
-	// --- ListBoxDoubleClickEvent ------------------------------------------
+	// --- ListBoxDoubleClickEvent ----------------------------------------------------------
 	py::class_<ListBoxDoubleClickEvent, ItemDoubleClickEvent, ListBoxEventProperty>(m, "ListBoxDoubleClickEvent")
 		.def("GetSource", &ListBoxDoubleClickEvent::GetSource, py::return_value_policy::reference);
 
-	// --- ListBoxMouseMoveEvent --------------------------------------------
+	// --- ListBoxMouseMoveEvent ------------------------------------------------------------
 	py::class_<ListBoxMouseMoveEvent, ItemMouseMoveEvent, ListBoxEventProperty>(m, "ListBoxMouseMoveEvent")
 		.def("GetSource", &ListBoxMouseMoveEvent::GetSource, py::return_value_policy::reference);
 
-	// --- ListBoxItemUpdateEvent -------------------------------------------
+	// --- ListBoxItemUpdateEvent -----------------------------------------------------------
 	py::class_<ListBoxItemUpdateEvent, ItemUpdateEvent>(m, "ListBoxItemUpdateEvent")
 		.def("GetSource", &ListBoxItemUpdateEvent::GetSource, py::return_value_policy::reference)
 		.def("GetListItem",&ListBoxItemUpdateEvent::GetListItem)
@@ -288,7 +293,7 @@ void load_dg_ListBox(py::module m) {
 		.def("GetForeColor", &ListBoxItemUpdateEvent::GetForeColor)
 		.def("GetBackColor", &ListBoxItemUpdateEvent::GetBackColor);
 
-	//--- ListBoxTabItemUpdateEvent -----------------------------------------
+	//--- ListBoxTabItemUpdateEvent ---------------------------------------------------------
 	py::class_<ListBoxTabItemUpdateEvent, ItemUpdateEvent>(m, "ListBoxTabItemUpdateEvent")
 		.def("GetSource", &ListBoxTabItemUpdateEvent::GetSource, py::return_value_policy::reference)
 		.def("GetListItem",&ListBoxTabItemUpdateEvent::GetListItem)
@@ -301,37 +306,37 @@ void load_dg_ListBox(py::module m) {
 		.def("GetForeColor", &ListBoxTabItemUpdateEvent::GetForeColor)
 		.def("GetBackColor", &ListBoxTabItemUpdateEvent::GetBackColor);
 
-	// --- ListBoxHoverEvent ------------------------------------------------
+	// --- ListBoxHoverEvent ----------------------------------------------------------------
 	py::class_<ListBoxHoverEvent, ItemHoverEvent>(m, "ListBoxHoverEvent")
 		.def("GetSource", &ListBoxHoverEvent::GetSource, py::return_value_policy::reference)
 		.def("GetListItem", &ListBoxHoverEvent::GetListItem);
 
-	// --- ListBoxHeaderItemClickEvent --------------------------------------
+	// --- ListBoxHeaderItemClickEvent ------------------------------------------------------
 	py::class_<ListBoxHeaderItemClickEvent, ItemEvent>(m, "ListBoxHeaderItemClickEvent")
 		.def("GetSource", &ListBoxHeaderItemClickEvent::GetSource, py::return_value_policy::reference)
 		.def("GetHeaderItem", &ListBoxHeaderItemClickEvent::GetHeaderItem);
 
-	// --- ListBoxHeaderItemDragEvent ---------------------------------------
+	// --- ListBoxHeaderItemDragEvent -------------------------------------------------------
 	py::class_<ListBoxHeaderItemDragEvent, ItemEvent>(m, "ListBoxHeaderItemDragEvent")
 		.def("GetSource", &ListBoxHeaderItemDragEvent::GetSource, py::return_value_policy::reference)
 		.def("GetOldPos", &ListBoxHeaderItemDragEvent::GetOldPos)
 		.def("GetNewPos", &ListBoxHeaderItemDragEvent::GetNewPos);
 
-	// --- ListBoxHeaderItemResizeEvent -------------------------------------
+	// --- ListBoxHeaderItemResizeEvent -----------------------------------------------------
 	py::class_<ListBoxHeaderItemResizeEvent, ItemEvent>(m, "ListBoxHeaderItemResizeEvent")
 		.def("GetSource", &ListBoxHeaderItemResizeEvent::GetSource, py::return_value_policy::reference)
 		.def("GetHeaderItem", &ListBoxHeaderItemResizeEvent::GetHeaderItem)
 		.def("GetChange", &ListBoxHeaderItemResizeEvent::GetChange);
 
-	// --- ListBoxHeaderButtonClickEvent ------------------------------------
+	// --- ListBoxHeaderButtonClickEvent ----------------------------------------------------
 	py::class_<ListBoxHeaderButtonClickEvent, ItemEvent>(m, "ListBoxHeaderButtonClickEvent")
 		.def("GetSource", &ListBoxHeaderButtonClickEvent::GetSource, py::return_value_policy::reference);
 
-	// --- PyListBoxObserver ------------------------------------------------
+	// --- PyListBoxObserver ----------------------------------------------------------------
 	py::class_<PyListBoxObserver>(m, "ListBoxObserver", py::dynamic_attr())
 		.def(py::init<ListBox &, ACExport &>());
 
-	// --- ListBox ----------------------------------------------------------
+	// --- ListBox --------------------------------------------------------------------------
 	py::class_<ListBox, Item, ItemFontProperty, FocusableProperty> m_listBox(m, "ListBox");
 
 	py::enum_<ListBox::ScrollType>(m_listBox, "ScrollType")
@@ -541,8 +546,8 @@ void load_dg_ListBox(py::module m) {
 		.def("GetSelectedCount", &ListBox::GetSelectedCount)
 		.def("GetSelectedItem", &ListBox::GetSelectedItem,
 			py::arg("listItem") = ListBox::ItemType::TopItem)
-		.def("GetSelectedItems", (short (ListBox::*)
-			(short *, short) const) &ListBox::GetSelectedItems)
+		//.def("GetSelectedItems", (short (ListBox::*)
+		//	(short *, short) const) &ListBox::GetSelectedItems)
 		//.def("GetSelectedItems", (GS::Array<short> (ListBox::*)(void) const) &ListBox::GetSelectedItems)
 		.def("EnableDraw", &ListBox::EnableDraw)
 		.def("DisableDraw", &ListBox::DisableDraw)
@@ -562,10 +567,10 @@ void load_dg_ListBox(py::module m) {
 }
 
 
-//  -- ListBoxEX ------------------------------------------------------------
+//  -- ListBoxEX ----------------------------------------------------------------------------
 
 void load_dg_ListBoxEX(py::module m) {
-	// --- SingleSelListBox -------------------------------------------------
+	// --- SingleSelListBox -----------------------------------------------------------------
 	py::class_<SingleSelListBox, ListBox>(m, "SingleSelListBox")
 		//.def(py::init<Panel &, short>())
 		.def(py::init<Panel &, Rect &, ListBox::ScrollType, ListBox::PartialItemType, ListBox::HeaderFlag, short, ListBox::FrameType>(),
@@ -577,7 +582,7 @@ void load_dg_ListBoxEX(py::module m) {
 			py::arg("headerSize") = 0,
 			py::arg("frameType") = ListBox::FrameType::NoFrame);
 
-	// --- MultiSelListBox  -------------------------------------------------
+	// --- MultiSelListBox  -----------------------------------------------------------------
 	py::class_<MultiSelListBox, ListBox>(m, "MultiSelListBox")
 		//.def(py::init<Panel &, short>())
 		.def(py::init<Panel &, Rect &, ListBox::ScrollType, ListBox::PartialItemType, ListBox::HeaderFlag, short, ListBox::FrameType>(),

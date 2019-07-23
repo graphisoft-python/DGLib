@@ -118,27 +118,27 @@ public:
 	}
 
 	//short SpecChangeRequested(const ItemMouseDownEvent& ev) override {
-	//	OBSERVER_CALL_EVENT("SpecChangeRequested", ev);
+	
 	//}
 
 	//short SpecChanged(const ItemChangeEvent& ev) override {
-	//	OBSERVER_CALL_EVENT("SpecChanged", ev);
+	
 	//}
 
 	//short SpecClicked(const ItemClickEvent& ev) override {
-	//	OBSERVER_CALL_EVENT("SpecClicked", ev);
+	
 	//}
 
 	//short SpecMouseDown(const ItemMouseDownEvent& ev, bool* processed) override {
-	//	OBSERVER_CALL_EVENT_SET_PROCESSED("SpecMouseDown", ev, processed, bool);
+	
 	//}
 
 	//short SpecContextMenuRequested(const ItemContextMenuEvent& ev) override {
-	//	OBSERVER_CALL_EVENT("SpecContextMenuRequested", ev);
+	
 	//}
 
 	//short SpecDoubleClicked(const ItemDoubleClickEvent& ev) override {
-	//	OBSERVER_CALL_EVENT("SpecDoubleClicked", ev);
+	
 	//}
 
 	//short SpecDragStarting(const ItemDragSourceEvent& ev) override {
@@ -174,42 +174,43 @@ public:
 	//}
 
 	//short SpecMouseMoved(const ItemMouseMoveEvent& ev) override {
-	//	OBSERVER_CALL_EVENT("SpecMouseMoved", ev);
+	
 	//}
+
 	//short SpecTrackEntered(const ItemTrackEvent& ev) override {
-	//	OBSERVER_CALL_EVENT("SpecTrackEntered", ev);
+	
 	//}
 
 	//short SpecTracked(const ItemTrackEvent& ev) override {
-	//	OBSERVER_CALL_EVENT("SpecTracked", ev);
+	
 	//}
 
 	//short SpecTrackExited(const ItemTrackEvent& ev) override {
-	//	OBSERVER_CALL_EVENT("SpecTrackExited", ev);
+	
 	//}
 
 	//short SpecUpdate(const ItemUpdateEvent& ev) override {
-	//	OBSERVER_CALL_EVENT("SpecUpdate", ev);
+	
 	//}
 
 	//short SpecResolutionFactorChanged(const ItemResolutionFactorChangeEvent& ev) override {
-	//	OBSERVER_CALL_EVENT("SpecResolutionFactorChanged", ev);
+	
 	//}
 
 	//short SpecHoverStarted(const ItemHoverEvent& ev) override {
-	//	OBSERVER_CALL_EVENT("SpecHoverStarted", ev);
+	
 	//}
 
 	//short SpecHoverEnded(const ItemHoverEvent& ev) override {
-	//	OBSERVER_CALL_EVENT("SpecHoverEnded", ev);
+
 	//}
 
 	//short SpecPressed(const ItemPressedEvent& ev) override {
-	//	OBSERVER_CALL_EVENT("SpecPressed", ev);
+	
 	//}
 
 	//short SpecOverlayUpdate(const ItemUpdateEvent& ev) override {
-	//	OBSERVER_CALL_EVENT("SpecOverlayUpdate", ev);
+	
 	//}
 
 private:

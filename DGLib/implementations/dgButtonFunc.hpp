@@ -27,7 +27,7 @@ public:
 	}
 
 	//short SpecClicked(const ItemClickEvent& ev) override {
-	//	OBSERVER_CALL_EVENT("SpecClicked", ev);
+
 	//}
 
 	void ButtonClicked(const ButtonClickEvent& ev) override {
@@ -56,7 +56,7 @@ public:
 	}
 
 	//short SpecChanged(const ItemChangeEvent& ev) override {
-	//	OBSERVER_CALL_EVENT("SpecChanged", ev);
+	
 	//}
 
 	void SplitButtonPopupChanged(const SplitButtonChangeEvent& ev) override {
@@ -212,9 +212,11 @@ void load_dg_SplitButton(py::module m) {
 			py::arg("panel"),
 			py::arg("rect"),
 			py::arg("type") = SplitButtonBase::ButtonForm::Normal)
-		//.def("AppendItem", &SplitButton::AppendItem)
+		.def("AppendItem", (void (SplitButton::*)
+			(GS::UniString &)) &SplitButton::AppendItem)
 		.def("AppendSeparator", &SplitButton::AppendSeparator)
-		//.def("InsertItem", &SplitButton::InsertItem)
+		.def("InsertItem", (void (SplitButton::*)
+			(short, GS::UniString &)) &SplitButton::InsertItem)
 		.def("InsertSeparator", &SplitButton::InsertSeparator)
 		.def("DeleteItem", &SplitButton::DeleteItem)
 		.def("DeleteAllItems", &SplitButton::DeleteAllItems)

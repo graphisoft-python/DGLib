@@ -8,57 +8,84 @@
 using namespace DG;
 
 
-// --- StaticItemEventProperty
+// --- PyStaticTextObserver --------------------------------------------------------------------
 
-//void load_dg_StaticItemEventProperty(py::module m) {
-//	py::class_<StaticItemEventProperty>(m, "StaticItemEventProperty")
-//		.def("GetMouseOffset", &StaticItemEventProperty::GetMouseOffset)
-//
-//		.def("IsCommandPressed", &StaticItemEventProperty::IsCommandPressed)
-//		.def("IsOptionPressed", &StaticItemEventProperty::IsOptionPressed)
-//		.def("IsShiftPressed", &StaticItemEventProperty::IsShiftPressed)
-//
-//		.def("IsLeftButtonPressed", &StaticItemEventProperty::IsLeftButtonPressed)
-//		.def("IsRightButtonPressed", &StaticItemEventProperty::IsRightButtonPressed)
-//		.def("IsWheelButtonPressed", &StaticItemEventProperty::IsWheelButtonPressed);
-//}
+class PyStaticTextObserver : StaticTextObserver {
+public:
+	PyStaticTextObserver(StaticText &item, ACExport &acExport)
+		:m_parent(item) {
+		this->m_parent.Attach(*this);
+		this->m_state = acExport.m_state;
+	}
 
+	~PyStaticTextObserver() {
+		this->m_parent.Detach(*this);
+	}
 
-// --- StaticTextClickEvent
+	//short SpecClicked(const ItemClickEvent& ev) override {
 
-//void load_dg_StaticTextClickEvent(py::module m) {
-//	py::class_<StaticTextClickEvent, ItemClickEvent>(m, "StaticTextClickEvent")
-//		.def("GetSource", &StaticTextClickEvent::GetSource, py::return_value_policy::reference);
-//}
+	//}
 
+	//short SpecDoubleClicked(const ItemDoubleClickEvent& ev) override {
 
-// --- StaticTextDoubleClickEvent
+	//}
 
-//void load_dg_StaticTextDoubleClickEvent(py::module m) {
-//	py::class_<StaticTextDoubleClickEvent, ItemDoubleClickEvent>(m, "StaticTextDoubleClickEvent")
-//		.def("GetSource", &StaticTextDoubleClickEvent::GetSource, py::return_value_policy::reference);
-//}
+	//short SpecMouseMoved(const ItemMouseMoveEvent& ev) override {
 
+	//}
 
-// --- StaticTextMouseMoveEvent
+	void StaticTextClicked(const StaticTextClickEvent& ev) override {
+		OBSERVER_CALL_EVENT("StaticTextClicked", ev);
+	}
 
-//void load_dg_StaticTextMouseMoveEvent(py::module m) {
-//	py::class_<StaticTextMouseMoveEvent, ItemMouseMoveEvent, StaticItemEventProperty>(m, "StaticTextMouseMoveEvent")
-//		.def("GetSource", &StaticTextMouseMoveEvent::GetSource, py::return_value_policy::reference);
-//}
+	void StaticTextDoubleClicked(const StaticTextDoubleClickEvent& ev) override {
+		OBSERVER_CALL_EVENT("StaticTextDoubleClicked", ev);
+	}
 
+	void StaticTextMouseMoved(const StaticTextMouseMoveEvent& ev, bool* noDefaultCursor) override {
+		OBSERVER_CALL_EVENT_WITH_RETURN("StaticTextMouseMoved", ev, noDefaultCursor, bool);
+	}
 
-// --- StaticTextObserver
-
-//void load_dg_StaticTextObserver(py::module m) {
-//	py::class_<StaticTextObserver, ItemObserver>(m, "StaticTextObserver")
-//		.def(py::init<>());
-//}
+private:
+	StaticText		&m_parent;
+	PyThreadState	*m_state;
+};
 
 
-// --- StaticText
+// --- StaticItemEventProperty -----------------------------------------------------------------
+
+void load_dg_StaticItemEventProperty(py::module m) {
+	py::class_<StaticItemEventProperty>(m, "StaticItemEventProperty")
+		.def("GetMouseOffset", &StaticItemEventProperty::GetMouseOffset)
+		.def("IsCommandPressed", &StaticItemEventProperty::IsCommandPressed)
+		.def("IsOptionPressed", &StaticItemEventProperty::IsOptionPressed)
+		.def("IsShiftPressed", &StaticItemEventProperty::IsShiftPressed)
+		.def("IsLeftButtonPressed", &StaticItemEventProperty::IsLeftButtonPressed)
+		.def("IsRightButtonPressed", &StaticItemEventProperty::IsRightButtonPressed)
+		.def("IsWheelButtonPressed", &StaticItemEventProperty::IsWheelButtonPressed);
+}
+
+
+// --- StaticText ------------------------------------------------------------------------------
 
 void load_dg_StaticText(py::module m) {
+	// --- StaticTextClickEvent
+	py::class_<StaticTextClickEvent, ItemClickEvent>(m, "StaticTextClickEvent")
+		.def("GetSource", &StaticTextClickEvent::GetSource, py::return_value_policy::reference);
+
+	// --- StaticTextDoubleClickEvent
+	py::class_<StaticTextDoubleClickEvent, ItemDoubleClickEvent>(m, "StaticTextDoubleClickEvent")
+		.def("GetSource", &StaticTextDoubleClickEvent::GetSource, py::return_value_policy::reference);
+	
+	// --- StaticTextMouseMoveEvent
+		py::class_<StaticTextMouseMoveEvent, ItemMouseMoveEvent, StaticItemEventProperty>(m, "StaticTextMouseMoveEvent")
+			.def("GetSource", &StaticTextMouseMoveEvent::GetSource, py::return_value_policy::reference);
+
+	// --- BarControlObserver ------------------------------------------------------------------
+	py::class_<PyStaticTextObserver>(m, "StaticTextObserver", py::dynamic_attr())
+		.def(py::init<StaticText &, ACExport &>());
+
+	// --- StaticText --------------------------------------------------------------------------
 	py::class_<StaticText, Item, ItemFontProperty, ItemTextProperty/*, ItemColorProperty*/> m_staticText(m, "StaticText");
 		
 	py::enum_<StaticText::VAlignType>(m_staticText, "VAlignType")
@@ -80,18 +107,15 @@ void load_dg_StaticText(py::module m) {
 		.value("ModalFrame", StaticText::FrameType::ModalFrame)
 		.export_values();
 
-
 	m_staticText
-		//.def("Attach", &StaticText::Attach)
-		//.def("Detach", &StaticText::Detach)
-
 		.def("EnableMouseMoveEvent", &StaticText::EnableMouseMoveEvent);
 }
 
 
-// --- CenterText
+// --- StaticTextEX ----------------------------------------------------------------------------
 
-void load_dg_CenterText(py::module m) {
+void load_dg_StaticTextEX(py::module m) {
+	// --- CenterText --------------------------------------------------------------------------
 	py::class_<CenterText, StaticText>(m, "CenterText")
 		//.def(py::init<Panel &, short>())
 		.def(py::init<Panel &, Rect &, StaticText::FrameType, StaticText::VAlignType, StaticText::Truncation>(),
@@ -100,12 +124,8 @@ void load_dg_CenterText(py::module m) {
 			py::arg("type") = StaticText::FrameType::NoFrame,
 			py::arg("align") = StaticText::VAlignType::VTop,
 			py::arg("truncate") = StaticText::Truncation::NoTruncate);
-}
 
-
-// --- LeftText
-
-void load_dg_LeftText(py::module m) {
+	// --- LeftText ----------------------------------------------------------------------------
 	py::class_<LeftText, StaticText>(m, "LeftText")
 		//.def(py::init<Panel &, short>())
 		.def(py::init<Panel &, Rect &, StaticText::FrameType, StaticText::VAlignType, StaticText::Truncation>(),
@@ -114,12 +134,8 @@ void load_dg_LeftText(py::module m) {
 			py::arg("type") = StaticText::FrameType::NoFrame,
 			py::arg("align") = StaticText::VAlignType::VTop,
 			py::arg("truncate") = StaticText::Truncation::NoTruncate);
-}
 
-
-// --- RightText
-
-void load_dg_RightText(py::module m) {
+	// --- RightText ---------------------------------------------------------------------------
 	py::class_<RightText, StaticText>(m, "RightText")
 		//.def(py::init<Panel &, short>())
 		.def(py::init<Panel &, Rect &, StaticText::FrameType, StaticText::VAlignType, StaticText::Truncation>(),
@@ -131,7 +147,7 @@ void load_dg_RightText(py::module m) {
 }
 
 
-// --- GroupBox
+// --- GroupBox --------------------------------------------------------------------------------
 
 void load_dg_GroupBox(py::module m) {
 	py::class_<GroupBox, Item, ItemFontProperty, ItemTextProperty> m_groupBox(m, "GroupBox");
@@ -141,14 +157,13 @@ void load_dg_GroupBox(py::module m) {
 		.value("Secondary", GroupBox::GroupBoxType::Secondary)
 		.export_values();
 
-
 	m_groupBox
 		//.def(py::init<Panel &, short>())
 		.def(py::init<Panel &, Rect &, GroupBox::GroupBoxType>());
 }
 
 
-// --- Separator
+// --- Separator -------------------------------------------------------------------------------
 
 void load_dg_Separator(py::module m) {
 	py::class_<Separator, Item> (m, "Separator")

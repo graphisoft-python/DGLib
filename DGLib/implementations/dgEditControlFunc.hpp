@@ -10,12 +10,6 @@
 using namespace DG;
 
 
-// --- EditDropTargetEvent -----------------------------------------------------------------
-//	py::class_<EditDropTargetEvent, ItemDropTargetEvent>(m, "EditDropTargetEvent")
-//		.def("GetSource", &EditDropTargetEvent::GetSource, py::return_value_policy::reference)
-//		.def("GetCaretPosition", &EditDropTargetEvent::GetCaretPosition);
-
-
 // --- PyPosIntEditObserver ----------------------------------------------------------------
 
 class PyPosIntEditObserver : PosIntEditObserver {
@@ -31,56 +25,54 @@ public:
 		this->m_parent.Detach(*this);
 	}
 
-
 	// ---- EditDragSourceObserver ---------------------------------------------------------
 
-	//void EditDragStarting(const EditDragSourceEvent& ev, bool* canStart) override {
+	void EditDragStarting(const EditDragSourceEvent& ev, bool* canStart) override {
 
-	//}
+	}
 
-	//void EditDragStarted(const EditDragSourceEvent& ev, UShort* effect) override {
+	void EditDragStarted(const EditDragSourceEvent& ev, UShort* effect) override {
 
-	//}
+	}
 
-	//void EditDragStarted(const ItemDragSourceEvent& ev, UShort* effect, bool* rightDragMenu) override {
+	void EditDragStarted(const EditDragSourceEvent& ev, UShort* effect, bool* rightDragMenu) override {
 
-	//}
+	}
 
-	//void EditDragEnded(const EditDragSourceEvent& ev, DragDrop::Effect effect) override {
+	void EditDragEnded(const EditDragSourceEvent& ev, DragDrop::Effect effect) override {
 
-	//}
+	}
 
-	//void EditDragSetDelayedData(const EditDragSourceEvent& ev) override {
+	void EditDragSetDelayedData(const EditDragSourceEvent& ev) override {
 
-	//}
-
-	// ---- EditDragSourceObserver ---------------------------------------------------------
+	}
 
 	// ---- EditDropTargetObserver ---------------------------------------------------------
 
-	//void EditDragEntered(const EditDropTargetEvent& ev, , DragDrop::Effect* effect, bool* defBehaviour) override {
+	void EditDragEntered(const EditDropTargetEvent& ev, DragDrop::Effect* effect, bool* defBehaviour) override {
 
-	//}
+	}
 
-	//void EditDragEntered(const EditDropTargetEvent& ev, DragDrop::Effect* effect, bool* defBehaviour, bool* rightDragMenu) override {
+	void EditDragEntered(const EditDropTargetEvent& ev, DragDrop::Effect* effect, bool* defBehaviour, bool* rightDragMenu) override {
 
-	//}
+	}
 
-	//void EditDragMoved(const EditDropTargetEvent& ev, DragDrop::Effect* effect, DragDrop::Feedback* denyFeedback) override {
+	void EditDragMoved(const EditDropTargetEvent& ev, DragDrop::Effect* effect, DragDrop::Feedback* denyFeedback) override {
 
-	//}
+	}
 
-	//void EditDragLeft(const EditDragSourceEvent& ev,  DragDrop::Effect* effect) override {
+	void EditDragLeft(const EditDropTargetEvent& ev, DragDrop::Effect* effect) override {
 
-	//}
+	}
 
-	//void EditDropped(const EditDragSourceEvent& ev, DragDrop::Effect* effect) override {
+	void EditDropped(const EditDropTargetEvent& ev, DragDrop::Effect* effect) override {
+	
+	}
 
-	// ---- EditDropTargetObserver ---------------------------------------------------------
-
+	// ---- PosIntEditObserver -------------------------------------------------------------
 
 	//short SpecChanged(const ItemChangeEvent& ev) override {
-	//	OBSERVER_CALL_EVENT("SpecChanged", ev);
+	
 	//}
 
 	//short SpecDragStarting(const ItemDragSourceEvent& ev) override {
@@ -140,56 +132,55 @@ public:
 		this->m_parent.Detach(*this);
 	}
 
-
 	// ---- EditDragSourceObserver ---------------------------------------------------------
 
-	//void EditDragStarting(const EditDragSourceEvent& ev, bool* canStart) override {
+	void EditDragStarting(const EditDragSourceEvent& ev, bool* canStart) override {
 
-	//}
+	}
 
-	//void EditDragStarted(const EditDragSourceEvent& ev, UShort* effect) override {
+	void EditDragStarted(const EditDragSourceEvent& ev, UShort* effect) override {
 
-	//}
+	}
 
-	//void EditDragStarted(const ItemDragSourceEvent& ev, UShort* effect, bool* rightDragMenu) override {
+	void EditDragStarted(const EditDragSourceEvent& ev, UShort* effect, bool* rightDragMenu) override {
 
-	//}
+	}
 
-	//void EditDragEnded(const EditDragSourceEvent& ev, DragDrop::Effect effect) override {
+	void EditDragEnded(const EditDragSourceEvent& ev, DragDrop::Effect effect) override {
 
-	//}
+	}
 
-	//void EditDragSetDelayedData(const EditDragSourceEvent& ev) override {
+	void EditDragSetDelayedData(const EditDragSourceEvent& ev) override {
 
-	//}
-
-	// ---- EditDragSourceObserver ---------------------------------------------------------
+	}
 
 	// ---- EditDropTargetObserver ---------------------------------------------------------
 
-	//void EditDragEntered(const EditDropTargetEvent& ev, , DragDrop::Effect* effect, bool* defBehaviour) override {
+	void EditDragEntered(const EditDropTargetEvent& ev, DragDrop::Effect* effect, bool* defBehaviour) override {
 
-	//}
+	}
 
-	//void EditDragEntered(const EditDropTargetEvent& ev, DragDrop::Effect* effect, bool* defBehaviour, bool* rightDragMenu) override {
+	void EditDragEntered(const EditDropTargetEvent& ev, DragDrop::Effect* effect, bool* defBehaviour, bool* rightDragMenu) override {
 
-	//}
+	}
 
-	//void EditDragMoved(const EditDropTargetEvent& ev, DragDrop::Effect* effect, DragDrop::Feedback* denyFeedback) override {
+	void EditDragMoved(const EditDropTargetEvent& ev, DragDrop::Effect* effect, DragDrop::Feedback* denyFeedback) override {
 
-	//}
+	}
 
-	//void EditDragLeft(const EditDragSourceEvent& ev,  DragDrop::Effect* effect) override {
+	void EditDragLeft(const EditDropTargetEvent& ev, DragDrop::Effect* effect) override {
 
-	//}
+	}
 
-	//void EditDropped(const EditDragSourceEvent& ev, DragDrop::Effect* effect) override {
+	void EditDropped(const EditDropTargetEvent& ev, DragDrop::Effect* effect) override {
 
-	// ---- EditDropTargetObserver ---------------------------------------------------------
+	}
+
+	// ---- IntEditObserver ----------------------------------------------------------------
 
 
 	//short SpecChanged(const ItemChangeEvent& ev) override {
-	//	OBSERVER_CALL_EVENT("SpecChanged", ev);
+	
 	//}
 
 	//short SpecDragStarting(const ItemDragSourceEvent& ev) override {
@@ -251,53 +242,52 @@ public:
 
 	// ---- EditDragSourceObserver ---------------------------------------------------------
 
-	//void EditDragStarting(const EditDragSourceEvent& ev, bool* canStart) override {
+	void EditDragStarting(const EditDragSourceEvent& ev, bool* canStart) override {
 
-	//}
+	}
 
-	//void EditDragStarted(const EditDragSourceEvent& ev, UShort* effect) override {
+	void EditDragStarted(const EditDragSourceEvent& ev, UShort* effect) override {
 
-	//}
+	}
 
-	//void EditDragStarted(const ItemDragSourceEvent& ev, UShort* effect, bool* rightDragMenu) override {
+	void EditDragStarted(const EditDragSourceEvent& ev, UShort* effect, bool* rightDragMenu) override {
 
-	//}
+	}
 
-	//void EditDragEnded(const EditDragSourceEvent& ev, DragDrop::Effect effect) override {
+	void EditDragEnded(const EditDragSourceEvent& ev, DragDrop::Effect effect) override {
 
-	//}
+	}
 
-	//void EditDragSetDelayedData(const EditDragSourceEvent& ev) override {
+	void EditDragSetDelayedData(const EditDragSourceEvent& ev) override {
 
-	//}
-
-	// ---- EditDragSourceObserver ---------------------------------------------------------
+	}
 
 	// ---- EditDropTargetObserver ---------------------------------------------------------
 
-	//void EditDragEntered(const EditDropTargetEvent& ev, , DragDrop::Effect* effect, bool* defBehaviour) override {
+	void EditDragEntered(const EditDropTargetEvent& ev, DragDrop::Effect* effect, bool* defBehaviour) override {
 
-	//}
+	}
 
-	//void EditDragEntered(const EditDropTargetEvent& ev, DragDrop::Effect* effect, bool* defBehaviour, bool* rightDragMenu) override {
+	void EditDragEntered(const EditDropTargetEvent& ev, DragDrop::Effect* effect, bool* defBehaviour, bool* rightDragMenu) override {
 
-	//}
+	}
 
-	//void EditDragMoved(const EditDropTargetEvent& ev, DragDrop::Effect* effect, DragDrop::Feedback* denyFeedback) override {
+	void EditDragMoved(const EditDropTargetEvent& ev, DragDrop::Effect* effect, DragDrop::Feedback* denyFeedback) override {
 
-	//}
+	}
 
-	//void EditDragLeft(const EditDragSourceEvent& ev,  DragDrop::Effect* effect) override {
+	void EditDragLeft(const EditDropTargetEvent& ev, DragDrop::Effect* effect) override {
 
-	//}
+	}
 
-	//void EditDropped(const EditDragSourceEvent& ev, DragDrop::Effect* effect) override {
+	void EditDropped(const EditDropTargetEvent& ev, DragDrop::Effect* effect) override {
 
-	// ---- EditDropTargetObserver ---------------------------------------------------------
+	}
 
+	// ---- RealEditObserver ---------------------------------------------------------------
 
 	//short SpecChanged(const ItemChangeEvent& ev) override {
-	//	OBSERVER_CALL_EVENT("SpecChanged", ev);
+	
 	//}
 
 	//short SpecDragStarting(const ItemDragSourceEvent& ev) override {
@@ -360,53 +350,52 @@ public:
 
 	// ---- EditDragSourceObserver ---------------------------------------------------------
 
-	//void EditDragStarting(const EditDragSourceEvent& ev, bool* canStart) override {
+	void EditDragStarting(const EditDragSourceEvent& ev, bool* canStart) override {
 
-	//}
+	}
 
-	//void EditDragStarted(const EditDragSourceEvent& ev, UShort* effect) override {
+	void EditDragStarted(const EditDragSourceEvent& ev, UShort* effect) override {
 
-	//}
+	}
 
-	//void EditDragStarted(const ItemDragSourceEvent& ev, UShort* effect, bool* rightDragMenu) override {
+	void EditDragStarted(const EditDragSourceEvent& ev, UShort* effect, bool* rightDragMenu) override {
 
-	//}
+	}
 
-	//void EditDragEnded(const EditDragSourceEvent& ev, DragDrop::Effect effect) override {
+	void EditDragEnded(const EditDragSourceEvent& ev, DragDrop::Effect effect) override {
 
-	//}
+	}
 
-	//void EditDragSetDelayedData(const EditDragSourceEvent& ev) override {
+	void EditDragSetDelayedData(const EditDragSourceEvent& ev) override {
 
-	//}
-
-	// ---- EditDragSourceObserver ---------------------------------------------------------
+	}
 
 	// ---- EditDropTargetObserver ---------------------------------------------------------
 
-	//void EditDragEntered(const EditDropTargetEvent& ev, , DragDrop::Effect* effect, bool* defBehaviour) override {
+	void EditDragEntered(const EditDropTargetEvent& ev, DragDrop::Effect* effect, bool* defBehaviour) override {
 
-	//}
+	}
 
-	//void EditDragEntered(const EditDropTargetEvent& ev, DragDrop::Effect* effect, bool* defBehaviour, bool* rightDragMenu) override {
+	void EditDragEntered(const EditDropTargetEvent& ev, DragDrop::Effect* effect, bool* defBehaviour, bool* rightDragMenu) override {
 
-	//}
+	}
 
-	//void EditDragMoved(const EditDropTargetEvent& ev, DragDrop::Effect* effect, DragDrop::Feedback* denyFeedback) override {
+	void EditDragMoved(const EditDropTargetEvent& ev, DragDrop::Effect* effect, DragDrop::Feedback* denyFeedback) override {
 
-	//}
+	}
 
-	//void EditDragLeft(const EditDragSourceEvent& ev,  DragDrop::Effect* effect) override {
+	void EditDragLeft(const EditDropTargetEvent& ev, DragDrop::Effect* effect) override {
 
-	//}
+	}
 
-	//void EditDropped(const EditDragSourceEvent& ev, DragDrop::Effect* effect) override {
+	void EditDropped(const EditDropTargetEvent& ev, DragDrop::Effect* effect) override {
 
-	// ---- EditDropTargetObserver ---------------------------------------------------------
+	}
 
+	// ---- TextEditBaseObserver -----------------------------------------------------------
 
 	//short SpecChanged(const ItemChangeEvent& ev) override {
-	//	OBSERVER_CALL_EVENT("SpecChanged", ev);
+	
 	//}
 
 	//short SpecDragStarting(const ItemDragSourceEvent& ev) override {

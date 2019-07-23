@@ -71,11 +71,6 @@ void load_dg_ItemBaseEX(py::module m) {
 		.def("GetVariousState", &ItemVariousProperty::GetVariousState)
 		.def("SetVariousText", &ItemVariousProperty::SetVariousText)
 		.def("GetVariousText", &ItemVariousProperty::GetVariousText);
-
-	// --- ItemTextLengthLimitProperty --------------------------------------------------------
-	py::class_<ItemTextLengthLimitProperty, ItemBase>(m, "ItemTextLengthLimitProperty")
-		.def("SetMaxTextLength", &ItemTextLengthLimitProperty::SetMaxTextLength)
-		.def("GetMaxTextLength", &ItemTextLengthLimitProperty::GetMaxTextLength);
 	
 	// --- ItemTextLengthLimitProperty --------------------------------------------------------
 	py::class_<ItemTextLengthLimitProperty, ItemBase>(m, "ItemTextLengthLimitProperty")

@@ -16,7 +16,7 @@
 
 PYBIND11_MODULE(DGLib, m) {
 
-	m.doc() = "version 2019.7.17";
+	m.def("version", []() {	return "version 0.0.1"; });
 
 // --- Add bindings here ------------------------------------------------------------------
 
@@ -32,15 +32,9 @@ PYBIND11_MODULE(DGLib, m) {
 	load_dg_EOL(m.def_submodule("EOL"));
 	load_dg_Key(m.def_submodule("Key"));
 	load_dg_CharRange(m);
-	load_dg_ShortPoint(m);
 	load_dg_NativeUnit(m);
-	load_dg_NativeUnitPoint(m);
-	load_dg_NativeUnitRect(m);
-	load_dg_NativePoint(m);
-	load_dg_Point(m);
-	load_dg_NativeRect(m);
-	load_dg_ShortRect(m);
-	load_dg_Rect(m);
+	load_dg_TPointEX(m);
+	load_dg_TRectEX(m);
 
 // --- DGPanel
 	load_dg_Panel(m);
@@ -78,9 +72,7 @@ PYBIND11_MODULE(DGLib, m) {
 
 // --- DGStaticItem
 	load_dg_StaticText(m);
-	load_dg_CenterText(m);
-	load_dg_LeftText(m);
-	load_dg_RightText(m);
+	load_dg_StaticTextEX(m);
 	load_dg_GroupBox(m);
 	load_dg_Separator(m);
 

@@ -23,19 +23,19 @@ public:
 	}
 
 	//short SpecChanged(const ItemChangeEvent& ev) override {
-	//	OBSERVER_CALL_EVENT("SpecChanged", ev);
+	
 	//}
 
 	//short SpecTrackEntered(const ItemTrackEvent& ev) override {
-	//	OBSERVER_CALL_EVENT("SpecTrackEntered", ev);
+	
 	//}
 
 	//short SpecTracked(const ItemTrackEvent& ev) override {
-	//	OBSERVER_CALL_EVENT("SpecTracked", ev);
+	
 	//}
 
 	//short SpecTrackExited(const ItemTrackEvent& ev) override {
-	//	OBSERVER_CALL_EVENT("SpecTrackExited", ev);
+	
 	//}
 	
 	void BarControlChanged(const BarControlChangeEvent& ev) override {
@@ -75,19 +75,19 @@ public:
 	}
 
 	//short SpecChanged(const ItemChangeEvent& ev) override {
-	//	OBSERVER_CALL_EVENT("SpecChanged", ev);
+
 	//}
 
 	//short SpecTrackEntered(const ItemTrackEvent& ev) override {
-	//	OBSERVER_CALL_EVENT("SpecTrackEntered", ev);
+
 	//}
 
 	//short SpecTracked(const ItemTrackEvent& ev) override {
-	//	OBSERVER_CALL_EVENT("SpecTracked", ev);
+	
 	//}
 
 	//short SpecTrackExited(const ItemTrackEvent& ev) override {
-	//	OBSERVER_CALL_EVENT("SpecTrackExited", ev);
+	
 	//}
 
 	void ScrollBarChanged(const ScrollBarChangeEvent& ev) override {
