@@ -46,7 +46,7 @@ namespace pybind11 {
 		template <> class type_caster<PyEnv::ACExport> {
 
 		public:
-			PYBIND11_NOINLINE bool load(handle src, bool convert) {
+			bool load(handle src, bool convert) {
 				handle load_src = src;
 
 				if (!src) {
@@ -91,11 +91,58 @@ namespace pybind11 {
 				return success;
 			}
 
-			PYBIND11_NOINLINE static handle cast(PyEnv::ACExport src, return_value_policy /* policy */, handle /* parent */) {
+			static handle cast(PyEnv::ACExport src, return_value_policy /* policy */, handle /* parent */) {
 				return none().inc_ref();
 			}
 
 			PYBIND11_TYPE_CASTER(PyEnv::ACExport, _("iTerm.ACExport"));
 		};
 	}
+
+	class gil_scoped_acquire_for_archicad {
+	public:
+		gil_scoped_acquire_for_archicad(PyThreadState *tState) {
+			this->m_state = tState;
+			this->m_cur_state = PyThreadState_GET();
+
+			if (this->m_cur_state&&this->m_cur_state->interp != this->m_state->interp) {
+				//PyEval_AcquireLock();
+				//this->m_sav_state = PyThreadState_Swap(this->m_state);
+				PyEval_ReleaseThread(this->m_cur_state);
+				this->m_old_state = PyThreadState_Swap(NULL);
+				PyEval_AcquireThread(this->m_state);
+				this->m_sav_state = PyThreadState_Swap(this->m_state);
+			}
+			else if (this->m_cur_state&&this->m_cur_state == this->m_state) {
+
+			}
+			else {
+				PyEval_RestoreThread(this->m_state);
+			}
+		}
+
+		~gil_scoped_acquire_for_archicad() {
+			if (this->m_cur_state&&this->m_cur_state->interp != this->m_state->interp) {
+				//PyEval_ReleaseLock();
+				//PyThreadState_Swap(this->m_sav_state);
+				
+				PyThreadState_Swap(this->m_sav_state);
+				PyEval_ReleaseThread(this->m_state);
+				PyThreadState_Swap(this->m_old_state);
+				PyEval_AcquireThread(this->m_cur_state);
+			}
+			else if (this->m_cur_state&&this->m_cur_state == this->m_state) {
+
+			}
+			else {
+				PyEval_SaveThread();
+			}
+		}
+	private:
+		PyThreadState	*m_cur_state;
+		PyThreadState	*m_sav_state;
+		PyThreadState	*m_old_state;
+		PyThreadState	*m_state;
+	};
+
 }
