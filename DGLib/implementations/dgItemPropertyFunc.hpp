@@ -8,7 +8,7 @@
 using namespace DG;
 
 
-//namespace DG::Font
+// --- namespace DG::Font ---------------------------------------------------------------------
 
 void load_dg_Font(py::module m) {
 	py::enum_<Font::Size>(m, "Size")
@@ -30,76 +30,49 @@ void load_dg_Font(py::module m) {
 }
 
 
-// --- FocusableProperty
+// --- ItemPropertyEX -------------------------------------------------------------------------
 
-void load_dg_FocusableProperty(py::module m) {
+void load_dg_ItemBaseEX(py::module m) {
+	// --- FocusableProperty ------------------------------------------------------------------
 	py::class_<FocusableProperty, ItemBase>(m, "FocusableProperty")
 		.def("SetFocus", &FocusableProperty::SetFocus)
 		.def("IsFocused", &FocusableProperty::IsFocused);
-}
 
-
-// --- ItemFontProperty
-
-void load_dg_ItemFontProperty(py::module m) {
+	// --- ItemFontProperty -------------------------------------------------------------------
 	py::class_<ItemFontProperty, ItemBase>(m, "ItemFontProperty")
 		.def("SetFontSize", &ItemFontProperty::SetFontSize)
 		.def("GetFontSize", &ItemFontProperty::GetFontSize)
-
 		.def("SetFontStyle", &ItemFontProperty::SetFontStyle)
 		.def("GetFontStyle", &ItemFontProperty::GetFontStyle);
-}
 
+	// --- ItemIconProperty -------------------------------------------------------------------
+	//py::class_<ItemIconProperty, ItemBase>(m, "ItemIconProperty")
+	//	.def("SetIcon", &ItemIconProperty::SetIcon)
+	//	.def("GetIcon", &ItemIconProperty::GetIcon);
 
-// --- ItemIconProperty
-
-//void load_dg_ItemIconProperty(py::module m) {
-//	py::class_<ItemIconProperty, ItemBase>(m, "ItemIconProperty")
-//		.def("SetIcon", &ItemIconProperty::SetIcon)
-//		.def("GetIcon", &ItemIconProperty::GetIcon);
-//}
-
-
-// --- ItemTextProperty
-
-void load_dg_ItemTextProperty(py::module m) {
+	// --- ItemTextProperty -------------------------------------------------------------------
 	py::class_<ItemTextProperty, ItemBase>(m, "ItemTextProperty")
 		.def("SetText", &ItemTextProperty::SetText)
 		.def("CatText", &ItemTextProperty::CatText)
-
 		.def("GetText", &ItemTextProperty::GetText);
-}
 
+	// --- ItemColorProperty ------------------------------------------------------------------
+	//	py::class_<ItemColorProperty, ItemBase>(m, "ItemColorProperty")
+	//		.def("SetTextColor", &ItemColorProperty::SetTextColor)
+	//		.def("GetTextColor", &ItemColorProperty::GetTextColor)
+	//		.def("SetBackgroundColor", &ItemColorProperty::SetBackgroundColor)
+	//		.def("GetBackgroundColor", &ItemColorProperty::GetBackgroundColor)
+	//		.def("ResetDefaultTextColor", &ItemColorProperty::ResetDefaultTextColor)
+	//		.def("ResetDefaultBackgroundColor", &ItemColorProperty::ResetDefaultBackgroundColor);
 
-// --- ItemColorProperty
-
-//void load_dg_ItemColorProperty(py::module m) {
-//	py::class_<ItemColorProperty, ItemBase>(m, "ItemColorProperty")
-//		.def("SetTextColor", &ItemColorProperty::SetTextColor)
-//		.def("GetTextColor", &ItemColorProperty::GetTextColor)
-//
-//		.def("SetBackgroundColor", &ItemColorProperty::SetBackgroundColor)
-//		.def("GetBackgroundColor", &ItemColorProperty::GetBackgroundColor)
-//
-//		.def("ResetDefaultTextColor", &ItemColorProperty::ResetDefaultTextColor)
-//		.def("ResetDefaultBackgroundColor", &ItemColorProperty::ResetDefaultBackgroundColor);
-//}
-
-
-// --- ItemVariousProperty
-
-void load_dg_ItemVariousProperty(py::module m) {
+	// --- ItemVariousProperty ----------------------------------------------------------------
 	py::class_<ItemVariousProperty, ItemBase>(m, "ItemVariousProperty")
 		.def("SetVariousState", &ItemVariousProperty::SetVariousState)
 		.def("GetVariousState", &ItemVariousProperty::GetVariousState)
 		.def("SetVariousText", &ItemVariousProperty::SetVariousText)
 		.def("GetVariousText", &ItemVariousProperty::GetVariousText);
-}
-
-
-// --- ItemTextLengthLimitProperty 
-
-void load_dg_ItemTextLengthLimitProperty(py::module m) {
+	
+	// --- ItemTextLengthLimitProperty --------------------------------------------------------
 	py::class_<ItemTextLengthLimitProperty, ItemBase>(m, "ItemTextLengthLimitProperty")
 		.def("SetMaxTextLength", &ItemTextLengthLimitProperty::SetMaxTextLength)
 		.def("GetMaxTextLength", &ItemTextLengthLimitProperty::GetMaxTextLength);

@@ -154,7 +154,7 @@ public:
 };
 
 
-// --- ItemVariousProperty ---------------------------------------------------------------------------------------------
+// --- ItemTextLengthLimitProperty ---------------------------------------------------------------------------------------------
 
 class DG_DLL_EXPORT ItemTextLengthLimitProperty: virtual public ItemBase
 {

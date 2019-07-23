@@ -14,6 +14,10 @@
 // 在此处引用程序需要的其他标头
 #include <pybind11/pybind11.h>
 #include <pybind11/operators.h>
+
 #include "ACCast.h"
+#include "ACObserver.h"
+#include "ACExport.h"
 
 namespace py = pybind11;
+using namespace PyEnv;
