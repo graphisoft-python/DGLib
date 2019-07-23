@@ -14,57 +14,19 @@
 #include "../implementations/dgUtilityFunc.hpp"
 
 
-// --- For testting
-
-#define TEST 0;
-
-#if TEST == 1
-class Pet {
-public:
-	Pet() {}
-	Pet(const std::string &name) { this->name = name; }
-
-	void setName(const std::string &name_) { name = name_; }
-	const std::string &getName() const { return name; }
-
-	int add(int a = 1, int b = 5) { return a + b; }
-
-	std::string name;
-};
-
-void load_test(py::module m) {
-	py::class_<Pet> m_pet(m, "Pet");
-	m_pet
-		.def(py::init<>())
-		.def(py::init<const std::string &>())
-
-		.def("setName", &Pet::setName)
-		.def("getName", &Pet::getName)
-		.def("add", &Pet::add, py::arg("a"), py::arg("b") = 5)
-
-		.def("__str__", [](const Pet &p) {
-			return "name is " + p.name;
-		});
-}
-#endif // TEST == 1
-
-
 PYBIND11_MODULE(DGLib, m) {
 
 	m.doc() = "version 2019.7.17";
 
-// --- Add bindings here
+// --- Add bindings here ------------------------------------------------------------------
 
-#if  TEST == 1
-	load_test(m);
-#else
 // --- DGItem
 	load_dg_ItemBase(m);
 	load_dg_Item(m);
 
 // --- DGItemProperty
 	load_dg_Font(m.def_submodule("Font"));
-	load_dg_ItemPropertyEX(m);
+	load_dg_ItemBaseEX(m);
 
 // --- DGUtility
 	load_dg_EOL(m.def_submodule("EOL"));
@@ -122,8 +84,5 @@ PYBIND11_MODULE(DGLib, m) {
 	load_dg_GroupBox(m);
 	load_dg_Separator(m);
 
-
-#endif //  TEST == 1
-
-// --- Add bindings end
+// --- Add bindings end -------------------------------------------------------------------
 }

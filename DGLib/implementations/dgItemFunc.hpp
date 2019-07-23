@@ -7,7 +7,7 @@
 
 using namespace DG;
 
-// --- PyItemObserver ----------------------------------------------------------
+// --- PyItemObserver ------------------------------------------------------------------------
 
 class  PyItemObserver : ItemObserver {
 public:
@@ -218,7 +218,7 @@ private:
 };
 
 
-// --- ItemBase ----------------------------------------------------------------
+// --- ItemBase ------------------------------------------------------------------------------
 
 void load_dg_ItemBase(py::module m) {
 	py::class_<ItemBase> (m, "ItemBase")
@@ -228,66 +228,66 @@ void load_dg_ItemBase(py::module m) {
 		.def("GetId", &ItemBase::GetId);
 }
 
-// --- Item --------------------------------------------------------------------
+// --- Item ----------------------------------------------------------------------------------
 
 void load_dg_Item(py::module m) {
-	// --- ItemEvent -----------------------------------------------------------
-	py::class_<ItemEvent, GS::Event>(m, "ItemEvent")
+	// --- ItemEvent -------------------------------------------------------------------------
+	py::class_<ItemEvent/*, GS::Event*/>(m, "ItemEvent")
 		.def("GetSource", &ItemEvent::GetSource, py::return_value_policy::reference);
 
-	// --- ItemChangeEvent -----------------------------------------------------
+	// --- ItemChangeEvent -------------------------------------------------------------------
 	py::class_<ItemChangeEvent, ItemEvent>(m, "ItemChangeEvent");
 
-	// --- ItemResizeEvent -----------------------------------------------------
+	// --- ItemResizeEvent -------------------------------------------------------------------
 	py::class_<ItemResizeEvent, ItemEvent>(m, "ItemResizeEvent");
 
-	// --- ItemCharEnterEvent --------------------------------------------------
+	// --- ItemCharEnterEvent ----------------------------------------------------------------
 	py::class_<ItemCharEnterEvent, ItemEvent>(m, "ItemCharEnterEvent")
 		.def("GetCharCode",&ItemCharEnterEvent::GetCharCode);
 
-	// --- ItemClickEvent ------------------------------------------------------
+	// --- ItemClickEvent --------------------------------------------------------------------
 	py::class_<ItemClickEvent, ItemEvent>(m, "ItemClickEvent");
 
-	// --- ItemMouseDownEvent --------------------------------------------------
+	// --- ItemMouseDownEvent ----------------------------------------------------------------
 	py::class_<ItemMouseDownEvent, ItemEvent>(m, "ItemMouseDownEvent")
 		.def("IsHovered",&ItemMouseDownEvent::IsHovered);
 
-	// --- ItemContextMenuEvent ------------------------------------------------
+	// --- ItemContextMenuEvent --------------------------------------------------------------
 	py::class_<ItemContextMenuEvent, ItemEvent>(m, "ItemContextMenuEvent")
 		.def("GetPosition", &ItemContextMenuEvent::GetPosition);
 
-	// --- ItemDoubleClickEvent ------------------------------------------------
+	// --- ItemDoubleClickEvent --------------------------------------------------------------
 	py::class_<ItemDoubleClickEvent, ItemEvent>(m, "ItemDoubleClickEvent");
 
-	// --- ItemDragSourceEvent -------------------------------------------------
+	// --- ItemDragSourceEvent ---------------------------------------------------------------
 	//py::class_<ItemDragSourceEvent, ItemEvent, ItemDragDropData>(m, "ItemDragSourceEvent")
 	//	.def("GetDragData",&ItemDragSourceEvent::GetDragData, py::return_value_policy::reference);
 
-	// --- ItemDropTargetEvent -------------------------------------------------
+	// --- ItemDropTargetEvent ---------------------------------------------------------------
 	//py::class_<ItemDropTargetEvent, ItemEvent, DropTargetEventProperty>(m, "ItemDropTargetEvent");
 
-	// --- ItemFocusEvent ------------------------------------------------------
+	// --- ItemFocusEvent --------------------------------------------------------------------
 	py::class_<ItemFocusEvent, ItemEvent>(m, "ItemFocusEvent");
 
-	// --- ItemHelpEvent -------------------------------------------------------
+	// --- ItemHelpEvent ---------------------------------------------------------------------
 	py::class_<ItemHelpEvent, ItemEvent>(m, "ItemHelpEvent")
 		.def("GetSubItem", &ItemHelpEvent::GetSubItem)
 		.def("GetTreeItem", &ItemHelpEvent::GetTreeItem)
 		.def("GetTabBarItemId", &ItemHelpEvent::GetTabBarItemId);
 
-	// --- ItemMouseMoveEvent --------------------------------------------------
+	// --- ItemMouseMoveEvent ----------------------------------------------------------------
 	py::class_<ItemMouseMoveEvent, ItemEvent>(m, "ItemMouseMoveEvent");
 
-	// --- ItemTrackEvent ------------------------------------------------------
+	// --- ItemTrackEvent --------------------------------------------------------------------
 	py::class_<ItemTrackEvent, ItemEvent>(m, "ItemTrackEvent");
 
-	// --- ItemUpdateEvent -----------------------------------------------------
+	// --- ItemUpdateEvent -------------------------------------------------------------------
 	py::class_<ItemUpdateEvent, ItemEvent>(m, "ItemUpdateEvent");
 
-	// --- ItemWheelEvent ------------------------------------------------------
+	// --- ItemWheelEvent --------------------------------------------------------------------
 	py::class_<ItemWheelEvent, ItemEvent>(m, "ItemWheelEvent");
 
-	// --- ItemWheelTrackEvent -------------------------------------------------
+	// --- ItemWheelTrackEvent ---------------------------------------------------------------
 	py::class_<ItemWheelTrackEvent, ItemWheelEvent>(m, "ItemWheelTrackEvent")
 		.def("GetXTrackValue", &ItemWheelTrackEvent::GetXTrackValue)
 		.def("GetYTrackValue", &ItemWheelTrackEvent::GetYTrackValue)
@@ -300,21 +300,21 @@ void load_dg_Item(py::module m) {
 		.def("IsShiftProcessed", &ItemWheelTrackEvent::IsShiftProcessed)
 		.def("IsFromTouchCapableDevice", &ItemWheelTrackEvent::IsFromTouchCapableDevice);
 
-	// --- ItemResolutionFactorChangeEvent --------------------------------------
+	// --- ItemResolutionFactorChangeEvent ----------------------------------------------------
 	py::class_<ItemResolutionFactorChangeEvent, ItemEvent>(m, "ItemResolutionFactorChangeEvent")
 		.def("GetOldResolutionFactor", &ItemResolutionFactorChangeEvent::GetOldResolutionFactor);
 
-	// --- ItemHoverEvent -------------------------------------------------------
+	// --- ItemHoverEvent ---------------------------------------------------------------------
 	py::class_<ItemHoverEvent, ItemEvent>(m, "ItemHoverEvent");
 
-	// --- ItemPressedEvent -----------------------------------------------------
+	// --- ItemPressedEvent -------------------------------------------------------------------
 	py::class_<ItemPressedEvent, ItemEvent>(m, "ItemPressedEvent");
 
-	// --- PyItemObserver -------------------------------------------------------
+	// --- PyItemObserver ---------------------------------------------------------------------
 	py::class_<PyItemObserver>(m, "ItemObserver", py::dynamic_attr())
 		.def(py::init<Item &, ACExport &>());
 
-	// --- Item -----------------------------------------------------------------
+	// --- Item -------------------------------------------------------------------------------
 	py::class_<Item, ItemBase/*, GS::EventSource*/>(m, "Item")
 		.def(py::self == py::self)
 		.def(py::self != py::self)

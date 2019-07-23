@@ -7,7 +7,7 @@
 using namespace DG;
 
 
-// --- Dialog --------------------------------------------------------------
+// --- Dialog ------------------------------------------------------------------------------
 
 void load_dg_Dialog(py::module m) {
 	py::class_<Dialog, Panel> m_dialog(m, "Dialog");
@@ -184,10 +184,10 @@ void load_dg_Dialog(py::module m) {
 }
 
 
-// --- DialogEX ------------------------------------------------------------
+// --- DialogEX ----------------------------------------------------------------------------
 
 void load_dg_DialogEX(py::module m) {
-	// --- ModalDialog -----------------------------------------------------
+	// --- ModalDialog ---------------------------------------------------------------------
 	py::class_<ModalDialog, Dialog> m_modalDialog(m,"ModalDialog");
 	
 	py::enum_<ModalDialog::ModalResponse>(m_modalDialog, "ModalResponse")
@@ -211,7 +211,7 @@ void load_dg_DialogEX(py::module m) {
 		.def("GetNextModalDialog", &ModalDialog::GetNextModalDialog, py::return_value_policy::reference)
 		.def("GetPrevModalDialog", &ModalDialog::GetPrevModalDialog, py::return_value_policy::reference);
 
-	// --- ModelessBase ---------------------------------------------------
+	// --- ModelessBase -------------------------------------------------------------------
 	py::class_<ModelessBase, Dialog> m_modelessBase(m, "ModelessBase");
 
 	py::enum_<ModelessBase::DialogStatus>(m_modelessBase, "DialogStatus")
@@ -239,7 +239,7 @@ void load_dg_DialogEX(py::module m) {
 }
 
 void load_dg_ModelessBaseEX(py::module m) {
-	// --- ModelessDialog -------------------------------------------------
+	// --- ModelessDialog -----------------------------------------------------------------
 	py::class_<ModelessDialog, ModelessBase> m_modelessDialog(m, "ModelessDialog");
 
 	py::enum_<ModelessDialog::DialogState>(m_modelessDialog, "DialogState")
@@ -297,7 +297,7 @@ void load_dg_ModelessBaseEX(py::module m) {
 		.def("SetDockState", &ModelessDialog::SetDockState)
 		.def("GetDockState", &ModelessDialog::GetDockState);
 
-	// --- Palette --------------------------------------------------------
+	// --- Palette ------------------------------------------------------------------------
 	py::class_<Palette, ModelessBase>(m, "Palette")
 		//.def(py::init<GSResModule , short, GSResModule>())
 		//.def(py::init<GSResModule, short, GSResModule,GS::Guid &>())

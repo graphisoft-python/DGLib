@@ -10,33 +10,29 @@
 using namespace DG;
 
 
-// --- EditDragSourceEvent
-
-//	py::class_<EditDragSourceEvent, ItemDragSourceEvent>(m, "EditDragSourceEvent")
-//		.def("GetSource", &EditDragSourceEvent::GetSource, py::return_value_policy::reference);
-
-
-// --- EditDropTargetEvent
-
+// --- EditDropTargetEvent -----------------------------------------------------------------
 //	py::class_<EditDropTargetEvent, ItemDropTargetEvent>(m, "EditDropTargetEvent")
 //		.def("GetSource", &EditDropTargetEvent::GetSource, py::return_value_policy::reference)
 //		.def("GetCaretPosition", &EditDropTargetEvent::GetCaretPosition);
 
 
-// --- PyEditDragSourceObserver ------------------------------------------------
+// --- PyPosIntEditObserver ----------------------------------------------------------------
 
-class PyEditDragSourceObserver : EditDragSourceObserver {
+class PyPosIntEditObserver : PosIntEditObserver {
 
 public:
-	//PyEditDragSourceObserver(PosIntEdit &item, ACExport &acExport)
-	//	:m_parent(item) {
-	//	this->m_parent.Attach(*this);
-	//	this->m_state = acExport.m_state;
-	//}
+	PyPosIntEditObserver(PosIntEdit &item, ACExport &acExport)
+		:m_parent(item) {
+		this->m_parent.Attach(*this);
+		this->m_state = acExport.m_state;
+	}
 
-	//~PyEditDragSourceObserver() {
-	//	this->m_parent.Detach(*this);
-	//}
+	~PyPosIntEditObserver() {
+		this->m_parent.Detach(*this);
+	}
+
+
+	// ---- EditDragSourceObserver ---------------------------------------------------------
 
 	//void EditDragStarting(const EditDragSourceEvent& ev, bool* canStart) override {
 
@@ -58,26 +54,9 @@ public:
 
 	//}
 
-//private:
-//	PosIntEdit		&m_parent;
-//	PyThreadState	*m_state;
-};
+	// ---- EditDragSourceObserver ---------------------------------------------------------
 
-
-// --- PyEditDragSourceObserver ------------------------------------------------
-
-class PyEditDropTargetObserver : EditDropTargetObserver {
-
-public:
-	//PyEditDropTargetObserver(PosIntEdit &item, ACExport &acExport)
-	//	:m_parent(item) {
-	//	this->m_parent.Attach(*this);
-	//	this->m_state = acExport.m_state;
-	//}
-
-	//~PyEditDropTargetObserver() {
-	//	this->m_parent.Detach(*this);
-	//}
+	// ---- EditDropTargetObserver ---------------------------------------------------------
 
 	//void EditDragEntered(const EditDropTargetEvent& ev, , DragDrop::Effect* effect, bool* defBehaviour) override {
 
@@ -97,31 +76,8 @@ public:
 
 	//void EditDropped(const EditDragSourceEvent& ev, DragDrop::Effect* effect) override {
 
-	//}
+	// ---- EditDropTargetObserver ---------------------------------------------------------
 
-//private:
-//	PosIntEdit		&m_parent;
-//	PyThreadState	*m_state;
-};
-
-
-//----------------------------------------------------------------------------------------------------------------------------------
-
-
-// --- PyPosIntEditObserver ------------------------------------------------
-
-class PyPosIntEditObserver : PosIntEditObserver {
-
-public:
-	PyPosIntEditObserver(PosIntEdit &item, ACExport &acExport)
-		:m_parent(item) {
-		this->m_parent.Attach(*this);
-		this->m_state = acExport.m_state;
-	}
-
-	~PyPosIntEditObserver() {
-		this->m_parent.Detach(*this);
-	}
 
 	//short SpecChanged(const ItemChangeEvent& ev) override {
 	//	OBSERVER_CALL_EVENT("SpecChanged", ev);
@@ -169,7 +125,7 @@ private:
 };
 
 
-// --- PyIntEditObserver ---------------------------------------------------
+// --- PyIntEditObserver -------------------------------------------------------------------
 
 class PyIntEditObserver : IntEditObserver {
 
@@ -183,6 +139,54 @@ public:
 	~PyIntEditObserver() {
 		this->m_parent.Detach(*this);
 	}
+
+
+	// ---- EditDragSourceObserver ---------------------------------------------------------
+
+	//void EditDragStarting(const EditDragSourceEvent& ev, bool* canStart) override {
+
+	//}
+
+	//void EditDragStarted(const EditDragSourceEvent& ev, UShort* effect) override {
+
+	//}
+
+	//void EditDragStarted(const ItemDragSourceEvent& ev, UShort* effect, bool* rightDragMenu) override {
+
+	//}
+
+	//void EditDragEnded(const EditDragSourceEvent& ev, DragDrop::Effect effect) override {
+
+	//}
+
+	//void EditDragSetDelayedData(const EditDragSourceEvent& ev) override {
+
+	//}
+
+	// ---- EditDragSourceObserver ---------------------------------------------------------
+
+	// ---- EditDropTargetObserver ---------------------------------------------------------
+
+	//void EditDragEntered(const EditDropTargetEvent& ev, , DragDrop::Effect* effect, bool* defBehaviour) override {
+
+	//}
+
+	//void EditDragEntered(const EditDropTargetEvent& ev, DragDrop::Effect* effect, bool* defBehaviour, bool* rightDragMenu) override {
+
+	//}
+
+	//void EditDragMoved(const EditDropTargetEvent& ev, DragDrop::Effect* effect, DragDrop::Feedback* denyFeedback) override {
+
+	//}
+
+	//void EditDragLeft(const EditDragSourceEvent& ev,  DragDrop::Effect* effect) override {
+
+	//}
+
+	//void EditDropped(const EditDragSourceEvent& ev, DragDrop::Effect* effect) override {
+
+	// ---- EditDropTargetObserver ---------------------------------------------------------
+
 
 	//short SpecChanged(const ItemChangeEvent& ev) override {
 	//	OBSERVER_CALL_EVENT("SpecChanged", ev);
@@ -224,12 +228,12 @@ public:
 	}
 
 private:
-	IntEdit		&m_parent;
+	IntEdit			&m_parent;
 	PyThreadState	*m_state;
 };
 
 
-// --- PyRealEditObserver --------------------------------------------------
+// --- PyRealEditObserver ------------------------------------------------------------------
 
 class PyRealEditObserver : RealEditObserver {
 
@@ -243,6 +247,54 @@ public:
 	~PyRealEditObserver() {
 		this->m_parent.Detach(*this);
 	}
+
+
+	// ---- EditDragSourceObserver ---------------------------------------------------------
+
+	//void EditDragStarting(const EditDragSourceEvent& ev, bool* canStart) override {
+
+	//}
+
+	//void EditDragStarted(const EditDragSourceEvent& ev, UShort* effect) override {
+
+	//}
+
+	//void EditDragStarted(const ItemDragSourceEvent& ev, UShort* effect, bool* rightDragMenu) override {
+
+	//}
+
+	//void EditDragEnded(const EditDragSourceEvent& ev, DragDrop::Effect effect) override {
+
+	//}
+
+	//void EditDragSetDelayedData(const EditDragSourceEvent& ev) override {
+
+	//}
+
+	// ---- EditDragSourceObserver ---------------------------------------------------------
+
+	// ---- EditDropTargetObserver ---------------------------------------------------------
+
+	//void EditDragEntered(const EditDropTargetEvent& ev, , DragDrop::Effect* effect, bool* defBehaviour) override {
+
+	//}
+
+	//void EditDragEntered(const EditDropTargetEvent& ev, DragDrop::Effect* effect, bool* defBehaviour, bool* rightDragMenu) override {
+
+	//}
+
+	//void EditDragMoved(const EditDropTargetEvent& ev, DragDrop::Effect* effect, DragDrop::Feedback* denyFeedback) override {
+
+	//}
+
+	//void EditDragLeft(const EditDragSourceEvent& ev,  DragDrop::Effect* effect) override {
+
+	//}
+
+	//void EditDropped(const EditDragSourceEvent& ev, DragDrop::Effect* effect) override {
+
+	// ---- EditDropTargetObserver ---------------------------------------------------------
+
 
 	//short SpecChanged(const ItemChangeEvent& ev) override {
 	//	OBSERVER_CALL_EVENT("SpecChanged", ev);
@@ -290,7 +342,7 @@ private:
 };
 
 
-// --- PyTextEditBaseObserver ----------------------------------------------
+// --- PyTextEditBaseObserver --------------------------------------------------------------
 
 class PyTextEditBaseObserver : TextEditBaseObserver {
 
@@ -304,6 +356,54 @@ public:
 	~PyTextEditBaseObserver() {
 		this->m_parent.Detach(*this);
 	}
+
+
+	// ---- EditDragSourceObserver ---------------------------------------------------------
+
+	//void EditDragStarting(const EditDragSourceEvent& ev, bool* canStart) override {
+
+	//}
+
+	//void EditDragStarted(const EditDragSourceEvent& ev, UShort* effect) override {
+
+	//}
+
+	//void EditDragStarted(const ItemDragSourceEvent& ev, UShort* effect, bool* rightDragMenu) override {
+
+	//}
+
+	//void EditDragEnded(const EditDragSourceEvent& ev, DragDrop::Effect effect) override {
+
+	//}
+
+	//void EditDragSetDelayedData(const EditDragSourceEvent& ev) override {
+
+	//}
+
+	// ---- EditDragSourceObserver ---------------------------------------------------------
+
+	// ---- EditDropTargetObserver ---------------------------------------------------------
+
+	//void EditDragEntered(const EditDropTargetEvent& ev, , DragDrop::Effect* effect, bool* defBehaviour) override {
+
+	//}
+
+	//void EditDragEntered(const EditDropTargetEvent& ev, DragDrop::Effect* effect, bool* defBehaviour, bool* rightDragMenu) override {
+
+	//}
+
+	//void EditDragMoved(const EditDropTargetEvent& ev, DragDrop::Effect* effect, DragDrop::Feedback* denyFeedback) override {
+
+	//}
+
+	//void EditDragLeft(const EditDragSourceEvent& ev,  DragDrop::Effect* effect) override {
+
+	//}
+
+	//void EditDropped(const EditDragSourceEvent& ev, DragDrop::Effect* effect) override {
+
+	// ---- EditDropTargetObserver ---------------------------------------------------------
+
 
 	//short SpecChanged(const ItemChangeEvent& ev) override {
 	//	OBSERVER_CALL_EVENT("SpecChanged", ev);
@@ -351,7 +451,7 @@ private:
 };
 
 
-// --- PyShortcutEditObserver ----------------------------------------------
+// --- PyShortcutEditObserver --------------------------------------------------------------
 
 class PyShortcutEditObserver : ShortcutEditObserver {
 
@@ -380,7 +480,7 @@ private:
 };
 
 
-// --- EditControl ---------------------------------------------------------
+// --- EditControl -------------------------------------------------------------------------
 
 void load_dg_EditControl(py::module m) {
 	py::class_<EditControl, Item, ItemFontProperty, FocusableProperty> m_editControl(m, "EditControl");
@@ -403,19 +503,29 @@ void load_dg_EditControl(py::module m) {
 }
 
 
-// --- PosIntEdit ----------------------------------------------------------
+// --- PosIntEdit --------------------------------------------------------------------------
 
 void load_dg_PosIntEdit(py::module m) {
-	py::class_<PosIntEditChangeEvent/*, ItemChangeEvent*/>(m, "PosIntEditChangeEvent")
+	// --- EditDragSourceEvent -------------------------------------------------------------
+	//py::class_<EditDragSourceEvent, ItemDragSourceEvent>(m, "EditDragSourceEvent")
+	//	.def("GetSource", &EditDragSourceEvent::GetSource, py::return_value_policy::reference);
+
+	// --- EditDropTargetEvent -------------------------------------------------------------
+	//	py::class_<EditDropTargetEvent, ItemDropTargetEvent>(m, "EditDropTargetEvent")
+	//		.def("GetSource", &EditDropTargetEvent::GetSource, py::return_value_policy::reference)
+	//		.def("GetCaretPosition", &EditDropTargetEvent::GetCaretPosition);
+
+	// --- PosIntEditChangeEvent -----------------------------------------------------------
+	py::class_<PosIntEditChangeEvent, ItemChangeEvent>(m, "PosIntEditChangeEvent")
 		.def("GetSource", &PosIntEditChangeEvent::GetSource, py::return_value_policy::reference)
 		.def("GetPreviousValue", &PosIntEditChangeEvent::GetPreviousValue)
 		.def("WasRelativeInput", &PosIntEditChangeEvent::WasRelativeInput);
 
-	// --- PosIntEditObserver ----------------------------------------------
+	// --- PosIntEditObserver --------------------------------------------------------------
 	py::class_<PyPosIntEditObserver>(m, "PosIntEditObserver", py::dynamic_attr())
 		.def(py::init<PosIntEdit &, ACExport &>());
 
-	// --- PosIntEdit ------------------------------------------------------
+	// --- PosIntEdit ----------------------------------------------------------------------
 	py::class_<PosIntEdit, EditControl, ItemVariousProperty> m_posIntEdit(m, "PosIntEdit");
 
 	py::enum_<PosIntEdit::AbsRelType>(m_posIntEdit, "AbsRelType")
@@ -441,20 +551,29 @@ void load_dg_PosIntEdit(py::module m) {
 }
 
 
-// --- IntEdit -------------------------------------------------------------
+// --- IntEdit -----------------------------------------------------------------------------
 
 void load_dg_IntEdit(py::module m) {
-	// --- IntEditChangeEvent ----------------------------------------------
+	// --- EditDragSourceEvent -------------------------------------------------------------
+	//py::class_<EditDragSourceEvent, ItemDragSourceEvent>(m, "EditDragSourceEvent")
+	//	.def("GetSource", &EditDragSourceEvent::GetSource, py::return_value_policy::reference);
+
+	// --- EditDropTargetEvent -------------------------------------------------------------
+	//	py::class_<EditDropTargetEvent, ItemDropTargetEvent>(m, "EditDropTargetEvent")
+	//		.def("GetSource", &EditDropTargetEvent::GetSource, py::return_value_policy::reference)
+	//		.def("GetCaretPosition", &EditDropTargetEvent::GetCaretPosition);
+
+	// --- IntEditChangeEvent --------------------------------------------------------------
 	py::class_<IntEditChangeEvent, ItemChangeEvent>(m, "IntEditChangeEvent")
 		.def("GetSource", &IntEditChangeEvent::GetSource, py::return_value_policy::reference)
 		.def("GetPreviousValue", &IntEditChangeEvent::GetPreviousValue)
 		.def("WasRelativeInput", &IntEditChangeEvent::WasRelativeInput);
 
-	// --- IntEditObserver -------------------------------------------------
+	// --- IntEditObserver -----------------------------------------------------------------
 	py::class_<PyIntEditObserver>(m, "IntEditObserver", py::dynamic_attr())
 		.def(py::init<IntEdit &, ACExport &>());
 
-	// --- IntEdit ---------------------------------------------------------
+	// --- IntEdit -------------------------------------------------------------------------
 	py::class_<IntEdit, EditControl, ItemVariousProperty> m_intEdit(m, "IntEdit");
 
 	py::enum_<IntEdit::AbsRelType>(m_intEdit, "AbsRelType")
@@ -480,10 +599,19 @@ void load_dg_IntEdit(py::module m) {
 }
 
 
-// --- RealEdit ------------------------------------------------------------
+// --- RealEdit ----------------------------------------------------------------------------
 
 void load_dg_RealEdit(py::module m) {
-	// --- RealEditChangeEvent ---------------------------------------------
+	// --- EditDragSourceEvent -------------------------------------------------------------
+	//py::class_<EditDragSourceEvent, ItemDragSourceEvent>(m, "EditDragSourceEvent")
+	//	.def("GetSource", &EditDragSourceEvent::GetSource, py::return_value_policy::reference);
+
+	// --- EditDropTargetEvent -------------------------------------------------------------
+	//	py::class_<EditDropTargetEvent, ItemDropTargetEvent>(m, "EditDropTargetEvent")
+	//		.def("GetSource", &EditDropTargetEvent::GetSource, py::return_value_policy::reference)
+	//		.def("GetCaretPosition", &EditDropTargetEvent::GetCaretPosition);
+
+	// --- RealEditChangeEvent -------------------------------------------------------------
 	py::class_<RealEditChangeEvent, ItemChangeEvent>(m, "RealEditChangeEvent")
 		.def("GetSource", &RealEditChangeEvent::GetSource, py::return_value_policy::reference)
 		.def("GetPreviousValue", &RealEditChangeEvent::GetPreviousValue)
@@ -493,7 +621,7 @@ void load_dg_RealEdit(py::module m) {
 	py::class_<PyRealEditObserver>(m, "RealEditObserver", py::dynamic_attr())
 		.def(py::init<RealEdit &, ACExport &>());
 
-	// --- RealEdit ---------------------------------------------------------
+	// --- RealEdit -------------------------------------------------------------------------
 	py::class_<RealEdit, EditControl, ItemVariousProperty> m_realEdit(m, "RealEdit");
 
 	py::enum_<RealEdit::AbsRelType>(m_realEdit, "AbsRelType")
@@ -519,10 +647,10 @@ void load_dg_RealEdit(py::module m) {
 }
 
 
-// --- RealEditEX ----------------------------------------------------------
+// --- RealEditEX --------------------------------------------------------------------------
 
 void load_dg_RealEditEX(py::module m) {
-	// --- LengthEdit ------------------------------------------------------
+	// --- LengthEdit ----------------------------------------------------------------------
 	py::class_<LengthEdit, RealEdit> m_lengthEdit(m, "LengthEdit");
 
 	py::enum_<LengthEdit::ChangeFontType>(m_lengthEdit, "ChangeFontType")
@@ -541,7 +669,7 @@ void load_dg_RealEditEX(py::module m) {
 			py::arg("update") = EditControl::UpdateType::Update,
 			py::arg("readOnly") = EditControl::ReadOnlyType::Editable);
 
-	// --- AreaEdit ---------------------------------------------------------
+	// --- AreaEdit ------------------------------------------------------------------------
 	py::class_<AreaEdit, RealEdit>(m, "AreaEdit")
 		//.def(py::init<Panel &, short>())
 		.def(py::init<Panel &, Rect &, EditControl::FrameType, RealEdit::AbsRelType, EditControl::UpdateType, EditControl::ReadOnlyType>(),
@@ -552,7 +680,7 @@ void load_dg_RealEditEX(py::module m) {
 			py::arg("update") = EditControl::UpdateType::Update,
 			py::arg("readOnly") = EditControl::ReadOnlyType::Editable);
 
-	// --- VolumeEdit -------------------------------------------------------
+	// --- VolumeEdit ----------------------------------------------------------------------
 	py::class_<VolumeEdit, RealEdit>(m, "VolumeEdit")
 		//.def(py::init<Panel &, short>())
 		.def(py::init<Panel &, Rect &, EditControl::FrameType, RealEdit::AbsRelType, EditControl::UpdateType, EditControl::ReadOnlyType>(),
@@ -563,7 +691,7 @@ void load_dg_RealEditEX(py::module m) {
 			py::arg("update") = EditControl::UpdateType::Update,
 			py::arg("readOnly") = EditControl::ReadOnlyType::Editable);
 
-	// --- AngleEdit --------------------------------------------------------
+	// --- AngleEdit -----------------------------------------------------------------------
 	py::class_<AngleEdit, RealEdit>(m, "AngleEdit")
 		//.def(py::init<Panel &, short>())
 		.def(py::init<Panel &, Rect &, EditControl::FrameType, RealEdit::AbsRelType, EditControl::UpdateType, EditControl::ReadOnlyType>(),
@@ -574,7 +702,7 @@ void load_dg_RealEditEX(py::module m) {
 			py::arg("update") = EditControl::UpdateType::Update,
 			py::arg("readOnly") = EditControl::ReadOnlyType::Editable);
 	
-	// --- PolarAngleEdit ---------------------------------------------------
+	// --- PolarAngleEdit ------------------------------------------------------------------
 	py::class_<PolarAngleEdit, RealEdit>(m, "PolarAngleEdit")
 		//.def(py::init<Panel &, short>())
 		.def(py::init<Panel &, Rect &, EditControl::FrameType, RealEdit::AbsRelType, EditControl::UpdateType, EditControl::ReadOnlyType>(),
@@ -585,7 +713,7 @@ void load_dg_RealEditEX(py::module m) {
 			py::arg("update") = EditControl::UpdateType::Update,
 			py::arg("readOnly") = EditControl::ReadOnlyType::Editable);
 
-	// --- MMPointEdit ------------------------------------------------------
+	// --- MMPointEdit ---------------------------------------------------------------------
 	py::class_<MMPointEdit, RealEdit>(m, "MMPointEdit")
 		//.def(py::init<Panel &, short>())
 		.def(py::init<Panel &, Rect &, EditControl::FrameType, RealEdit::AbsRelType, EditControl::UpdateType, EditControl::ReadOnlyType>(),
@@ -598,27 +726,36 @@ void load_dg_RealEditEX(py::module m) {
 }
 
 
-// --- TextEditBase --------------------------------------------------------
+// --- TextEditBase ------------------------------------------------------------------------
 
 void load_dg_TextEditBase(py::module m) {
-	// --- TextEditChangeEvent ---------------------------------------------
+	// --- EditDragSourceEvent -------------------------------------------------------------
+	//py::class_<EditDragSourceEvent, ItemDragSourceEvent>(m, "EditDragSourceEvent")
+	//	.def("GetSource", &EditDragSourceEvent::GetSource, py::return_value_policy::reference);
+
+	// --- EditDropTargetEvent -------------------------------------------------------------
+	//	py::class_<EditDropTargetEvent, ItemDropTargetEvent>(m, "EditDropTargetEvent")
+	//		.def("GetSource", &EditDropTargetEvent::GetSource, py::return_value_policy::reference)
+	//		.def("GetCaretPosition", &EditDropTargetEvent::GetCaretPosition);
+
+	// --- TextEditChangeEvent -------------------------------------------------------------
 	py::class_<TextEditChangeEvent, ItemChangeEvent>(m, "TextEditChangeEvent")
 		.def("GetSource",&TextEditChangeEvent::GetSource, py::return_value_policy::reference);
 
-	// --- RealEditObserver ------------------------------------------------
+	// --- RealEditObserver ----------------------------------------------------------------
 	py::class_<PyTextEditBaseObserver>(m, "TextEditBaseObserver", py::dynamic_attr())
 		.def(py::init<TextEditBase &, ACExport &>());
 
-	// --- TextEditBase ----------------------------------------------------
+	// --- TextEditBase --------------------------------------------------------------------
 	py::class_<TextEditBase, EditControl, ItemTextProperty>(m, "TextEditBase")
 		.def("SetSelection", &TextEditBase::SetSelection)
 		.def("GetSelection", &TextEditBase::GetSelection);
 }
 
 
-// --- TextEditBaseEX ------------------------------------------------------
+// --- TextEditBaseEX ----------------------------------------------------------------------
 void load_dg_TextEditBaseEX(py::module m) {
-	// --- TextEdit --------------------------------------------------------
+	// --- TextEdit ------------------------------------------------------------------------
 	py::class_<TextEdit, TextEditBase, ItemVariousProperty, ItemTextLengthLimitProperty>(m, "TextEdit")
 		//.def(py::init<Panel &, short>())
 		.def(py::init<Panel &, Rect &, short, EditControl::FrameType, EditControl::UpdateType, EditControl::ReadOnlyType>(),
@@ -629,7 +766,7 @@ void load_dg_TextEditBaseEX(py::module m) {
 			py::arg("update") = EditControl::UpdateType::Update,
 			py::arg("readOnly") = EditControl::ReadOnlyType::Editable);
 
-	// --- PasswordEdit ----------------------------------------------------
+	// --- PasswordEdit --------------------------------------------------------------------
 	py::class_<PasswordEdit, TextEditBase, ItemTextLengthLimitProperty>(m, "PasswordEdit")
 		//.def(py::init<Panel &, short>())
 		.def(py::init<Panel &, Rect &, short, EditControl::FrameType, EditControl::UpdateType, EditControl::ReadOnlyType>(),
@@ -640,7 +777,7 @@ void load_dg_TextEditBaseEX(py::module m) {
 			py::arg("update") = EditControl::UpdateType::Update,
 			py::arg("readOnly") = EditControl::ReadOnlyType::Editable);
 
-	// --- MultiLineEdit ---------------------------------------------------
+	// --- MultiLineEdit -------------------------------------------------------------------
 	py::class_<MultiLineEdit, TextEditBase> m_multiLineEdit(m, "MultiLineEdit");
 
 	py::enum_<MultiLineEdit::ScrollType>(m_multiLineEdit, "ScrollType")
@@ -664,20 +801,20 @@ void load_dg_TextEditBaseEX(py::module m) {
 }
 
 
-// --- ShortcutEdit --------------------------------------------------------
+// --- ShortcutEdit ------------------------------------------------------------------------
 
 void load_dg_ShortcutEdit(py::module m) {
-	// --- ShortcutHitEvent ------------------------------------------------
+	// --- ShortcutHitEvent ----------------------------------------------------------------
 	py::class_<ShortcutHitEvent, ItemChangeEvent>(m, "ShortcutHitEvent")
 		.def("GetKey", &ShortcutHitEvent::GetKey)
 		.def("GetModifierFlags", &ShortcutHitEvent::GetModifierFlags)
 		.def("GetSource",&ShortcutHitEvent::GetSource, py::return_value_policy::reference);
 
-	// --- PosIntEditObserver ----------------------------------------------
+	// --- PosIntEditObserver --------------------------------------------------------------
 	py::class_<PyShortcutEditObserver>(m, "ShortcutEditObserver", py::dynamic_attr())
 		.def(py::init<ShortcutEdit &, ACExport &>());
 
-	// --- ShortcutEdit ----------------------------------------------------
+	// --- ShortcutEdit --------------------------------------------------------------------
 	py::class_<ShortcutEdit, TextEditBase, ItemTextLengthLimitProperty>(m, "ShortcutEdit")
 		//.def(py::init<Panel &, short>())
 		.def(py::init<Panel &, Rect &, short, EditControl::FrameType, EditControl::UpdateType>(),

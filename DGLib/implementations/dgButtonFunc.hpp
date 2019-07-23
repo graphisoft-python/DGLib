@@ -11,7 +11,7 @@
 using namespace DG;
 
 
-// --- PyButtonItemObserver ----------------------------------------------------
+// --- PyButtonItemObserver --------------------------------------------------------------------
 
 class PyButtonItemObserver : ButtonItemObserver {
 
@@ -40,7 +40,7 @@ private:
 };
 
 
-// --- PySplitButtonObserver ---------------------------------------------------
+// --- PySplitButtonObserver -------------------------------------------------------------------
 
 class PySplitButtonObserver : SplitButtonObserver {
 
@@ -69,7 +69,7 @@ private:
 };
 
 
-// --- PyCustomSplitButtonObserver ---------------------------------------------
+// --- PyCustomSplitButtonObserver -------------------------------------------------------------
 
 class PyCustomSplitButtonObserver : CustomSplitButtonObserver {
 
@@ -94,25 +94,26 @@ private:
 };
 
 
-// --- ButtonItem --------------------------------------------------------------
+// --- ButtonItem ------------------------------------------------------------------------------
 
 void load_dg_ButtonItem(py::module m) {
-	py::class_<ButtonClickEvent/*, ItemClickEvent*/>(m, "ButtonClickEvent")
+	// --- ButtonClickEvent---------------------------------------------------------------------
+	py::class_<ButtonClickEvent, ItemClickEvent>(m, "ButtonClickEvent")
 		.def("GetSource", &ButtonClickEvent::GetSource, py::return_value_policy::reference);
 
-	// --- ButtonItemObserver --------------------------------------------------
+	// --- ButtonItemObserver ------------------------------------------------------------------
 	py::class_<PyButtonItemObserver>(m, "ButtonItemObserver", py::dynamic_attr())
 		.def(py::init<ButtonItem &, ACExport &>());
 
-	// --- ButtonItem ----------------------------------------------------------
+	// --- ButtonItem --------------------------------------------------------------------------
 	py::class_<ButtonItem, Item>(m, "ButtonItem");
 }
 
 
-// --- ButtonItemEX ------------------------------------------------------------
+// --- ButtonItemEX ----------------------------------------------------------------------------
 
 void load_dg_ButtonItemEX(py::module m) {
-	// --- Button --------------------------------------------------------------
+	// --- Button ------------------------------------------------------------------------------
 	py::class_<Button, ButtonItem, ItemFontProperty, ItemTextProperty/*, ItemIconProperty*/> m_button(m, "Button");
 
 	py::enum_<Button::ButtonType>(m_button, "ButtonType")
@@ -144,7 +145,7 @@ void load_dg_ButtonItemEX(py::module m) {
 		.def("SetAlignment", &Button::SetAlignment)
 		.def("GetAlignment", &Button::GetAlignment);
 
-	// --- IconButton ----------------------------------------------------------
+	// --- IconButton --------------------------------------------------------------------------
 	py::class_<IconButton, ButtonItem/*, ItemIconProperty*/> m_IconButton(m, "IconButton");
 
 	py::enum_<IconButton::ButtonForm>(m_IconButton, "ButtonForm")
@@ -165,7 +166,7 @@ void load_dg_ButtonItemEX(py::module m) {
 			py::arg("form") = IconButton::ButtonForm::BevelEdge,
 			py::arg("frameType") = IconButton::FrameType::Frame);
 
-	// --- SplitButtonBase ----------------------------------------------------
+	// --- SplitButtonBase --------------------------------------------------------------------
 	py::class_<SplitButtonBase, ButtonItem, ItemFontProperty, ItemTextProperty/*, ItemIconProperty*/> m_splitButtonBase(m, "SplitButtonBase");
 
 	py::enum_<SplitButtonBase::ButtonForm>(m_splitButtonBase, "ButtonForm")
@@ -193,17 +194,18 @@ void load_dg_ButtonItemEX(py::module m) {
 }
 
 
-// --- SplitButton -------------------------------------------------------------
+// --- SplitButton -----------------------------------------------------------------------------
 
 void load_dg_SplitButton(py::module m) {
-	py::class_<SplitButtonChangeEvent/*, ItemChangeEvent*/>(m, "SplitButtonChangeEvent")
+	// --- SplitButtonChangeEvent --------------------------------------------------------------
+	py::class_<SplitButtonChangeEvent, ItemChangeEvent>(m, "SplitButtonChangeEvent")
 		.def("GetSource", &SplitButtonChangeEvent::GetSource, py::return_value_policy::reference);
 
 	// --- SplitButtonObserver -------------------------------------------------
 	py::class_<PySplitButtonObserver>(m, "SplitButtonObserver", py::dynamic_attr())
 		.def(py::init<SplitButton &, ACExport &>());
 
-	// --- SplitButton ---------------------------------------------------------
+	// --- SplitButton -------------------------------------------------------------------------
 	py::class_<SplitButton, SplitButtonBase>(m, "SplitButton")
 		//.def(py::init<Panel &, short>())
 		.def(py::init<Panel &, Rect &, SplitButtonBase::ButtonForm>(),
@@ -240,17 +242,18 @@ void load_dg_SplitButton(py::module m) {
 }
 
 
-// --- CustomSplitButton -------------------------------------------------------
+// --- CustomSplitButton -----------------------------------------------------------------------
 
 void load_dg_CustomSplitButton(py::module m) {
-	py::class_<CustomSplitButtonOpenRequestedEvent/*, ItemEvent*/>(m, "CustomSplitButtonOpenRequestedEvent")
+	// --- CustomSplitButtonOpenRequestedEvent -------------------------------------------------
+	py::class_<CustomSplitButtonOpenRequestedEvent, ItemEvent>(m, "CustomSplitButtonOpenRequestedEvent")
 		.def("GetSource", &CustomSplitButtonOpenRequestedEvent::GetSource, py::return_value_policy::reference);
 
-	// --- PyCustomSplitButtonObserver -----------------------------------------
+	// --- PyCustomSplitButtonObserver ---------------------------------------------------------
 	py::class_<PyCustomSplitButtonObserver>(m, "CustomSplitButtonObserver", py::dynamic_attr())
 		.def(py::init<CustomSplitButton &, ACExport &>());
 
-	// --- CustomSplitButton ---------------------------------------------------
+	// --- CustomSplitButton -------------------------------------------------------------------
 	py::class_<CustomSplitButton, SplitButtonBase>(m, "CustomSplitButton")
 		//.def(py::init<Panel &, short>())
 		.def(py::init<Panel &, Rect &, SplitButtonBase::ButtonForm>(),
