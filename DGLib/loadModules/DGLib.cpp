@@ -71,6 +71,7 @@ PYBIND11_MODULE(DGLib, m) {
 	load_dg_ProgressBar(m);
 
 // --- DGStaticItem
+	load_dg_StaticItemEventProperty(m);
 	load_dg_StaticText(m);
 	load_dg_StaticTextEX(m);
 	load_dg_GroupBox(m);

@@ -10,7 +10,7 @@ using namespace DG;
 
 // --- PyStaticTextObserver --------------------------------------------------------------------
 
-class PyStaticTextObserver : StaticTextObserver {
+class PyStaticTextObserver : StaticTextObserver, ItemObserver {
 public:
 	PyStaticTextObserver(StaticText &item, ACExport &acExport)
 		:m_parent(item) {
@@ -22,17 +22,7 @@ public:
 		this->m_parent.Detach(*this);
 	}
 
-	//short SpecClicked(const ItemClickEvent& ev) override {
-
-	//}
-
-	//short SpecDoubleClicked(const ItemDoubleClickEvent& ev) override {
-
-	//}
-
-	//short SpecMouseMoved(const ItemMouseMoveEvent& ev) override {
-
-	//}
+	ITEMOBSERVER_METHODS
 
 	void StaticTextClicked(const StaticTextClickEvent& ev) override {
 		OBSERVER_CALL_EVENT("StaticTextClicked", ev);

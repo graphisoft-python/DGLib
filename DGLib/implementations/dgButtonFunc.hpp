@@ -13,7 +13,7 @@ using namespace DG;
 
 // --- PyButtonItemObserver --------------------------------------------------------------------
 
-class PyButtonItemObserver : ButtonItemObserver {
+class PyButtonItemObserver : ButtonItemObserver, ItemObserver {
 
 public:
 	PyButtonItemObserver(ButtonItem &item, ACExport &acExport)
@@ -26,9 +26,7 @@ public:
 		this->m_parent.Detach(*this);
 	}
 
-	//short SpecClicked(const ItemClickEvent& ev) override {
-
-	//}
+	ITEMOBSERVER_METHODS
 
 	void ButtonClicked(const ButtonClickEvent& ev) override {
 		OBSERVER_CALL_EVENT("ButtonClicked", ev);
@@ -42,7 +40,7 @@ private:
 
 // --- PySplitButtonObserver -------------------------------------------------------------------
 
-class PySplitButtonObserver : SplitButtonObserver {
+class PySplitButtonObserver : SplitButtonObserver, ButtonItemObserver, ItemObserver {
 
 public:
 	PySplitButtonObserver(SplitButton &item, ACExport &acExport)
@@ -55,9 +53,11 @@ public:
 		this->m_parent.Detach(*this);
 	}
 
-	//short SpecChanged(const ItemChangeEvent& ev) override {
-	
-	//}
+	ITEMOBSERVER_METHODS
+
+	void ButtonClicked(const ButtonClickEvent& ev) override {
+		OBSERVER_CALL_EVENT("ButtonClicked", ev);
+	}
 
 	void SplitButtonPopupChanged(const SplitButtonChangeEvent& ev) override {
 		OBSERVER_CALL_EVENT("SplitButtonPopupChanged", ev);
@@ -71,7 +71,7 @@ private:
 
 // --- PyCustomSplitButtonObserver -------------------------------------------------------------
 
-class PyCustomSplitButtonObserver : CustomSplitButtonObserver {
+class PyCustomSplitButtonObserver : CustomSplitButtonObserver, ButtonItemObserver, ItemObserver {
 
 public:
 	PyCustomSplitButtonObserver(CustomSplitButton &item, ACExport &acExport)
@@ -82,6 +82,12 @@ public:
 
 	~PyCustomSplitButtonObserver() {
 		this->m_parent.Detach(*this);
+	}
+
+	ITEMOBSERVER_METHODS
+
+	void ButtonClicked(const ButtonClickEvent& ev) override {
+		OBSERVER_CALL_EVENT("ButtonClicked", ev);
 	}
 
 	void SplitButtonOpenRequested(const CustomSplitButtonOpenRequestedEvent& ev) override {
