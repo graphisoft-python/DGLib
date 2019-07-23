@@ -5,7 +5,6 @@
 #include "DGPanel.hpp"
 
 using namespace DG;
-using namespace PyEnv;
 
 
 // --- PanelObserver -------------------------------------------------------------------
@@ -42,23 +41,23 @@ public:
 	}
 
 	void PanelDragEntered(const PanelDropTargetEvent& ev, DragDrop::Effect* effect, bool* handleEvent) override {
-		// not impl
+		
 	}
 
 	void PanelDragEntered(const PanelDropTargetEvent& ev, DragDrop::Effect* effect, bool* handleEvent, bool* rightDragMenu)override {
-		// not impl
+		
 	}
 
 	void PanelDragMoved(const PanelDropTargetEvent& ev, DragDrop::Effect* effect, bool* handleEvent) override {
-		// not impl
+		
 	}
 
 	void PanelDragLeft(const PanelDropTargetEvent& ev, bool* handleEvent) override {
-		// not impl
+		
 	}
 
 	void PanelDropped(const PanelDropTargetEvent& ev, DragDrop::Effect* effect, bool* handleEvent) override {
-		// not impl
+		
 	}
 
 	void PanelHotkeyPressed(const PanelHotKeyEvent& ev, bool* processed) override {
@@ -157,60 +156,74 @@ private:
 };
 
 
-// --- Panel -------------------------------------------------------------------
+// --- Panel ---------------------------------------------------------------------------
 
 void load_dg_Panel(py::module m) {
-
+	// --- PanelEvent ------------------------------------------------------------------
 	py::class_<PanelEvent>(m, "PanelEvent")
 		.def("GetSource", &PanelEvent::GetSource, py::return_value_policy::reference);
 
+	// --- PanelCloseEvent -------------------------------------------------------------
 	py::class_<PanelCloseEvent, PanelEvent>(m, "PanelCloseEvent")
 		.def("IsAccepted", &PanelCloseEvent::IsAccepted)
 		.def("IsCancelled", &PanelCloseEvent::IsCancelled);
 
+	// --- PanelCloseRequestEvent ------------------------------------------------------
 	py::class_< PanelCloseRequestEvent, PanelEvent>(m, "PanelCloseRequestEvent")
 		.def("IsAccepted", &PanelCloseRequestEvent::IsAccepted)
 		.def("IsCancelled", &PanelCloseRequestEvent::IsCancelled);
 
+	// --- PanelContextMenuEvent -------------------------------------------------------
 	py::class_< PanelContextMenuEvent, PanelEvent>(m, "PanelContextMenuEvent")
 		.def("GetPanel", &PanelContextMenuEvent::GetPanel, py::return_value_policy::reference)
 		.def("GetItem", &PanelContextMenuEvent::GetItem, py::return_value_policy::reference)
 		.def("GetPosition", &PanelContextMenuEvent::GetPosition);
 
+	// --- PanelDropTargetEvent --------------------------------------------------------
 	//py::class_< PanelDropTargetEvent, PanelEvent, DropTargetEventProperty>(m, "PanelDropTargetEvent");
 
+	// --- PanelHelpEvent --------------------------------------------------------------
 	py::class_< PanelHelpEvent, PanelEvent>(m, "PanelHelpEvent")
 		.def("GetItem", &PanelHelpEvent::GetItem, py::return_value_policy::reference);
 
+	// --- PanelHotKeyEvent ------------------------------------------------------------
 	py::class_< PanelHotKeyEvent, PanelEvent>(m, "PanelHotKeyEvent")
 		.def("GetKeyId", &PanelHotKeyEvent::GetKeyId);
 
+	// --- PanelIdleEvent --------------------------------------------------------------
 	py::class_< PanelIdleEvent, PanelEvent>(m, "PanelIdleEvent");
 
+	// --- PanelOpenEvent --------------------------------------------------------------
 	py::class_< PanelOpenEvent, PanelEvent>(m, "PanelOpenEvent")
 		.def("IsSavedPosition", &PanelOpenEvent::IsSavedPosition)
 		.def("IsDefaultPosition", &PanelOpenEvent::IsDefaultPosition)
 		.def("IsAdjustedPosition", &PanelOpenEvent::IsAdjustedPosition);
 
+	// --- PanelResizeEvent ------------------------------------------------------------
 	py::class_< PanelResizeEvent, PanelEvent>(m, "PanelResizeEvent")
 		.def("IsUserResize", &PanelResizeEvent::IsUserResize)
 		.def("GetHorizontalChange", &PanelResizeEvent::GetHorizontalChange)
 		.def("GetVerticalChange", &PanelResizeEvent::GetVerticalChange);
 
+	// --- PanelScaleChangeEvent -------------------------------------------------------
 	py::class_< PanelScaleChangeEvent, PanelEvent>(m, "PanelScaleChangeEvent")
 		.def("GetOldScale", &PanelScaleChangeEvent::GetOldScale)
 		.def("GetNewScale", &PanelScaleChangeEvent::GetNewScale);
 
+	// --- PanelMoveEvent --------------------------------------------------------------
 	py::class_< PanelMoveEvent, PanelEvent>(m, "PanelMoveEvent");
 
+	// --- PanelTopStatusEvent ---------------------------------------------------------
 	py::class_< PanelTopStatusEvent, PanelEvent>(m, "PanelTopStatusEvent")
 		.def("GetPreviousTopStatusPanel", &PanelTopStatusEvent::GetPreviousTopStatusPanel, py::return_value_policy::reference)
 		.def("GetNextTopStatusPanel", &PanelTopStatusEvent::GetNextTopStatusPanel, py::return_value_policy::reference)
 		.def("ByUser", &PanelTopStatusEvent::ByUser);
 
+	// --- PanelWheelEvent -------------------------------------------------------------
 	py::class_< PanelWheelEvent, PanelEvent>(m, "PanelWheelEvent")
 		.def("GetItem", &PanelWheelEvent::GetItem, py::return_value_policy::reference);
 
+	// --- PanelWheelTrackEvent --------------------------------------------------------
 	py::class_< PanelWheelTrackEvent, PanelWheelEvent>(m, "PanelWheelTrackEvent")
 		.def("GetXTrackValue", &PanelWheelTrackEvent::GetXTrackValue)
 		.def("GetYTrackValue", &PanelWheelTrackEvent::GetYTrackValue)
@@ -219,18 +232,21 @@ void load_dg_Panel(py::module m) {
 		.def("IsOptionPressed", &PanelWheelTrackEvent::IsOptionPressed)
 		.def("IsShiftPressed", &PanelWheelTrackEvent::IsShiftPressed);
 
+	// --- PanelBackgroundPaintEvent ---------------------------------------------------
 	py::class_< PanelBackgroundPaintEvent, PanelEvent>(m, "PanelBackgroundPaintEvent")
 		//.def("GetDrawContext", &PanelBackgroundPaintEvent::GetDrawContext)
 		.def("GetWidth", &PanelBackgroundPaintEvent::GetWidth)
 		.def("GetHeight", &PanelBackgroundPaintEvent::GetHeight);	
 
+	// --- PanelActivateEvent ----------------------------------------------------------
 	py::class_< PanelActivateEvent, PanelEvent>(m, "PanelActivateEvent");
 
+	// --- PyPanelObserver -------------------------------------------------------------
 	py::class_<PyPanelObserver>(m, "PanelObserver",py::dynamic_attr())
 		.def(py::init<Panel &, PyEnv::ACExport&>())
 		;
 
-
+	// --- Panel -----------------------------------------------------------------------
 	py::class_<Panel/*, GS::EventSource*/>(m, "Panel")
 		.def("IsValid", &Panel::IsValid)
 		.def("IsExist", &Panel::IsExist)
