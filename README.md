@@ -1,124 +1,118 @@
-# ACPyModuleTutorials
+# DGLib
 
-## Docs
+## Documentation
 
-[AngleEdit](./docs/AngleEdit.md)
+### Namespace DG
 
-[AreaEdit](./docs/AreaEdit.md)
+#### Utility
 
-[button](./docs/button.md)
+* [NativeUnit](./docs/DG/NativeUnit.md)
+* [ShortPoint](./docs/DG/ShortPoint.md)
+* [Point](./docs/DG/Point.md)
+* [NativeUnitPoint](./docs/DG/NativeUnitPoint.md)
+* [NativePoint](./docs/DG/NativePoint.md)
+* [ShortRect](./docs/DG/ShortRect.md)
+* [Rect](./docs/DG/Rect.md)
+* [NativeUnitRect](./docs/DG/NativeUnitRect.md)
+* [NativeRect](./docs/DG/NativeRect.md)
+* [CharRange](./docs/DG/CharRange.md)
 
-[CustomSplitButton](./docs/CustomSplitButton.md)
+#### Panel
 
-[Dialog](./docs/Dialog.md)
+* [Panel](./docs/DG/Panel.md)
 
-[EditControl](./docs/EditControl.md)
 
-[IconButton](./docs/IconButton.md)
+#### Dialog
 
-[IntEdit](./docs/IntEdit.md)
+* [Dialog](./docs/DG/Dialog.md)
+* [ModalDialog](./docs/DG/ModalDialog.md)
+* [ModelessBase](./docs/DG/ModelessBase.md)
+* [ModelessDialog](./docs/DG/ModelessDialog.md)
+* [Palette](./docs/DG/Palette.md)
 
-[LengthEdit](./docs/LengthEdit.md)
 
-[MMPointEdit](./docs/MMPointEdit.md)
+#### BarControl
 
-[ModalDialog](./docs/ModalDialog.md)
+* [BarControl](./docs/DG/BarControl.md)
+* [SingleSpin](./docs/DG/SingleSpin.md)
+* [EditSpin](./docs/DG/EditSpin.md)
+* [Slider](./docs/DG/Slider.md)
+* [ScrollBar](./docs/DG/ScrollBar.md)
+* [ProgressBar](./docs/DG/ProgressBar.md)
 
-[ModelessBase](./docs/ModelessBase.md)
+#### Button
 
-[Palette](./docs/Palette.md)
+* [ButtonItem](./docs/DG/ButtonItem.md)
+* [Button](./docs/DG/Button.md)
+* [IconButton](./docs/DG/IconButton.md)
+* [SplitButtonBase](./docs/DG/SplitButtonBase.md)
+* [SplitButton](./docs/DG/SplitButton.md)
+* [CustomSplitButton](./docs/DG/CustomSplitButton.md)
 
-[PasswordEdit](./docs/PasswordEdit.md)
 
-[PolarAngleEdit](./docs/PolarAngleEdit.md)
+#### EditControl
 
-[PosIntEdit](./docs/PosIntEdit.md)
+* [EditControl](./docs/DG/EditControl.md)
+* [PosIntEdit](./docs/DG/PosIntEdit.md)
+* [IntEdit](./docs/DG/IntEdit.md)
+* [RealEdit](./docs/DG/RealEdit.md)
+* [LengthEdit](./docs/DG/LengthEdit.md)
+* [AreaEdit](./docs/DG/AreaEdit.md)
+* [VolumeEdit](./docs/DG/VolumeEdit.md)
+* [AngleEdit](./docs/DG/AngleEdit.md)
+* [PolarAngleEdit](./docs/DG/PolarAngleEdit.md)
+* [MMPointEdit](./docs/DG/MMPointEdit.md)
+* [TextEditBase](./docs/DG/TextEditBase.md)
+* [TextEdit](./docs/DG/TextEdit.md)
+* [PasswordEdit](./docs/DG/PasswordEdit.md)
+* [ShortcutEdit](./docs/DG/ShortcutEdit.md)
+* [MultiLineEdit](./docs/DG/MultiLineEdit.md)
 
-[RealEdit](./docs/RealEdit.md)
+#### Item
 
-[SplitButton](./docs/SplitButton.md)
+* [ItemBase](./docs/DG/ItemBase.md)
+* [Item](./docs/DG/Item.md)
 
-[TextEdit](./docs/TextEdit.md)
+#### ItemProperty
 
-[TextEditBase](./docs/TextEditBase.md)
+* [FocusableProperty](./docs/DG/FocusableProperty.md)
+* [ItemFontProperty](./docs/DG/ItemFontProperty.md)
+* [ItemTextProperty](./docs/DG/ItemTextProperty.md)
+* [ItemVariousProperty](./docs/DG/ItemVariousProperty.md)
+* [ItemTextLengthLimitProperty](./docs/DG/ItemTextLengthLimitProperty.md)
 
-[VolumeEdit](./docs/VolumeEdit.md)
+#### ListBox
 
-[FocusableProperty](./docs/FocusableProperty.md)
+* [ListBox](./docs/DG/ListBox.md)
+* [SingleSelListBox](./docs/DG/SingleSelListBox.md)
+* [MultiSelListBox](./docs/DG/MultiSelListBox.md)
 
-[Font](./docs/Font.md)
+#### StaticItem
 
-[Item](./docs/Item.md)
+* [StaticText](./docs/DG/StaticText.md)
+* [CenterText](./docs/DG/CenterText.md)
+* [LeftText](./docs/DG/LeftText.md)
+* [RightText](./docs/DG/RightText.md)
+* [GroupBox](./docs/DG/GroupBox.md)
+* [Separator](./docs/DG/Separator.md)
 
-[ItemBase](./docs/ItemBase.md)
+### Namespace DG.EOL
 
-[ItemFontProperty](./docs/ItemFontProperty.md)
+#### Utility
 
-[ItemTextLengthLimitProperty](./docs/ItemTextLengthLimitProperty.md)
+* [Type](./docs/DG/EOL/Type.md)
 
-[ItemTextProperty](./docs/ItemTextProperty.md)
+### Namespace DG.Font
 
-[ItemVariousProperty](./docs/ItemVariousProperty.md)
+* [Size](./docs/DG/Font/Size.md)
+* [Style](./docs/DG/Font/Style.md)
 
-[ListBox](./docs/ListBox.md)
+### Namespace DG.Key
 
-[MultiLineEdit](./docs/MultiLineEdit.md)
-
-[MultiSelListBox](./docs/MultiSelListBox.md)
-
-[ShortcutEdit](./docs/ShortcutEdit.md)
-
-[SingleSelListBox](./docs/SingleSelListBox.md)
-
-[CharRange](./docs/CharRange.md)
-
-[EOL](./docs/EOL.md)
-
-[Key.Code](./docs/Key.Code.md)
-
-[NativePoint](./docs/NativePoint.md)
-
-[NativeUnit](./docs/NativeUnit.md)
-
-[NativeUnitPoint](./docs/NativeUnitPoint.md)
-
-[NativeUnitRect](./docs/NativeUnitRect.md)
-
-[Panel](./docs/Panel.md)
-
-[Rect](./docs/Rect.md)
-
-[ShortPoint](./docs/ShortPoint.md)
-
-[ShortRect](./docs/ShortRect.md)
-
-[BarControl](./docs/BarControl.md)
-
-[CenterText](./docs/CenterText.md)
-
-[EditSpin](./docs/EditSpin.md)
-
-[GroupBox](./docs/GroupBox.md)
-
-[LeftText](./docs/LeftText.md)
-
-[Point](./docs/Point.md)
-
-[ProgressBar](./docs/ProgressBar.md)
-
-[RightText](./docs/RightText.md)
-
-[ScrollBar](./docs/ScrollBar.md)
-
-[Separator](./docs/Separator.md)
-
-[SingleSpin](./docs/SingleSpin.md)
-
-[Slider](./docs/Slider.md)
-
-[StaticText](./docs/StaticText.md)
+* [Code](./docs/DG/Key/Code.md)
+* [Modifier](./docs/DG/Key/Modifier.md)
+* [Special](./docs/DG/Key/Special.md)
 
 ## Help Us
 
-* I hope someone can participate in the graphisoft-python project. Help us to write documents and code.
-* e-mail:502554248@qq.com
+We hope someone can participate in the graphisoft-python project. Help us write documentation and code. If you are interested in our projects, you can fork these projects. If you have a new migration and want to merge it into our project, you can pull request your changes to us. thank you for your support.(e-mail:502554248@qq.com)

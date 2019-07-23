@@ -1,5 +1,0 @@
-# Class ButtonItem
-
-## Inherit
-
-* Item
