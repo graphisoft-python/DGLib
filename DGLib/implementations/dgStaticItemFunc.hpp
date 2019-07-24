@@ -142,7 +142,7 @@ void load_dg_StaticTextEX(py::module m) {
 void load_dg_GroupBox(py::module m) {
 	py::class_<GroupBox, Item, ItemFontProperty, ItemTextProperty> m_groupBox(m, "GroupBox");
 
-	py::enum_<GroupBox::GroupBoxType>(m_groupBox, "GroupBox")
+	py::enum_<GroupBox::GroupBoxType>(m_groupBox, "GroupBoxType")
 		.value("Primary", GroupBox::GroupBoxType::Primary)
 		.value("Secondary", GroupBox::GroupBoxType::Secondary)
 		.export_values();

@@ -17,8 +17,6 @@ if (PyErr_Occurred()) {												\
 
 
 
-
-
 #define OBSERVER_CALL_EVENT_SET_PROCESSED(name,arg,pro_ptr)			{\
 py::gil_scoped_acquire_for_archicad acq(this->m_state);				\
 try {																\

@@ -35,6 +35,7 @@ PYBIND11_MODULE(DGLib, m) {
 	load_dg_NativeUnit(m);
 	load_dg_TPointEX(m);
 	load_dg_TRectEX(m);
+	load_dg_MousePosData(m);
 
 // --- DGPanel
 	load_dg_Panel(m);
