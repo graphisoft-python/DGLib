@@ -86,7 +86,7 @@ private:
 
 // --- BarControl ------------------------------------------------------------------------------
 
-void load_BarControl(py::module m) {
+void load_dg_BarControl(py::module m) {
 	// --- BarControlChangeEvent ---------------------------------------------------------------
 	py::class_<BarControlChangeEvent, ItemChangeEvent>(m, "BarControlChangeEvent")
 		.def("GetSource", &BarControlChangeEvent::GetSource, py::return_value_policy::reference)
@@ -112,7 +112,7 @@ void load_BarControl(py::module m) {
 
 // --- BarControlEX ----------------------------------------------------------------------------
 
-void load_BarControlEX(py::module m) {
+void load_dg_BarControlEX(py::module m) {
 	// --- SingleSpin --------------------------------------------------------------------------
 	py::class_<SingleSpin, BarControl>(m, "SingleSpin")
 		.def(py::init<Panel &, Rect &>());
@@ -141,7 +141,7 @@ void load_BarControlEX(py::module m) {
 
 // --- ScrollBar -------------------------------------------------------------------------------
 
-void load_ScrollBar(py::module m) {
+void load_dg_ScrollBar(py::module m) {
 	// --- ScrollBarChangeEvent ----------------------------------------------------------------
 	py::class_<ScrollBarChangeEvent, ItemChangeEvent>(m, "ScrollBarChangeEvent")
 		.def("GetSource", &ScrollBarChangeEvent::GetSource, py::return_value_policy::reference)
@@ -206,7 +206,7 @@ void load_ScrollBar(py::module m) {
 
 // --- ProgressBar -----------------------------------------------------------------------------
 
-void load_ProgressBar(py::module m) {
+void load_dg_ProgressBar(py::module m) {
 	py::class_<ProgressBar, Item> m_progressBar(m, "ProgressBar");
 
 	py::enum_<ProgressBar::FrameType>(m_progressBar, "FrameType")

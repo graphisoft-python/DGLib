@@ -102,7 +102,7 @@ private:
 
 // --- ButtonItem ------------------------------------------------------------------------------
 
-void load_ButtonItem(py::module m) {
+void load_dg_ButtonItem(py::module m) {
 	// --- ButtonClickEvent---------------------------------------------------------------------
 	py::class_<ButtonClickEvent, ItemClickEvent>(m, "ButtonClickEvent")
 		.def("GetSource", &ButtonClickEvent::GetSource, py::return_value_policy::reference);
@@ -118,7 +118,7 @@ void load_ButtonItem(py::module m) {
 
 // --- ButtonItemEX ----------------------------------------------------------------------------
 
-void load_ButtonItemEX(py::module m) {
+void load_dg_ButtonItemEX(py::module m) {
 	// --- Button ------------------------------------------------------------------------------
 	py::class_<Button, ButtonItem, ItemFontProperty, ItemTextProperty/*, ItemIconProperty*/> m_button(m, "Button");
 
@@ -199,7 +199,7 @@ void load_ButtonItemEX(py::module m) {
 
 // --- SplitButton -----------------------------------------------------------------------------
 
-void load_SplitButton(py::module m) {
+void load_dg_SplitButton(py::module m) {
 	// --- SplitButtonChangeEvent --------------------------------------------------------------
 	py::class_<SplitButtonChangeEvent, ItemChangeEvent>(m, "SplitButtonChangeEvent")
 		.def("GetSource", &SplitButtonChangeEvent::GetSource, py::return_value_policy::reference);
@@ -248,7 +248,7 @@ void load_SplitButton(py::module m) {
 
 // --- CustomSplitButton -----------------------------------------------------------------------
 
-void load_CustomSplitButton(py::module m) {
+void load_dg_CustomSplitButton(py::module m) {
 	// --- CustomSplitButtonOpenRequestedEvent -------------------------------------------------
 	py::class_<CustomSplitButtonOpenRequestedEvent, ItemEvent>(m, "CustomSplitButtonOpenRequestedEvent")
 		.def("GetSource", &CustomSplitButtonOpenRequestedEvent::GetSource, py::return_value_policy::reference);

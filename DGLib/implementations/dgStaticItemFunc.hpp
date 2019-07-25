@@ -44,7 +44,7 @@ private:
 
 // --- StaticItemEventProperty -----------------------------------------------------------------
 
-void load_StaticItemEventProperty(py::module m) {
+void load_dg_StaticItemEventProperty(py::module m) {
 	py::class_<StaticItemEventProperty>(m, "StaticItemEventProperty")
 		.def("GetMouseOffset", &StaticItemEventProperty::GetMouseOffset)
 		.def("IsCommandPressed", &StaticItemEventProperty::IsCommandPressed)
@@ -58,7 +58,7 @@ void load_StaticItemEventProperty(py::module m) {
 
 // --- StaticText ------------------------------------------------------------------------------
 
-void load_StaticText(py::module m) {
+void load_dg_StaticText(py::module m) {
 	// --- StaticTextClickEvent
 	py::class_<StaticTextClickEvent, ItemClickEvent>(m, "StaticTextClickEvent")
 		.def("GetSource", &StaticTextClickEvent::GetSource, py::return_value_policy::reference);
@@ -104,7 +104,7 @@ void load_StaticText(py::module m) {
 
 // --- StaticTextEX ----------------------------------------------------------------------------
 
-void load_StaticTextEX(py::module m) {
+void load_dg_StaticTextEX(py::module m) {
 	// --- CenterText --------------------------------------------------------------------------
 	py::class_<CenterText, StaticText>(m, "CenterText")
 		.def(py::init<Panel &, Rect &, StaticText::FrameType, StaticText::VAlignType, StaticText::Truncation>(),
@@ -136,7 +136,7 @@ void load_StaticTextEX(py::module m) {
 
 // --- GroupBox --------------------------------------------------------------------------------
 
-void load_GroupBox(py::module m) {
+void load_dg_GroupBox(py::module m) {
 	py::class_<GroupBox, Item, ItemFontProperty, ItemTextProperty> m_groupBox(m, "GroupBox");
 
 	py::enum_<GroupBox::GroupBoxType>(m_groupBox, "GroupBoxType")
@@ -151,7 +151,7 @@ void load_GroupBox(py::module m) {
 
 // --- Separator -------------------------------------------------------------------------------
 
-void load_Separator(py::module m) {
+void load_dg_Separator(py::module m) {
 	py::class_<Separator, Item> (m, "Separator")
 		.def(py::init<Panel &, Rect &>());
 }
