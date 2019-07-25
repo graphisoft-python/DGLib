@@ -16,7 +16,7 @@
 
 PYBIND11_MODULE(DGLib, m) {
 
-	m.def("version", []() {	return "version 0.0.1"; });
+	m.def("version", []() {	return "version 0.0.2"; });
 
 // --- Add bindings here ------------------------------------------------------------------
 
