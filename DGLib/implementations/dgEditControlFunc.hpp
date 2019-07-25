@@ -155,7 +155,7 @@ private:
 
 // --- EditControl -------------------------------------------------------------------------
 
-void load_EditControl(py::module m) {
+void load_dg_EditControl(py::module m) {
 	// --- EditDragSourceEvent -------------------------------------------------------------
 	//py::class_<EditDragSourceEvent, ItemDragSourceEvent>(m, "EditDragSourceEvent")
 	//	.def("GetSource", &EditDragSourceEvent::GetSource, py::return_value_policy::reference);
@@ -187,7 +187,7 @@ void load_EditControl(py::module m) {
 
 // --- PosIntEdit --------------------------------------------------------------------------
 
-void load_PosIntEdit(py::module m) {
+void load_dg_PosIntEdit(py::module m) {
 	// --- PosIntEditChangeEvent -----------------------------------------------------------
 	py::class_<PosIntEditChangeEvent, ItemChangeEvent>(m, "PosIntEditChangeEvent")
 		.def("GetSource", &PosIntEditChangeEvent::GetSource, py::return_value_policy::reference)
@@ -225,7 +225,7 @@ void load_PosIntEdit(py::module m) {
 
 // --- IntEdit -----------------------------------------------------------------------------
 
-void load_IntEdit(py::module m) {
+void load_dg_IntEdit(py::module m) {
 
 	// --- IntEditChangeEvent --------------------------------------------------------------
 	py::class_<IntEditChangeEvent, ItemChangeEvent>(m, "IntEditChangeEvent")
@@ -264,7 +264,7 @@ void load_IntEdit(py::module m) {
 
 // --- RealEdit ----------------------------------------------------------------------------
 
-void load_RealEdit(py::module m) {
+void load_dg_RealEdit(py::module m) {
 	// --- RealEditChangeEvent -------------------------------------------------------------
 	py::class_<RealEditChangeEvent, ItemChangeEvent>(m, "RealEditChangeEvent")
 		.def("GetSource", &RealEditChangeEvent::GetSource, py::return_value_policy::reference)
@@ -302,7 +302,7 @@ void load_RealEdit(py::module m) {
 
 // --- RealEditEX --------------------------------------------------------------------------
 
-void load_RealEditEX(py::module m) {
+void load_dg_RealEditEX(py::module m) {
 	// --- LengthEdit ----------------------------------------------------------------------
 	py::class_<LengthEdit, RealEdit> m_lengthEdit(m, "LengthEdit");
 
@@ -375,7 +375,7 @@ void load_RealEditEX(py::module m) {
 
 // --- TextEditBase ------------------------------------------------------------------------
 
-void load_TextEditBase(py::module m) {
+void load_dg_TextEditBase(py::module m) {
 	// --- TextEditChangeEvent -------------------------------------------------------------
 	py::class_<TextEditChangeEvent, ItemChangeEvent>(m, "TextEditChangeEvent")
 		.def("GetSource",&TextEditChangeEvent::GetSource, py::return_value_policy::reference);
@@ -392,7 +392,7 @@ void load_TextEditBase(py::module m) {
 
 
 // --- TextEditBaseEX ----------------------------------------------------------------------
-void load_TextEditBaseEX(py::module m) {
+void load_dg_TextEditBaseEX(py::module m) {
 	// --- TextEdit ------------------------------------------------------------------------
 	py::class_<TextEdit, TextEditBase, ItemVariousProperty, ItemTextLengthLimitProperty>(m, "TextEdit")
 		.def(py::init<Panel &, Rect &, short, EditControl::FrameType, EditControl::UpdateType, EditControl::ReadOnlyType>(),
@@ -438,7 +438,7 @@ void load_TextEditBaseEX(py::module m) {
 
 // --- ShortcutEdit ------------------------------------------------------------------------
 
-void load_ShortcutEdit(py::module m) {
+void load_dg_ShortcutEdit(py::module m) {
 	// --- ShortcutHitEvent ----------------------------------------------------------------
 	py::class_<ShortcutHitEvent, ItemChangeEvent>(m, "ShortcutHitEvent")
 		.def("GetKey", &ShortcutHitEvent::GetKey)

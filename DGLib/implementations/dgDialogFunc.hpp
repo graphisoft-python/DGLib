@@ -9,7 +9,7 @@ using namespace DG;
 
 // --- Dialog ------------------------------------------------------------------------------
 
-void load_Dialog(py::module m) {
+void load_dg_Dialog(py::module m) {
 	py::class_<Dialog, Panel> m_dialog(m, "Dialog");
 
 	py::enum_<Dialog::DialogType>(m_dialog, "DialogType")
@@ -185,7 +185,7 @@ void load_Dialog(py::module m) {
 
 // --- DialogEX ----------------------------------------------------------------------------
 
-void load_DialogEX(py::module m) {
+void load_dg_DialogEX(py::module m) {
 	// --- ModalDialog ---------------------------------------------------------------------
 	py::class_<ModalDialog, Dialog> m_modalDialog(m,"ModalDialog");
 	
@@ -236,7 +236,7 @@ void load_DialogEX(py::module m) {
 		.def("GetStatus", &ModelessBase::GetStatus);
 }
 
-void load_ModelessBaseEX(py::module m) {
+void load_dg_ModelessBaseEX(py::module m) {
 	// --- ModelessDialog -----------------------------------------------------------------
 	py::class_<ModelessDialog, ModelessBase> m_modelessDialog(m, "ModelessDialog");
 

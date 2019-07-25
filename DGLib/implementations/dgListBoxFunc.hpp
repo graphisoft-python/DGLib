@@ -96,7 +96,7 @@ private:
 
 // --- ListBox ------------------------------------------------------------------------------
 
-void load_ListBox(py::module m) {
+void load_dg_ListBox(py::module m) {
 	// --- ListBoxDragSourceEvent -----------------------------------------------------------
 	//py::class_<ListBoxDragSourceEvent, ItemDragSourceEvent>(m, "ListBoxDragSourceEvent")
 	//	.def("GetSource", &ListBoxDragSourceEvent::GetSource, py::return_value_policy::reference);
@@ -433,7 +433,7 @@ void load_ListBox(py::module m) {
 
 //  -- ListBoxEX ----------------------------------------------------------------------------
 
-void load_ListBoxEX(py::module m) {
+void load_dg_ListBoxEX(py::module m) {
 	// --- SingleSelListBox -----------------------------------------------------------------
 	py::class_<SingleSelListBox, ListBox>(m, "SingleSelListBox")
 		.def(py::init<Panel &, Rect &, ListBox::ScrollType, ListBox::PartialItemType, ListBox::HeaderFlag, short, ListBox::FrameType>(),
