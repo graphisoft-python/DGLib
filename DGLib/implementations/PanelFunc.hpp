@@ -158,7 +158,7 @@ private:
 
 // --- Panel ---------------------------------------------------------------------------
 
-void load_dg_Panel(py::module m) {
+void load_Panel(py::module m) {
 	// --- PanelEvent ------------------------------------------------------------------
 	py::class_<PanelEvent>(m, "PanelEvent")
 		.def("GetSource", &PanelEvent::GetSource, py::return_value_policy::reference);

@@ -10,7 +10,7 @@ using namespace DG;
 
 //namespace DG::EOL -----------------------------------------------------------------------
 
-void load_dg_EOL(py::module m) {
+void load_EOL(py::module m) {
 	py::enum_<EOL::Type>(m, "Type")
 		.value("Default", EOL::Type::Default)
 		.value("CR", EOL::Type::CR)
@@ -54,7 +54,7 @@ void load_dg_EOL(py::module m) {
 
 // --- GS::Range<Int32> -------------------------------------------------------------------
 
-void load_dg_CharRange(py::module m) {
+void load_CharRange(py::module m) {
 	py::class_<CharRange>(m, "CharRange")
 		.def(py::init<>())
 		.def(py::init<Int32 &, Int32 &>())
@@ -106,7 +106,7 @@ void load_dg_CharRange(py::module m) {
 
 
 //namespace DG::Key -----------------------------------------------------------------------
-void load_dg_Key(py::module m) {
+void load_Key(py::module m) {
 	py::enum_<Key::Modifier>(m, "Modifier")
 		.value("NoModifier", Key::Modifier::NoModifier)
 		.value("Command", Key::Modifier::Command)
@@ -226,7 +226,7 @@ void load_dg_Key(py::module m) {
 
 // --- NativeUnit -------------------------------------------------------------------------
 
-void load_dg_NativeUnit(py::module m) {
+void load_NativeUnit(py::module m) {
 	py::class_<NativeUnit>(m, "NativeUnit")
 		.def(py::init<>())
 		.def(py::init<short>())
@@ -250,7 +250,7 @@ void load_dg_NativeUnit(py::module m) {
 
 // --- TPointEX ---------------------------------------------------------------------------
 
-void load_dg_TPointEX(py::module m) {
+void load_TPointEX(py::module m) {
 	// --- TPoint<short> ------------------------------------------------------------------
 	py::class_<TPoint<short>>(m, "ShortPoint")
 		//.def(py::init<>())
@@ -295,7 +295,7 @@ void load_dg_TPointEX(py::module m) {
 
 
 // --- TRectEX ----------------------------------------------------------------------------
-void load_dg_TRectEX(py::module m) {
+void load_TRectEX(py::module m) {
 	// --- TRect<short>
 	py::class_<TRect<short>>(m, "ShortRect")
 		//.def(py::init<>())
@@ -425,7 +425,7 @@ void load_dg_TRectEX(py::module m) {
 
 // --- MousePosData -----------------------------------------------------------------------
 
-void load_dg_MousePosData(py::module m) {
+void load_MousePosData(py::module m) {
 	py::class_<MousePosData>(m, "MousePosData")
 		.def(py::init<>())
 
