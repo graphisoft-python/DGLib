@@ -31,7 +31,7 @@ private:
 
 // --- ItemBase ------------------------------------------------------------------------------
 
-void load_dg_ItemBase(py::module m) {
+void load_ItemBase(py::module m) {
 	py::class_<ItemBase> (m, "ItemBase")
 		.def("IsValid", &ItemBase::IsValid)
 		.def("GetPanel", &ItemBase::GetPanel, py::return_value_policy::reference)
@@ -41,7 +41,7 @@ void load_dg_ItemBase(py::module m) {
 
 // --- Item ----------------------------------------------------------------------------------
 
-void load_dg_Item(py::module m) {
+void load_Item(py::module m) {
 	// --- ItemEvent -------------------------------------------------------------------------
 	py::class_<ItemEvent/*, GS::Event*/>(m, "ItemEvent")
 		.def("GetSource", &ItemEvent::GetSource, py::return_value_policy::reference);
