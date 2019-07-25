@@ -2,6 +2,7 @@
 
 #include "../stdafx.h"
 
+#include "Color.hpp"
 #include "DGItemProperty.hpp"
 #include "DGItem.hpp"
 
@@ -57,13 +58,13 @@ void load_dg_ItemBaseEX(py::module m) {
 		.def("GetText", &ItemTextProperty::GetText);
 
 	// --- ItemColorProperty ------------------------------------------------------------------
-	//	py::class_<ItemColorProperty, ItemBase>(m, "ItemColorProperty")
-	//		.def("SetTextColor", &ItemColorProperty::SetTextColor)
-	//		.def("GetTextColor", &ItemColorProperty::GetTextColor)
-	//		.def("SetBackgroundColor", &ItemColorProperty::SetBackgroundColor)
-	//		.def("GetBackgroundColor", &ItemColorProperty::GetBackgroundColor)
-	//		.def("ResetDefaultTextColor", &ItemColorProperty::ResetDefaultTextColor)
-	//		.def("ResetDefaultBackgroundColor", &ItemColorProperty::ResetDefaultBackgroundColor);
+	py::class_<ItemColorProperty, ItemBase>(m, "ItemColorProperty")
+		.def("SetTextColor", &ItemColorProperty::SetTextColor)
+		.def("GetTextColor", &ItemColorProperty::GetTextColor)
+		.def("SetBackgroundColor", &ItemColorProperty::SetBackgroundColor)
+		.def("GetBackgroundColor", &ItemColorProperty::GetBackgroundColor)
+		.def("ResetDefaultTextColor", &ItemColorProperty::ResetDefaultTextColor)
+		.def("ResetDefaultBackgroundColor", &ItemColorProperty::ResetDefaultBackgroundColor);
 
 	// --- ItemVariousProperty ----------------------------------------------------------------
 	py::class_<ItemVariousProperty, ItemBase>(m, "ItemVariousProperty")

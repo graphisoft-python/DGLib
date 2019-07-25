@@ -76,7 +76,6 @@ void load_dg_Dialog(py::module m) {
 	m_dialog
 		.def("GetDialogType", &Dialog::GetDialogType)
 		.def("IsDGDialog", &Dialog::IsDGDialog)
-		//.def("GetWindow", &Dialog::GetWindow, py::return_value_policy::reference)
 		.def("Center", &Dialog::Center)
 		.def("Move", (void (Dialog::*)
 			(short, short))	&Dialog::Move)
@@ -196,7 +195,6 @@ void load_dg_DialogEX(py::module m) {
 		.export_values();
 
 	m_modalDialog
-		//.def(py::init<GSResModule , short, GSResModule>())
 		.def(py::init<NativePoint &, short, short, GS::Guid &, Dialog::GrowType, Dialog::CaptionType, Dialog::FrameType>(),
 			py::arg("position"), 
 			py::arg("width"), 
@@ -254,8 +252,6 @@ void load_dg_ModelessBaseEX(py::module m) {
 		.export_values();
 
 	m_modelessDialog
-		//.def(py::init<GSResModule , short, GSResModule>())
-		//.def(py::init<GSResModule, short, GSResModule,GS::Guid &>())
 		.def(py::init<NativePoint &, short, short, GS::Guid &, Dialog::GrowType, Dialog::CloseType, Dialog::MinimizeType, Dialog::MaximizeType, Dialog::CaptionType, Dialog::FrameType, Dialog::SpecialFeatures>(),
 			py::arg("position"),
 			py::arg("width"),
@@ -299,8 +295,6 @@ void load_dg_ModelessBaseEX(py::module m) {
 
 	// --- Palette ------------------------------------------------------------------------
 	py::class_<Palette, ModelessBase>(m, "Palette")
-		//.def(py::init<GSResModule , short, GSResModule>())
-		//.def(py::init<GSResModule, short, GSResModule,GS::Guid &>())
 		.def(py::init<NativePoint &, short, short, GS::Guid &, Dialog::GrowType, Dialog::CloseType, Dialog::CaptionType, Dialog::FrameType, Dialog::SpecialFeatures>(),
 			py::arg("position"),
 			py::arg("width"),

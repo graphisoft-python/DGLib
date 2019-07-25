@@ -76,7 +76,7 @@ void load_dg_StaticText(py::module m) {
 		.def(py::init<StaticText &, ACExport &>());
 
 	// --- StaticText --------------------------------------------------------------------------
-	py::class_<StaticText, Item, ItemFontProperty, ItemTextProperty/*, ItemColorProperty*/> m_staticText(m, "StaticText");
+	py::class_<StaticText, Item, ItemFontProperty, ItemTextProperty, ItemColorProperty> m_staticText(m, "StaticText");
 		
 	py::enum_<StaticText::VAlignType>(m_staticText, "VAlignType")
 		.value("VTop", StaticText::VAlignType::VTop)
@@ -107,7 +107,6 @@ void load_dg_StaticText(py::module m) {
 void load_dg_StaticTextEX(py::module m) {
 	// --- CenterText --------------------------------------------------------------------------
 	py::class_<CenterText, StaticText>(m, "CenterText")
-		//.def(py::init<Panel &, short>())
 		.def(py::init<Panel &, Rect &, StaticText::FrameType, StaticText::VAlignType, StaticText::Truncation>(),
 			py::arg("panel"),
 			py::arg("rect"),
@@ -117,7 +116,6 @@ void load_dg_StaticTextEX(py::module m) {
 
 	// --- LeftText ----------------------------------------------------------------------------
 	py::class_<LeftText, StaticText>(m, "LeftText")
-		//.def(py::init<Panel &, short>())
 		.def(py::init<Panel &, Rect &, StaticText::FrameType, StaticText::VAlignType, StaticText::Truncation>(),
 			py::arg("panel"),
 			py::arg("rect"),
@@ -127,7 +125,6 @@ void load_dg_StaticTextEX(py::module m) {
 
 	// --- RightText ---------------------------------------------------------------------------
 	py::class_<RightText, StaticText>(m, "RightText")
-		//.def(py::init<Panel &, short>())
 		.def(py::init<Panel &, Rect &, StaticText::FrameType, StaticText::VAlignType, StaticText::Truncation>(),
 			py::arg("panel"),
 			py::arg("rect"),
@@ -148,7 +145,6 @@ void load_dg_GroupBox(py::module m) {
 		.export_values();
 
 	m_groupBox
-		//.def(py::init<Panel &, short>())
 		.def(py::init<Panel &, Rect &, GroupBox::GroupBoxType>());
 }
 
@@ -157,7 +153,6 @@ void load_dg_GroupBox(py::module m) {
 
 void load_dg_Separator(py::module m) {
 	py::class_<Separator, Item> (m, "Separator")
-		//.def(py::init<Panel &, short>())
 		.def(py::init<Panel &, Rect &>());
 }
 

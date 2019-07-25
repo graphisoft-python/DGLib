@@ -115,12 +115,10 @@ void load_dg_BarControl(py::module m) {
 void load_dg_BarControlEX(py::module m) {
 	// --- SingleSpin --------------------------------------------------------------------------
 	py::class_<SingleSpin, BarControl>(m, "SingleSpin")
-		//.def(py::init<Panel &, short>())
 		.def(py::init<Panel &, Rect &>());
 
 	// --- EditSpin ----------------------------------------------------------------------------
 	py::class_<EditSpin, BarControl>(m, "EditSpin")
-		//.def(py::init<Panel &, short>())
 		.def(py::init<Panel &, Rect &, PosIntEdit &>())
 		.def(py::init<Panel &, Rect &, IntEdit &>());
 
@@ -133,7 +131,6 @@ void load_dg_BarControlEX(py::module m) {
 		.export_values();
 
 	m_Slider
-		//.def(py::init<Panel &, short>())
 		.def(py::init<Panel &, Rect &, short, Slider::SliderType>(),
 			py::arg("panel"),
 			py::arg("rect"),
@@ -190,7 +187,6 @@ void load_dg_ScrollBar(py::module m) {
 		.export_values();
 
 	m_scrollBar
-		//.def(py::init<Panel &, short>())
 		.def(py::init<Panel &, Rect &, ScrollBar::ThumbType, ScrollBar::FocusableType, ScrollBar::AutoScrollType>(),
 			py::arg("panel"),
 			py::arg("rect"),
@@ -221,7 +217,6 @@ void load_dg_ProgressBar(py::module m) {
 		.export_values();
 
 	m_progressBar
-		//.def(py::init<Panel &, short>())
 		.def(py::init<Panel &, Rect &, ProgressBar::FrameType>(),
 			py::arg("panel"),
 			py::arg("rect"),

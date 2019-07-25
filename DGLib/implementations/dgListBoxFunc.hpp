@@ -33,7 +33,7 @@ public:
 	}
 
 	void ListBoxItemDragged(const ListBoxDragEvent& ev) override {
-
+		OBSERVER_CALL_EVENT("ListBoxItemDragged", ev);
 	}
 
 	void ListBoxClicked(const ListBoxClickEvent& ev) override {
@@ -81,7 +81,7 @@ public:
 	}
 
 	void ListBoxHeaderItemDragged(const ListBoxHeaderItemDragEvent& ev) override {
-
+		OBSERVER_CALL_EVENT("ListBoxHeaderItemDragged", ev);
 	}
 
 	void ListBoxHeaderButtonClicked(const ListBoxHeaderButtonClickEvent& ev) override {
@@ -108,10 +108,10 @@ void load_dg_ListBox(py::module m) {
 	//	.def("GetSource", &ListBoxDropTargetEvent::GetSource, py::return_value_policy::reference);
 
 	// --- ListBoxDragEvent -----------------------------------------------------------------
-	//py::class_<ListBoxDragEvent, ItemChangeEvent>(m, "ListBoxDragEvent")
-	//	.def("GetSource", &ListBoxDragEvent::GetSource, py::return_value_policy::reference)
-	//	.def("GetPreviousIndex", &ListBoxDragEvent::GetPreviousIndex)
-	//	.def("GetNewIndex", &ListBoxDragEvent::GetNewIndex);
+	py::class_<ListBoxDragEvent, ItemChangeEvent>(m, "ListBoxDragEvent")
+		.def("GetSource", &ListBoxDragEvent::GetSource, py::return_value_policy::reference)
+		.def("GetPreviousIndex", &ListBoxDragEvent::GetPreviousIndex)
+		.def("GetNewIndex", &ListBoxDragEvent::GetNewIndex);
 
 	// --- ListBoxEventProperty -------------------------------------------------------------
 	py::class_<ListBoxEventProperty>(m, "ListBoxEventProperty")
@@ -365,22 +365,20 @@ void load_dg_ListBox(py::module m) {
 
 		.def("SetTabItemFontStyle", &ListBox::SetTabItemFontStyle)
 		.def("GetTabItemFontStyle", &ListBox::GetTabItemFontStyle)
-
-		//.def("SetTabItemColor", &ListBox::SetTabItemColor)
-		//.def("SetTabItemBackgroundColor", &ListBox::SetTabItemBackgroundColor)
-		//.def("GetTabItemColor", &ListBox::GetTabItemColor)
-		//.def("GetTabItemBackgroundColor", &ListBox::GetTabItemBackgroundColor)
-
+		.def("SetTabItemColor", &ListBox::SetTabItemColor)
+		.def("SetTabItemBackgroundColor", &ListBox::SetTabItemBackgroundColor)
+		.def("GetTabItemColor", &ListBox::GetTabItemColor)
+		.def("GetTabItemBackgroundColor", &ListBox::GetTabItemBackgroundColor)
 		.def("SetOnTabItem", &ListBox::SetOnTabItem)
 		.def("RemoveOnTabItem", &ListBox::RemoveOnTabItem)
 		.def("GetOnTabItem", &ListBox::GetOnTabItem,py::return_value_policy::reference)
 		.def("SetItemFontStyle", &ListBox::SetItemFontStyle)
 		.def("GetItemFontStyle", &ListBox::GetItemFontStyle)
+		.def("SetItemColor", &ListBox::SetItemColor)
+		.def("SetItemBackgroundColor", &ListBox::SetItemBackgroundColor)
+		.def("GetItemColor", &ListBox::GetItemColor)
+		.def("GetItemBackgroundColor", &ListBox::GetItemBackgroundColor)
 
-		//.def("SetItemColor", &ListBox::SetItemColor)
-		//.def("SetItemBackgroundColor", &ListBox::SetItemBackgroundColor)
-		//.def("GetItemColor", &ListBox::GetItemColor)
-		//.def("GetItemBackgroundColor", &ListBox::GetItemBackgroundColor)
 		//.def("SetItemValue", &ListBox::SetItemValue)
 		//.def("GetItemValue", &ListBox::GetItemValue)
 		//.def("SetItemObjectData", &ListBox::SetItemObjectData)
@@ -404,8 +402,8 @@ void load_dg_ListBox(py::module m) {
 		.def("SetNoPartialItem", &ListBox::SetNoPartialItem)
 		.def("EnableSeparatorLines", &ListBox::EnableSeparatorLines)
 		.def("HasSeparatorLines", &ListBox::HasSeparatorLines)
-		//.def("SetSeparatorLineColor", &ListBox::SetSeparatorLineColor)
-		//.def("GetSeparatorLineColor", &ListBox::GetSeparatorLineColor)
+		.def("SetSeparatorLineColor", &ListBox::SetSeparatorLineColor)
+		.def("GetSeparatorLineColor", &ListBox::GetSeparatorLineColor)
 		.def("SelectItem", &ListBox::SelectItem)
 		//.def("SelectItems", &ListBox::SelectItems)
 		.def("DeselectItem", &ListBox::DeselectItem)
@@ -438,7 +436,6 @@ void load_dg_ListBox(py::module m) {
 void load_dg_ListBoxEX(py::module m) {
 	// --- SingleSelListBox -----------------------------------------------------------------
 	py::class_<SingleSelListBox, ListBox>(m, "SingleSelListBox")
-		//.def(py::init<Panel &, short>())
 		.def(py::init<Panel &, Rect &, ListBox::ScrollType, ListBox::PartialItemType, ListBox::HeaderFlag, short, ListBox::FrameType>(),
 			py::arg("panel"),
 			py::arg("rect"),
@@ -450,7 +447,6 @@ void load_dg_ListBoxEX(py::module m) {
 
 	// --- MultiSelListBox  -----------------------------------------------------------------
 	py::class_<MultiSelListBox, ListBox>(m, "MultiSelListBox")
-		//.def(py::init<Panel &, short>())
 		.def(py::init<Panel &, Rect &, ListBox::ScrollType, ListBox::PartialItemType, ListBox::HeaderFlag, short, ListBox::FrameType>(),
 			py::arg("panel"),
 			py::arg("rect"),

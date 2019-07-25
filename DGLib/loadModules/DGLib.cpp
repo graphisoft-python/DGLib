@@ -12,6 +12,7 @@
 #include "../implementations/dgPanelFunc.hpp"
 #include "../implementations/dgStaticItemFunc.hpp"
 #include "../implementations/dgUtilityFunc.hpp"
+#include "../implementations/dgUserItemFunc.hpp"
 
 
 PYBIND11_MODULE(DGLib, m) {
@@ -77,6 +78,10 @@ PYBIND11_MODULE(DGLib, m) {
 	load_dg_StaticTextEX(m);
 	load_dg_GroupBox(m);
 	load_dg_Separator(m);
+
+// --- DGUserItem
+	load_dg_UserItemEventProperty(m);
+	load_dg_UserItem(m);
 
 // --- Add bindings end -------------------------------------------------------------------
 }

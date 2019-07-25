@@ -207,7 +207,6 @@ void load_dg_PosIntEdit(py::module m) {
 		.export_values();
 
 	m_posIntEdit
-		//.def(py::init<Panel &, short>())
 		.def(py::init<Panel &, Rect &, EditControl::FrameType, PosIntEdit::AbsRelType, EditControl::UpdateType, EditControl::ReadOnlyType>(),
 			py::arg("panel"), 
 			py::arg("rect"),
@@ -247,7 +246,6 @@ void load_dg_IntEdit(py::module m) {
 		.export_values();
 
 	m_intEdit
-		//.def(py::init<Panel &, short>())
 		.def(py::init<Panel &, Rect &, EditControl::FrameType, IntEdit::AbsRelType, EditControl::UpdateType, EditControl::ReadOnlyType>(),
 			py::arg("panel"), 
 			py::arg("rect"),
@@ -286,7 +284,6 @@ void load_dg_RealEdit(py::module m) {
 		.export_values();
 
 	m_realEdit
-		//.def(py::init<Panel &, short>())
 		.def(py::init<Panel &, Rect &, EditControl::FrameType, RealEdit::AbsRelType, EditControl::UpdateType, EditControl::ReadOnlyType>(),
 			py::arg("panel"), 
 			py::arg("rect"),
@@ -315,7 +312,6 @@ void load_dg_RealEditEX(py::module m) {
 		.export_values();
 
 	m_lengthEdit
-		//.def(py::init<Panel &, short>())
 		.def(py::init<Panel &, Rect &, LengthEdit::ChangeFontType, EditControl::FrameType, RealEdit::AbsRelType, EditControl::UpdateType, EditControl::ReadOnlyType>(),
 			py::arg("panel"), 
 			py::arg("rect"),
@@ -327,7 +323,6 @@ void load_dg_RealEditEX(py::module m) {
 
 	// --- AreaEdit ------------------------------------------------------------------------
 	py::class_<AreaEdit, RealEdit>(m, "AreaEdit")
-		//.def(py::init<Panel &, short>())
 		.def(py::init<Panel &, Rect &, EditControl::FrameType, RealEdit::AbsRelType, EditControl::UpdateType, EditControl::ReadOnlyType>(),
 			py::arg("panel"),
 			py::arg("rect"),
@@ -338,7 +333,6 @@ void load_dg_RealEditEX(py::module m) {
 
 	// --- VolumeEdit ----------------------------------------------------------------------
 	py::class_<VolumeEdit, RealEdit>(m, "VolumeEdit")
-		//.def(py::init<Panel &, short>())
 		.def(py::init<Panel &, Rect &, EditControl::FrameType, RealEdit::AbsRelType, EditControl::UpdateType, EditControl::ReadOnlyType>(),
 			py::arg("panel"),
 			py::arg("rect"),
@@ -349,7 +343,6 @@ void load_dg_RealEditEX(py::module m) {
 
 	// --- AngleEdit -----------------------------------------------------------------------
 	py::class_<AngleEdit, RealEdit>(m, "AngleEdit")
-		//.def(py::init<Panel &, short>())
 		.def(py::init<Panel &, Rect &, EditControl::FrameType, RealEdit::AbsRelType, EditControl::UpdateType, EditControl::ReadOnlyType>(),
 			py::arg("panel"),
 			py::arg("rect"),
@@ -360,7 +353,6 @@ void load_dg_RealEditEX(py::module m) {
 	
 	// --- PolarAngleEdit ------------------------------------------------------------------
 	py::class_<PolarAngleEdit, RealEdit>(m, "PolarAngleEdit")
-		//.def(py::init<Panel &, short>())
 		.def(py::init<Panel &, Rect &, EditControl::FrameType, RealEdit::AbsRelType, EditControl::UpdateType, EditControl::ReadOnlyType>(),
 			py::arg("panel"),
 			py::arg("rect"),
@@ -371,7 +363,6 @@ void load_dg_RealEditEX(py::module m) {
 
 	// --- MMPointEdit ---------------------------------------------------------------------
 	py::class_<MMPointEdit, RealEdit>(m, "MMPointEdit")
-		//.def(py::init<Panel &, short>())
 		.def(py::init<Panel &, Rect &, EditControl::FrameType, RealEdit::AbsRelType, EditControl::UpdateType, EditControl::ReadOnlyType>(),
 			py::arg("panel"),
 			py::arg("rect"),
@@ -404,7 +395,6 @@ void load_dg_TextEditBase(py::module m) {
 void load_dg_TextEditBaseEX(py::module m) {
 	// --- TextEdit ------------------------------------------------------------------------
 	py::class_<TextEdit, TextEditBase, ItemVariousProperty, ItemTextLengthLimitProperty>(m, "TextEdit")
-		//.def(py::init<Panel &, short>())
 		.def(py::init<Panel &, Rect &, short, EditControl::FrameType, EditControl::UpdateType, EditControl::ReadOnlyType>(),
 			py::arg("panel"),
 			py::arg("rect"),
@@ -415,7 +405,6 @@ void load_dg_TextEditBaseEX(py::module m) {
 
 	// --- PasswordEdit --------------------------------------------------------------------
 	py::class_<PasswordEdit, TextEditBase, ItemTextLengthLimitProperty>(m, "PasswordEdit")
-		//.def(py::init<Panel &, short>())
 		.def(py::init<Panel &, Rect &, short, EditControl::FrameType, EditControl::UpdateType, EditControl::ReadOnlyType>(),
 			py::arg("panel"),
 			py::arg("rect"),
@@ -435,7 +424,6 @@ void load_dg_TextEditBaseEX(py::module m) {
 		.export_values();
 
 	m_multiLineEdit
-		//.def(py::init<Panel &, short>())
 		.def(py::init<Panel &, Rect &, MultiLineEdit::ScrollType, EditControl::FrameType, EditControl::UpdateType, EditControl::ReadOnlyType>(),
 			py::arg("panel"),
 			py::arg("rect"),
@@ -463,7 +451,6 @@ void load_dg_ShortcutEdit(py::module m) {
 
 	// --- ShortcutEdit --------------------------------------------------------------------
 	py::class_<ShortcutEdit, TextEditBase, ItemTextLengthLimitProperty>(m, "ShortcutEdit")
-		//.def(py::init<Panel &, short>())
 		.def(py::init<Panel &, Rect &, short, EditControl::FrameType, EditControl::UpdateType>(),
 			py::arg("panel"),
 			py::arg("rect"),

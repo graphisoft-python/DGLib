@@ -164,6 +164,7 @@
     <ClInclude Include="implementations\dgListBoxFunc.hpp" />
     <ClInclude Include="implementations\dgPanelFunc.hpp" />
     <ClInclude Include="implementations\dgStaticItemFunc.hpp" />
+    <ClInclude Include="implementations\dgUserItemFunc.hpp" />
     <ClInclude Include="implementations\dgUtilityFunc.hpp" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />

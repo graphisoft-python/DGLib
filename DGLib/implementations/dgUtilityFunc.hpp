@@ -237,7 +237,6 @@ void load_dg_NativeUnit(py::module m) {
 		.def(py::self >= py::self)
 		.def(py::self < py::self)
 		.def(py::self <= py::self)
-		//.def(py::self = py::self)
 		.def(py::self += py::self)
 		.def(py::self -= py::self)
 		.def(py::self + py::self)
@@ -446,15 +445,12 @@ void load_dg_MousePosData(py::module m) {
 
 		.def("GetPanel", &MousePosData::GetPanel, py::return_value_policy::reference)
 		.def("GetItem", &MousePosData::GetItem, py::return_value_policy::reference)
-
 		.def("GetRect", &MousePosData::GetRect)
 		.def("GetMouseOffsetInLogicalUnits", &MousePosData::GetMouseOffsetInLogicalUnits)
 		.def("GetMouseOffsetInNativeUnits", &MousePosData::GetMouseOffsetInNativeUnits)
-
 		.def("IsCommandPressed", &MousePosData::IsCommandPressed)
 		.def("IsOptionPressed", &MousePosData::IsOptionPressed)
 		.def("IsShiftPressed", &MousePosData::IsShiftPressed)
-
 		.def("IsLeftButtonPressed", &MousePosData::IsLeftButtonPressed)
 		.def("IsRightButtonPressed", &MousePosData::IsRightButtonPressed)
 		.def("IsWheelButtonPressed", &MousePosData::IsWheelButtonPressed);

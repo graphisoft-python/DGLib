@@ -140,7 +140,6 @@ void load_dg_ButtonItemEX(py::module m) {
 		.export_values();
 
 	m_button
-		//.def(py::init<Panel &, short>())
 		.def(py::init<Panel &, Rect &, Button::ButtonType, Button::FrameType>(),
 			py::arg("panel"),
 			py::arg("rect"),
@@ -165,7 +164,6 @@ void load_dg_ButtonItemEX(py::module m) {
 		.export_values();
 
 	m_IconButton
-		//.def(py::init<Panel &, short>())
 		.def(py::init<Panel &, Rect &, IconButton::ButtonForm, IconButton::FrameType>(),
 			py::arg("panel"),
 			py::arg("rect"),
@@ -188,7 +186,6 @@ void load_dg_ButtonItemEX(py::module m) {
 		.export_values();
 
 	m_splitButtonBase
-		//.def(py::init<Panel &, short>())
 		.def(py::init<Panel &, Rect &, SplitButtonBase::ButtonForm>(),
 			py::arg("panel"),
 			py::arg("rect"),
@@ -213,7 +210,6 @@ void load_dg_SplitButton(py::module m) {
 
 	// --- SplitButton -------------------------------------------------------------------------
 	py::class_<SplitButton, SplitButtonBase>(m, "SplitButton")
-		//.def(py::init<Panel &, short>())
 		.def(py::init<Panel &, Rect &, SplitButtonBase::ButtonForm>(),
 			py::arg("panel"),
 			py::arg("rect"),
@@ -263,7 +259,6 @@ void load_dg_CustomSplitButton(py::module m) {
 
 	// --- CustomSplitButton -------------------------------------------------------------------
 	py::class_<CustomSplitButton, SplitButtonBase>(m, "CustomSplitButton")
-		//.def(py::init<Panel &, short>())
 		.def(py::init<Panel &, Rect &, SplitButtonBase::ButtonForm>(),
 			py::arg("panel"),
 			py::arg("rect"),
