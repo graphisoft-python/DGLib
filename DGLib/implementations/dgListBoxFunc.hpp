@@ -12,7 +12,7 @@ using namespace DG;
 
 // --- PyListBoxObserver --------------------------------------------------------------------
 
-class PyListBoxObserver : ListBoxObserver {
+class PyListBoxObserver : ListBoxObserver, ItemObserver, ListBoxDragSourceObserver, ListBoxDropTargetObserver {
 public:
 	PyListBoxObserver(ListBox &item, ACExport &acExport)
 		:m_parent(item) {
@@ -24,131 +24,9 @@ public:
 		this->m_parent.Detach(*this);
 	}
 
-	// --- ListBoxDragSourceObserver --------------------------------------------------------
-
-	void ListBoxDragStarting(const ListBoxDragSourceEvent& ev, bool* canStart) override {
-
-	}
-
-	void ListBoxDragStarted(const ListBoxDragSourceEvent& ev, UShort* effect) override {
-
-	}
-
-	void ListBoxDragStarted(const ListBoxDragSourceEvent& ev, UShort* effect, bool* rightDragMenu) override {
-
-	}
-
-	void ListBoxDragEnded(const ListBoxDragSourceEvent& ev, DragDrop::Effect effect) override {
-
-	}
-
-	void ListBoxDragSetDelayedData(const ListBoxDragSourceEvent& ev) override {
-
-	}
-
-	// --- ListBoxDropTargetObserver --------------------------------------------------------
-
-	void ListBoxDragEntered(const ListBoxDropTargetEvent& ev, DragDrop::Effect* effect, bool* defBehaviour) override {
-
-	}
-
-	void ListBoxDragEntered(const ListBoxDropTargetEvent& ev, DragDrop::Effect* effect, bool* defBehaviour, bool* rightDragMenu) override {
-
-	}
-
-	void ListBoxDragMoved(const ListBoxDropTargetEvent& ev, DragDrop::Effect* effect, DragDrop::Feedback* denyFeedback) override {
-
-	}
-
-	void ListBoxDragLeft(const ListBoxDropTargetEvent& ev, DragDrop::Effect* effect) override {
-
-	}
-
-	void ListBoxDropped(const ListBoxDropTargetEvent& ev, DragDrop::Effect* effect) override {
-
-	}
-
-	// --- ListBoxObserver ------------------------------------------------------------------
-
-	//short SpecChangeRequested(const ItemMouseDownEvent& ev) override {
-	
-	//}
-
-	//short SpecChanged(const ItemChangeEvent& ev) override {
-	
-	//}
-
-	//short SpecClicked(const ItemClickEvent& ev) override {
-	
-	//}
-
-	//short SpecMouseDown(const ItemMouseDownEvent& ev, bool* processed) override {
-	
-	//}
-
-	//short SpecContextMenuRequested(const ItemContextMenuEvent& ev) override {
-	
-	//}
-
-	//short SpecDoubleClicked(const ItemDoubleClickEvent& ev) override {
-	
-	//}
-
-	//short SpecMouseMoved(const ItemMouseMoveEvent& ev) override {
-	
-	//}
-
-	//short SpecUpdate(const ItemUpdateEvent& ev) override {
-	
-	//}
-
-	//short SpecDragStarting(const ItemDragSourceEvent& ev) override {
-
-	//}
-
-	//short SpecDragStarted(const ItemDragSourceEvent& ev) override {
-
-	//}
-
-	//short SpecDragEnded(const ItemDragSourceEvent& ev) override {
-
-	//}
-
-	//short SpecDragSetDelayedData(const ItemDragSourceEvent& ev) override {
-
-	//}
-
-	//short SpecDragEntered(const ItemDropTargetEvent& ev) override {
-
-	//}
-
-	//short SpecDragMoved(const ItemDropTargetEvent& ev) override {
-
-	//}
-
-	//short SpecDragLeft(const ItemDropTargetEvent& ev) override {
-
-	//}
-
-	//short SpecDropped(const ItemDropTargetEvent& ev) override {
-
-	//}
-
-	//short SpecHoverStarted(const ItemHoverEvent& ev) override {
-	
-	//}
-
-	//short SpecHoverEnded(const ItemHoverEvent& ev) override {
-	
-	//}
-
-	//short SpecOverlayUpdate(const ItemUpdateEvent& ev) override {
-	
-	//}
-
-	//bool ListBoxSelectionChangeRequested(const ListBoxMouseDownEvent& ev) override {
-	
-	//}
+	ITEMOBSERVER_METHODS
+	LISTBOXDRAGSOURCEOBSERVER
+	LISTBOXDRAGTARGETOBSERVER
 
 	void ListBoxSelectionChanged(const ListBoxSelectionEvent& ev) override {
 		OBSERVER_CALL_EVENT("ListBoxSelectionChanged", ev);
@@ -205,18 +83,6 @@ public:
 	void ListBoxHeaderItemDragged(const ListBoxHeaderItemDragEvent& ev) override {
 
 	}
-
-	//short ListBoxHeaderItemResizeEntered(const ListBoxHeaderItemResizeEvent& ev) override {
-	
-	//}
-
-	//short ListBoxHeaderItemResized(const ListBoxHeaderItemResizeEvent& ev) override {
-	
-	//}
-
-	//short ListBoxHeaderItemResizeExited(const ListBoxHeaderItemResizeEvent& ev) override {
-	
-	//}
 
 	void ListBoxHeaderButtonClicked(const ListBoxHeaderButtonClickEvent& ev) override {
 		OBSERVER_CALL_EVENT("ListBoxHeaderButtonClicked", ev);

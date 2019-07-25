@@ -12,7 +12,7 @@ using namespace DG;
 
 // --- PyPosIntEditObserver ----------------------------------------------------------------
 
-class PyPosIntEditObserver : PosIntEditObserver {
+class PyPosIntEditObserver : PosIntEditObserver, ItemObserver , EditDragSourceObserver , EditDropTargetObserver {
 
 public:
 	PyPosIntEditObserver(PosIntEdit &item, ACExport &acExport)
@@ -25,87 +25,9 @@ public:
 		this->m_parent.Detach(*this);
 	}
 
-	// ---- EditDragSourceObserver ---------------------------------------------------------
-
-	void EditDragStarting(const EditDragSourceEvent& ev, bool* canStart) override {
-
-	}
-
-	void EditDragStarted(const EditDragSourceEvent& ev, UShort* effect) override {
-
-	}
-
-	void EditDragStarted(const EditDragSourceEvent& ev, UShort* effect, bool* rightDragMenu) override {
-
-	}
-
-	void EditDragEnded(const EditDragSourceEvent& ev, DragDrop::Effect effect) override {
-
-	}
-
-	void EditDragSetDelayedData(const EditDragSourceEvent& ev) override {
-
-	}
-
-	// ---- EditDropTargetObserver ---------------------------------------------------------
-
-	void EditDragEntered(const EditDropTargetEvent& ev, DragDrop::Effect* effect, bool* defBehaviour) override {
-
-	}
-
-	void EditDragEntered(const EditDropTargetEvent& ev, DragDrop::Effect* effect, bool* defBehaviour, bool* rightDragMenu) override {
-
-	}
-
-	void EditDragMoved(const EditDropTargetEvent& ev, DragDrop::Effect* effect, DragDrop::Feedback* denyFeedback) override {
-
-	}
-
-	void EditDragLeft(const EditDropTargetEvent& ev, DragDrop::Effect* effect) override {
-
-	}
-
-	void EditDropped(const EditDropTargetEvent& ev, DragDrop::Effect* effect) override {
-	
-	}
-
-	// ---- PosIntEditObserver -------------------------------------------------------------
-
-	//short SpecChanged(const ItemChangeEvent& ev) override {
-	
-	//}
-
-	//short SpecDragStarting(const ItemDragSourceEvent& ev) override {
-
-	//}
-
-	//short SpecDragStarted(const ItemDragSourceEvent& ev) override {
-
-	//}
-
-	//short SpecDragEnded(const ItemDragSourceEvent& ev) override {
-
-	//}
-
-	//short SpecDragSetDelayedData(const ItemDragSourceEvent& ev) override {
-
-	//}
-
-	//short SpecDragEntered(const ItemDropTargetEvent& ev) override {
-
-	//}
-
-	//short SpecDragMoved(const ItemDropTargetEvent& ev) override {
-
-	//}
-
-	//short SpecDragLeft(const ItemDropTargetEvent& ev) override {
-
-	//}
-
-	//short SpecDropped(const ItemDropTargetEvent& ev) override {
-
-	//}
+	ITEMOBSERVER_METHODS
+	EDITDRAGSOURCEOBSERVER
+	EDITDRAGTARGETOBSERVER
 
 	void  PosIntEditChanged(const PosIntEditChangeEvent& ev) override {
 		OBSERVER_CALL_EVENT("PosIntEditChanged", ev);
@@ -119,7 +41,7 @@ private:
 
 // --- PyIntEditObserver -------------------------------------------------------------------
 
-class PyIntEditObserver : IntEditObserver {
+class PyIntEditObserver : IntEditObserver, ItemObserver, EditDragSourceObserver, EditDropTargetObserver {
 
 public:
 	PyIntEditObserver(IntEdit &item, ACExport &acExport)
@@ -132,87 +54,9 @@ public:
 		this->m_parent.Detach(*this);
 	}
 
-	// ---- EditDragSourceObserver ---------------------------------------------------------
-
-	void EditDragStarting(const EditDragSourceEvent& ev, bool* canStart) override {
-
-	}
-
-	void EditDragStarted(const EditDragSourceEvent& ev, UShort* effect) override {
-
-	}
-
-	void EditDragStarted(const EditDragSourceEvent& ev, UShort* effect, bool* rightDragMenu) override {
-
-	}
-
-	void EditDragEnded(const EditDragSourceEvent& ev, DragDrop::Effect effect) override {
-
-	}
-
-	void EditDragSetDelayedData(const EditDragSourceEvent& ev) override {
-
-	}
-
-	// ---- EditDropTargetObserver ---------------------------------------------------------
-
-	void EditDragEntered(const EditDropTargetEvent& ev, DragDrop::Effect* effect, bool* defBehaviour) override {
-
-	}
-
-	void EditDragEntered(const EditDropTargetEvent& ev, DragDrop::Effect* effect, bool* defBehaviour, bool* rightDragMenu) override {
-
-	}
-
-	void EditDragMoved(const EditDropTargetEvent& ev, DragDrop::Effect* effect, DragDrop::Feedback* denyFeedback) override {
-
-	}
-
-	void EditDragLeft(const EditDropTargetEvent& ev, DragDrop::Effect* effect) override {
-
-	}
-
-	void EditDropped(const EditDropTargetEvent& ev, DragDrop::Effect* effect) override {
-
-	}
-
-	// ---- IntEditObserver ----------------------------------------------------------------
-
-
-	//short SpecChanged(const ItemChangeEvent& ev) override {
-	
-	//}
-
-	//short SpecDragStarting(const ItemDragSourceEvent& ev) override {
-	//}
-
-	//short SpecDragStarted(const ItemDragSourceEvent& ev) override {
-
-	//}
-
-	//short SpecDragEnded(const ItemDragSourceEvent& ev) override {
-
-	//}
-
-	//short SpecDragSetDelayedData(const ItemDragSourceEvent& ev) override {
-
-	//}
-
-	//short SpecDragEntered(const ItemDropTargetEvent& ev) override {
-
-	//}
-
-	//short SpecDragMoved(const ItemDropTargetEvent& ev) override {
-
-	//}
-
-	//short SpecDragLeft(const ItemDropTargetEvent& ev) override {
-
-	//}
-
-	//short SpecDropped(const ItemDropTargetEvent& ev) override {
-
-	//}
+	ITEMOBSERVER_METHODS
+	EDITDRAGSOURCEOBSERVER
+	EDITDRAGTARGETOBSERVER
 
 	void  IntEditChanged(const IntEditChangeEvent& ev) override {
 		OBSERVER_CALL_EVENT("IntEditChanged", ev);
@@ -226,7 +70,7 @@ private:
 
 // --- PyRealEditObserver ------------------------------------------------------------------
 
-class PyRealEditObserver : RealEditObserver {
+class PyRealEditObserver : RealEditObserver, ItemObserver, EditDragSourceObserver, EditDropTargetObserver {
 
 public:
 	PyRealEditObserver(RealEdit &item, ACExport &acExport)
@@ -239,88 +83,9 @@ public:
 		this->m_parent.Detach(*this);
 	}
 
-
-	// ---- EditDragSourceObserver ---------------------------------------------------------
-
-	void EditDragStarting(const EditDragSourceEvent& ev, bool* canStart) override {
-
-	}
-
-	void EditDragStarted(const EditDragSourceEvent& ev, UShort* effect) override {
-
-	}
-
-	void EditDragStarted(const EditDragSourceEvent& ev, UShort* effect, bool* rightDragMenu) override {
-
-	}
-
-	void EditDragEnded(const EditDragSourceEvent& ev, DragDrop::Effect effect) override {
-
-	}
-
-	void EditDragSetDelayedData(const EditDragSourceEvent& ev) override {
-
-	}
-
-	// ---- EditDropTargetObserver ---------------------------------------------------------
-
-	void EditDragEntered(const EditDropTargetEvent& ev, DragDrop::Effect* effect, bool* defBehaviour) override {
-
-	}
-
-	void EditDragEntered(const EditDropTargetEvent& ev, DragDrop::Effect* effect, bool* defBehaviour, bool* rightDragMenu) override {
-
-	}
-
-	void EditDragMoved(const EditDropTargetEvent& ev, DragDrop::Effect* effect, DragDrop::Feedback* denyFeedback) override {
-
-	}
-
-	void EditDragLeft(const EditDropTargetEvent& ev, DragDrop::Effect* effect) override {
-
-	}
-
-	void EditDropped(const EditDropTargetEvent& ev, DragDrop::Effect* effect) override {
-
-	}
-
-	// ---- RealEditObserver ---------------------------------------------------------------
-
-	//short SpecChanged(const ItemChangeEvent& ev) override {
-	
-	//}
-
-	//short SpecDragStarting(const ItemDragSourceEvent& ev) override {
-
-	//}
-
-	//short SpecDragStarted(const ItemDragSourceEvent& ev) override {
-
-	//}
-
-	//short SpecDragEnded(const ItemDragSourceEvent& ev) override {
-
-	//}
-
-	//short SpecDragSetDelayedData(const ItemDragSourceEvent& ev) override {
-
-	//}
-
-	//short SpecDragEntered(const ItemDropTargetEvent& ev) override {
-
-	//}
-
-	//short SpecDragMoved(const ItemDropTargetEvent& ev) override {
-
-	//}
-
-	//short SpecDragLeft(const ItemDropTargetEvent& ev) override {
-
-	//}
-
-	//short SpecDropped(const ItemDropTargetEvent& ev) override {
-
-	//}
+	ITEMOBSERVER_METHODS
+	EDITDRAGSOURCEOBSERVER
+	EDITDRAGTARGETOBSERVER
 
 	void  RealEditChanged(const RealEditChangeEvent& ev) override {
 		OBSERVER_CALL_EVENT("RealEditChanged", ev);
@@ -334,7 +99,7 @@ private:
 
 // --- PyTextEditBaseObserver --------------------------------------------------------------
 
-class PyTextEditBaseObserver : TextEditBaseObserver {
+class PyTextEditBaseObserver : TextEditBaseObserver, ItemObserver, EditDragSourceObserver, EditDropTargetObserver {
 
 public:
 	PyTextEditBaseObserver(TextEditBase &item, ACExport &acExport)
@@ -347,88 +112,9 @@ public:
 		this->m_parent.Detach(*this);
 	}
 
-
-	// ---- EditDragSourceObserver ---------------------------------------------------------
-
-	void EditDragStarting(const EditDragSourceEvent& ev, bool* canStart) override {
-
-	}
-
-	void EditDragStarted(const EditDragSourceEvent& ev, UShort* effect) override {
-
-	}
-
-	void EditDragStarted(const EditDragSourceEvent& ev, UShort* effect, bool* rightDragMenu) override {
-
-	}
-
-	void EditDragEnded(const EditDragSourceEvent& ev, DragDrop::Effect effect) override {
-
-	}
-
-	void EditDragSetDelayedData(const EditDragSourceEvent& ev) override {
-
-	}
-
-	// ---- EditDropTargetObserver ---------------------------------------------------------
-
-	void EditDragEntered(const EditDropTargetEvent& ev, DragDrop::Effect* effect, bool* defBehaviour) override {
-
-	}
-
-	void EditDragEntered(const EditDropTargetEvent& ev, DragDrop::Effect* effect, bool* defBehaviour, bool* rightDragMenu) override {
-
-	}
-
-	void EditDragMoved(const EditDropTargetEvent& ev, DragDrop::Effect* effect, DragDrop::Feedback* denyFeedback) override {
-
-	}
-
-	void EditDragLeft(const EditDropTargetEvent& ev, DragDrop::Effect* effect) override {
-
-	}
-
-	void EditDropped(const EditDropTargetEvent& ev, DragDrop::Effect* effect) override {
-
-	}
-
-	// ---- TextEditBaseObserver -----------------------------------------------------------
-
-	//short SpecChanged(const ItemChangeEvent& ev) override {
-	
-	//}
-
-	//short SpecDragStarting(const ItemDragSourceEvent& ev) override {
-
-	//}
-
-	//short SpecDragStarted(const ItemDragSourceEvent& ev) override {
-
-	//}
-
-	//short SpecDragEnded(const ItemDragSourceEvent& ev) override {
-
-	//}
-
-	//short SpecDragSetDelayedData(const ItemDragSourceEvent& ev) override {
-
-	//}
-
-	//short SpecDragEntered(const ItemDropTargetEvent& ev) override {
-
-	//}
-
-	//short SpecDragMoved(const ItemDropTargetEvent& ev) override {
-
-	//}
-
-	//short SpecDragLeft(const ItemDropTargetEvent& ev) override {
-
-	//}
-
-	//short SpecDropped(const ItemDropTargetEvent& ev) override {
-
-	//}
+	ITEMOBSERVER_METHODS
+	EDITDRAGSOURCEOBSERVER
+	EDITDRAGTARGETOBSERVER
 
 	void  TextEditChanged(const TextEditChangeEvent& ev) override {
 		OBSERVER_CALL_EVENT("TextEditChanged", ev);
@@ -442,7 +128,7 @@ private:
 
 // --- PyShortcutEditObserver --------------------------------------------------------------
 
-class PyShortcutEditObserver : ShortcutEditObserver {
+class PyShortcutEditObserver : ShortcutEditObserver ,ItemObserver {
 
 public:
 	PyShortcutEditObserver(ShortcutEdit &item, ACExport &acExport)
@@ -455,9 +141,7 @@ public:
 		this->m_parent.Detach(*this);
 	}
 
-	//short SpecChanged(const ItemChangeEvent& ev) override {
-	//	OBSERVER_CALL_EVENT("SpecChanged", ev);
-	//}
+	ITEMOBSERVER_METHODS
 
 	void  ShortcutHit(const ShortcutHitEvent& ev) override {
 		OBSERVER_CALL_EVENT("ShortcutHit", ev);
@@ -472,6 +156,15 @@ private:
 // --- EditControl -------------------------------------------------------------------------
 
 void load_dg_EditControl(py::module m) {
+	// --- EditDragSourceEvent -------------------------------------------------------------
+	//py::class_<EditDragSourceEvent, ItemDragSourceEvent>(m, "EditDragSourceEvent")
+	//	.def("GetSource", &EditDragSourceEvent::GetSource, py::return_value_policy::reference);
+
+	// --- EditDropTargetEvent -------------------------------------------------------------
+	//py::class_<EditDropTargetEvent, ItemDropTargetEvent>(m, "EditDropTargetEvent")
+	//	.def("GetSource", &EditDropTargetEvent::GetSource, py::return_value_policy::reference)
+	//	.def("GetCaretPosition", &EditDropTargetEvent::GetCaretPosition);
+
 	py::class_<EditControl, Item, ItemFontProperty, FocusableProperty> m_editControl(m, "EditControl");
 
 	py::enum_<EditControl::FrameType>(m_editControl, "FrameType")
@@ -495,15 +188,6 @@ void load_dg_EditControl(py::module m) {
 // --- PosIntEdit --------------------------------------------------------------------------
 
 void load_dg_PosIntEdit(py::module m) {
-	// --- EditDragSourceEvent -------------------------------------------------------------
-	//py::class_<EditDragSourceEvent, ItemDragSourceEvent>(m, "EditDragSourceEvent")
-	//	.def("GetSource", &EditDragSourceEvent::GetSource, py::return_value_policy::reference);
-
-	// --- EditDropTargetEvent -------------------------------------------------------------
-	//	py::class_<EditDropTargetEvent, ItemDropTargetEvent>(m, "EditDropTargetEvent")
-	//		.def("GetSource", &EditDropTargetEvent::GetSource, py::return_value_policy::reference)
-	//		.def("GetCaretPosition", &EditDropTargetEvent::GetCaretPosition);
-
 	// --- PosIntEditChangeEvent -----------------------------------------------------------
 	py::class_<PosIntEditChangeEvent, ItemChangeEvent>(m, "PosIntEditChangeEvent")
 		.def("GetSource", &PosIntEditChangeEvent::GetSource, py::return_value_policy::reference)
@@ -543,14 +227,6 @@ void load_dg_PosIntEdit(py::module m) {
 // --- IntEdit -----------------------------------------------------------------------------
 
 void load_dg_IntEdit(py::module m) {
-	// --- EditDragSourceEvent -------------------------------------------------------------
-	//py::class_<EditDragSourceEvent, ItemDragSourceEvent>(m, "EditDragSourceEvent")
-	//	.def("GetSource", &EditDragSourceEvent::GetSource, py::return_value_policy::reference);
-
-	// --- EditDropTargetEvent -------------------------------------------------------------
-	//	py::class_<EditDropTargetEvent, ItemDropTargetEvent>(m, "EditDropTargetEvent")
-	//		.def("GetSource", &EditDropTargetEvent::GetSource, py::return_value_policy::reference)
-	//		.def("GetCaretPosition", &EditDropTargetEvent::GetCaretPosition);
 
 	// --- IntEditChangeEvent --------------------------------------------------------------
 	py::class_<IntEditChangeEvent, ItemChangeEvent>(m, "IntEditChangeEvent")
@@ -591,15 +267,6 @@ void load_dg_IntEdit(py::module m) {
 // --- RealEdit ----------------------------------------------------------------------------
 
 void load_dg_RealEdit(py::module m) {
-	// --- EditDragSourceEvent -------------------------------------------------------------
-	//py::class_<EditDragSourceEvent, ItemDragSourceEvent>(m, "EditDragSourceEvent")
-	//	.def("GetSource", &EditDragSourceEvent::GetSource, py::return_value_policy::reference);
-
-	// --- EditDropTargetEvent -------------------------------------------------------------
-	//	py::class_<EditDropTargetEvent, ItemDropTargetEvent>(m, "EditDropTargetEvent")
-	//		.def("GetSource", &EditDropTargetEvent::GetSource, py::return_value_policy::reference)
-	//		.def("GetCaretPosition", &EditDropTargetEvent::GetCaretPosition);
-
 	// --- RealEditChangeEvent -------------------------------------------------------------
 	py::class_<RealEditChangeEvent, ItemChangeEvent>(m, "RealEditChangeEvent")
 		.def("GetSource", &RealEditChangeEvent::GetSource, py::return_value_policy::reference)
@@ -718,15 +385,6 @@ void load_dg_RealEditEX(py::module m) {
 // --- TextEditBase ------------------------------------------------------------------------
 
 void load_dg_TextEditBase(py::module m) {
-	// --- EditDragSourceEvent -------------------------------------------------------------
-	//py::class_<EditDragSourceEvent, ItemDragSourceEvent>(m, "EditDragSourceEvent")
-	//	.def("GetSource", &EditDragSourceEvent::GetSource, py::return_value_policy::reference);
-
-	// --- EditDropTargetEvent -------------------------------------------------------------
-	//	py::class_<EditDropTargetEvent, ItemDropTargetEvent>(m, "EditDropTargetEvent")
-	//		.def("GetSource", &EditDropTargetEvent::GetSource, py::return_value_policy::reference)
-	//		.def("GetCaretPosition", &EditDropTargetEvent::GetCaretPosition);
-
 	// --- TextEditChangeEvent -------------------------------------------------------------
 	py::class_<TextEditChangeEvent, ItemChangeEvent>(m, "TextEditChangeEvent")
 		.def("GetSource",&TextEditChangeEvent::GetSource, py::return_value_policy::reference);

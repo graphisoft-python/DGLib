@@ -10,7 +10,7 @@ using namespace DG;
 
 // --- PyBarControlObserver --------------------------------------------------------------------
 
-class PyBarControlObserver : BarControlObserver {
+class PyBarControlObserver : BarControlObserver, ItemObserver {
 public:
 	PyBarControlObserver(BarControl &item, ACExport &acExport)
 		:m_parent(item) {
@@ -22,21 +22,7 @@ public:
 		this->m_parent.Detach(*this);
 	}
 
-	//short SpecChanged(const ItemChangeEvent& ev) override {
-	
-	//}
-
-	//short SpecTrackEntered(const ItemTrackEvent& ev) override {
-	
-	//}
-
-	//short SpecTracked(const ItemTrackEvent& ev) override {
-	
-	//}
-
-	//short SpecTrackExited(const ItemTrackEvent& ev) override {
-	
-	//}
+	ITEMOBSERVER_METHODS
 	
 	void BarControlChanged(const BarControlChangeEvent& ev) override {
 		OBSERVER_CALL_EVENT("BarControlChanged", ev);
@@ -62,7 +48,7 @@ private:
 
 // --- ScrollBarObserver -----------------------------------------------------------------------
 
-class PyScrollBarObserver : ScrollBarObserver {
+class PyScrollBarObserver : ScrollBarObserver, ItemObserver {
 public:
 	PyScrollBarObserver(ScrollBar &item, ACExport &acExport)
 		:m_parent(item) {
@@ -74,21 +60,7 @@ public:
 		this->m_parent.Detach(*this);
 	}
 
-	//short SpecChanged(const ItemChangeEvent& ev) override {
-
-	//}
-
-	//short SpecTrackEntered(const ItemTrackEvent& ev) override {
-
-	//}
-
-	//short SpecTracked(const ItemTrackEvent& ev) override {
-	
-	//}
-
-	//short SpecTrackExited(const ItemTrackEvent& ev) override {
-	
-	//}
+	ITEMOBSERVER_METHODS
 
 	void ScrollBarChanged(const ScrollBarChangeEvent& ev) override {
 		OBSERVER_CALL_EVENT("ScrollBarChanged", ev);

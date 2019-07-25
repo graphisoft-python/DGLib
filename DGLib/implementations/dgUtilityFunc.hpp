@@ -419,46 +419,46 @@ void load_dg_TRectEX(py::module m) {
 		.def("Scale", &Rect::Scale)
 
 		.def("__str__", [](const Rect &r) {
-			return "Rect = (" + std::to_string(r.GetLeft()) + "," + std::to_string(r.GetTop())
-				+ "," + std::to_string(r.GetWidth()) + "," + std::to_string(r.GetHeight()) + ")"; });
+			return "Rect = (" + std::to_string(r.GetTop()) + "," + std::to_string(r.GetLeft())
+				+ "," + std::to_string(r.GetRight()) + "," + std::to_string(r.GetBottom()) + ")"; });
 }
 
 
 // --- MousePosData -----------------------------------------------------------------------
 
-//void load_dg_MousePosData(py::module m) {
-//	py::class_<MousePosData>(m, "MousePosData")
-//		.def(py::init<>())
-//
-//		.def("Retrieve", (bool (MousePosData::*)
-//		(void)) &MousePosData::Retrieve)
-//		.def("Retrieve", (bool (MousePosData::*)
-//		(const Panel &)) &MousePosData::Retrieve)
-//		.def("Retrieve", (bool (MousePosData::*)
-//		(const Item &)) &MousePosData::Retrieve)
-//
-//		.def("RetrieveFailSafe", (void (MousePosData::*)
-//		(void)) &MousePosData::RetrieveFailSafe)
-//		.def("RetrieveFailSafe", (void (MousePosData::*)
-//		(const Panel &)) &MousePosData::RetrieveFailSafe)
-//		.def("RetrieveFailSafe", (void (MousePosData::*)
-//		(const Item &)) &MousePosData::RetrieveFailSafe)
-//
-//		.def("GetPanel", &MousePosData::GetPanel, py::return_value_policy::reference)
-//		.def("GetItem", &MousePosData::GetItem, py::return_value_policy::reference)
-//
-//		.def("GetRect", &MousePosData::GetRect)
-//		.def("GetMouseOffsetInLogicalUnits", &MousePosData::GetMouseOffsetInLogicalUnits)
-//		.def("GetMouseOffsetInNativeUnits", &MousePosData::GetMouseOffsetInNativeUnits)
-//
-//		.def("IsCommandPressed", &MousePosData::IsCommandPressed)
-//		.def("IsOptionPressed", &MousePosData::IsOptionPressed)
-//		.def("IsShiftPressed", &MousePosData::IsShiftPressed)
-//
-//		.def("IsLeftButtonPressed", &MousePosData::IsLeftButtonPressed)
-//		.def("IsRightButtonPressed", &MousePosData::IsRightButtonPressed)
-//		.def("IsWheelButtonPressed", &MousePosData::IsWheelButtonPressed);
-//}
+void load_dg_MousePosData(py::module m) {
+	py::class_<MousePosData>(m, "MousePosData")
+		.def(py::init<>())
+
+		.def("Retrieve", (bool (MousePosData::*)
+		(void)) &MousePosData::Retrieve)
+		.def("Retrieve", (bool (MousePosData::*)
+		(const Panel &)) &MousePosData::Retrieve)
+		.def("Retrieve", (bool (MousePosData::*)
+		(const Item &)) &MousePosData::Retrieve)
+
+		.def("RetrieveFailSafe", (void (MousePosData::*)
+		(void)) &MousePosData::RetrieveFailSafe)
+		.def("RetrieveFailSafe", (void (MousePosData::*)
+		(const Panel &)) &MousePosData::RetrieveFailSafe)
+		.def("RetrieveFailSafe", (void (MousePosData::*)
+		(const Item &)) &MousePosData::RetrieveFailSafe)
+
+		.def("GetPanel", &MousePosData::GetPanel, py::return_value_policy::reference)
+		.def("GetItem", &MousePosData::GetItem, py::return_value_policy::reference)
+
+		.def("GetRect", &MousePosData::GetRect)
+		.def("GetMouseOffsetInLogicalUnits", &MousePosData::GetMouseOffsetInLogicalUnits)
+		.def("GetMouseOffsetInNativeUnits", &MousePosData::GetMouseOffsetInNativeUnits)
+
+		.def("IsCommandPressed", &MousePosData::IsCommandPressed)
+		.def("IsOptionPressed", &MousePosData::IsOptionPressed)
+		.def("IsShiftPressed", &MousePosData::IsShiftPressed)
+
+		.def("IsLeftButtonPressed", &MousePosData::IsLeftButtonPressed)
+		.def("IsRightButtonPressed", &MousePosData::IsRightButtonPressed)
+		.def("IsWheelButtonPressed", &MousePosData::IsWheelButtonPressed);
+}
 
 
 // --- Definitions ------------------------------------------------------------------------
