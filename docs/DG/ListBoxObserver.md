@@ -106,7 +106,7 @@
 
 ### Inherit
 
-* ListBoxItemUpdateEvent
+* ItemUpdateEvent
 
 ### Methods
 

@@ -20,6 +20,7 @@
 #### Panel
 
 * [Panel](./docs/DG/Panel.md)
+* [PanelObserver](./docs/DG/PanelObserver.md)
 
 
 #### Dialog
@@ -39,6 +40,8 @@
 * [Slider](./docs/DG/Slider.md)
 * [ScrollBar](./docs/DG/ScrollBar.md)
 * [ProgressBar](./docs/DG/ProgressBar.md)
+* [BarControlObserver](./docs/DG/BarControlObserver.md)
+* [ScrollBarObserver](./docs/DG/ScrollBarObserver.md)
 
 #### Button
 
@@ -48,6 +51,9 @@
 * [SplitButtonBase](./docs/DG/SplitButtonBase.md)
 * [SplitButton](./docs/DG/SplitButton.md)
 * [CustomSplitButton](./docs/DG/CustomSplitButton.md)
+* [ButtonItemObserver](./docs/DG/ButtonItemObserver.md)
+* [SplitButtonObserver](./docs/DG/SplitButtonObserver.md)
+* [CustomSplitButtonObserver](./docs/DG/CustomSplitButtonObserver.md)
 
 
 #### EditControl
@@ -67,11 +73,17 @@
 * [PasswordEdit](./docs/DG/PasswordEdit.md)
 * [ShortcutEdit](./docs/DG/ShortcutEdit.md)
 * [MultiLineEdit](./docs/DG/MultiLineEdit.md)
+* [ShortcutEditObserver](./docs/DG/ShortcutEditObserver.md)
+* [TextEditBaseObserver](./docs/DG/TextEditBaseObserver.md)
+* [RealEditObserver](./docs/DG/RealEditObserver.md)
+* [IntEditObserver](./docs/DG/IntEditObserver.md)
+* [PosIntEditObserver](./docs/DG/PosIntEditObserver.md)
 
 #### Item
 
 * [ItemBase](./docs/DG/ItemBase.md)
 * [Item](./docs/DG/Item.md)
+* [ItemObserver](./docs/DG/ItemObserver.md)
 
 #### ItemProperty
 
@@ -86,6 +98,8 @@
 * [ListBox](./docs/DG/ListBox.md)
 * [SingleSelListBox](./docs/DG/SingleSelListBox.md)
 * [MultiSelListBox](./docs/DG/MultiSelListBox.md)
+* [ListBoxObserver](./docs/DG/ListBoxObserver.md)
+* [ListBoxEventProperty](./docs/DG/ListBoxEventProperty.md)
 
 #### StaticItem
 
@@ -95,6 +109,8 @@
 * [RightText](./docs/DG/RightText.md)
 * [GroupBox](./docs/DG/GroupBox.md)
 * [Separator](./docs/DG/Separator.md)
+* [StaticTextObserver](./docs/DG/StaticTextObserver.md)
+* [StaticItemEventProperty](./docs/DG/StaticItemEventProperty.md)
 
 ### Namespace DG.EOL
 
