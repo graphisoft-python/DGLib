@@ -10,7 +10,7 @@ using namespace DG;
 
 //namespace DG::EOL -----------------------------------------------------------------------
 
-void load_dg_EOL(py::module m) {
+void load_EOL(py::module m) {
 	py::enum_<EOL::Type>(m, "Type")
 		.value("Default", EOL::Type::Default)
 		.value("CR", EOL::Type::CR)
@@ -21,7 +21,7 @@ void load_dg_EOL(py::module m) {
 
 // --- namespace DG::Search ---------------------------------------------------------------
 
-//void load_dg_Search(py::module m) {
+//void load_Search(py::module m) {
 //	py::enum_<Search::Dir>(m, "Dir")
 //		.value("Down", Search::Dir::Down)
 //		.value("Up", Search::Dir::Up)
@@ -41,7 +41,7 @@ void load_dg_EOL(py::module m) {
 
 // --- namespace DG::UC -------------------------------------------------------------------
 
-//void load_dg_UC(py::module m) {
+//void load_UC(py::module m) {
 //	py::enum_<UC::UC257CellSkinType>(m, "UC257CellSkinType")
 //		.value("FillSkin", UC::UC257CellSkinType::FillSkin)
 //		.value("EmptySkin", UC::UC257CellSkinType::EmptySkin)
@@ -54,7 +54,7 @@ void load_dg_EOL(py::module m) {
 
 // --- GS::Range<Int32> -------------------------------------------------------------------
 
-void load_dg_CharRange(py::module m) {
+void load_CharRange(py::module m) {
 	py::class_<CharRange>(m, "CharRange")
 		.def(py::init<>())
 		.def(py::init<Int32 &, Int32 &>())
@@ -82,7 +82,7 @@ void load_dg_CharRange(py::module m) {
 
 // --- namespace DG::Unit -----------------------------------------------------------------
 
-//void load_dg_Unit(py::module m) {
+//void load_Unit(py::module m) {
 //	py::enum_<Unit::Type>(m, "Type")
 //		.value("Unit_MM", Unit::Type::Unit_MM)
 //		.value("Unit_CM", Unit::Type::Unit_CM)
@@ -106,7 +106,7 @@ void load_dg_CharRange(py::module m) {
 
 
 //namespace DG::Key -----------------------------------------------------------------------
-void load_dg_Key(py::module m) {
+void load_Key(py::module m) {
 	py::enum_<Key::Modifier>(m, "Modifier")
 		.value("NoModifier", Key::Modifier::NoModifier)
 		.value("Command", Key::Modifier::Command)
@@ -170,7 +170,7 @@ void load_dg_Key(py::module m) {
 
 // --- Image ------------------------------------------------------------------------------ 
 
-//void load_dg_Image(py::module m) {
+//void load_Image(py::module m) {
 //	py::class_<Image>(m, "Image")
 //		.def(py::init<>())
 //		.def(py::init<GSResModule, short>())
@@ -190,7 +190,7 @@ void load_dg_Key(py::module m) {
 
 // --- Icon -------------------------------------------------------------------------------
 
-//void load_dg_Icon(py::module m) {
+//void load_Icon(py::module m) {
 //	py::class_<Icon, Image>(m, "Icon")
 //		.def(py::init<>())
 //		.def(py::init<GSResModule, short>())
@@ -202,7 +202,7 @@ void load_dg_Key(py::module m) {
 
 // --- Picture ----------------------------------------------------------------------------
 
-//void load_dg_Picture(py::module m) {
+//void load_Picture(py::module m) {
 //	py::class_<Picture, Image>(m, "Picture")
 //		.def(py::init<>())
 //		.def(py::init<GSResModule, short>())
@@ -212,7 +212,7 @@ void load_dg_Key(py::module m) {
 
 // --- NativeImage ------------------------------------------------------------------------
 
-//void load_dg_NativeImage(py::module m) {
+//void load_NativeImage(py::module m) {
 //	py::class_<NativeImage>(m, "NativeImage")
 //		.def(py::init<>())
 //		.def(py::init<void*, double>())
@@ -226,7 +226,7 @@ void load_dg_Key(py::module m) {
 
 // --- NativeUnit -------------------------------------------------------------------------
 
-void load_dg_NativeUnit(py::module m) {
+void load_NativeUnit(py::module m) {
 	py::class_<NativeUnit>(m, "NativeUnit")
 		.def(py::init<>())
 		.def(py::init<short>())
@@ -250,7 +250,7 @@ void load_dg_NativeUnit(py::module m) {
 
 // --- TPointEX ---------------------------------------------------------------------------
 
-void load_dg_TPointEX(py::module m) {
+void load_TPointEX(py::module m) {
 	// --- TPoint<short> ------------------------------------------------------------------
 	py::class_<TPoint<short>>(m, "ShortPoint")
 		//.def(py::init<>())
@@ -295,7 +295,7 @@ void load_dg_TPointEX(py::module m) {
 
 
 // --- TRectEX ----------------------------------------------------------------------------
-void load_dg_TRectEX(py::module m) {
+void load_TRectEX(py::module m) {
 	// --- TRect<short>
 	py::class_<TRect<short>>(m, "ShortRect")
 		//.def(py::init<>())
@@ -425,7 +425,7 @@ void load_dg_TRectEX(py::module m) {
 
 // --- MousePosData -----------------------------------------------------------------------
 
-void load_dg_MousePosData(py::module m) {
+void load_MousePosData(py::module m) {
 	py::class_<MousePosData>(m, "MousePosData")
 		.def(py::init<>())
 
@@ -459,7 +459,7 @@ void load_dg_MousePosData(py::module m) {
 
 // --- Definitions ------------------------------------------------------------------------
 
-//void load_dg_DragDrop(py::module m) {
+//void load_DragDrop(py::module m) {
 //	py::enum_<DragDrop::Effect>(m, "Effect")
 //		.value("Reject", DragDrop::Effect::Reject)
 //		.value("Accept", DragDrop::Effect::Accept)
@@ -494,7 +494,7 @@ void load_dg_MousePosData(py::module m) {
 
 // --- ItemDragDropData -------------------------------------------------------------------
 
-//void load_dg_ItemDragDropData(py::module m) {
+//void load_ItemDragDropData(py::module m) {
 //	py::class_<ItemDragDropData>(m, "ItemDragDropData")
 //		.def("HasDataFormat", &ItemDragDropData::HasDataFormat)
 //		.def("GetDataSize", &ItemDragDropData::GetDataSize)
@@ -520,7 +520,7 @@ void load_dg_MousePosData(py::module m) {
 
 // --- DragSourceEventProperty ------------------------------------------------------------
 
-//void load_dg_DragSourceEventProperty(py::module m) {
+//void load_DragSourceEventProperty(py::module m) {
 //	py::class_<DragSourceEventProperty>(m, "DragSourceEventProperty")
 //		.def(py::init<>())
 //
@@ -540,7 +540,7 @@ void load_dg_MousePosData(py::module m) {
 
 // --- DropTargetEventProperty ------------------------------------------------------------
 
-//void load_dg_DropTargetEventProperty(py::module m) {
+//void load_DropTargetEventProperty(py::module m) {
 //	py::class_<DropTargetEventProperty, ItemDragDropData>(m, "DropTargetEventProperty")
 //		.def("GetTargetPosition", &DropTargetEventProperty::GetTargetPosition);
 //}
@@ -548,7 +548,7 @@ void load_dg_MousePosData(py::module m) {
 
 // --- CompoundItemObserver ---------------------------------------------------------------
 
-//void load_dg_CompoundItemObserver(py::module m) {
+//void load_CompoundItemObserver(py::module m) {
 //	py::class_<CompoundItemObserver>(m, "CompoundItemObserver")
 //		.def("AttachToAllItems", &CompoundItemObserver::AttachToAllItems)
 //		.def("DetachFromAllItems", &CompoundItemObserver::DetachFromAllItems);
@@ -557,7 +557,7 @@ void load_dg_MousePosData(py::module m) {
 
 // ---- SetAndRestoreEditUpdateDelay ------------------------------------------------------
 
-//void load_dg_SetAndRestoreEditUpdateDelay(py::module m) {
+//void load_SetAndRestoreEditUpdateDelay(py::module m) {
 //	py::class_<SetAndRestoreEditUpdateDelay>(m, "SetAndRestoreEditUpdateDelay");
 //}
 

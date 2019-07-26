@@ -96,7 +96,7 @@ private:
 // --- UserItemEventProperty --------------------------------------------------------------------
 
 
-void load_dg_UserItemEventProperty(py::module m) {
+void load_UserItemEventProperty(py::module m) {
 	py::class_<UserItemEventProperty>(m, "UserItemEventProperty")
 		.def("GetMouseOffset", &UserItemEventProperty::GetMouseOffset)
 		.def("IsCommandPressed", &UserItemEventProperty::IsCommandPressed)
@@ -111,7 +111,7 @@ void load_dg_UserItemEventProperty(py::module m) {
 
 // --- UserItem ---------------------------------------------------------------------------------
 
-void load_dg_UserItem(py::module m) {
+void load_UserItem(py::module m) {
 	// --- UserItemDropSourceEvent --------------------------------------------------------------
 	//py::class_<UserItemDragSourceEvent, ItemDragSourceEvent>(m, "UserItemDragSourceEvent")
 	//	.def("GetSource", &UserItemDragSourceEvent::GetSource, py::return_value_policy::reference);

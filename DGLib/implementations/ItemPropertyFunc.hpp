@@ -11,7 +11,7 @@ using namespace DG;
 
 // --- namespace DG::Font ---------------------------------------------------------------------
 
-void load_dg_Font(py::module m) {
+void load_Font(py::module m) {
 	py::enum_<Font::Size>(m, "Size")
 		.value("Large", Font::Size::Large)
 		.value("Small", Font::Size::Small)
@@ -33,7 +33,7 @@ void load_dg_Font(py::module m) {
 
 // --- ItemPropertyEX -------------------------------------------------------------------------
 
-void load_dg_ItemBaseEX(py::module m) {
+void load_ItemBaseEX(py::module m) {
 	// --- FocusableProperty ------------------------------------------------------------------
 	py::class_<FocusableProperty, ItemBase>(m, "FocusableProperty")
 		.def("SetFocus", &FocusableProperty::SetFocus)
