@@ -16,7 +16,7 @@
 
 PYBIND11_MODULE(DGLib, m) {
 
-	m.def("version", []() {	return "version 0.0.1"; });
+	m.def("version", []() {	return "version 0.0.2"; });
 
 // --- Add bindings here ------------------------------------------------------------------
 
@@ -35,6 +35,7 @@ PYBIND11_MODULE(DGLib, m) {
 	load_dg_NativeUnit(m);
 	load_dg_TPointEX(m);
 	load_dg_TRectEX(m);
+	load_dg_MousePosData(m);
 
 // --- DGPanel
 	load_dg_Panel(m);
@@ -71,6 +72,7 @@ PYBIND11_MODULE(DGLib, m) {
 	load_dg_ProgressBar(m);
 
 // --- DGStaticItem
+	load_dg_StaticItemEventProperty(m);
 	load_dg_StaticText(m);
 	load_dg_StaticTextEX(m);
 	load_dg_GroupBox(m);
