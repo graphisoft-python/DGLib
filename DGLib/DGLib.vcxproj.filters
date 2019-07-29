@@ -24,37 +24,37 @@
     <ClInclude Include="targetver.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="implementations\BarControlFunc.hpp">
+    <ClInclude Include="implementations\DGBarControlFunc.hpp">
       <Filter>源文件</Filter>
     </ClInclude>
-    <ClInclude Include="implementations\ButtonFunc.hpp">
+    <ClInclude Include="implementations\DGButtonFunc.hpp">
       <Filter>源文件</Filter>
     </ClInclude>
-    <ClInclude Include="implementations\DialogFunc.hpp">
+    <ClInclude Include="implementations\DGDialogFunc.hpp">
       <Filter>源文件</Filter>
     </ClInclude>
-    <ClInclude Include="implementations\EditControlFunc.hpp">
+    <ClInclude Include="implementations\DGEditControlFunc.hpp">
       <Filter>源文件</Filter>
     </ClInclude>
-    <ClInclude Include="implementations\ItemFunc.hpp">
+    <ClInclude Include="implementations\DGItemFunc.hpp">
       <Filter>源文件</Filter>
     </ClInclude>
-    <ClInclude Include="implementations\ItemPropertyFunc.hpp">
+    <ClInclude Include="implementations\DGItemPropertyFunc.hpp">
       <Filter>源文件</Filter>
     </ClInclude>
-    <ClInclude Include="implementations\ListBoxFunc.hpp">
+    <ClInclude Include="implementations\DGListBoxFunc.hpp">
       <Filter>源文件</Filter>
     </ClInclude>
-    <ClInclude Include="implementations\PanelFunc.hpp">
+    <ClInclude Include="implementations\DGPanelFunc.hpp">
       <Filter>源文件</Filter>
     </ClInclude>
-    <ClInclude Include="implementations\StaticItemFunc.hpp">
+    <ClInclude Include="implementations\DGStaticItemFunc.hpp">
       <Filter>源文件</Filter>
     </ClInclude>
-    <ClInclude Include="implementations\UserItemFunc.hpp">
+    <ClInclude Include="implementations\DGUserItemFunc.hpp">
       <Filter>源文件</Filter>
     </ClInclude>
-    <ClInclude Include="implementations\UtilityFunc.hpp">
+    <ClInclude Include="implementations\DGUtilityFunc.hpp">
       <Filter>源文件</Filter>
     </ClInclude>
   </ItemGroup>

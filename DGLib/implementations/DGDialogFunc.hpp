@@ -77,10 +77,8 @@ void load_Dialog(py::module m) {
 		.def("GetDialogType", &Dialog::GetDialogType)
 		.def("IsDGDialog", &Dialog::IsDGDialog)
 		.def("Center", &Dialog::Center)
-		.def("Move", (void (Dialog::*)
-			(short, short))	&Dialog::Move)
-		.def("Move", (void (Dialog::*)
-			(const NativeUnit &, const NativeUnit &)) &Dialog::Move)
+		.def("Move", (void (Dialog::*)(short, short)) &Dialog::Move)
+		.def("Move", (void (Dialog::*)(const NativeUnit &, const NativeUnit &)) &Dialog::Move)
 		.def("Resize", &Dialog::Resize,
 			py::arg("hGrow"), 
 			py::arg("vGrow"), 
@@ -95,10 +93,8 @@ void load_Dialog(py::module m) {
 		.def("SetMinClientHeight", &Dialog::SetMinClientHeight)
 		.def("GetMinClientWidth", &Dialog::GetMinClientWidth)
 		.def("GetMinClientHeight", &Dialog::GetMinClientHeight)
-		.def("SetClientPosition", (void (Dialog::*)
-			(const NativePoint &)) &Dialog::SetClientPosition)
-		.def("SetClientPosition", (void (Dialog::*)
-			(const NativeUnit &, const NativeUnit &)) &Dialog::SetClientPosition)
+		.def("SetClientPosition", (void (Dialog::*)(const NativePoint &)) &Dialog::SetClientPosition)
+		.def("SetClientPosition", (void (Dialog::*)(const NativeUnit &, const NativeUnit &)) &Dialog::SetClientPosition)
 		.def("SetClientRect", &Dialog::SetClientRect,
 			py::arg("rect"),
 			py::arg("fixPoint") = Dialog::FixPoint::TopLeft, 
@@ -127,10 +123,8 @@ void load_Dialog(py::module m) {
 		.def("SetMinFrameHeight", &Dialog::SetMinFrameHeight)
 		.def("GetMinFrameWidth", &Dialog::GetMinFrameWidth)
 		.def("GetMinFrameHeight", &Dialog::GetMinFrameHeight)
-		.def("SetFramePosition", (void (Dialog::*)
-			(const NativePoint &)) &Dialog::SetFramePosition)
-		.def("SetFramePosition", (void (Dialog::*)
-			(const NativeUnit &, const NativeUnit &)) &Dialog::SetFramePosition)
+		.def("SetFramePosition", (void (Dialog::*)(const NativePoint &)) &Dialog::SetFramePosition)
+		.def("SetFramePosition", (void (Dialog::*)(const NativeUnit &, const NativeUnit &)) &Dialog::SetFramePosition)
 		.def("SetFrameRect", &Dialog::SetFrameRect, 
 			py::arg("rect"),
 			py::arg("fixPoint") = Dialog::FixPoint::TopLeft, 

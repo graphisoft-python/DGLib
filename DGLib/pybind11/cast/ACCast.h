@@ -5,6 +5,7 @@
 #include	<pybind11/operators.h>
 #include	"UniString.hpp"
 #include	"ACExport.h"
+#include	<pybind11/stl.h>
 
 namespace pybind11 {
 	namespace detail {
@@ -97,6 +98,58 @@ namespace pybind11 {
 
 			PYBIND11_TYPE_CASTER(PyEnv::ACExport, _("iTerm.ACExport"));
 		};
+	
+		template <typename ArrayType, typename Value, bool Resizable, USize Size = 0> struct gs_array_caster {
+			using value_conv = make_caster<Value>;
+
+		private:
+			template <bool R = Resizable>
+			bool require_size(enable_if_t<R, USize> size) {
+				if (value.GetSize() != size)
+					value.EnsureSize(size);
+				return true;
+			}
+			template <bool R = Resizable>
+			bool require_size(enable_if_t<!R, USize> size) {
+				return size == Size;
+			}
+
+		public:
+			bool load(handle src, bool convert) {
+				if (!isinstance<sequence>(src))
+					return false;
+				auto l = reinterpret_borrow<sequence>(src);
+				if (!require_size(l.size()))
+					return false;
+				USize ctr = 0;
+				for (auto it : l) {
+					value_conv conv;
+					if (!conv.load(it, convert))
+						return false;
+					value[ctr++] = cast_op<Value &&>(std::move(conv));
+				}
+				return true;
+			}
+
+			template <typename T>
+			PYBIND11_NOINLINE static handle cast(T &&src, return_value_policy policy, handle parent) {
+				list l(src.GetSize());
+				size_t index = 0;
+				for (auto &&value : src) {
+					auto value_ = reinterpret_steal<object>(value_conv::cast(forward_like<T>(value), policy, parent));
+					if (!value_)
+						return handle();
+					PyList_SET_ITEM(l.ptr(), (ssize_t)index++, value_.release().ptr()); // steals a reference
+				}
+				return l.release();
+			}
+
+			PYBIND11_TYPE_CASTER(ArrayType, _("List[") + value_conv::name + _<Resizable>(_(""), _("[") + _<Size>() + _("]")) + _("]"));
+		};
+
+
+		template <typename Type> struct type_caster<GS::Array<Type>>
+			: gs_array_caster<GS::Array<Type>, Type, true> { };
 	}
 
 	class gil_scoped_acquire_for_archicad {

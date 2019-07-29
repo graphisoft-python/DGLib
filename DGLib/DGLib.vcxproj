@@ -155,17 +155,17 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="implementations\BarControlFunc.hpp" />
-    <ClInclude Include="implementations\ButtonFunc.hpp" />
-    <ClInclude Include="implementations\DialogFunc.hpp" />
-    <ClInclude Include="implementations\EditControlFunc.hpp" />
-    <ClInclude Include="implementations\ItemFunc.hpp" />
-    <ClInclude Include="implementations\ItemPropertyFunc.hpp" />
-    <ClInclude Include="implementations\ListBoxFunc.hpp" />
-    <ClInclude Include="implementations\PanelFunc.hpp" />
-    <ClInclude Include="implementations\StaticItemFunc.hpp" />
-    <ClInclude Include="implementations\UserItemFunc.hpp" />
-    <ClInclude Include="implementations\UtilityFunc.hpp" />
+    <ClInclude Include="implementations\DGBarControlFunc.hpp" />
+    <ClInclude Include="implementations\DGButtonFunc.hpp" />
+    <ClInclude Include="implementations\DGDialogFunc.hpp" />
+    <ClInclude Include="implementations\DGEditControlFunc.hpp" />
+    <ClInclude Include="implementations\DGItemFunc.hpp" />
+    <ClInclude Include="implementations\DGItemPropertyFunc.hpp" />
+    <ClInclude Include="implementations\DGListBoxFunc.hpp" />
+    <ClInclude Include="implementations\DGPanelFunc.hpp" />
+    <ClInclude Include="implementations\DGStaticItemFunc.hpp" />
+    <ClInclude Include="implementations\DGUserItemFunc.hpp" />
+    <ClInclude Include="implementations\DGUtilityFunc.hpp" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>

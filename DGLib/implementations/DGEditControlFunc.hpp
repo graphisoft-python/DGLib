@@ -226,7 +226,6 @@ void load_PosIntEdit(py::module m) {
 // --- IntEdit -----------------------------------------------------------------------------
 
 void load_IntEdit(py::module m) {
-
 	// --- IntEditChangeEvent --------------------------------------------------------------
 	py::class_<IntEditChangeEvent, ItemChangeEvent>(m, "IntEditChangeEvent")
 		.def("GetSource", &IntEditChangeEvent::GetSource, py::return_value_policy::reference)

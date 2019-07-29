@@ -2,17 +2,17 @@
 
 #include "../stdafx.h"
 
-#include "../implementations/BarControlFunc.hpp"
-#include "../implementations/ButtonFunc.hpp"
-#include "../implementations/DialogFunc.hpp"
-#include "../implementations/EditControlFunc.hpp"
-#include "../implementations/ItemFunc.hpp"
-#include "../implementations/ItemPropertyFunc.hpp"
-#include "../implementations/ListBoxFunc.hpp"
-#include "../implementations/PanelFunc.hpp"
-#include "../implementations/StaticItemFunc.hpp"
-#include "../implementations/UtilityFunc.hpp"
-#include "../implementations/UserItemFunc.hpp"
+#include "../implementations/DGBarControlFunc.hpp"
+#include "../implementations/DGButtonFunc.hpp"
+#include "../implementations/DGDialogFunc.hpp"
+#include "../implementations/DGEditControlFunc.hpp"
+#include "../implementations/DGItemFunc.hpp"
+#include "../implementations/DGItemPropertyFunc.hpp"
+#include "../implementations/DGListBoxFunc.hpp"
+#include "../implementations/DGPanelFunc.hpp"
+#include "../implementations/DGStaticItemFunc.hpp"
+#include "../implementations/DGUtilityFunc.hpp"
+#include "../implementations/DGUserItemFunc.hpp"
 
 
 PYBIND11_MODULE(DGLib, m) {
