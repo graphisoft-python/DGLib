@@ -13,7 +13,7 @@ using namespace DG;
 
 // --- PyButtonItemObserver --------------------------------------------------------------------
 
-class PyButtonItemObserver : ButtonItemObserver, ItemObserver {
+class PyButtonItemObserver : ButtonItemObserver/*, ItemObserver */{
 
 public:
 	PyButtonItemObserver(ButtonItem &item, ACExport &acExport)
@@ -40,7 +40,7 @@ private:
 
 // --- PySplitButtonObserver -------------------------------------------------------------------
 
-class PySplitButtonObserver : SplitButtonObserver, ButtonItemObserver, ItemObserver {
+class PySplitButtonObserver : SplitButtonObserver/*, ButtonItemObserver, ItemObserver */{
 
 public:
 	PySplitButtonObserver(SplitButton &item, ACExport &acExport)
@@ -71,7 +71,7 @@ private:
 
 // --- PyCustomSplitButtonObserver -------------------------------------------------------------
 
-class PyCustomSplitButtonObserver : CustomSplitButtonObserver, ButtonItemObserver, ItemObserver {
+class PyCustomSplitButtonObserver : CustomSplitButtonObserver/*, ButtonItemObserver, ItemObserver*/ {
 
 public:
 	PyCustomSplitButtonObserver(CustomSplitButton &item, ACExport &acExport)
@@ -214,11 +214,9 @@ void load_SplitButton(py::module m) {
 			py::arg("panel"),
 			py::arg("rect"),
 			py::arg("type") = SplitButtonBase::ButtonForm::Normal)
-		.def("AppendItem", (void (SplitButton::*)
-			(GS::UniString &)) &SplitButton::AppendItem)
+		.def("AppendItem", (void (SplitButton::*)(GS::UniString &)) &SplitButton::AppendItem)
 		.def("AppendSeparator", &SplitButton::AppendSeparator)
-		.def("InsertItem", (void (SplitButton::*)
-			(short, GS::UniString &)) &SplitButton::InsertItem)
+		.def("InsertItem", (void (SplitButton::*)(short, GS::UniString &)) &SplitButton::InsertItem)
 		.def("InsertSeparator", &SplitButton::InsertSeparator)
 		.def("DeleteItem", &SplitButton::DeleteItem)
 		.def("DeleteAllItems", &SplitButton::DeleteAllItems)

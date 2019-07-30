@@ -12,7 +12,7 @@ using namespace DG;
 
 // --- PyUserItemObserver -----------------------------------------------------------------------
 
-class PyUserItemObserver : UserItemObserver, ItemObserver, UserItemDragSourceObserver, UserItemDropTargetObserver {
+class PyUserItemObserver : UserItemObserver/*, ItemObserver, UserItemDragSourceObserver, UserItemDropTargetObserver */{
 public:
 	PyUserItemObserver(UserItem &item, ACExport &acExport)
 		:m_parent(item) {
@@ -147,7 +147,7 @@ void load_UserItem(py::module m) {
 	// --- UserItem -----------------------------------------------------------------------------
 	py::class_<UserItem, Item, ItemFontProperty> m_userItem(m, "UserItem");
 
-	py::enum_<UserItem::GestureHandlingMode>(m_userItem, "UserItemType")
+	py::enum_<UserItem::GestureHandlingMode>(m_userItem, "GestureHandlingMode")
 		.value("DefaultToScroll", UserItem::GestureHandlingMode::DefaultToScroll)
 		.value("DefaultToZoom", UserItem::GestureHandlingMode::DefaultToZoom)
 		.value("NotSupported", UserItem::GestureHandlingMode::NotSupported)

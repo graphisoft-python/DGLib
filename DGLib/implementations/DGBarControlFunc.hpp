@@ -10,7 +10,7 @@ using namespace DG;
 
 // --- PyBarControlObserver --------------------------------------------------------------------
 
-class PyBarControlObserver : BarControlObserver, ItemObserver {
+class PyBarControlObserver : BarControlObserver/*, ItemObserver */{
 public:
 	PyBarControlObserver(BarControl &item, ACExport &acExport)
 		:m_parent(item) {
@@ -48,7 +48,7 @@ private:
 
 // --- ScrollBarObserver -----------------------------------------------------------------------
 
-class PyScrollBarObserver : ScrollBarObserver, ItemObserver {
+class PyScrollBarObserver : ScrollBarObserver/*, ItemObserver */{
 public:
 	PyScrollBarObserver(ScrollBar &item, ACExport &acExport)
 		:m_parent(item) {

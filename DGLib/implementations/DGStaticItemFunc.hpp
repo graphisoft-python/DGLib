@@ -10,7 +10,7 @@ using namespace DG;
 
 // --- PyStaticTextObserver --------------------------------------------------------------------
 
-class PyStaticTextObserver : StaticTextObserver, ItemObserver {
+class PyStaticTextObserver : StaticTextObserver/*, ItemObserver */{
 public:
 	PyStaticTextObserver(StaticText &item, ACExport &acExport)
 		:m_parent(item) {

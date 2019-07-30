@@ -12,7 +12,7 @@ using namespace DG;
 
 // --- PyPosIntEditObserver ----------------------------------------------------------------
 
-class PyPosIntEditObserver : PosIntEditObserver, ItemObserver , EditDragSourceObserver , EditDropTargetObserver {
+class PyPosIntEditObserver : PosIntEditObserver/*, ItemObserver , EditDragSourceObserver , EditDropTargetObserver*/ {
 
 public:
 	PyPosIntEditObserver(PosIntEdit &item, ACExport &acExport)
@@ -41,7 +41,7 @@ private:
 
 // --- PyIntEditObserver -------------------------------------------------------------------
 
-class PyIntEditObserver : IntEditObserver, ItemObserver, EditDragSourceObserver, EditDropTargetObserver {
+class PyIntEditObserver : IntEditObserver/*, ItemObserver, EditDragSourceObserver, EditDropTargetObserver */{
 
 public:
 	PyIntEditObserver(IntEdit &item, ACExport &acExport)
@@ -70,7 +70,7 @@ private:
 
 // --- PyRealEditObserver ------------------------------------------------------------------
 
-class PyRealEditObserver : RealEditObserver, ItemObserver, EditDragSourceObserver, EditDropTargetObserver {
+class PyRealEditObserver : RealEditObserver/*, ItemObserver, EditDragSourceObserver, EditDropTargetObserver */{
 
 public:
 	PyRealEditObserver(RealEdit &item, ACExport &acExport)
@@ -99,7 +99,7 @@ private:
 
 // --- PyTextEditBaseObserver --------------------------------------------------------------
 
-class PyTextEditBaseObserver : TextEditBaseObserver, ItemObserver, EditDragSourceObserver, EditDropTargetObserver {
+class PyTextEditBaseObserver : TextEditBaseObserver/*, ItemObserver, EditDragSourceObserver, EditDropTargetObserver */{
 
 public:
 	PyTextEditBaseObserver(TextEditBase &item, ACExport &acExport)
@@ -128,7 +128,7 @@ private:
 
 // --- PyShortcutEditObserver --------------------------------------------------------------
 
-class PyShortcutEditObserver : ShortcutEditObserver ,ItemObserver {
+class PyShortcutEditObserver : ShortcutEditObserver/* ,ItemObserver*/ {
 
 public:
 	PyShortcutEditObserver(ShortcutEdit &item, ACExport &acExport)

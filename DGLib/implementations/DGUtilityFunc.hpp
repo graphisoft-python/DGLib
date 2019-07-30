@@ -252,7 +252,7 @@ void load_TRectEX(py::module m) {
 		.def("IsEmpty", &TRect<NativeUnit>::IsEmpty)
 		.def("Contains", (bool (TRect<NativeUnit>::*)(const TPoint<NativeUnit> &)const) &TRect<NativeUnit>::Contains)
 		.def("Contains", (bool (TRect<NativeUnit>::*)(const NativeUnit &, const NativeUnit &)const) &TRect<NativeUnit>::Contains)
-		//.def("ToGSRect", &TRect<NativeUnit>::ToGSRect)
+		.def("ToGSRect", &TRect<NativeUnit>::ToGSRect)
 		.def("IsIntersecting", &TRect<NativeUnit>::IsIntersecting)
 		.def("Intersect", &TRect<NativeUnit>::Intersect);
 	

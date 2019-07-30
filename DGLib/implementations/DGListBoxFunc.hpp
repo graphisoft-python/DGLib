@@ -12,7 +12,7 @@ using namespace DG;
 
 // --- PyListBoxObserver --------------------------------------------------------------------
 
-class PyListBoxObserver : ListBoxObserver, ItemObserver, ListBoxDragSourceObserver, ListBoxDropTargetObserver {
+class PyListBoxObserver : ListBoxObserver/*, ItemObserver, ListBoxDragSourceObserver, ListBoxDropTargetObserver */{
 public:
 	PyListBoxObserver(ListBox &item, ACExport &acExport)
 		:m_parent(item) {
