@@ -47,9 +47,9 @@ void load_ItemBaseEX(py::module m) {
 		.def("GetFontStyle", &ItemFontProperty::GetFontStyle);
 
 	// --- ItemIconProperty -------------------------------------------------------------------
-	//py::class_<ItemIconProperty, ItemBase>(m, "ItemIconProperty")
-	//	.def("SetIcon", &ItemIconProperty::SetIcon)
-	//	.def("GetIcon", &ItemIconProperty::GetIcon);
+	py::class_<ItemIconProperty, ItemBase>(m, "ItemIconProperty")
+		.def("SetIcon", &ItemIconProperty::SetIcon)
+		.def("GetIcon", &ItemIconProperty::GetIcon);
 
 	// --- ItemTextProperty -------------------------------------------------------------------
 	py::class_<ItemTextProperty, ItemBase>(m, "ItemTextProperty")

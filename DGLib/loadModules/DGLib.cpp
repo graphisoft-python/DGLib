@@ -13,6 +13,8 @@
 #include "../implementations/DGStaticItemFunc.hpp"
 #include "../implementations/DGUtilityFunc.hpp"
 #include "../implementations/DGUserItemFunc.hpp"
+#include "../implementations/DGCheckItemFunc.hpp"
+#include "../implementations/DGImageFunc.hpp"
 
 
 PYBIND11_MODULE(DGLib, m) {
@@ -21,38 +23,41 @@ PYBIND11_MODULE(DGLib, m) {
 
 // --- Add bindings here ------------------------------------------------------------------
 
-// --- DGItem
+	// --- DGItem
 	load_ItemBase(m);
 	load_Item(m);
 
-// --- DGItemProperty
+	// --- DGItemProperty
 	load_Font(m.def_submodule("Font"));
 	load_ItemBaseEX(m);
 
-// --- DGUtility
+	// --- DGUtility
 	load_EOL(m.def_submodule("EOL"));
 	load_Key(m.def_submodule("Key"));
 	load_CharRange(m);
+	load_Image(m);
+	load_ImageEX(m);
+	load_NativeImage(m);
 	load_NativeUnit(m);
 	load_TPointEX(m);
 	load_TRectEX(m);
 	load_MousePosData(m);
 
-// --- DGPanel
+	// --- DGPanel
 	load_Panel(m);
 
-// --- DGDialog
+	// --- DGDialog
 	load_Dialog(m);
 	load_DialogEX(m);
 	load_ModelessBaseEX(m);
 
-// --- DGButton
+	// --- DGButton
 	load_ButtonItem(m);
 	load_ButtonItemEX(m);
 	load_SplitButton(m);
 	load_CustomSplitButton(m);
 
-// --- DGEditControl	
+	// --- DGEditControl	
 	load_EditControl(m);
 	load_PosIntEdit(m);
 	load_IntEdit(m);
@@ -62,26 +67,34 @@ PYBIND11_MODULE(DGLib, m) {
 	load_TextEditBaseEX(m);
 	load_ShortcutEdit(m);
 
-// --- DGListBox
+	// --- DGListBox
 	load_ListBox(m);
 	load_ListBoxEX(m);
 
-// --- BarControl
+	// --- BarControl
 	load_BarControl(m);
 	load_BarControlEX(m);
 	load_ScrollBar(m);
 	load_ProgressBar(m);
 
-// --- DGStaticItem
+	// --- DGStaticItem
 	load_StaticItemEventProperty(m);
 	load_StaticText(m);
 	load_StaticTextEX(m);
 	load_GroupBox(m);
 	load_Separator(m);
 
-// --- DGUserItem
+	// --- DGUserItem
 	load_UserItemEventProperty(m);
 	load_UserItem(m);
+
+	// --- DGCheckItem
+	load_CheckItem(m);
+	load_CheckItemEX(m);
+
+	// --- DGImage
+	load_ImageItem(m);
+	load_ImageItemEX(m);
 
 // --- Add bindings end -------------------------------------------------------------------
 }

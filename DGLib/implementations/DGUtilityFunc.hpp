@@ -107,6 +107,160 @@ void load_Key(py::module m) {
 }
 
 
+// --- Override Image ---------------------------------------------------------------------
+
+class PyImage : Image
+{
+public:
+	using Image::Image;
+
+	PyImage() : Image() {};
+	PyImage(std::string &file) : Image(getData(file)) {};
+
+	~PyImage() {
+		if (data != nullptr) {
+			delete[] data;
+			data = nullptr;
+		}
+	};
+
+	char *getData(std::string &file) {
+		// wait for writting...
+
+		return this->data;
+	};
+
+private:
+	char *data;
+};
+
+
+// --- Image ------------------------------------------------------------------------------
+
+void load_Image(py::module m) {
+	py::class_<Image, PyImage>(m, "Image")
+		.def(py::init_alias<>())
+		.def(py::init_alias<std::string &>())
+		.def(py::self == py::self)
+		.def(py::self != py::self)
+		.def("IsEmpty", &Image::IsEmpty)
+		.def("IsValid", &Image::IsValid);
+}
+
+
+// --- Override Icon ----------------------------------------------------------------------
+
+class PyIcon : Icon
+{
+public:
+	using Icon::Icon;
+
+	PyIcon() : Icon() {};
+	PyIcon(std::string &file) : Icon(getData(file)) {};
+	
+	~PyIcon() {
+		if (data != nullptr) {
+			delete[] data;
+			data = nullptr;
+		}
+	};
+
+	char *getData(std::string &file) {
+		// wait for writting...
+
+		return this->data;
+	};
+
+private:
+	char *data;
+};
+
+
+// --- Override Picture -------------------------------------------------------------------
+
+class PyPicture : Picture
+{
+public:
+	using Picture::Picture;
+
+	PyPicture() : Picture() {};
+	PyPicture(std::string &file) : Picture(getData(file)) {};
+	
+	~PyPicture() {
+		if (data != nullptr) {
+			delete[] data;
+			data = nullptr;
+		}
+	};
+
+	char *getData(std::string &file) {
+		// wait for writting...
+
+		return this->data;
+	};
+
+private:
+	char *data;
+};
+
+
+// --- ImageEX ----------------------------------------------------------------------------
+
+void load_ImageEX(py::module m) {
+	// --- Icon ---------------------------------------------------------------------------
+	py::class_<Icon, PyIcon>(m, "Icon")
+		.def(py::init_alias<>())
+		.def(py::init_alias<std::string &>())
+		.def("IsValid",&Icon::IsValid);
+
+	// --- Picture ------------------------------------------------------------------------
+	py::class_<Picture, PyPicture>(m, "Picture")
+		.def(py::init_alias<>())
+		.def(py::init_alias<std::string &>());
+}
+
+
+// --- override NativeImage ---------------------------------------------------------------
+
+class PyNativeImage : NativeImage
+{
+public:
+	using NativeImage::NativeImage;
+	PyNativeImage() : NativeImage() {};
+	PyNativeImage(std::string &file, double resolutionFactor) : NativeImage(getData(file), resolutionFactor) {};
+	PyNativeImage(Image &icon, double resolutionFactor) : NativeImage(icon, resolutionFactor) {};
+	PyNativeImage(NativeImage &other) : NativeImage(other) {};
+	
+	~PyNativeImage() {
+		if (data != nullptr) {
+			delete[] data;
+			data = nullptr;
+		}
+	};
+
+	char *getData(std::string &file) {
+		// wait for writting...
+
+		return this->data;
+	};
+
+private:
+	char *data;
+};
+
+
+// --- NativeImage ------------------------------------------------------------------------
+
+void load_NativeImage(py::module m) {
+	py::class_<NativeImage, PyNativeImage>(m, "NativeImage")
+		.def(py::init_alias<>())
+		.def(py::init_alias<std::string &,double>())
+		.def(py::init_alias<Image &,double>())
+		.def(py::init_alias<NativeImage &>())
+		.def("GetNativeImage",&NativeImage::GetNativeImage);
+}
+
+
 // --- NativeUnit -------------------------------------------------------------------------
 
 void load_NativeUnit(py::module m) {

@@ -57,6 +57,12 @@
     <ClInclude Include="implementations\DGUtilityFunc.hpp">
       <Filter>源文件</Filter>
     </ClInclude>
+    <ClInclude Include="implementations\DGCheckItemFunc.hpp">
+      <Filter>源文件</Filter>
+    </ClInclude>
+    <ClInclude Include="implementations\DGImageFunc.hpp">
+      <Filter>源文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -92,6 +98,9 @@
       <Filter>libs</Filter>
     </Library>
     <Library Include="..\Support\Modules\UDLib\Win\UDImp.LIB">
+      <Filter>libs</Filter>
+    </Library>
+    <Library Include="..\Support\Modules\Graphix\Win\GraphixImp.LIB">
       <Filter>libs</Filter>
     </Library>
   </ItemGroup>
