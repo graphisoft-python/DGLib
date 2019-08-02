@@ -12,7 +12,7 @@ using namespace DG;
 
 // --- PyPosIntEditObserver ----------------------------------------------------------------
 
-class PyPosIntEditObserver : PosIntEditObserver/*, ItemObserver , EditDragSourceObserver , EditDropTargetObserver*/ {
+class PyPosIntEditObserver : PosIntEditObserver {
 
 public:
 	PyPosIntEditObserver(PosIntEdit &item, ACExport &acExport)
@@ -41,7 +41,7 @@ private:
 
 // --- PyIntEditObserver -------------------------------------------------------------------
 
-class PyIntEditObserver : IntEditObserver/*, ItemObserver, EditDragSourceObserver, EditDropTargetObserver */{
+class PyIntEditObserver : IntEditObserver {
 
 public:
 	PyIntEditObserver(IntEdit &item, ACExport &acExport)
@@ -70,7 +70,7 @@ private:
 
 // --- PyRealEditObserver ------------------------------------------------------------------
 
-class PyRealEditObserver : RealEditObserver/*, ItemObserver, EditDragSourceObserver, EditDropTargetObserver */{
+class PyRealEditObserver : RealEditObserver {
 
 public:
 	PyRealEditObserver(RealEdit &item, ACExport &acExport)
@@ -99,7 +99,7 @@ private:
 
 // --- PyTextEditBaseObserver --------------------------------------------------------------
 
-class PyTextEditBaseObserver : TextEditBaseObserver/*, ItemObserver, EditDragSourceObserver, EditDropTargetObserver */{
+class PyTextEditBaseObserver : TextEditBaseObserver {
 
 public:
 	PyTextEditBaseObserver(TextEditBase &item, ACExport &acExport)
@@ -207,13 +207,13 @@ void load_PosIntEdit(py::module m) {
 		.export_values();
 
 	m_posIntEdit
-		.def(py::init<Panel &, Rect &, EditControl::FrameType, PosIntEdit::AbsRelType, EditControl::UpdateType, EditControl::ReadOnlyType>(),
+		.def(py::init<Panel &, Rect &, PosIntEdit::FrameType, PosIntEdit::AbsRelType, PosIntEdit::UpdateType, PosIntEdit::ReadOnlyType>(),
 			py::arg("panel"), 
 			py::arg("rect"),
-			py::arg("frame") = EditControl::FrameType::Frame,
+			py::arg("frame") = PosIntEdit::FrameType::Frame,
 			py::arg("absRel") = PosIntEdit::AbsRelType::Absolute,
-			py::arg("update") = EditControl::UpdateType::Update,
-			py::arg("readOnly") = EditControl::ReadOnlyType::Editable)
+			py::arg("update") = PosIntEdit::UpdateType::Update,
+			py::arg("readOnly") = PosIntEdit::ReadOnlyType::Editable)
 		.def("SetMin", &PosIntEdit::SetMin)
 		.def("SetMax", &PosIntEdit::SetMax)
 		.def("SetValue", &PosIntEdit::SetValue)
@@ -245,13 +245,13 @@ void load_IntEdit(py::module m) {
 		.export_values();
 
 	m_intEdit
-		.def(py::init<Panel &, Rect &, EditControl::FrameType, IntEdit::AbsRelType, EditControl::UpdateType, EditControl::ReadOnlyType>(),
+		.def(py::init<Panel &, Rect &, IntEdit::FrameType, IntEdit::AbsRelType, IntEdit::UpdateType, IntEdit::ReadOnlyType>(),
 			py::arg("panel"), 
 			py::arg("rect"),
-			py::arg("frame") = EditControl::FrameType::Frame,
+			py::arg("frame") = IntEdit::FrameType::Frame,
 			py::arg("absRel") = IntEdit::AbsRelType::Absolute,
-			py::arg("update") = EditControl::UpdateType::Update,
-			py::arg("readOnly") = EditControl::ReadOnlyType::Editable)
+			py::arg("update") = IntEdit::UpdateType::Update,
+			py::arg("readOnly") = IntEdit::ReadOnlyType::Editable)
 		.def("SetMin", &IntEdit::SetMin)
 		.def("SetMax", &IntEdit::SetMax)
 		.def("SetValue", &IntEdit::SetValue)
@@ -283,13 +283,13 @@ void load_RealEdit(py::module m) {
 		.export_values();
 
 	m_realEdit
-		.def(py::init<Panel &, Rect &, EditControl::FrameType, RealEdit::AbsRelType, EditControl::UpdateType, EditControl::ReadOnlyType>(),
+		.def(py::init<Panel &, Rect &, RealEdit::FrameType, RealEdit::AbsRelType, RealEdit::UpdateType, RealEdit::ReadOnlyType>(),
 			py::arg("panel"), 
 			py::arg("rect"),
-			py::arg("frame") = EditControl::FrameType::Frame,
+			py::arg("frame") = RealEdit::FrameType::Frame,
 			py::arg("absRel") = RealEdit::AbsRelType::Absolute,
-			py::arg("update") = EditControl::UpdateType::Update,
-			py::arg("readOnly") = EditControl::ReadOnlyType::Editable)
+			py::arg("update") = RealEdit::UpdateType::Update,
+			py::arg("readOnly") = RealEdit::ReadOnlyType::Editable)
 		.def("SetMin", &RealEdit::SetMin)
 		.def("SetMax", &RealEdit::SetMax)
 		.def("SetValue", &RealEdit::SetValue)
@@ -311,64 +311,64 @@ void load_RealEditEX(py::module m) {
 		.export_values();
 
 	m_lengthEdit
-		.def(py::init<Panel &, Rect &, LengthEdit::ChangeFontType, EditControl::FrameType, RealEdit::AbsRelType, EditControl::UpdateType, EditControl::ReadOnlyType>(),
+		.def(py::init<Panel &, Rect &, LengthEdit::ChangeFontType, LengthEdit::FrameType, RealEdit::AbsRelType, LengthEdit::UpdateType, LengthEdit::ReadOnlyType>(),
 			py::arg("panel"), 
 			py::arg("rect"),
 			py::arg("chgFont") = LengthEdit::ChangeFontType::ChangeFont,
-			py::arg("frame") = EditControl::FrameType::Frame,
+			py::arg("frame") = LengthEdit::FrameType::Frame,
 			py::arg("absRel") = RealEdit::AbsRelType::Absolute,
-			py::arg("update") = EditControl::UpdateType::Update,
-			py::arg("readOnly") = EditControl::ReadOnlyType::Editable);
+			py::arg("update") = LengthEdit::UpdateType::Update,
+			py::arg("readOnly") = LengthEdit::ReadOnlyType::Editable);
 
 	// --- AreaEdit ------------------------------------------------------------------------
 	py::class_<AreaEdit, RealEdit>(m, "AreaEdit")
-		.def(py::init<Panel &, Rect &, EditControl::FrameType, RealEdit::AbsRelType, EditControl::UpdateType, EditControl::ReadOnlyType>(),
+		.def(py::init<Panel &, Rect &, AreaEdit::FrameType, RealEdit::AbsRelType, AreaEdit::UpdateType, AreaEdit::ReadOnlyType>(),
 			py::arg("panel"),
 			py::arg("rect"),
-			py::arg("frame") = EditControl::FrameType::Frame,
+			py::arg("frame") = AreaEdit::FrameType::Frame,
 			py::arg("absRel") = RealEdit::AbsRelType::Absolute,
-			py::arg("update") = EditControl::UpdateType::Update,
-			py::arg("readOnly") = EditControl::ReadOnlyType::Editable);
+			py::arg("update") = AreaEdit::UpdateType::Update,
+			py::arg("readOnly") = AreaEdit::ReadOnlyType::Editable);
 
 	// --- VolumeEdit ----------------------------------------------------------------------
 	py::class_<VolumeEdit, RealEdit>(m, "VolumeEdit")
-		.def(py::init<Panel &, Rect &, EditControl::FrameType, RealEdit::AbsRelType, EditControl::UpdateType, EditControl::ReadOnlyType>(),
+		.def(py::init<Panel &, Rect &, VolumeEdit::FrameType, RealEdit::AbsRelType, VolumeEdit::UpdateType, VolumeEdit::ReadOnlyType>(),
 			py::arg("panel"),
 			py::arg("rect"),
-			py::arg("frame") = EditControl::FrameType::Frame,
+			py::arg("frame") = VolumeEdit::FrameType::Frame,
 			py::arg("absRel") = RealEdit::AbsRelType::Absolute,
-			py::arg("update") = EditControl::UpdateType::Update,
-			py::arg("readOnly") = EditControl::ReadOnlyType::Editable);
+			py::arg("update") = VolumeEdit::UpdateType::Update,
+			py::arg("readOnly") = VolumeEdit::ReadOnlyType::Editable);
 
 	// --- AngleEdit -----------------------------------------------------------------------
 	py::class_<AngleEdit, RealEdit>(m, "AngleEdit")
-		.def(py::init<Panel &, Rect &, EditControl::FrameType, RealEdit::AbsRelType, EditControl::UpdateType, EditControl::ReadOnlyType>(),
+		.def(py::init<Panel &, Rect &, AngleEdit::FrameType, RealEdit::AbsRelType, AngleEdit::UpdateType, AngleEdit::ReadOnlyType>(),
 			py::arg("panel"),
 			py::arg("rect"),
-			py::arg("frame") = EditControl::FrameType::Frame,
+			py::arg("frame") = AngleEdit::FrameType::Frame,
 			py::arg("absRel") = RealEdit::AbsRelType::Absolute,
-			py::arg("update") = EditControl::UpdateType::Update,
-			py::arg("readOnly") = EditControl::ReadOnlyType::Editable);
+			py::arg("update") = AngleEdit::UpdateType::Update,
+			py::arg("readOnly") = AngleEdit::ReadOnlyType::Editable);
 	
 	// --- PolarAngleEdit ------------------------------------------------------------------
 	py::class_<PolarAngleEdit, RealEdit>(m, "PolarAngleEdit")
-		.def(py::init<Panel &, Rect &, EditControl::FrameType, RealEdit::AbsRelType, EditControl::UpdateType, EditControl::ReadOnlyType>(),
+		.def(py::init<Panel &, Rect &, PolarAngleEdit::FrameType, RealEdit::AbsRelType, PolarAngleEdit::UpdateType, PolarAngleEdit::ReadOnlyType>(),
 			py::arg("panel"),
 			py::arg("rect"),
-			py::arg("frame") = EditControl::FrameType::Frame,
+			py::arg("frame") = PolarAngleEdit::FrameType::Frame,
 			py::arg("absRel") = RealEdit::AbsRelType::Absolute,
-			py::arg("update") = EditControl::UpdateType::Update,
-			py::arg("readOnly") = EditControl::ReadOnlyType::Editable);
+			py::arg("update") = PolarAngleEdit::UpdateType::Update,
+			py::arg("readOnly") = PolarAngleEdit::ReadOnlyType::Editable);
 
 	// --- MMPointEdit ---------------------------------------------------------------------
 	py::class_<MMPointEdit, RealEdit>(m, "MMPointEdit")
-		.def(py::init<Panel &, Rect &, EditControl::FrameType, RealEdit::AbsRelType, EditControl::UpdateType, EditControl::ReadOnlyType>(),
+		.def(py::init<Panel &, Rect &, MMPointEdit::FrameType, RealEdit::AbsRelType, MMPointEdit::UpdateType, MMPointEdit::ReadOnlyType>(),
 			py::arg("panel"),
 			py::arg("rect"),
-			py::arg("frame") = EditControl::FrameType::Frame,
-			py::arg("absRel") = RealEdit::AbsRelType::Absolute,
-			py::arg("update") = EditControl::UpdateType::Update,
-			py::arg("readOnly") = EditControl::ReadOnlyType::Editable);
+			py::arg("frame") = MMPointEdit::FrameType::Frame,
+			py::arg("absRel") = MMPointEdit::AbsRelType::Absolute,
+			py::arg("update") = MMPointEdit::UpdateType::Update,
+			py::arg("readOnly") = MMPointEdit::ReadOnlyType::Editable);
 }
 
 
@@ -394,23 +394,23 @@ void load_TextEditBase(py::module m) {
 void load_TextEditBaseEX(py::module m) {
 	// --- TextEdit ------------------------------------------------------------------------
 	py::class_<TextEdit, TextEditBase, ItemVariousProperty, ItemTextLengthLimitProperty>(m, "TextEdit")
-		.def(py::init<Panel &, Rect &, short, EditControl::FrameType, EditControl::UpdateType, EditControl::ReadOnlyType>(),
+		.def(py::init<Panel &, Rect &, short, TextEdit::FrameType, TextEdit::UpdateType, TextEdit::ReadOnlyType>(),
 			py::arg("panel"),
 			py::arg("rect"),
 			py::arg("lengthLimit") = 0,
-			py::arg("frame") = EditControl::FrameType::Frame,
-			py::arg("update") = EditControl::UpdateType::Update,
-			py::arg("readOnly") = EditControl::ReadOnlyType::Editable);
+			py::arg("frame") = TextEdit::FrameType::Frame,
+			py::arg("update") = TextEdit::UpdateType::Update,
+			py::arg("readOnly") = TextEdit::ReadOnlyType::Editable);
 
 	// --- PasswordEdit --------------------------------------------------------------------
 	py::class_<PasswordEdit, TextEditBase, ItemTextLengthLimitProperty>(m, "PasswordEdit")
-		.def(py::init<Panel &, Rect &, short, EditControl::FrameType, EditControl::UpdateType, EditControl::ReadOnlyType>(),
+		.def(py::init<Panel &, Rect &, short, PasswordEdit::FrameType, PasswordEdit::UpdateType, PasswordEdit::ReadOnlyType>(),
 			py::arg("panel"),
 			py::arg("rect"),
 			py::arg("lengthLimit") = 0,
-			py::arg("frame") = EditControl::FrameType::Frame,
-			py::arg("update") = EditControl::UpdateType::Update,
-			py::arg("readOnly") = EditControl::ReadOnlyType::Editable);
+			py::arg("frame") = PasswordEdit::FrameType::Frame,
+			py::arg("update") = PasswordEdit::UpdateType::Update,
+			py::arg("readOnly") = PasswordEdit::ReadOnlyType::Editable);
 
 	// --- MultiLineEdit -------------------------------------------------------------------
 	py::class_<MultiLineEdit, TextEditBase> m_multiLineEdit(m, "MultiLineEdit");
@@ -423,12 +423,12 @@ void load_TextEditBaseEX(py::module m) {
 		.export_values();
 
 	m_multiLineEdit
-		.def(py::init<Panel &, Rect &, MultiLineEdit::ScrollType, EditControl::FrameType, EditControl::UpdateType, EditControl::ReadOnlyType>(),
+		.def(py::init<Panel &, Rect &, MultiLineEdit::ScrollType, MultiLineEdit::FrameType, MultiLineEdit::UpdateType, MultiLineEdit::ReadOnlyType>(),
 			py::arg("panel"),
 			py::arg("rect"),
 			py::arg("scroll") = MultiLineEdit::ScrollType::NoScroll,
-			py::arg("frame") = EditControl::FrameType::Frame,
-			py::arg("update") = EditControl::UpdateType::Update,
+			py::arg("frame") = MultiLineEdit::FrameType::Frame,
+			py::arg("update") = MultiLineEdit::UpdateType::Update,
 			py::arg("readOnly") = EditControl::ReadOnlyType::Editable)
 		.def("GetText", &MultiLineEdit::GetText,
 			py::arg("eolType") = EOL::Default);
@@ -444,16 +444,16 @@ void load_ShortcutEdit(py::module m) {
 		.def("GetModifierFlags", &ShortcutHitEvent::GetModifierFlags)
 		.def("GetSource",&ShortcutHitEvent::GetSource, py::return_value_policy::reference);
 
-	// --- PosIntEditObserver --------------------------------------------------------------
+	// --- ShortcutEditObserver ------------------------------------------------------------
 	py::class_<PyShortcutEditObserver>(m, "ShortcutEditObserver", py::dynamic_attr())
 		.def(py::init<ShortcutEdit &, ACExport &>());
 
 	// --- ShortcutEdit --------------------------------------------------------------------
 	py::class_<ShortcutEdit, TextEditBase, ItemTextLengthLimitProperty>(m, "ShortcutEdit")
-		.def(py::init<Panel &, Rect &, short, EditControl::FrameType, EditControl::UpdateType>(),
+		.def(py::init<Panel &, Rect &, short, ShortcutEdit::FrameType, ShortcutEdit::UpdateType>(),
 			py::arg("panel"),
 			py::arg("rect"),
 			py::arg("lengthLimit") = 0,
-			py::arg("frame") = EditControl::FrameType::Frame,
-			py::arg("update") = EditControl::UpdateType::Update);
+			py::arg("frame") = ShortcutEdit::FrameType::Frame,
+			py::arg("update") = ShortcutEdit::UpdateType::Update);
 }

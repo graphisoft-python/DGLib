@@ -13,7 +13,7 @@ using namespace DG;
 
 // --- PyButtonItemObserver --------------------------------------------------------------------
 
-class PyButtonItemObserver : ButtonItemObserver/*, ItemObserver */{
+class PyButtonItemObserver : ButtonItemObserver {
 
 public:
 	PyButtonItemObserver(ButtonItem &item, ACExport &acExport)
@@ -40,7 +40,7 @@ private:
 
 // --- PySplitButtonObserver -------------------------------------------------------------------
 
-class PySplitButtonObserver : SplitButtonObserver/*, ButtonItemObserver, ItemObserver */{
+class PySplitButtonObserver : SplitButtonObserver {
 
 public:
 	PySplitButtonObserver(SplitButton &item, ACExport &acExport)
@@ -71,7 +71,7 @@ private:
 
 // --- PyCustomSplitButtonObserver -------------------------------------------------------------
 
-class PyCustomSplitButtonObserver : CustomSplitButtonObserver/*, ButtonItemObserver, ItemObserver*/ {
+class PyCustomSplitButtonObserver : CustomSplitButtonObserver {
 
 public:
 	PyCustomSplitButtonObserver(CustomSplitButton &item, ACExport &acExport)
@@ -120,7 +120,7 @@ void load_ButtonItem(py::module m) {
 
 void load_ButtonItemEX(py::module m) {
 	// --- Button ------------------------------------------------------------------------------
-	py::class_<Button, ButtonItem, ItemFontProperty, ItemTextProperty/*, ItemIconProperty*/> m_button(m, "Button");
+	py::class_<Button, ButtonItem, ItemFontProperty, ItemTextProperty, ItemIconProperty> m_button(m, "Button");
 
 	py::enum_<Button::ButtonType>(m_button, "ButtonType")
 		.value("Normal", Button::ButtonType::Normal)
@@ -151,7 +151,7 @@ void load_ButtonItemEX(py::module m) {
 		.def("GetAlignment", &Button::GetAlignment);
 
 	// --- IconButton --------------------------------------------------------------------------
-	py::class_<IconButton, ButtonItem/*, ItemIconProperty*/> m_IconButton(m, "IconButton");
+	py::class_<IconButton, ButtonItem, ItemIconProperty> m_IconButton(m, "IconButton");
 
 	py::enum_<IconButton::ButtonForm>(m_IconButton, "ButtonForm")
 		.value("BevelEdge", IconButton::ButtonForm::BevelEdge)
@@ -171,7 +171,7 @@ void load_ButtonItemEX(py::module m) {
 			py::arg("frameType") = IconButton::FrameType::Frame);
 
 	// --- SplitButtonBase --------------------------------------------------------------------
-	py::class_<SplitButtonBase, ButtonItem, ItemFontProperty, ItemTextProperty/*, ItemIconProperty*/> m_splitButtonBase(m, "SplitButtonBase");
+	py::class_<SplitButtonBase, ButtonItem, ItemFontProperty, ItemTextProperty, ItemIconProperty> m_splitButtonBase(m, "SplitButtonBase");
 
 	py::enum_<SplitButtonBase::ButtonForm>(m_splitButtonBase, "ButtonForm")
 		.value("Normal", SplitButtonBase::ButtonForm::Normal)
@@ -222,8 +222,8 @@ void load_SplitButton(py::module m) {
 		.def("DeleteAllItems", &SplitButton::DeleteAllItems)
 		.def("GetItemCount", &SplitButton::GetItemCount)
 		.def("GetSelectedItem", &SplitButton::GetSelectedItem)
-		//.def("SetItemIcon", &SplitButton::SetItemIcon)
-		//.def("GetItemIcon", &SplitButton::GetItemIcon)
+		.def("SetItemIcon", &SplitButton::SetItemIcon)
+		.def("GetItemIcon", &SplitButton::GetItemIcon)
 		.def("SetItemText", &SplitButton::SetItemText)
 		.def("GetItemText", &SplitButton::GetItemText)
 		.def("SetItemTextSize", &SplitButton::SetItemTextSize)

@@ -10,7 +10,7 @@ using namespace DG;
 
 // --- PyStaticTextObserver --------------------------------------------------------------------
 
-class PyStaticTextObserver : StaticTextObserver/*, ItemObserver */{
+class PyStaticTextObserver : StaticTextObserver {
 public:
 	PyStaticTextObserver(StaticText &item, ACExport &acExport)
 		:m_parent(item) {
@@ -107,30 +107,30 @@ void load_StaticText(py::module m) {
 void load_StaticTextEX(py::module m) {
 	// --- CenterText --------------------------------------------------------------------------
 	py::class_<CenterText, StaticText>(m, "CenterText")
-		.def(py::init<Panel &, Rect &, StaticText::FrameType, StaticText::VAlignType, StaticText::Truncation>(),
+		.def(py::init<Panel &, Rect &, CenterText::FrameType, CenterText::VAlignType, CenterText::Truncation>(),
 			py::arg("panel"),
 			py::arg("rect"),
-			py::arg("type") = StaticText::FrameType::NoFrame,
-			py::arg("align") = StaticText::VAlignType::VTop,
-			py::arg("truncate") = StaticText::Truncation::NoTruncate);
+			py::arg("type") = CenterText::FrameType::NoFrame,
+			py::arg("align") = CenterText::VAlignType::VTop,
+			py::arg("truncate") = CenterText::Truncation::NoTruncate);
 
 	// --- LeftText ----------------------------------------------------------------------------
 	py::class_<LeftText, StaticText>(m, "LeftText")
-		.def(py::init<Panel &, Rect &, StaticText::FrameType, StaticText::VAlignType, StaticText::Truncation>(),
+		.def(py::init<Panel &, Rect &, LeftText::FrameType, LeftText::VAlignType, LeftText::Truncation>(),
 			py::arg("panel"),
 			py::arg("rect"),
-			py::arg("type") = StaticText::FrameType::NoFrame,
-			py::arg("align") = StaticText::VAlignType::VTop,
-			py::arg("truncate") = StaticText::Truncation::NoTruncate);
+			py::arg("type") = LeftText::FrameType::NoFrame,
+			py::arg("align") = LeftText::VAlignType::VTop,
+			py::arg("truncate") = LeftText::Truncation::NoTruncate);
 
 	// --- RightText ---------------------------------------------------------------------------
 	py::class_<RightText, StaticText>(m, "RightText")
-		.def(py::init<Panel &, Rect &, StaticText::FrameType, StaticText::VAlignType, StaticText::Truncation>(),
+		.def(py::init<Panel &, Rect &, RightText::FrameType, RightText::VAlignType, RightText::Truncation>(),
 			py::arg("panel"),
 			py::arg("rect"),
-			py::arg("type") = StaticText::FrameType::NoFrame,
-			py::arg("align") = StaticText::VAlignType::VTop,
-			py::arg("truncate") = StaticText::Truncation::NoTruncate);
+			py::arg("type") = RightText::FrameType::NoFrame,
+			py::arg("align") = RightText::VAlignType::VTop,
+			py::arg("truncate") = RightText::Truncation::NoTruncate);
 }
 
 

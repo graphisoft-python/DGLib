@@ -9,7 +9,7 @@ using namespace DG;
 
 // --- PyCheckItemObserver --------------------------------------------------------------------
 
-class PyCheckItemObserver : CheckItemObserver/*, ItemObserver */ {
+class PyCheckItemObserver : CheckItemObserver {
 public:
 	PyCheckItemObserver(CheckItem &item, ACExport &acExport)
 		:m_parent(item) {
@@ -64,7 +64,7 @@ void load_CheckItem(py::module m) {
 // --- CheckItemEX ----------------------------------------------------------------------------
 
 void load_CheckItemEX(py::module m) {
-	// --- CheckItem --------------------------------------------------------------------------
+	// --- CheckBox ---------------------------------------------------------------------------
 	py::class_<CheckBox, CheckItem, ItemFontProperty, ItemTextProperty>(m, "CheckBox")
 		.def(py::init<Panel &, Rect &>());
 
