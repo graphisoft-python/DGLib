@@ -15,10 +15,10 @@ using namespace DG;
 class PyPosIntEditObserver : PosIntEditObserver {
 
 public:
-	PyPosIntEditObserver(PosIntEdit &item, ACExport &acExport)
+	PyPosIntEditObserver(PosIntEdit &item)
 		:m_parent(item) {
 		this->m_parent.Attach(*this);
-		this->m_state = acExport.m_state;
+		this->m_state = GetCurrentAppState();
 	}
 
 	~PyPosIntEditObserver() {
@@ -44,10 +44,10 @@ private:
 class PyIntEditObserver : IntEditObserver {
 
 public:
-	PyIntEditObserver(IntEdit &item, ACExport &acExport)
+	PyIntEditObserver(IntEdit &item)
 		:m_parent(item) {
 		this->m_parent.Attach(*this);
-		this->m_state = acExport.m_state;
+		this->m_state = GetCurrentAppState();
 	}
 
 	~PyIntEditObserver() {
@@ -73,10 +73,10 @@ private:
 class PyRealEditObserver : RealEditObserver {
 
 public:
-	PyRealEditObserver(RealEdit &item, ACExport &acExport)
+	PyRealEditObserver(RealEdit &item)
 		:m_parent(item) {
 		this->m_parent.Attach(*this);
-		this->m_state = acExport.m_state;
+		this->m_state = GetCurrentAppState();
 	}
 
 	~PyRealEditObserver() {
@@ -102,10 +102,10 @@ private:
 class PyTextEditBaseObserver : TextEditBaseObserver {
 
 public:
-	PyTextEditBaseObserver(TextEditBase &item, ACExport &acExport)
+	PyTextEditBaseObserver(TextEditBase &item)
 		:m_parent(item) {
 		this->m_parent.Attach(*this);
-		this->m_state = acExport.m_state;
+		this->m_state = GetCurrentAppState();
 	}
 
 	~PyTextEditBaseObserver() {
@@ -131,10 +131,10 @@ private:
 class PyShortcutEditObserver : ShortcutEditObserver/* ,ItemObserver*/ {
 
 public:
-	PyShortcutEditObserver(ShortcutEdit &item, ACExport &acExport)
+	PyShortcutEditObserver(ShortcutEdit &item)
 		:m_parent(item) {
 		this->m_parent.Attach(*this);
-		this->m_state = acExport.m_state;
+		this->m_state = GetCurrentAppState();
 	}
 
 	~PyShortcutEditObserver() {
@@ -196,7 +196,7 @@ void load_PosIntEdit(py::module m) {
 
 	// --- PosIntEditObserver --------------------------------------------------------------
 	py::class_<PyPosIntEditObserver>(m, "PosIntEditObserver", py::dynamic_attr())
-		.def(py::init<PosIntEdit &, ACExport &>());
+		.def(py::init<PosIntEdit &>());
 
 	// --- PosIntEdit ----------------------------------------------------------------------
 	py::class_<PosIntEdit, EditControl, ItemVariousProperty> m_posIntEdit(m, "PosIntEdit");
@@ -234,7 +234,7 @@ void load_IntEdit(py::module m) {
 
 	// --- IntEditObserver -----------------------------------------------------------------
 	py::class_<PyIntEditObserver>(m, "IntEditObserver", py::dynamic_attr())
-		.def(py::init<IntEdit &, ACExport &>());
+		.def(py::init<IntEdit &>());
 
 	// --- IntEdit -------------------------------------------------------------------------
 	py::class_<IntEdit, EditControl, ItemVariousProperty> m_intEdit(m, "IntEdit");
@@ -272,7 +272,7 @@ void load_RealEdit(py::module m) {
 
 	// --- RealEditObserver
 	py::class_<PyRealEditObserver>(m, "RealEditObserver", py::dynamic_attr())
-		.def(py::init<RealEdit &, ACExport &>());
+		.def(py::init<RealEdit &>());
 
 	// --- RealEdit -------------------------------------------------------------------------
 	py::class_<RealEdit, EditControl, ItemVariousProperty> m_realEdit(m, "RealEdit");
@@ -381,7 +381,7 @@ void load_TextEditBase(py::module m) {
 
 	// --- RealEditObserver ----------------------------------------------------------------
 	py::class_<PyTextEditBaseObserver>(m, "TextEditBaseObserver", py::dynamic_attr())
-		.def(py::init<TextEditBase &, ACExport &>());
+		.def(py::init<TextEditBase &>());
 
 	// --- TextEditBase --------------------------------------------------------------------
 	py::class_<TextEditBase, EditControl, ItemTextProperty>(m, "TextEditBase")
@@ -446,7 +446,7 @@ void load_ShortcutEdit(py::module m) {
 
 	// --- ShortcutEditObserver ------------------------------------------------------------
 	py::class_<PyShortcutEditObserver>(m, "ShortcutEditObserver", py::dynamic_attr())
-		.def(py::init<ShortcutEdit &, ACExport &>());
+		.def(py::init<ShortcutEdit &>());
 
 	// --- ShortcutEdit --------------------------------------------------------------------
 	py::class_<ShortcutEdit, TextEditBase, ItemTextLengthLimitProperty>(m, "ShortcutEdit")

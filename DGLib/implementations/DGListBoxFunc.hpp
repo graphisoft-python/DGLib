@@ -14,10 +14,10 @@ using namespace DG;
 
 class PyListBoxObserver : ListBoxObserver {
 public:
-	PyListBoxObserver(ListBox &item, ACExport &acExport)
+	PyListBoxObserver(ListBox &item)
 		:m_parent(item) {
 		this->m_parent.Attach(*this);
-		this->m_state = acExport.m_state;
+		this->m_state = GetCurrentAppState();
 	}
 
 	~PyListBoxObserver() {
@@ -200,7 +200,7 @@ void load_ListBox(py::module m) {
 
 	// --- PyListBoxObserver ----------------------------------------------------------------
 	py::class_<PyListBoxObserver>(m, "ListBoxObserver", py::dynamic_attr())
-		.def(py::init<ListBox &, ACExport &>());
+		.def(py::init<ListBox &>());
 
 	// --- ListBox --------------------------------------------------------------------------
 	py::class_<ListBox, Item, ItemFontProperty, FocusableProperty> m_listBox(m, "ListBox");

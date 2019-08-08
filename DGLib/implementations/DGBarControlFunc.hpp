@@ -12,10 +12,10 @@ using namespace DG;
 
 class PyBarControlObserver : BarControlObserver {
 public:
-	PyBarControlObserver(BarControl &item, ACExport &acExport)
+	PyBarControlObserver(BarControl &item)
 		:m_parent(item) {
 		this->m_parent.Attach(*this);
-		this->m_state = acExport.m_state;
+		this->m_state = GetCurrentAppState();
 	}
 
 	~PyBarControlObserver() {
@@ -50,10 +50,10 @@ private:
 
 class PyScrollBarObserver : ScrollBarObserver {
 public:
-	PyScrollBarObserver(ScrollBar &item, ACExport &acExport)
+	PyScrollBarObserver(ScrollBar &item)
 		:m_parent(item) {
 		this->m_parent.Attach(*this);
-		this->m_state = acExport.m_state;
+		this->m_state = GetCurrentAppState();;
 	}
 
 	~PyScrollBarObserver() {
@@ -98,7 +98,7 @@ void load_BarControl(py::module m) {
 
 	// --- BarControlObserver ------------------------------------------------------------------
 	py::class_<PyBarControlObserver>(m, "BarControlObserver", py::dynamic_attr())
-		.def(py::init<BarControl &, ACExport &>());
+		.def(py::init<BarControl &>());
 
 	// --- BarControl --------------------------------------------------------------------------
 	py::class_<BarControl, Item>(m, "BarControl")		
@@ -166,7 +166,7 @@ void load_ScrollBar(py::module m) {
 
 	// --- ScrollBarObserver -------------------------------------------------------------------
 	py::class_<PyScrollBarObserver>(m, "ScrollBarObserver", py::dynamic_attr())
-		.def(py::init<ScrollBar &, ACExport &>());
+		.def(py::init<ScrollBar &>());
 
 	// --- ScrollBar ---------------------------------------------------------------------------
 	py::class_<ScrollBar, Item> m_scrollBar(m, "ScrollBar");

@@ -11,10 +11,10 @@ using namespace DG;
 
 class PyCheckItemObserver : CheckItemObserver {
 public:
-	PyCheckItemObserver(CheckItem &item, ACExport &acExport)
+	PyCheckItemObserver(CheckItem &item)
 		:m_parent(item) {
 		this->m_parent.Attach(*this);
-		this->m_state = acExport.m_state;
+		this->m_state = GetCurrentAppState();
 	}
 
 	~PyCheckItemObserver() {
@@ -50,7 +50,7 @@ void load_CheckItem(py::module m) {
 
 	// --- CheckItemObserver ------------------------------------------------------------------
 	py::class_<PyCheckItemObserver>(m, "CheckItemObserver", py::dynamic_attr())
-		.def(py::init<CheckItem &, ACExport &>());
+		.def(py::init<CheckItem &>());
 
 	// --- CheckItem --------------------------------------------------------------------------
 	py::class_<CheckItem, Item>(m, "CheckItem")

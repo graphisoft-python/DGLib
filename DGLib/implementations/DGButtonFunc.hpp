@@ -16,10 +16,10 @@ using namespace DG;
 class PyButtonItemObserver : ButtonItemObserver {
 
 public:
-	PyButtonItemObserver(ButtonItem &item, ACExport &acExport)
+	PyButtonItemObserver(ButtonItem &item)
 		:m_parent(item) {
 		this->m_parent.Attach(*this);
-		this->m_state = acExport.m_state;
+		this->m_state = GetCurrentAppState();
 	}
 
 	~PyButtonItemObserver() {
@@ -43,10 +43,10 @@ private:
 class PySplitButtonObserver : SplitButtonObserver {
 
 public:
-	PySplitButtonObserver(SplitButton &item, ACExport &acExport)
+	PySplitButtonObserver(SplitButton &item)
 		:m_parent(item) {
 		this->m_parent.Attach(*this);
-		this->m_state = acExport.m_state;
+		this->m_state = GetCurrentAppState();
 	}
 
 	~PySplitButtonObserver() {
@@ -74,10 +74,10 @@ private:
 class PyCustomSplitButtonObserver : CustomSplitButtonObserver {
 
 public:
-	PyCustomSplitButtonObserver(CustomSplitButton &item, ACExport &acExport)
+	PyCustomSplitButtonObserver(CustomSplitButton &item)
 		:m_parent(item) {
 		this->m_parent.Attach(*this);
-		this->m_state = acExport.m_state;
+		this->m_state = GetCurrentAppState();
 	}
 
 	~PyCustomSplitButtonObserver() {
@@ -109,7 +109,7 @@ void load_ButtonItem(py::module m) {
 
 	// --- ButtonItemObserver ------------------------------------------------------------------
 	py::class_<PyButtonItemObserver>(m, "ButtonItemObserver", py::dynamic_attr())
-		.def(py::init<ButtonItem &, ACExport &>());
+		.def(py::init<ButtonItem &>());
 
 	// --- ButtonItem --------------------------------------------------------------------------
 	py::class_<ButtonItem, Item>(m, "ButtonItem");
@@ -206,7 +206,7 @@ void load_SplitButton(py::module m) {
 
 	// --- SplitButtonObserver -------------------------------------------------
 	py::class_<PySplitButtonObserver>(m, "SplitButtonObserver", py::dynamic_attr())
-		.def(py::init<SplitButton &, ACExport &>());
+		.def(py::init<SplitButton &>());
 
 	// --- SplitButton -------------------------------------------------------------------------
 	py::class_<SplitButton, SplitButtonBase>(m, "SplitButton")
@@ -253,7 +253,7 @@ void load_CustomSplitButton(py::module m) {
 
 	// --- PyCustomSplitButtonObserver ---------------------------------------------------------
 	py::class_<PyCustomSplitButtonObserver>(m, "CustomSplitButtonObserver", py::dynamic_attr())
-		.def(py::init<CustomSplitButton &, ACExport &>());
+		.def(py::init<CustomSplitButton &>());
 
 	// --- CustomSplitButton -------------------------------------------------------------------
 	py::class_<CustomSplitButton, SplitButtonBase>(m, "CustomSplitButton")

@@ -12,10 +12,10 @@ using namespace DG;
 
 class PyStaticTextObserver : StaticTextObserver {
 public:
-	PyStaticTextObserver(StaticText &item, ACExport &acExport)
+	PyStaticTextObserver(StaticText &item)
 		:m_parent(item) {
 		this->m_parent.Attach(*this);
-		this->m_state = acExport.m_state;
+		this->m_state = GetCurrentAppState();
 	}
 
 	~PyStaticTextObserver() {
@@ -73,7 +73,7 @@ void load_StaticText(py::module m) {
 
 	// --- BarControlObserver ------------------------------------------------------------------
 	py::class_<PyStaticTextObserver>(m, "StaticTextObserver", py::dynamic_attr())
-		.def(py::init<StaticText &, ACExport &>());
+		.def(py::init<StaticText &>());
 
 	// --- StaticText --------------------------------------------------------------------------
 	py::class_<StaticText, Item, ItemFontProperty, ItemTextProperty, ItemColorProperty> m_staticText(m, "StaticText");

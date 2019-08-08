@@ -12,11 +12,11 @@ using namespace DG;
 class PyPanelObserver : PanelObserver {
 
 public:
-	PyPanelObserver(Panel &item,ACExport &acExport)
-		:m_parent(item)//,m_export(acExport)
+	PyPanelObserver(Panel &item)
+		:m_parent(item)
 	{
 		this->m_parent.Attach(*this);
-		this->m_state =acExport.m_state;
+		this->m_state = GetCurrentAppState();
 	}
 
 	~PyPanelObserver() {
@@ -28,7 +28,6 @@ public:
 	}
 
 	void PanelCloseRequested(const PanelCloseRequestEvent& ev, bool* accepted) override {
-		//this->m_export.WriteReport_Alert("message from AcExport");
 		OBSERVER_CALL_EVENT("PanelCloseRequested", ev);		
 	}
 
@@ -151,7 +150,6 @@ public:
 private:
 	Panel			&m_parent;
 	PyThreadState	*m_state;
-	//ACExport		m_export;
 
 };
 
@@ -243,7 +241,7 @@ void load_Panel(py::module m) {
 
 	// --- PyPanelObserver -------------------------------------------------------------
 	py::class_<PyPanelObserver>(m, "PanelObserver",py::dynamic_attr())
-		.def(py::init<Panel &, PyEnv::ACExport&>())
+		.def(py::init<Panel &>())
 		;
 
 	// --- Panel -----------------------------------------------------------------------

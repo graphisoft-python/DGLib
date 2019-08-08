@@ -14,10 +14,10 @@ using namespace DG;
 
 class PyUserItemObserver : UserItemObserver/*, ItemObserver, UserItemDragSourceObserver, UserItemDropTargetObserver */{
 public:
-	PyUserItemObserver(UserItem &item, ACExport &acExport)
+	PyUserItemObserver(UserItem &item)
 		:m_parent(item) {
 		this->m_parent.Attach(*this);
-		this->m_state = acExport.m_state;
+		this->m_state = GetCurrentAppState();
 	}
 
 	~PyUserItemObserver() {
@@ -142,7 +142,7 @@ void load_UserItem(py::module m) {
 
 	// --- UserItemObserver ---------------------------------------------------------------------
 	py::class_<PyUserItemObserver>(m, "UserItemObserver", py::dynamic_attr())
-		.def(py::init<UserItem &, ACExport &>());
+		.def(py::init<UserItem &>());
 
 	// --- UserItem -----------------------------------------------------------------------------
 	py::class_<UserItem, Item, ItemFontProperty> m_userItem(m, "UserItem");

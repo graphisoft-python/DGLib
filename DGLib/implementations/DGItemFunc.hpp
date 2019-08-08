@@ -11,10 +11,10 @@ using namespace DG;
 
 class  PyItemObserver : ItemObserver {
 public:
-	PyItemObserver(Item &item, ACExport &acExport)
+	PyItemObserver(Item &item)
 		:m_parent(item) {
 		this->m_parent.Attach(*this);
-		this->m_state = acExport.m_state;
+		this->m_state = GetCurrentAppState();
 	}
 
 	~PyItemObserver() {
@@ -123,7 +123,7 @@ void load_Item(py::module m) {
 
 	// --- PyItemObserver ---------------------------------------------------------------------
 	py::class_<PyItemObserver>(m, "ItemObserver", py::dynamic_attr())
-		.def(py::init<Item &, ACExport &>());
+		.def(py::init<Item &>());
 
 	// --- Item -------------------------------------------------------------------------------
 	py::class_<Item, ItemBase/*, GS::EventSource*/>(m, "Item")

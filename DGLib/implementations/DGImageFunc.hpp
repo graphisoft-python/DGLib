@@ -11,10 +11,10 @@ using namespace DG;
 
 class PyImageObserver : ImageObserver {
 public:
-	PyImageObserver(ImageItem &item, ACExport &acExport)
+	PyImageObserver(ImageItem &item)
 		:m_parent(item) {
 		this->m_parent.Attach(*this);
-		this->m_state = acExport.m_state;
+		this->m_state = GetCurrentAppState();
 	}
 
 	~PyImageObserver() {
@@ -50,7 +50,7 @@ void load_ImageItem(py::module m) {
 
 	// --- ImageObserver ------------------------------------------------------------------
 	py::class_<PyImageObserver>(m, "ImageObserver", py::dynamic_attr())
-		.def(py::init<ImageItem &, ACExport &>());
+		.def(py::init<ImageItem &>());
 
 	// --- ImageItem ----------------------------------------------------------------------
 	py::class_<ImageItem, Item>m_imageItem(m, "ImageItem");
