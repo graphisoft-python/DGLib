@@ -110,6 +110,7 @@
       <PreprocessorDefinitions>_DEBUG;DGLib_EXPORTS;_WINDOWS;_USRDLL;NOMINMAX;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>..\Support\Inc;..\Support\Modules\GSRoot;..\Support\Modules\GSRoot\STL\imp;..\Support\Modules\GSUtils;..\Support\Modules\DGLib;..\Support\Modules\GX;..\Support\Modules\GXImage;..\Support\Modules\GXImageBase;..\Support\Modules\DGGraphix;..\Support\Modules\Graphix;..\Support\Modules\TextEngine;..\Support\Modules\InputOutput;..\Support\Modules\UCLib;..\Support\Modules\UDLib;..\Support\Modules\Pattern;..\Support\Modules\VBAttrDialogs;.\py2.7\include;.\pybind11\include;.\pybind11\cast;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>/bigobj %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -143,9 +144,9 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>NDEBUG;DGLib_EXPORTS;_WINDOWS;_USRDLL;NOMINMAX;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>NDEBUG;DGLib_EXPORTS;_WINDOWS;_USRDLL;NOMINMAX;PROJECTNAME="$(ProjectName)";%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>..\Support\Inc;..\Support\Modules\GSRoot;..\Support\Modules\GSRoot\STL\imp;..\Support\Modules\GSUtils;..\Support\Modules\DGLib;..\Support\Modules\GX;..\Support\Modules\GXImage;..\Support\Modules\GXImageBase;..\Support\Modules\DGGraphix;..\Support\Modules\Graphix;..\Support\Modules\TextEngine;..\Support\Modules\InputOutput;..\Support\Modules\UCLib;..\Support\Modules\UDLib;..\Support\Modules\Pattern;..\Support\Modules\VBAttrDialogs;.\py2.7\include;.\pybind11\include;.\pybind11\cast;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\Support\Inc;..\Support\Modules\GSRoot;..\Support\Modules\GSRoot\STL\imp;..\Support\Modules\GSUtils;..\Support\Modules\DGLib;..\Support\Modules\GX;..\Support\Modules\GXImage;..\Support\Modules\GXImageBase;..\Support\Modules\DGGraphix;..\Support\Modules\Graphix;..\Support\Modules\TextEngine;..\Support\Modules\InputOutput;..\Support\Modules\UCLib;..\Support\Modules\UDLib;..\Support\Modules\Pattern;..\Support\Modules\VBAttrDialogs;.\py2.7\include;.\pybind11\include;..\ACExport;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -155,31 +156,29 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="implementations\dgBarControlFunc.hpp" />
-    <ClInclude Include="implementations\dgButtonFunc.hpp" />
-    <ClInclude Include="implementations\dgDialogFunc.hpp" />
-    <ClInclude Include="implementations\dgEditControlFunc.hpp" />
-    <ClInclude Include="implementations\dgItemFunc.hpp" />
-    <ClInclude Include="implementations\dgItemPropertyFunc.hpp" />
-    <ClInclude Include="implementations\dgListBoxFunc.hpp" />
-    <ClInclude Include="implementations\dgPanelFunc.hpp" />
-    <ClInclude Include="implementations\dgStaticItemFunc.hpp" />
-    <ClInclude Include="implementations\dgUtilityFunc.hpp" />
+    <ClInclude Include="implementations\DGBarControlFunc.hpp" />
+    <ClInclude Include="implementations\DGButtonFunc.hpp" />
+    <ClInclude Include="implementations\DGCheckItemFunc.hpp" />
+    <ClInclude Include="implementations\DGDialogFunc.hpp" />
+    <ClInclude Include="implementations\DGEditControlFunc.hpp" />
+    <ClInclude Include="implementations\DGImageFunc.hpp" />
+    <ClInclude Include="implementations\DGItemFunc.hpp" />
+    <ClInclude Include="implementations\DGItemPropertyFunc.hpp" />
+    <ClInclude Include="implementations\DGListBoxFunc.hpp" />
+    <ClInclude Include="implementations\DGPanelFunc.hpp" />
+    <ClInclude Include="implementations\DGStaticItemFunc.hpp" />
+    <ClInclude Include="implementations\DGUserItemFunc.hpp" />
+    <ClInclude Include="implementations\DGUtilityFunc.hpp" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.cpp" />
     <ClCompile Include="loadModules\DGLib.cpp" />
-    <ClCompile Include="stdafx.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Library Include="..\Support\Modules\DGLib\Win\DGImp.LIB" />
+    <Library Include="..\Support\Modules\Graphix\Win\GraphixImp.LIB" />
     <Library Include="..\Support\Modules\GSRoot\Win\GSRootImp.LIB" />
     <Library Include="..\Support\Modules\GSUtils\Win\GSUtilsImp.LIB" />
     <Library Include="..\Support\Modules\InputOutput\Win\InputOutputImp.LIB" />

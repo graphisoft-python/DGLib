@@ -10,12 +10,12 @@ using namespace DG;
 
 // --- PyBarControlObserver --------------------------------------------------------------------
 
-class PyBarControlObserver : BarControlObserver, ItemObserver {
+class PyBarControlObserver : BarControlObserver {
 public:
-	PyBarControlObserver(BarControl &item, ACExport &acExport)
+	PyBarControlObserver(BarControl &item)
 		:m_parent(item) {
 		this->m_parent.Attach(*this);
-		this->m_state = acExport.m_state;
+		this->m_state = GetCurrentAppState();
 	}
 
 	~PyBarControlObserver() {
@@ -46,14 +46,14 @@ private:
 };
 
 
-// --- ScrollBarObserver -----------------------------------------------------------------------
+// --- PyScrollBarObserver ---------------------------------------------------------------------
 
-class PyScrollBarObserver : ScrollBarObserver, ItemObserver {
+class PyScrollBarObserver : ScrollBarObserver {
 public:
-	PyScrollBarObserver(ScrollBar &item, ACExport &acExport)
+	PyScrollBarObserver(ScrollBar &item)
 		:m_parent(item) {
 		this->m_parent.Attach(*this);
-		this->m_state = acExport.m_state;
+		this->m_state = GetCurrentAppState();;
 	}
 
 	~PyScrollBarObserver() {
@@ -86,7 +86,7 @@ private:
 
 // --- BarControl ------------------------------------------------------------------------------
 
-void load_dg_BarControl(py::module m) {
+void load_BarControl(py::module m) {
 	// --- BarControlChangeEvent ---------------------------------------------------------------
 	py::class_<BarControlChangeEvent, ItemChangeEvent>(m, "BarControlChangeEvent")
 		.def("GetSource", &BarControlChangeEvent::GetSource, py::return_value_policy::reference)
@@ -98,7 +98,7 @@ void load_dg_BarControl(py::module m) {
 
 	// --- BarControlObserver ------------------------------------------------------------------
 	py::class_<PyBarControlObserver>(m, "BarControlObserver", py::dynamic_attr())
-		.def(py::init<BarControl &, ACExport &>());
+		.def(py::init<BarControl &>());
 
 	// --- BarControl --------------------------------------------------------------------------
 	py::class_<BarControl, Item>(m, "BarControl")		
@@ -112,15 +112,13 @@ void load_dg_BarControl(py::module m) {
 
 // --- BarControlEX ----------------------------------------------------------------------------
 
-void load_dg_BarControlEX(py::module m) {
+void load_BarControlEX(py::module m) {
 	// --- SingleSpin --------------------------------------------------------------------------
 	py::class_<SingleSpin, BarControl>(m, "SingleSpin")
-		//.def(py::init<Panel &, short>())
 		.def(py::init<Panel &, Rect &>());
 
 	// --- EditSpin ----------------------------------------------------------------------------
 	py::class_<EditSpin, BarControl>(m, "EditSpin")
-		//.def(py::init<Panel &, short>())
 		.def(py::init<Panel &, Rect &, PosIntEdit &>())
 		.def(py::init<Panel &, Rect &, IntEdit &>());
 
@@ -133,7 +131,6 @@ void load_dg_BarControlEX(py::module m) {
 		.export_values();
 
 	m_Slider
-		//.def(py::init<Panel &, short>())
 		.def(py::init<Panel &, Rect &, short, Slider::SliderType>(),
 			py::arg("panel"),
 			py::arg("rect"),
@@ -144,7 +141,7 @@ void load_dg_BarControlEX(py::module m) {
 
 // --- ScrollBar -------------------------------------------------------------------------------
 
-void load_dg_ScrollBar(py::module m) {
+void load_ScrollBar(py::module m) {
 	// --- ScrollBarChangeEvent ----------------------------------------------------------------
 	py::class_<ScrollBarChangeEvent, ItemChangeEvent>(m, "ScrollBarChangeEvent")
 		.def("GetSource", &ScrollBarChangeEvent::GetSource, py::return_value_policy::reference)
@@ -169,7 +166,7 @@ void load_dg_ScrollBar(py::module m) {
 
 	// --- ScrollBarObserver -------------------------------------------------------------------
 	py::class_<PyScrollBarObserver>(m, "ScrollBarObserver", py::dynamic_attr())
-		.def(py::init<ScrollBar &, ACExport &>());
+		.def(py::init<ScrollBar &>());
 
 	// --- ScrollBar ---------------------------------------------------------------------------
 	py::class_<ScrollBar, Item> m_scrollBar(m, "ScrollBar");
@@ -190,7 +187,6 @@ void load_dg_ScrollBar(py::module m) {
 		.export_values();
 
 	m_scrollBar
-		//.def(py::init<Panel &, short>())
 		.def(py::init<Panel &, Rect &, ScrollBar::ThumbType, ScrollBar::FocusableType, ScrollBar::AutoScrollType>(),
 			py::arg("panel"),
 			py::arg("rect"),
@@ -210,7 +206,7 @@ void load_dg_ScrollBar(py::module m) {
 
 // --- ProgressBar -----------------------------------------------------------------------------
 
-void load_dg_ProgressBar(py::module m) {
+void load_ProgressBar(py::module m) {
 	py::class_<ProgressBar, Item> m_progressBar(m, "ProgressBar");
 
 	py::enum_<ProgressBar::FrameType>(m_progressBar, "FrameType")
@@ -221,7 +217,6 @@ void load_dg_ProgressBar(py::module m) {
 		.export_values();
 
 	m_progressBar
-		//.def(py::init<Panel &, short>())
 		.def(py::init<Panel &, Rect &, ProgressBar::FrameType>(),
 			py::arg("panel"),
 			py::arg("rect"),

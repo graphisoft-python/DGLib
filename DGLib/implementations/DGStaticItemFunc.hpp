@@ -10,12 +10,12 @@ using namespace DG;
 
 // --- PyStaticTextObserver --------------------------------------------------------------------
 
-class PyStaticTextObserver : StaticTextObserver, ItemObserver {
+class PyStaticTextObserver : StaticTextObserver {
 public:
-	PyStaticTextObserver(StaticText &item, ACExport &acExport)
+	PyStaticTextObserver(StaticText &item)
 		:m_parent(item) {
 		this->m_parent.Attach(*this);
-		this->m_state = acExport.m_state;
+		this->m_state = GetCurrentAppState();
 	}
 
 	~PyStaticTextObserver() {
@@ -44,7 +44,7 @@ private:
 
 // --- StaticItemEventProperty -----------------------------------------------------------------
 
-void load_dg_StaticItemEventProperty(py::module m) {
+void load_StaticItemEventProperty(py::module m) {
 	py::class_<StaticItemEventProperty>(m, "StaticItemEventProperty")
 		.def("GetMouseOffset", &StaticItemEventProperty::GetMouseOffset)
 		.def("IsCommandPressed", &StaticItemEventProperty::IsCommandPressed)
@@ -58,7 +58,7 @@ void load_dg_StaticItemEventProperty(py::module m) {
 
 // --- StaticText ------------------------------------------------------------------------------
 
-void load_dg_StaticText(py::module m) {
+void load_StaticText(py::module m) {
 	// --- StaticTextClickEvent
 	py::class_<StaticTextClickEvent, ItemClickEvent>(m, "StaticTextClickEvent")
 		.def("GetSource", &StaticTextClickEvent::GetSource, py::return_value_policy::reference);
@@ -73,10 +73,10 @@ void load_dg_StaticText(py::module m) {
 
 	// --- BarControlObserver ------------------------------------------------------------------
 	py::class_<PyStaticTextObserver>(m, "StaticTextObserver", py::dynamic_attr())
-		.def(py::init<StaticText &, ACExport &>());
+		.def(py::init<StaticText &>());
 
 	// --- StaticText --------------------------------------------------------------------------
-	py::class_<StaticText, Item, ItemFontProperty, ItemTextProperty/*, ItemColorProperty*/> m_staticText(m, "StaticText");
+	py::class_<StaticText, Item, ItemFontProperty, ItemTextProperty, ItemColorProperty> m_staticText(m, "StaticText");
 		
 	py::enum_<StaticText::VAlignType>(m_staticText, "VAlignType")
 		.value("VTop", StaticText::VAlignType::VTop)
@@ -104,42 +104,39 @@ void load_dg_StaticText(py::module m) {
 
 // --- StaticTextEX ----------------------------------------------------------------------------
 
-void load_dg_StaticTextEX(py::module m) {
+void load_StaticTextEX(py::module m) {
 	// --- CenterText --------------------------------------------------------------------------
 	py::class_<CenterText, StaticText>(m, "CenterText")
-		//.def(py::init<Panel &, short>())
-		.def(py::init<Panel &, Rect &, StaticText::FrameType, StaticText::VAlignType, StaticText::Truncation>(),
+		.def(py::init<Panel &, Rect &, CenterText::FrameType, CenterText::VAlignType, CenterText::Truncation>(),
 			py::arg("panel"),
 			py::arg("rect"),
-			py::arg("type") = StaticText::FrameType::NoFrame,
-			py::arg("align") = StaticText::VAlignType::VTop,
-			py::arg("truncate") = StaticText::Truncation::NoTruncate);
+			py::arg("type") = CenterText::FrameType::NoFrame,
+			py::arg("align") = CenterText::VAlignType::VTop,
+			py::arg("truncate") = CenterText::Truncation::NoTruncate);
 
 	// --- LeftText ----------------------------------------------------------------------------
 	py::class_<LeftText, StaticText>(m, "LeftText")
-		//.def(py::init<Panel &, short>())
-		.def(py::init<Panel &, Rect &, StaticText::FrameType, StaticText::VAlignType, StaticText::Truncation>(),
+		.def(py::init<Panel &, Rect &, LeftText::FrameType, LeftText::VAlignType, LeftText::Truncation>(),
 			py::arg("panel"),
 			py::arg("rect"),
-			py::arg("type") = StaticText::FrameType::NoFrame,
-			py::arg("align") = StaticText::VAlignType::VTop,
-			py::arg("truncate") = StaticText::Truncation::NoTruncate);
+			py::arg("type") = LeftText::FrameType::NoFrame,
+			py::arg("align") = LeftText::VAlignType::VTop,
+			py::arg("truncate") = LeftText::Truncation::NoTruncate);
 
 	// --- RightText ---------------------------------------------------------------------------
 	py::class_<RightText, StaticText>(m, "RightText")
-		//.def(py::init<Panel &, short>())
-		.def(py::init<Panel &, Rect &, StaticText::FrameType, StaticText::VAlignType, StaticText::Truncation>(),
+		.def(py::init<Panel &, Rect &, RightText::FrameType, RightText::VAlignType, RightText::Truncation>(),
 			py::arg("panel"),
 			py::arg("rect"),
-			py::arg("type") = StaticText::FrameType::NoFrame,
-			py::arg("align") = StaticText::VAlignType::VTop,
-			py::arg("truncate") = StaticText::Truncation::NoTruncate);
+			py::arg("type") = RightText::FrameType::NoFrame,
+			py::arg("align") = RightText::VAlignType::VTop,
+			py::arg("truncate") = RightText::Truncation::NoTruncate);
 }
 
 
 // --- GroupBox --------------------------------------------------------------------------------
 
-void load_dg_GroupBox(py::module m) {
+void load_GroupBox(py::module m) {
 	py::class_<GroupBox, Item, ItemFontProperty, ItemTextProperty> m_groupBox(m, "GroupBox");
 
 	py::enum_<GroupBox::GroupBoxType>(m_groupBox, "GroupBoxType")
@@ -148,16 +145,14 @@ void load_dg_GroupBox(py::module m) {
 		.export_values();
 
 	m_groupBox
-		//.def(py::init<Panel &, short>())
 		.def(py::init<Panel &, Rect &, GroupBox::GroupBoxType>());
 }
 
 
 // --- Separator -------------------------------------------------------------------------------
 
-void load_dg_Separator(py::module m) {
+void load_Separator(py::module m) {
 	py::class_<Separator, Item> (m, "Separator")
-		//.def(py::init<Panel &, short>())
 		.def(py::init<Panel &, Rect &>());
 }
 

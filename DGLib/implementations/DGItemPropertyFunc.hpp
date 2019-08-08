@@ -2,15 +2,16 @@
 
 #include "../stdafx.h"
 
+#include "Color.hpp"
 #include "DGItemProperty.hpp"
 #include "DGItem.hpp"
 
 using namespace DG;
 
 
-// --- namespace DG::Font ---------------------------------------------------------------------
+// --- DG::Font -------------------------------------------------------------------------------
 
-void load_dg_Font(py::module m) {
+void load_Font(py::module m) {
 	py::enum_<Font::Size>(m, "Size")
 		.value("Large", Font::Size::Large)
 		.value("Small", Font::Size::Small)
@@ -30,9 +31,9 @@ void load_dg_Font(py::module m) {
 }
 
 
-// --- ItemPropertyEX -------------------------------------------------------------------------
+// --- ItemBaseEX -----------------------------------------------------------------------------
 
-void load_dg_ItemBaseEX(py::module m) {
+void load_ItemBaseEX(py::module m) {
 	// --- FocusableProperty ------------------------------------------------------------------
 	py::class_<FocusableProperty, ItemBase>(m, "FocusableProperty")
 		.def("SetFocus", &FocusableProperty::SetFocus)
@@ -46,9 +47,9 @@ void load_dg_ItemBaseEX(py::module m) {
 		.def("GetFontStyle", &ItemFontProperty::GetFontStyle);
 
 	// --- ItemIconProperty -------------------------------------------------------------------
-	//py::class_<ItemIconProperty, ItemBase>(m, "ItemIconProperty")
-	//	.def("SetIcon", &ItemIconProperty::SetIcon)
-	//	.def("GetIcon", &ItemIconProperty::GetIcon);
+	py::class_<ItemIconProperty, ItemBase>(m, "ItemIconProperty")
+		.def("SetIcon", &ItemIconProperty::SetIcon)
+		.def("GetIcon", &ItemIconProperty::GetIcon);
 
 	// --- ItemTextProperty -------------------------------------------------------------------
 	py::class_<ItemTextProperty, ItemBase>(m, "ItemTextProperty")
@@ -57,13 +58,13 @@ void load_dg_ItemBaseEX(py::module m) {
 		.def("GetText", &ItemTextProperty::GetText);
 
 	// --- ItemColorProperty ------------------------------------------------------------------
-	//	py::class_<ItemColorProperty, ItemBase>(m, "ItemColorProperty")
-	//		.def("SetTextColor", &ItemColorProperty::SetTextColor)
-	//		.def("GetTextColor", &ItemColorProperty::GetTextColor)
-	//		.def("SetBackgroundColor", &ItemColorProperty::SetBackgroundColor)
-	//		.def("GetBackgroundColor", &ItemColorProperty::GetBackgroundColor)
-	//		.def("ResetDefaultTextColor", &ItemColorProperty::ResetDefaultTextColor)
-	//		.def("ResetDefaultBackgroundColor", &ItemColorProperty::ResetDefaultBackgroundColor);
+	py::class_<ItemColorProperty, ItemBase>(m, "ItemColorProperty")
+		.def("SetTextColor", &ItemColorProperty::SetTextColor)
+		.def("GetTextColor", &ItemColorProperty::GetTextColor)
+		.def("SetBackgroundColor", &ItemColorProperty::SetBackgroundColor)
+		.def("GetBackgroundColor", &ItemColorProperty::GetBackgroundColor)
+		.def("ResetDefaultTextColor", &ItemColorProperty::ResetDefaultTextColor)
+		.def("ResetDefaultBackgroundColor", &ItemColorProperty::ResetDefaultBackgroundColor);
 
 	// --- ItemVariousProperty ----------------------------------------------------------------
 	py::class_<ItemVariousProperty, ItemBase>(m, "ItemVariousProperty")

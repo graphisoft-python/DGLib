@@ -2,7 +2,7 @@
 
 ## Inherit
 
-* Dialog
+* [Dialog](Dialog.md)
 
 ## Enum
 

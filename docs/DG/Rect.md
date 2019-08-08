@@ -2,7 +2,7 @@
 
 ## Inherit
 
-* ShortRect
+* [ShortRect](ShortRect.md)
 
 ## Methods
 ```

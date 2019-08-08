@@ -13,13 +13,13 @@ using namespace DG;
 
 // --- PyButtonItemObserver --------------------------------------------------------------------
 
-class PyButtonItemObserver : ButtonItemObserver, ItemObserver {
+class PyButtonItemObserver : ButtonItemObserver {
 
 public:
-	PyButtonItemObserver(ButtonItem &item, ACExport &acExport)
+	PyButtonItemObserver(ButtonItem &item)
 		:m_parent(item) {
 		this->m_parent.Attach(*this);
-		this->m_state = acExport.m_state;
+		this->m_state = GetCurrentAppState();
 	}
 
 	~PyButtonItemObserver() {
@@ -40,13 +40,13 @@ private:
 
 // --- PySplitButtonObserver -------------------------------------------------------------------
 
-class PySplitButtonObserver : SplitButtonObserver, ButtonItemObserver, ItemObserver {
+class PySplitButtonObserver : SplitButtonObserver {
 
 public:
-	PySplitButtonObserver(SplitButton &item, ACExport &acExport)
+	PySplitButtonObserver(SplitButton &item)
 		:m_parent(item) {
 		this->m_parent.Attach(*this);
-		this->m_state = acExport.m_state;
+		this->m_state = GetCurrentAppState();
 	}
 
 	~PySplitButtonObserver() {
@@ -71,13 +71,13 @@ private:
 
 // --- PyCustomSplitButtonObserver -------------------------------------------------------------
 
-class PyCustomSplitButtonObserver : CustomSplitButtonObserver, ButtonItemObserver, ItemObserver {
+class PyCustomSplitButtonObserver : CustomSplitButtonObserver {
 
 public:
-	PyCustomSplitButtonObserver(CustomSplitButton &item, ACExport &acExport)
+	PyCustomSplitButtonObserver(CustomSplitButton &item)
 		:m_parent(item) {
 		this->m_parent.Attach(*this);
-		this->m_state = acExport.m_state;
+		this->m_state = GetCurrentAppState();
 	}
 
 	~PyCustomSplitButtonObserver() {
@@ -102,14 +102,14 @@ private:
 
 // --- ButtonItem ------------------------------------------------------------------------------
 
-void load_dg_ButtonItem(py::module m) {
+void load_ButtonItem(py::module m) {
 	// --- ButtonClickEvent---------------------------------------------------------------------
 	py::class_<ButtonClickEvent, ItemClickEvent>(m, "ButtonClickEvent")
 		.def("GetSource", &ButtonClickEvent::GetSource, py::return_value_policy::reference);
 
 	// --- ButtonItemObserver ------------------------------------------------------------------
 	py::class_<PyButtonItemObserver>(m, "ButtonItemObserver", py::dynamic_attr())
-		.def(py::init<ButtonItem &, ACExport &>());
+		.def(py::init<ButtonItem &>());
 
 	// --- ButtonItem --------------------------------------------------------------------------
 	py::class_<ButtonItem, Item>(m, "ButtonItem");
@@ -118,9 +118,9 @@ void load_dg_ButtonItem(py::module m) {
 
 // --- ButtonItemEX ----------------------------------------------------------------------------
 
-void load_dg_ButtonItemEX(py::module m) {
+void load_ButtonItemEX(py::module m) {
 	// --- Button ------------------------------------------------------------------------------
-	py::class_<Button, ButtonItem, ItemFontProperty, ItemTextProperty/*, ItemIconProperty*/> m_button(m, "Button");
+	py::class_<Button, ButtonItem, ItemFontProperty, ItemTextProperty, ItemIconProperty> m_button(m, "Button");
 
 	py::enum_<Button::ButtonType>(m_button, "ButtonType")
 		.value("Normal", Button::ButtonType::Normal)
@@ -140,7 +140,6 @@ void load_dg_ButtonItemEX(py::module m) {
 		.export_values();
 
 	m_button
-		//.def(py::init<Panel &, short>())
 		.def(py::init<Panel &, Rect &, Button::ButtonType, Button::FrameType>(),
 			py::arg("panel"),
 			py::arg("rect"),
@@ -152,7 +151,7 @@ void load_dg_ButtonItemEX(py::module m) {
 		.def("GetAlignment", &Button::GetAlignment);
 
 	// --- IconButton --------------------------------------------------------------------------
-	py::class_<IconButton, ButtonItem/*, ItemIconProperty*/> m_IconButton(m, "IconButton");
+	py::class_<IconButton, ButtonItem, ItemIconProperty> m_IconButton(m, "IconButton");
 
 	py::enum_<IconButton::ButtonForm>(m_IconButton, "ButtonForm")
 		.value("BevelEdge", IconButton::ButtonForm::BevelEdge)
@@ -165,7 +164,6 @@ void load_dg_ButtonItemEX(py::module m) {
 		.export_values();
 
 	m_IconButton
-		//.def(py::init<Panel &, short>())
 		.def(py::init<Panel &, Rect &, IconButton::ButtonForm, IconButton::FrameType>(),
 			py::arg("panel"),
 			py::arg("rect"),
@@ -173,7 +171,7 @@ void load_dg_ButtonItemEX(py::module m) {
 			py::arg("frameType") = IconButton::FrameType::Frame);
 
 	// --- SplitButtonBase --------------------------------------------------------------------
-	py::class_<SplitButtonBase, ButtonItem, ItemFontProperty, ItemTextProperty/*, ItemIconProperty*/> m_splitButtonBase(m, "SplitButtonBase");
+	py::class_<SplitButtonBase, ButtonItem, ItemFontProperty, ItemTextProperty, ItemIconProperty> m_splitButtonBase(m, "SplitButtonBase");
 
 	py::enum_<SplitButtonBase::ButtonForm>(m_splitButtonBase, "ButtonForm")
 		.value("Normal", SplitButtonBase::ButtonForm::Normal)
@@ -188,7 +186,6 @@ void load_dg_ButtonItemEX(py::module m) {
 		.export_values();
 
 	m_splitButtonBase
-		//.def(py::init<Panel &, short>())
 		.def(py::init<Panel &, Rect &, SplitButtonBase::ButtonForm>(),
 			py::arg("panel"),
 			py::arg("rect"),
@@ -202,34 +199,31 @@ void load_dg_ButtonItemEX(py::module m) {
 
 // --- SplitButton -----------------------------------------------------------------------------
 
-void load_dg_SplitButton(py::module m) {
+void load_SplitButton(py::module m) {
 	// --- SplitButtonChangeEvent --------------------------------------------------------------
 	py::class_<SplitButtonChangeEvent, ItemChangeEvent>(m, "SplitButtonChangeEvent")
 		.def("GetSource", &SplitButtonChangeEvent::GetSource, py::return_value_policy::reference);
 
 	// --- SplitButtonObserver -------------------------------------------------
 	py::class_<PySplitButtonObserver>(m, "SplitButtonObserver", py::dynamic_attr())
-		.def(py::init<SplitButton &, ACExport &>());
+		.def(py::init<SplitButton &>());
 
 	// --- SplitButton -------------------------------------------------------------------------
 	py::class_<SplitButton, SplitButtonBase>(m, "SplitButton")
-		//.def(py::init<Panel &, short>())
 		.def(py::init<Panel &, Rect &, SplitButtonBase::ButtonForm>(),
 			py::arg("panel"),
 			py::arg("rect"),
 			py::arg("type") = SplitButtonBase::ButtonForm::Normal)
-		.def("AppendItem", (void (SplitButton::*)
-			(GS::UniString &)) &SplitButton::AppendItem)
+		.def("AppendItem", (void (SplitButton::*)(GS::UniString &)) &SplitButton::AppendItem)
 		.def("AppendSeparator", &SplitButton::AppendSeparator)
-		.def("InsertItem", (void (SplitButton::*)
-			(short, GS::UniString &)) &SplitButton::InsertItem)
+		.def("InsertItem", (void (SplitButton::*)(short, GS::UniString &)) &SplitButton::InsertItem)
 		.def("InsertSeparator", &SplitButton::InsertSeparator)
 		.def("DeleteItem", &SplitButton::DeleteItem)
 		.def("DeleteAllItems", &SplitButton::DeleteAllItems)
 		.def("GetItemCount", &SplitButton::GetItemCount)
 		.def("GetSelectedItem", &SplitButton::GetSelectedItem)
-		//.def("SetItemIcon", &SplitButton::SetItemIcon)
-		//.def("GetItemIcon", &SplitButton::GetItemIcon)
+		.def("SetItemIcon", &SplitButton::SetItemIcon)
+		.def("GetItemIcon", &SplitButton::GetItemIcon)
 		.def("SetItemText", &SplitButton::SetItemText)
 		.def("GetItemText", &SplitButton::GetItemText)
 		.def("SetItemTextSize", &SplitButton::SetItemTextSize)
@@ -252,18 +246,17 @@ void load_dg_SplitButton(py::module m) {
 
 // --- CustomSplitButton -----------------------------------------------------------------------
 
-void load_dg_CustomSplitButton(py::module m) {
+void load_CustomSplitButton(py::module m) {
 	// --- CustomSplitButtonOpenRequestedEvent -------------------------------------------------
 	py::class_<CustomSplitButtonOpenRequestedEvent, ItemEvent>(m, "CustomSplitButtonOpenRequestedEvent")
 		.def("GetSource", &CustomSplitButtonOpenRequestedEvent::GetSource, py::return_value_policy::reference);
 
 	// --- PyCustomSplitButtonObserver ---------------------------------------------------------
 	py::class_<PyCustomSplitButtonObserver>(m, "CustomSplitButtonObserver", py::dynamic_attr())
-		.def(py::init<CustomSplitButton &, ACExport &>());
+		.def(py::init<CustomSplitButton &>());
 
 	// --- CustomSplitButton -------------------------------------------------------------------
 	py::class_<CustomSplitButton, SplitButtonBase>(m, "CustomSplitButton")
-		//.def(py::init<Panel &, short>())
 		.def(py::init<Panel &, Rect &, SplitButtonBase::ButtonForm>(),
 			py::arg("panel"),
 			py::arg("rect"),

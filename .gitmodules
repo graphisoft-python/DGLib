@@ -1,0 +1,3 @@
+[submodule "ACExport"]
+	path = ACExport
+	url = https://github.com/graphisoft-python/ACExport.git

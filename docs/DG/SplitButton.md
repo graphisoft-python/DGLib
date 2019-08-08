@@ -2,7 +2,7 @@
 
 ## Inherit
 
-* SplitButtonBase
+* [SplitButtonBase](SplitButtonBase.md)
 
 ## Methods
 ```

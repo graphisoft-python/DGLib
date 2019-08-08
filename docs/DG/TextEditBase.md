@@ -2,8 +2,8 @@
 
 ## Inherit
 
-* EditControl
-* ItemTextProperty
+* [EditControl](EditControl.md)
+* [ItemTextProperty](ItemTextProperty.md)
 
 ## Methods
 ```

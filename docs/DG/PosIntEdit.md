@@ -2,8 +2,8 @@
 
 ## Inherit
 
-* EditControl
-* ItemVariousProperty
+* [EditControl](EditControl.md)
+* [ItemVariousProperty](ItemVariousProperty.md)
 
 ## Enum
 

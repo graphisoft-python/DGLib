@@ -11,10 +11,10 @@ using namespace DG;
 
 class  PyItemObserver : ItemObserver {
 public:
-	PyItemObserver(Item &item, ACExport &acExport)
+	PyItemObserver(Item &item)
 		:m_parent(item) {
 		this->m_parent.Attach(*this);
-		this->m_state = acExport.m_state;
+		this->m_state = GetCurrentAppState();
 	}
 
 	~PyItemObserver() {
@@ -31,7 +31,7 @@ private:
 
 // --- ItemBase ------------------------------------------------------------------------------
 
-void load_dg_ItemBase(py::module m) {
+void load_ItemBase(py::module m) {
 	py::class_<ItemBase> (m, "ItemBase")
 		.def("IsValid", &ItemBase::IsValid)
 		.def("GetPanel", &ItemBase::GetPanel, py::return_value_policy::reference)
@@ -41,7 +41,7 @@ void load_dg_ItemBase(py::module m) {
 
 // --- Item ----------------------------------------------------------------------------------
 
-void load_dg_Item(py::module m) {
+void load_Item(py::module m) {
 	// --- ItemEvent -------------------------------------------------------------------------
 	py::class_<ItemEvent/*, GS::Event*/>(m, "ItemEvent")
 		.def("GetSource", &ItemEvent::GetSource, py::return_value_policy::reference);
@@ -123,7 +123,7 @@ void load_dg_Item(py::module m) {
 
 	// --- PyItemObserver ---------------------------------------------------------------------
 	py::class_<PyItemObserver>(m, "ItemObserver", py::dynamic_attr())
-		.def(py::init<Item &, ACExport &>());
+		.def(py::init<Item &>());
 
 	// --- Item -------------------------------------------------------------------------------
 	py::class_<Item, ItemBase/*, GS::EventSource*/>(m, "Item")
@@ -141,10 +141,8 @@ void load_dg_Item(py::module m) {
 		.def("Move", &Item::Move)
 		.def("Resize", &Item::Resize)
 		.def("MoveAndResize", &Item::MoveAndResize)
-		.def("SetPosition", (void (Item::*)
-			(const Point &)) &Item::SetPosition)
-		.def("SetPosition", (void (Item::*)
-			(short, short)) &Item::SetPosition)
+		.def("SetPosition", (void (Item::*)(const Point &)) &Item::SetPosition)
+		.def("SetPosition", (void (Item::*)(short, short)) &Item::SetPosition)
 		.def("SetRect", &Item::SetRect)
 		.def("SetSize", &Item::SetSize)
 		.def("SetWidth", &Item::SetWidth)

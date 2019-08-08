@@ -2,11 +2,11 @@
 
 ## Inherit
 
-* ItemObserver
+* [ItemObserver](ItemObserver.md)
 
 ## Methods
 ```
-__init__(self,ButtonItem,iTerm.ACExport) -> None
+__init__(self,ButtonItem) -> None
 ```
 
 ## Events
@@ -17,7 +17,7 @@ __init__(self,ButtonItem,iTerm.ACExport) -> None
 
 ### Inherit
 
-* ItemClickEvent
+* [ItemClickEvent](ItemObserver.md)
 
 ### Methods
 

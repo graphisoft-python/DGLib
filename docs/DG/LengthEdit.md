@@ -2,7 +2,7 @@
 
 ## Inherit
 
-* RealEdit
+* [RealEdit](RealEdit.md)
 
 ## Enum
 

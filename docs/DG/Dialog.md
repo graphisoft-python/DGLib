@@ -2,7 +2,7 @@
 
 ## Inherit
 
-* Panel
+* [Panel](Panel.md)
 
 ## Enum
 

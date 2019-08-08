@@ -2,7 +2,7 @@
 
 ## Inherit
 
-* ButtonItem
+* [ButtonItem](ButtonItem.md)
 
 ## Enum
 

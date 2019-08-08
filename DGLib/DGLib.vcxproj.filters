@@ -24,41 +24,47 @@
     <ClInclude Include="targetver.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="implementations\dgButtonFunc.hpp">
+    <ClInclude Include="implementations\DGBarControlFunc.hpp">
       <Filter>源文件</Filter>
     </ClInclude>
-    <ClInclude Include="implementations\dgDialogFunc.hpp">
+    <ClInclude Include="implementations\DGButtonFunc.hpp">
       <Filter>源文件</Filter>
     </ClInclude>
-    <ClInclude Include="implementations\dgEditControlFunc.hpp">
+    <ClInclude Include="implementations\DGDialogFunc.hpp">
       <Filter>源文件</Filter>
     </ClInclude>
-    <ClInclude Include="implementations\dgItemFunc.hpp">
+    <ClInclude Include="implementations\DGEditControlFunc.hpp">
       <Filter>源文件</Filter>
     </ClInclude>
-    <ClInclude Include="implementations\dgItemPropertyFunc.hpp">
+    <ClInclude Include="implementations\DGItemFunc.hpp">
       <Filter>源文件</Filter>
     </ClInclude>
-    <ClInclude Include="implementations\dgPanelFunc.hpp">
+    <ClInclude Include="implementations\DGItemPropertyFunc.hpp">
       <Filter>源文件</Filter>
     </ClInclude>
-    <ClInclude Include="implementations\dgUtilityFunc.hpp">
+    <ClInclude Include="implementations\DGListBoxFunc.hpp">
       <Filter>源文件</Filter>
     </ClInclude>
-    <ClInclude Include="implementations\dgListBoxFunc.hpp">
+    <ClInclude Include="implementations\DGPanelFunc.hpp">
       <Filter>源文件</Filter>
     </ClInclude>
-    <ClInclude Include="implementations\dgStaticItemFunc.hpp">
+    <ClInclude Include="implementations\DGStaticItemFunc.hpp">
       <Filter>源文件</Filter>
     </ClInclude>
-    <ClInclude Include="implementations\dgBarControlFunc.hpp">
+    <ClInclude Include="implementations\DGUserItemFunc.hpp">
+      <Filter>源文件</Filter>
+    </ClInclude>
+    <ClInclude Include="implementations\DGUtilityFunc.hpp">
+      <Filter>源文件</Filter>
+    </ClInclude>
+    <ClInclude Include="implementations\DGCheckItemFunc.hpp">
+      <Filter>源文件</Filter>
+    </ClInclude>
+    <ClInclude Include="implementations\DGImageFunc.hpp">
       <Filter>源文件</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="stdafx.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
     <ClCompile Include="dllmain.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
@@ -89,6 +95,9 @@
       <Filter>libs</Filter>
     </Library>
     <Library Include="..\Support\Modules\UDLib\Win\UDImp.LIB">
+      <Filter>libs</Filter>
+    </Library>
+    <Library Include="..\Support\Modules\Graphix\Win\GraphixImp.LIB">
       <Filter>libs</Filter>
     </Library>
   </ItemGroup>

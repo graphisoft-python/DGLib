@@ -2,9 +2,9 @@
 
 ## Inherit
 
-* Item
-* ItemFontProperty
-* FocusableProperty
+* [Item](Item.md)
+* [ItemFontProperty](ItemFontProperty.md)
+* [FocusableProperty](FocusableProperty.md)
 
 ## Enum
 

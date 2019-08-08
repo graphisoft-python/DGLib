@@ -2,7 +2,7 @@
 
 ## Inherit
 
-* StaticText
+* [StaticText](StaticText.md)
 
 ## Methods
 ```

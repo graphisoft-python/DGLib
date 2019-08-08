@@ -2,7 +2,12 @@
 
 ## Inherit
 
-* ItemObserver
+* [ItemObserver](ItemObserver.md)
+
+## Methods
+```
+__init__(self,ListBox) -> None
+```
 
 ## Events
 
@@ -27,7 +32,7 @@
 
 ### Inherit
 
-* ItemChangeEvent
+* [ItemChangeEvent](ItemObserver.md)
 
 ### Methods
 
@@ -37,7 +42,7 @@
 
 ### Inherit
 
-* ItemChangeEvent
+* [ItemChangeEvent](ItemObserver.md)
 
 ### Methods
 
@@ -49,8 +54,8 @@
 
 ### Inherit
 
-* ItemClickEvent
-* ListBoxEventProperty
+* [ItemClickEvent](ItemObserver.md)
+* [ListBoxEventProperty](ListBoxEventProperty.md)
 
 ### Methods
 
@@ -60,8 +65,8 @@
 
 ### Inherit
 
-* ItemMouseDownEvent
-* ListBoxEventProperty
+* [ItemMouseDownEvent](ItemObserver.md)
+* [ListBoxEventProperty](ListBoxEventProperty.md)
 
 ### Methods
 
@@ -71,7 +76,7 @@
 
 ### Inherit
 
-* ItemContextMenuEvent
+* [ItemContextMenuEvent](ItemObserver.md)
 
 ### Methods
 
@@ -84,8 +89,8 @@
 
 ### Inherit
 
-* ListBoxEventProperty
-* ItemDoubleClickEvent
+* [ListBoxEventProperty](ListBoxEventProperty.md)
+* [ItemDoubleClickEvent](ItemObserver.md)
 
 ### Methods
 
@@ -95,8 +100,8 @@
 
 ### Inherit
 
-* ItemMouseMoveEvent
-* ListBoxEventProperty
+* [ItemMouseMoveEvent]
+* [ListBoxEventProperty](ListBoxEventProperty.md)
 
 ### Methods
 
@@ -106,7 +111,7 @@
 
 ### Inherit
 
-* ItemUpdateEvent
+* [ItemUpdateEvent](ItemObserver.md)
 
 ### Methods
 
@@ -116,15 +121,15 @@
 * GetWidth(self) -> short
 * GetHeight(self) -> short
 * IsUpdatedListItemHighlighted(self) -> bool
-* GetForeColor(self) -> Gfx.Color
-* GetBackColor(self) -> Gfx.Color
+* GetForeColor(self) -> GSRoot.Color
+* GetBackColor(self) -> GSRoot.Color
 
 
 ## Class ListBoxTabItemUpdateEvent
 
 ### Inherit
 
-* ItemUpdateEvent
+* [ItemUpdateEvent](ItemObserver.md)
 
 ### Methods
 
@@ -136,14 +141,14 @@
 * GetHeight(self) -> short
 * IsUpdatedListItemHighlighted(self) -> bool
 * GetTabItemText(self) -> unicode
-* GetForeColor(self) -> Gfx.Color
-* GetBackColor(self) -> Gfx.Color
+* GetForeColor(self) -> GSRoot.Color
+* GetBackColor(self) -> GSRoot.Color
 
 ## Class ListBoxHoverEvent
 
 ### Inherit
 
-* ItemHoverEvent
+* [ItemHoverEvent](ItemObserver.md)
 
 ### Methods
 
@@ -154,7 +159,7 @@
 
 ### Inherit
 
-* ItemEvent
+* [ItemEvent](ItemObserver.md)
 
 ### Methods
 
@@ -165,7 +170,7 @@
 
 ### Inherit
 
-* ItemEvent
+* [ItemEvent](ItemObserver.md)
 
 ### Methods
 
@@ -177,7 +182,7 @@
 
 ### Inherit
 
-* ItemEvent
+* [ItemEvent](ItemObserver.md)
 
 ### Methods
 

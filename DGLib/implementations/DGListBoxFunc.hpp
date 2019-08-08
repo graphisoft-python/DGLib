@@ -12,12 +12,12 @@ using namespace DG;
 
 // --- PyListBoxObserver --------------------------------------------------------------------
 
-class PyListBoxObserver : ListBoxObserver, ItemObserver, ListBoxDragSourceObserver, ListBoxDropTargetObserver {
+class PyListBoxObserver : ListBoxObserver {
 public:
-	PyListBoxObserver(ListBox &item, ACExport &acExport)
+	PyListBoxObserver(ListBox &item)
 		:m_parent(item) {
 		this->m_parent.Attach(*this);
-		this->m_state = acExport.m_state;
+		this->m_state = GetCurrentAppState();
 	}
 
 	~PyListBoxObserver() {
@@ -33,7 +33,7 @@ public:
 	}
 
 	void ListBoxItemDragged(const ListBoxDragEvent& ev) override {
-
+		OBSERVER_CALL_EVENT("ListBoxItemDragged", ev);
 	}
 
 	void ListBoxClicked(const ListBoxClickEvent& ev) override {
@@ -81,7 +81,7 @@ public:
 	}
 
 	void ListBoxHeaderItemDragged(const ListBoxHeaderItemDragEvent& ev) override {
-
+		OBSERVER_CALL_EVENT("ListBoxHeaderItemDragged", ev);
 	}
 
 	void ListBoxHeaderButtonClicked(const ListBoxHeaderButtonClickEvent& ev) override {
@@ -96,7 +96,7 @@ private:
 
 // --- ListBox ------------------------------------------------------------------------------
 
-void load_dg_ListBox(py::module m) {
+void load_ListBox(py::module m) {
 	// --- ListBoxDragSourceEvent -----------------------------------------------------------
 	//py::class_<ListBoxDragSourceEvent, ItemDragSourceEvent>(m, "ListBoxDragSourceEvent")
 	//	.def("GetSource", &ListBoxDragSourceEvent::GetSource, py::return_value_policy::reference);
@@ -108,10 +108,10 @@ void load_dg_ListBox(py::module m) {
 	//	.def("GetSource", &ListBoxDropTargetEvent::GetSource, py::return_value_policy::reference);
 
 	// --- ListBoxDragEvent -----------------------------------------------------------------
-	//py::class_<ListBoxDragEvent, ItemChangeEvent>(m, "ListBoxDragEvent")
-	//	.def("GetSource", &ListBoxDragEvent::GetSource, py::return_value_policy::reference)
-	//	.def("GetPreviousIndex", &ListBoxDragEvent::GetPreviousIndex)
-	//	.def("GetNewIndex", &ListBoxDragEvent::GetNewIndex);
+	py::class_<ListBoxDragEvent, ItemChangeEvent>(m, "ListBoxDragEvent")
+		.def("GetSource", &ListBoxDragEvent::GetSource, py::return_value_policy::reference)
+		.def("GetPreviousIndex", &ListBoxDragEvent::GetPreviousIndex)
+		.def("GetNewIndex", &ListBoxDragEvent::GetNewIndex);
 
 	// --- ListBoxEventProperty -------------------------------------------------------------
 	py::class_<ListBoxEventProperty>(m, "ListBoxEventProperty")
@@ -200,7 +200,7 @@ void load_dg_ListBox(py::module m) {
 
 	// --- PyListBoxObserver ----------------------------------------------------------------
 	py::class_<PyListBoxObserver>(m, "ListBoxObserver", py::dynamic_attr())
-		.def(py::init<ListBox &, ACExport &>());
+		.def(py::init<ListBox &>());
 
 	// --- ListBox --------------------------------------------------------------------------
 	py::class_<ListBox, Item, ItemFontProperty, FocusableProperty> m_listBox(m, "ListBox");
@@ -304,10 +304,8 @@ void load_dg_ListBox(py::module m) {
 		.def("GetHeaderItemCount", &ListBox::GetHeaderItemCount)
 		.def("SetHeaderItemText", &ListBox::SetHeaderItemText)
 		.def("GetHeaderItemText", &ListBox::GetHeaderItemText)
-
-		//.def("SetHeaderItemIcon", &ListBox::SetHeaderItemIcon)
-		//.def("GetHeaderItemIcon", &ListBox::GetHeaderItemIcon)
-
+		.def("SetHeaderItemIcon", &ListBox::SetHeaderItemIcon)
+		.def("GetHeaderItemIcon", &ListBox::GetHeaderItemIcon)
 		.def("SetHeaderItemFont", &ListBox::SetHeaderItemFont)
 		.def("GetHeaderItemFontSize", &ListBox::GetHeaderItemFontSize)
 		.def("GetHeaderItemFontStyle", &ListBox::GetHeaderItemFontStyle)
@@ -322,10 +320,8 @@ void load_dg_ListBox(py::module m) {
 		.def("GetHeaderItemMinSize", &ListBox::GetHeaderItemMinSize)
 		.def("SetHeaderItemArrowType", &ListBox::SetHeaderItemArrowType)
 		.def("GetHeaderItemArrowType", &ListBox::GetHeaderItemArrowType)
-
-		//.def("SetHeaderButtonIcon", &ListBox::SetHeaderButtonIcon)
-		//.def("GetHeaderButtonIcon", &ListBox::GetHeaderButtonIcon)
-
+		.def("SetHeaderButtonIcon", &ListBox::SetHeaderButtonIcon)
+		.def("GetHeaderButtonIcon", &ListBox::GetHeaderButtonIcon)
 		.def("EnableHeaderButton", &ListBox::EnableHeaderButton)
 		.def("DisableHeaderButton", &ListBox::DisableHeaderButton)
 		.def("IsHeaderButtonEnabled", &ListBox::IsHeaderButtonEnabled)
@@ -359,28 +355,24 @@ void load_dg_ListBox(py::module m) {
 		.def("GetTabFieldToSearch", &ListBox::GetTabFieldToSearch)
 		.def("SetTabItemText", &ListBox::SetTabItemText)
 		.def("GetTabItemText", &ListBox::GetTabItemText)
-
-		//.def("SetTabItemIcon", &ListBox::SetTabItemIcon)
-		//.def("GetTabItemIcon", &ListBox::GetTabItemIcon)
-
+		.def("SetTabItemIcon", &ListBox::SetTabItemIcon)
+		.def("GetTabItemIcon", &ListBox::GetTabItemIcon)
 		.def("SetTabItemFontStyle", &ListBox::SetTabItemFontStyle)
 		.def("GetTabItemFontStyle", &ListBox::GetTabItemFontStyle)
-
-		//.def("SetTabItemColor", &ListBox::SetTabItemColor)
-		//.def("SetTabItemBackgroundColor", &ListBox::SetTabItemBackgroundColor)
-		//.def("GetTabItemColor", &ListBox::GetTabItemColor)
-		//.def("GetTabItemBackgroundColor", &ListBox::GetTabItemBackgroundColor)
-
+		.def("SetTabItemColor", &ListBox::SetTabItemColor)
+		.def("SetTabItemBackgroundColor", &ListBox::SetTabItemBackgroundColor)
+		.def("GetTabItemColor", &ListBox::GetTabItemColor)
+		.def("GetTabItemBackgroundColor", &ListBox::GetTabItemBackgroundColor)
 		.def("SetOnTabItem", &ListBox::SetOnTabItem)
 		.def("RemoveOnTabItem", &ListBox::RemoveOnTabItem)
 		.def("GetOnTabItem", &ListBox::GetOnTabItem,py::return_value_policy::reference)
 		.def("SetItemFontStyle", &ListBox::SetItemFontStyle)
 		.def("GetItemFontStyle", &ListBox::GetItemFontStyle)
+		.def("SetItemColor", &ListBox::SetItemColor)
+		.def("SetItemBackgroundColor", &ListBox::SetItemBackgroundColor)
+		.def("GetItemColor", &ListBox::GetItemColor)
+		.def("GetItemBackgroundColor", &ListBox::GetItemBackgroundColor)
 
-		//.def("SetItemColor", &ListBox::SetItemColor)
-		//.def("SetItemBackgroundColor", &ListBox::SetItemBackgroundColor)
-		//.def("GetItemColor", &ListBox::GetItemColor)
-		//.def("GetItemBackgroundColor", &ListBox::GetItemBackgroundColor)
 		//.def("SetItemValue", &ListBox::SetItemValue)
 		//.def("GetItemValue", &ListBox::GetItemValue)
 		//.def("SetItemObjectData", &ListBox::SetItemObjectData)
@@ -404,17 +396,16 @@ void load_dg_ListBox(py::module m) {
 		.def("SetNoPartialItem", &ListBox::SetNoPartialItem)
 		.def("EnableSeparatorLines", &ListBox::EnableSeparatorLines)
 		.def("HasSeparatorLines", &ListBox::HasSeparatorLines)
-		//.def("SetSeparatorLineColor", &ListBox::SetSeparatorLineColor)
-		//.def("GetSeparatorLineColor", &ListBox::GetSeparatorLineColor)
+		.def("SetSeparatorLineColor", &ListBox::SetSeparatorLineColor)
+		.def("GetSeparatorLineColor", &ListBox::GetSeparatorLineColor)
 		.def("SelectItem", &ListBox::SelectItem)
-		//.def("SelectItems", &ListBox::SelectItems)
+		.def("SelectItems", &ListBox::SelectItems)
 		.def("DeselectItem", &ListBox::DeselectItem)
 		.def("GetSelectedCount", &ListBox::GetSelectedCount)
 		.def("GetSelectedItem", &ListBox::GetSelectedItem,
 			py::arg("listItem") = ListBox::ItemType::TopItem)
-		//.def("GetSelectedItems", (short (ListBox::*)
-		//	(short *, short) const) &ListBox::GetSelectedItems)
-		//.def("GetSelectedItems", (GS::Array<short> (ListBox::*)(void) const) &ListBox::GetSelectedItems)
+		.def("GetSelectedItems", (short (ListBox::*)(short *, short) const) &ListBox::GetSelectedItems)
+		.def("GetSelectedItems", (GS::Array<short> (ListBox::*)(void) const) &ListBox::GetSelectedItems)
 		.def("EnableDraw", &ListBox::EnableDraw)
 		.def("DisableDraw", &ListBox::DisableDraw)
 		.def("RedrawItem", &ListBox::RedrawItem)
@@ -435,28 +426,26 @@ void load_dg_ListBox(py::module m) {
 
 //  -- ListBoxEX ----------------------------------------------------------------------------
 
-void load_dg_ListBoxEX(py::module m) {
+void load_ListBoxEX(py::module m) {
 	// --- SingleSelListBox -----------------------------------------------------------------
 	py::class_<SingleSelListBox, ListBox>(m, "SingleSelListBox")
-		//.def(py::init<Panel &, short>())
-		.def(py::init<Panel &, Rect &, ListBox::ScrollType, ListBox::PartialItemType, ListBox::HeaderFlag, short, ListBox::FrameType>(),
+		.def(py::init<Panel &, Rect &, SingleSelListBox::ScrollType, SingleSelListBox::PartialItemType, SingleSelListBox::HeaderFlag, short, SingleSelListBox::FrameType>(),
 			py::arg("panel"),
 			py::arg("rect"),
-			py::arg("scroll") = ListBox::ScrollType::VScroll,
-			py::arg("part") = ListBox::PartialItemType::PartialItems,
-			py::arg("headerFlag") = ListBox::HeaderFlag::NoHeader,
+			py::arg("scroll") = SingleSelListBox::ScrollType::VScroll,
+			py::arg("part") = SingleSelListBox::PartialItemType::PartialItems,
+			py::arg("headerFlag") = SingleSelListBox::HeaderFlag::NoHeader,
 			py::arg("headerSize") = 0,
-			py::arg("frameType") = ListBox::FrameType::NoFrame);
+			py::arg("frameType") = SingleSelListBox::FrameType::NoFrame);
 
 	// --- MultiSelListBox  -----------------------------------------------------------------
 	py::class_<MultiSelListBox, ListBox>(m, "MultiSelListBox")
-		//.def(py::init<Panel &, short>())
-		.def(py::init<Panel &, Rect &, ListBox::ScrollType, ListBox::PartialItemType, ListBox::HeaderFlag, short, ListBox::FrameType>(),
+		.def(py::init<Panel &, Rect &, MultiSelListBox::ScrollType, MultiSelListBox::PartialItemType, MultiSelListBox::HeaderFlag, short, MultiSelListBox::FrameType>(),
 			py::arg("panel"),
 			py::arg("rect"),
-			py::arg("scroll") = ListBox::ScrollType::VScroll,
-			py::arg("part") = ListBox::PartialItemType::PartialItems,
-			py::arg("headerFlag") = ListBox::HeaderFlag::NoHeader,
+			py::arg("scroll") = MultiSelListBox::ScrollType::VScroll,
+			py::arg("part") = MultiSelListBox::PartialItemType::PartialItems,
+			py::arg("headerFlag") = MultiSelListBox::HeaderFlag::NoHeader,
 			py::arg("headerSize") = 0,
-			py::arg("frameType") = ListBox::FrameType::NoFrame);
+			py::arg("frameType") = MultiSelListBox::FrameType::NoFrame);
 }
