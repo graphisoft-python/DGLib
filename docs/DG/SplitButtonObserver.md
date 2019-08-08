@@ -2,11 +2,11 @@
 
 ## Inherit
 
-* ButtonItemObserver
+* [ButtonItemObserver](ButtonItemObserver.md)
 
 ## Methods
 ```
-__init__(self,SplitButton,iTerm.ACExport) -> None
+__init__(self,SplitButton) -> None
 ```
 
 ## Events
@@ -17,7 +17,7 @@ __init__(self,SplitButton,iTerm.ACExport) -> None
 
 ### Inherit
 
-* ItemChangeEvent
+* [ItemChangeEvent](ItemObserver.md)
 
 ### Methods
 

@@ -2,7 +2,7 @@
 
 ## Methods
 ```
-__init__(self,Panel,iTerm.ACExport) -> None
+__init__(self,Panel) -> None
 ```
 
 ## Events

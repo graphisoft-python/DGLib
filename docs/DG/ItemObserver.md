@@ -2,7 +2,7 @@
 
 ## Methods
 ```
-__init__(self,Item,iTerm.ACExport) -> None
+__init__(self,Item) -> None
 ```
 
 ## Events
@@ -36,6 +36,16 @@ __init__(self,Item,iTerm.ACExport) -> None
 * ItemPressed = (ItemPressedEvent ev) -> None
 * ItemOverlayUpdate = (ItemUpdateEvent ev) -> None
 
+## Class ItemEvent
+
+### Inherit
+
+* object
+
+### Methods
+
+GetSource(self) -> Item
+
 ## Class ItemChangeEvent
 
 ### Inherit
@@ -50,7 +60,7 @@ __init__(self,Item,iTerm.ACExport) -> None
 
 ### Methods
 
-* GetSource(self) -> ushort
+* GetCharCode(self) -> ushort
 
 ## Class ItemClickEvent
 
@@ -98,7 +108,7 @@ __init__(self,Item,iTerm.ACExport) -> None
 
 ### Methods
 
-* GetSource(self) -> short
+* GetSubItem(self) -> short
 * GetTreeItem(self) -> Int32
 * GetTabBarItemId(self) -> Int32
 

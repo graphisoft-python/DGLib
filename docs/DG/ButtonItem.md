@@ -2,5 +2,5 @@
 
 ## Inherit
 
-* Item
+* [Item](Item.md)
 

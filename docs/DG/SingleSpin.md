@@ -2,7 +2,7 @@
 
 ## Inherit
 
-* BarControl
+* [BarControl](BarControl.md)
 
 ## Methods
 ```

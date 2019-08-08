@@ -2,12 +2,12 @@
 
 ## Inherit
 
-* ItemObserver
+* [ItemObserver](ItemObserver.md)
 
 ## Methods
 
 ```
-__init__(self,BarControl,iTerm.ACExport) -> None
+__init__(self,BarControl) -> None
 ```
 
 ## Events
@@ -21,7 +21,7 @@ __init__(self,BarControl,iTerm.ACExport) -> None
 
 ### Inherit
 
-* ItemChangeEvent
+* [ItemChangeEvent](ItemObserver.md)
 
 ### Methods
 
@@ -32,7 +32,7 @@ __init__(self,BarControl,iTerm.ACExport) -> None
 
 ### Inherit
 
-* ItemTrackEvent
+* [ItemTrackEvent](ItemObserver.md)
 
 ### Methods
 

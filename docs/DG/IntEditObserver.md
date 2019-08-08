@@ -2,11 +2,11 @@
 
 ## Inherit
 
-* ItemObserver
+* [ItemObserver](ItemObserver.md)
 
 ## Methods
 ```
-__init__(self,IntEdit,iTerm.ACExport) -> None
+__init__(self,IntEdit) -> None
 ```
 
 ## Events
@@ -17,7 +17,7 @@ __init__(self,IntEdit,iTerm.ACExport) -> None
 
 ### Inherit
 
-* ItemChangeEvent
+* [ItemChangeEvent](ItemObserver.md)
 
 ### Methods
 

@@ -2,11 +2,11 @@
 
 ## Inherit
 
-* ItemObserver
+* [](ItemObserver.md)
 
 ## Methods
 ```
-__init__(self,StaticText,iTerm.ACExport) -> None
+__init__(self,StaticText) -> None
 ```
 
 ## Events
@@ -19,7 +19,7 @@ __init__(self,StaticText,iTerm.ACExport) -> None
 
 ### Inherit
 
-* ItemDoubleClickEvent
+* [ItemDoubleClickEvent](ItemObserver.md)
 
 ### Methods
 
@@ -29,8 +29,8 @@ __init__(self,StaticText,iTerm.ACExport) -> None
 
 ### Inherit
 
-* ItemMouseMoveEvent
-* StaticItemEventProperty
+* [ItemMouseMoveEvent](ItemObserver.md)
+* [StaticItemEventProperty](StaticItemEventProperty.md)
 
 ### Methods
 
@@ -40,7 +40,7 @@ __init__(self,StaticText,iTerm.ACExport) -> None
 
 ### Inherit
 
-* ItemDoubleClickEvent
+* [ItemDoubleClickEvent](ItemObserver.md)
 
 ### Methods
 

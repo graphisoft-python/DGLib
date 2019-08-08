@@ -2,7 +2,7 @@
 
 ## Inherit
 
-* Item
+* [Item](Item.md)
 
 ## Methods
 ```

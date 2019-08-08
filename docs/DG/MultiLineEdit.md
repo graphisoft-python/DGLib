@@ -2,7 +2,7 @@
 
 ## Inherit
 
-* TextEditBase
+* [TextEditBase](TextEditBase.md)
 
 ## Enum
 

@@ -2,9 +2,9 @@
 
 ## Inherit
 
-* TextEditBase
-* ItemVariousProperty
-* ItemTextLengthLimitProperty
+* [TextEditBase](TextEditBase.md)
+* [ItemVariousProperty](ItemVariousProperty.md)
+* [ItemTextLengthLimitProperty](ItemTextLengthLimitProperty.md)
 
 ## Methods
 ```

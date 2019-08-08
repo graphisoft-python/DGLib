@@ -2,9 +2,9 @@
 
 ## Inherit
 
-* Item
-* ItemFontProperty
-* ItemTextProperty
+* [Item](Item.md)
+* [ItemFontProperty](ItemFontProperty.md)
+* [ItemTextProperty](ItemTextProperty.md)
 
 ## Enum
 

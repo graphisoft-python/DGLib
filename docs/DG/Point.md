@@ -2,7 +2,7 @@
 
 ## Inherit
 
-* ShortPoint
+* [ShortPoint](ShortPoint.md)
 
 ## Methods
 ```
