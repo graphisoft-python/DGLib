@@ -181,6 +181,7 @@
     <Library Include="..\Support\Modules\Graphix\Win\GraphixImp.LIB" />
     <Library Include="..\Support\Modules\GSRoot\Win\GSRootImp.LIB" />
     <Library Include="..\Support\Modules\GSUtils\Win\GSUtilsImp.LIB" />
+    <Library Include="..\Support\Modules\GXImage\Win\GXImageImp.LIB" />
     <Library Include="..\Support\Modules\InputOutput\Win\InputOutputImp.LIB" />
     <Library Include="..\Support\Modules\TextEngine\Win\TextEngineImp.LIB" />
     <Library Include="..\Support\Modules\UCLib\Win\UCImp.LIB" />

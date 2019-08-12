@@ -100,5 +100,8 @@
     <Library Include="..\Support\Modules\Graphix\Win\GraphixImp.LIB">
       <Filter>libs</Filter>
     </Library>
+    <Library Include="..\Support\Modules\GXImage\Win\GXImageImp.LIB">
+      <Filter>libs</Filter>
+    </Library>
   </ItemGroup>
 </Project>
