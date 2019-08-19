@@ -172,7 +172,16 @@ void load_UserItem(py::module m) {
 			py::arg("itemType") = UserItem::UserItemType::Normal,
 			py::arg("frameType") = UserItem::FrameType::NoFrame)
 		.def("SetBackground", &UserItem::SetBackground)
-		.def("GetBackground", &UserItem::GetBackground)
+		.def("GetBackground", [](UserItem &self) {
+			Gfx::Color *color = new Gfx::Color();
+			if (self.GetBackground(color)) {
+				return color;
+			}
+			else {
+				delete color;
+				return (Gfx::Color *)nullptr;
+			}
+		})
 		.def("GetClientRect", &UserItem::GetClientRect)
 		.def("GetClientWidth", &UserItem::GetClientWidth)
 		.def("GetClientHeight", &UserItem::GetClientHeight)
