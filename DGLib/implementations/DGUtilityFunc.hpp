@@ -4,9 +4,49 @@
 
 #include "DGWImageCache.hpp"
 #include "DGUtility.hpp"
+#include "GXImage.hpp"
 
 using namespace DG;
 
+GX::Image __openImage(GS::UniString &file) {
+	ExportFuns *extFuncs = GetExtFuncs();
+	IO::RelativeLocation _relativePath(file);
+	IO::Location _appBaseDir = extFuncs->ApplicationPath();
+	_appBaseDir.AppendToLocal(_relativePath);
+
+	GX::Image image(_appBaseDir);
+
+	if (image.IsEmpty()) {
+		throw py::value_error("File Error.");
+	}
+	else {
+		return image;
+	}
+}
+
+DG::Icon *_openIcon(GS::UniString &file) {
+	GX::Image _img = __openImage(file);
+
+	DG::Icon *_icon = new DG::Icon(_img.ToDGIcon());
+
+	return _icon;
+}
+
+DG::Picture *_openPicture(GS::UniString &file) {
+	GX::Image _img = __openImage(file);
+
+	DG::Picture *_pictr = new DG::Picture(/*_img.ToDGIcon()*/_img.ToDGPicture());
+
+	return _pictr;
+}
+
+DG::NativeImage* _openNativeImage(GS::UniString &file,double resolutionFactor) {
+	GX::Image _img = __openImage(file);
+
+	DG::NativeImage *_nImg = new DG::NativeImage(_img.ToDGIcon()/*_img.ToDGPicture()*/, resolutionFactor);
+
+	return _nImg;
+}
 
 // --- EOL::Type --------------------------------------------------------------------------
 
@@ -106,41 +146,10 @@ void load_Key(py::module m) {
 		.def(py::self != py::self);
 }
 
-
-// --- Override Image ---------------------------------------------------------------------
-
-class PyImage : Image
-{
-public:
-	using Image::Image;
-
-	PyImage() : Image() {};
-	PyImage(std::string &file) : Image(getData(file)) {};
-
-	~PyImage() {
-		if (data != nullptr) {
-			delete[] data;
-			data = nullptr;
-		}
-	};
-
-	char *getData(std::string &file) {
-		// wait for writting...
-
-		return this->data;
-	};
-
-private:
-	char *data;
-};
-
-
 // --- Image ------------------------------------------------------------------------------
 
 void load_Image(py::module m) {
-	py::class_<Image, PyImage>(m, "Image")
-		.def(py::init_alias<>())
-		.def(py::init_alias<std::string &>())
+	py::class_<Image>(m, "Image")
 		.def(py::self == py::self)
 		.def(py::self != py::self)
 		.def("IsEmpty", &Image::IsEmpty)
@@ -148,116 +157,38 @@ void load_Image(py::module m) {
 }
 
 
-// --- Override Icon ----------------------------------------------------------------------
-
-class PyIcon : Icon
-{
-public:
-	using Icon::Icon;
-
-	PyIcon() : Icon() {};
-	PyIcon(std::string &file) : Icon(getData(file)) {};
-	
-	~PyIcon() {
-		if (data != nullptr) {
-			delete[] data;
-			data = nullptr;
-		}
-	};
-
-	char *getData(std::string &file) {
-		// wait for writting...
-
-		return this->data;
-	};
-
-private:
-	char *data;
-};
-
-
-// --- Override Picture -------------------------------------------------------------------
-
-class PyPicture : Picture
-{
-public:
-	using Picture::Picture;
-
-	PyPicture() : Picture() {};
-	PyPicture(std::string &file) : Picture(getData(file)) {};
-	
-	~PyPicture() {
-		if (data != nullptr) {
-			delete[] data;
-			data = nullptr;
-		}
-	};
-
-	char *getData(std::string &file) {
-		// wait for writting...
-
-		return this->data;
-	};
-
-private:
-	char *data;
-};
-
-
 // --- ImageEX ----------------------------------------------------------------------------
 
 void load_ImageEX(py::module m) {
 	// --- Icon ---------------------------------------------------------------------------
-	py::class_<Icon, PyIcon>(m, "Icon")
-		.def(py::init_alias<>())
-		.def(py::init_alias<std::string &>())
-		.def("IsValid",&Icon::IsValid);
+	py::class_<Icon, Image>(m, "Icon")
+		.def(py::init<>())
+		.def(py::init<>([](GS::UniString &file) {
+			return _openIcon(file);
+		}))
+		;
 
 	// --- Picture ------------------------------------------------------------------------
-	py::class_<Picture, PyPicture>(m, "Picture")
-		.def(py::init_alias<>())
-		.def(py::init_alias<std::string &>());
+	py::class_<Picture, Image>(m, "Picture")
+		.def(py::init<>())
+		.def(py::init<>([](GS::UniString &file) {
+			return _openPicture(file);
+		}));
 }
-
-
-// --- override NativeImage ---------------------------------------------------------------
-
-class PyNativeImage : NativeImage
-{
-public:
-	using NativeImage::NativeImage;
-	PyNativeImage() : NativeImage() {};
-	PyNativeImage(std::string &file, double resolutionFactor) : NativeImage(getData(file), resolutionFactor) {};
-	PyNativeImage(Image &icon, double resolutionFactor) : NativeImage(icon, resolutionFactor) {};
-	PyNativeImage(NativeImage &other) : NativeImage(other) {};
-	
-	~PyNativeImage() {
-		if (data != nullptr) {
-			delete[] data;
-			data = nullptr;
-		}
-	};
-
-	char *getData(std::string &file) {
-		// wait for writting...
-
-		return this->data;
-	};
-
-private:
-	char *data;
-};
-
 
 // --- NativeImage ------------------------------------------------------------------------
 
 void load_NativeImage(py::module m) {
-	py::class_<NativeImage, PyNativeImage>(m, "NativeImage")
-		.def(py::init_alias<>())
-		.def(py::init_alias<std::string &,double>())
-		.def(py::init_alias<Image &,double>())
-		.def(py::init_alias<NativeImage &>())
-		.def("GetNativeImage",&NativeImage::GetNativeImage);
+	py::class_<NativeImage>(m, "NativeImage")
+		.def(py::init<>())
+		.def(py::init<Image &, double>())
+		.def(py::init<>([](GS::UniString &file, double resolutionFactor) {
+			return _openNativeImage(file, resolutionFactor);
+		}))
+		
+		/*.def(py::init<NativeImage &>())*/
+		.def("GetNativeImage",&NativeImage::GetNativeImage)
+		;
 }
 
 

@@ -179,6 +179,13 @@ void load_Dialog(py::module m) {
 
 // --- DialogEX ----------------------------------------------------------------------------
 
+bool modal_dialog_invoke(ModalDialog &self) {
+	PyThreadState *state = PyEval_SaveThread();
+	bool invoke= self.Invoke();
+	PyEval_RestoreThread(state);
+	return invoke;
+}
+
 void load_DialogEX(py::module m) {
 	// --- ModalDialog ---------------------------------------------------------------------
 	py::class_<ModalDialog, Dialog> m_modalDialog(m,"ModalDialog");
@@ -197,7 +204,7 @@ void load_DialogEX(py::module m) {
 			py::arg("growType") = ModalDialog::GrowType::NoGrow,
 			py::arg("captionType") = ModalDialog::CaptionType::TopCaption,
 			py::arg("frameType") = ModalDialog::FrameType::NormalFrame)
-		.def("Invoke", &ModalDialog::Invoke)
+		.def("Invoke", &modal_dialog_invoke)
 		.def("Abort", &ModalDialog::Abort)
 		.def("PostCloseRequest", &ModalDialog::PostCloseRequest)
 		.def("GetNextModalDialog", &ModalDialog::GetNextModalDialog, py::return_value_policy::reference)
