@@ -87,6 +87,15 @@ private:
 // --- BarControl ------------------------------------------------------------------------------
 
 void load_BarControl(py::module m) {
+	// --- BarControl --------------------------------------------------------------------------
+	py::class_<BarControl, Item>(m, "BarControl")
+		.def("SetMin", &BarControl::SetMin)
+		.def("SetMax", &BarControl::SetMax)
+		.def("SetValue", &BarControl::SetValue)
+		.def("GetMin", &BarControl::GetMin)
+		.def("GetMax", &BarControl::GetMax)
+		.def("GetValue", &BarControl::GetValue);
+
 	// --- BarControlChangeEvent ---------------------------------------------------------------
 	py::class_<BarControlChangeEvent, ItemChangeEvent>(m, "BarControlChangeEvent")
 		.def("GetSource", &BarControlChangeEvent::GetSource, py::return_value_policy::reference)
@@ -99,15 +108,6 @@ void load_BarControl(py::module m) {
 	// --- BarControlObserver ------------------------------------------------------------------
 	py::class_<PyBarControlObserver>(m, "BarControlObserver", py::dynamic_attr())
 		.def(py::init<BarControl &>());
-
-	// --- BarControl --------------------------------------------------------------------------
-	py::class_<BarControl, Item>(m, "BarControl")		
-		.def("SetMin", &BarControl::SetMin)
-		.def("SetMax", &BarControl::SetMax)
-		.def("SetValue", &BarControl::SetValue)
-		.def("GetMin", &BarControl::GetMin)
-		.def("GetMax", &BarControl::GetMax)
-		.def("GetValue", &BarControl::GetValue);
 }
 
 // --- BarControlEX ----------------------------------------------------------------------------
@@ -142,32 +142,6 @@ void load_BarControlEX(py::module m) {
 // --- ScrollBar -------------------------------------------------------------------------------
 
 void load_ScrollBar(py::module m) {
-	// --- ScrollBarChangeEvent ----------------------------------------------------------------
-	py::class_<ScrollBarChangeEvent, ItemChangeEvent>(m, "ScrollBarChangeEvent")
-		.def("GetSource", &ScrollBarChangeEvent::GetSource, py::return_value_policy::reference)
-		.def("GetPreviousValue", &ScrollBarChangeEvent::GetPreviousValue);
-
-	// --- ScrollBarTrackEvent -----------------------------------------------------------------
-	py::class_<ScrollBarTrackEvent, ItemTrackEvent>(m, "ScrollBarTrackEvent")
-		.def("GetSource", &ScrollBarTrackEvent::GetSource, py::return_value_policy::reference)
-		.def("IsLineUp", &ScrollBarTrackEvent::IsLineUp)
-		.def("IsLineLeft", &ScrollBarTrackEvent::IsLineLeft)
-		.def("IsLineDown", &ScrollBarTrackEvent::IsLineDown)
-		.def("IsLineRight", &ScrollBarTrackEvent::IsLineRight)
-		.def("IsPageUp", &ScrollBarTrackEvent::IsPageUp)
-		.def("IsPageLeft", &ScrollBarTrackEvent::IsPageLeft)
-		.def("IsPageDown", &ScrollBarTrackEvent::IsPageDown)
-		.def("IsPageRight", &ScrollBarTrackEvent::IsPageRight)
-		.def("IsTop", &ScrollBarTrackEvent::IsTop)
-		.def("IsLeft", &ScrollBarTrackEvent::IsLeft)
-		.def("IsBottom", &ScrollBarTrackEvent::IsBottom)
-		.def("IsRight", &ScrollBarTrackEvent::IsRight)
-		.def("IsThumbTrack", &ScrollBarTrackEvent::IsThumbTrack);
-
-	// --- ScrollBarObserver -------------------------------------------------------------------
-	py::class_<PyScrollBarObserver>(m, "ScrollBarObserver", py::dynamic_attr())
-		.def(py::init<ScrollBar &>());
-
 	// --- ScrollBar ---------------------------------------------------------------------------
 	py::class_<ScrollBar, Item> m_scrollBar(m, "ScrollBar");
 
@@ -201,6 +175,32 @@ void load_ScrollBar(py::module m) {
 		.def("GetValue", &ScrollBar::GetValue)
 		.def("SetPageSize", &ScrollBar::SetPageSize)
 		.def("GetPageSize", &ScrollBar::GetPageSize);
+
+	// --- ScrollBarChangeEvent ----------------------------------------------------------------
+	py::class_<ScrollBarChangeEvent, ItemChangeEvent>(m, "ScrollBarChangeEvent")
+		.def("GetSource", &ScrollBarChangeEvent::GetSource, py::return_value_policy::reference)
+		.def("GetPreviousValue", &ScrollBarChangeEvent::GetPreviousValue);
+
+	// --- ScrollBarTrackEvent -----------------------------------------------------------------
+	py::class_<ScrollBarTrackEvent, ItemTrackEvent>(m, "ScrollBarTrackEvent")
+		.def("GetSource", &ScrollBarTrackEvent::GetSource, py::return_value_policy::reference)
+		.def("IsLineUp", &ScrollBarTrackEvent::IsLineUp)
+		.def("IsLineLeft", &ScrollBarTrackEvent::IsLineLeft)
+		.def("IsLineDown", &ScrollBarTrackEvent::IsLineDown)
+		.def("IsLineRight", &ScrollBarTrackEvent::IsLineRight)
+		.def("IsPageUp", &ScrollBarTrackEvent::IsPageUp)
+		.def("IsPageLeft", &ScrollBarTrackEvent::IsPageLeft)
+		.def("IsPageDown", &ScrollBarTrackEvent::IsPageDown)
+		.def("IsPageRight", &ScrollBarTrackEvent::IsPageRight)
+		.def("IsTop", &ScrollBarTrackEvent::IsTop)
+		.def("IsLeft", &ScrollBarTrackEvent::IsLeft)
+		.def("IsBottom", &ScrollBarTrackEvent::IsBottom)
+		.def("IsRight", &ScrollBarTrackEvent::IsRight)
+		.def("IsThumbTrack", &ScrollBarTrackEvent::IsThumbTrack);
+
+	// --- ScrollBarObserver -------------------------------------------------------------------
+	py::class_<PyScrollBarObserver>(m, "ScrollBarObserver", py::dynamic_attr())
+		.def(py::init<ScrollBar &>());
 }
 
 

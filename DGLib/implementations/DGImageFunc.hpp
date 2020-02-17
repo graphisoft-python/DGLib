@@ -40,6 +40,16 @@ private:
 // --- ImageItem --------------------------------------------------------------------------
 
 void load_ImageItem(py::module m) {
+	// --- ImageItem ----------------------------------------------------------------------
+	py::class_<ImageItem, Item>m_imageItem(m, "ImageItem");
+
+	py::enum_<ImageItem::FrameType>(m_imageItem, "FrameType")
+		.value("NoFrame", ImageItem::FrameType::NoFrame)
+		.value("StaticFrame", ImageItem::FrameType::StaticFrame)
+		.value("ClientFrame", ImageItem::FrameType::ClientFrame)
+		.value("ModalFrame", ImageItem::FrameType::ModalFrame)
+		.export_values();
+
 	// --- ImageClickEvent ----------------------------------------------------------------
 	py::class_<ImageClickEvent, ItemClickEvent>(m, "ImageClickEvent")
 		.def("GetSource", &ImageClickEvent::GetSource, py::return_value_policy::reference);
@@ -51,16 +61,6 @@ void load_ImageItem(py::module m) {
 	// --- ImageObserver ------------------------------------------------------------------
 	py::class_<PyImageObserver>(m, "ImageObserver", py::dynamic_attr())
 		.def(py::init<ImageItem &>());
-
-	// --- ImageItem ----------------------------------------------------------------------
-	py::class_<ImageItem, Item>m_imageItem(m, "ImageItem");
-
-	py::enum_<ImageItem::FrameType>(m_imageItem, "FrameType")
-		.value("NoFrame", ImageItem::FrameType::NoFrame)
-		.value("StaticFrame", ImageItem::FrameType::StaticFrame)
-		.value("ClientFrame", ImageItem::FrameType::ClientFrame)
-		.value("ModalFrame", ImageItem::FrameType::ModalFrame)
-		.export_values();
 }
 
 

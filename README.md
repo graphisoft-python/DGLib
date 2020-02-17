@@ -22,7 +22,6 @@
 * [Panel](./docs/DG/Panel.md)
 * [PanelObserver](./docs/DG/PanelObserver.md)
 
-
 #### Dialog
 
 * [Dialog](./docs/DG/Dialog.md)
@@ -30,7 +29,6 @@
 * [ModelessBase](./docs/DG/ModelessBase.md)
 * [ModelessDialog](./docs/DG/ModelessDialog.md)
 * [Palette](./docs/DG/Palette.md)
-
 
 #### BarControl
 
@@ -54,7 +52,6 @@
 * [ButtonItemObserver](./docs/DG/ButtonItemObserver.md)
 * [SplitButtonObserver](./docs/DG/SplitButtonObserver.md)
 * [CustomSplitButtonObserver](./docs/DG/CustomSplitButtonObserver.md)
-
 
 #### EditControl
 

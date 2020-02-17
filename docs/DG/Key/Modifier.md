@@ -1,4 +1,4 @@
-## Enum Modifier
+# Enum Modifier
 
 * NoModifier
 * Command

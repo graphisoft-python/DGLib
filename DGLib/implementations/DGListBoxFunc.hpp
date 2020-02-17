@@ -97,111 +97,6 @@ private:
 // --- ListBox ------------------------------------------------------------------------------
 
 void load_ListBox(py::module m) {
-	// --- ListBoxDragSourceEvent -----------------------------------------------------------
-	//py::class_<ListBoxDragSourceEvent, ItemDragSourceEvent>(m, "ListBoxDragSourceEvent")
-	//	.def("GetSource", &ListBoxDragSourceEvent::GetSource, py::return_value_policy::reference);
-
-	// --- ListBoxDropTargetEvent -----------------------------------------------------------
-	//py::class_<ListBoxDropTargetEvent, ItemDropTargetEvent>(m, "ListBoxDropTargetEvent")
-	//	.def("GetInsertPosition", &ListBoxDropTargetEvent::GetInsertPosition)
-	//	.def("GetRelativePosition", &ListBoxDropTargetEvent::GetRelativePosition)
-	//	.def("GetSource", &ListBoxDropTargetEvent::GetSource, py::return_value_policy::reference);
-
-	// --- ListBoxDragEvent -----------------------------------------------------------------
-	py::class_<ListBoxDragEvent, ItemChangeEvent>(m, "ListBoxDragEvent")
-		.def("GetSource", &ListBoxDragEvent::GetSource, py::return_value_policy::reference)
-		.def("GetPreviousIndex", &ListBoxDragEvent::GetPreviousIndex)
-		.def("GetNewIndex", &ListBoxDragEvent::GetNewIndex);
-
-	// --- ListBoxEventProperty -------------------------------------------------------------
-	py::class_<ListBoxEventProperty>(m, "ListBoxEventProperty")
-		.def("GetListItem", &ListBoxEventProperty::GetListItem)
-		.def("GetMouseOffset", &ListBoxEventProperty::GetMouseOffset)
-		.def("IsCommandPressed", &ListBoxEventProperty::IsCommandPressed)
-		.def("IsOptionPressed", &ListBoxEventProperty::IsOptionPressed)
-		.def("IsShiftPressed", &ListBoxEventProperty::IsShiftPressed);
-
-	// --- ListBoxSelectionEvent ------------------------------------------------------------
-	py::class_<ListBoxSelectionEvent, ItemChangeEvent>(m, "ListBoxSelectionEvent")
-		.def("GetSource", &ListBoxSelectionEvent::GetSource, py::return_value_policy::reference);
-
-	// --- ListBoxClickEvent ----------------------------------------------------------------
-	py::class_<ListBoxClickEvent, ItemClickEvent, ListBoxEventProperty>(m, "ListBoxClickEvent")
-		.def("GetSource", &ListBoxClickEvent::GetSource, py::return_value_policy::reference);
-
-	// --- ListBoxMouseDownEvent ------------------------------------------------------------
-	py::class_<ListBoxMouseDownEvent, ItemMouseDownEvent, ListBoxEventProperty>(m, "ListBoxMouseDownEvent")
-		.def("GetSource", &ListBoxMouseDownEvent::GetSource, py::return_value_policy::reference);
-
-	// --- ListBoxContextMenuEvent ----------------------------------------------------------
-	py::class_<ListBoxContextMenuEvent, ItemContextMenuEvent>(m, "ListBoxContextMenuEvent")
-		.def("GetSource", &ListBoxContextMenuEvent::GetSource, py::return_value_policy::reference)
-		.def("GetItem", &ListBoxContextMenuEvent::GetItem)
-		.def("GetHeaderItem", &ListBoxContextMenuEvent::GetHeaderItem)
-		.def("IsInHeaderButton", &ListBoxContextMenuEvent::IsInHeaderButton);
-
-	// --- ListBoxDoubleClickEvent ----------------------------------------------------------
-	py::class_<ListBoxDoubleClickEvent, ItemDoubleClickEvent, ListBoxEventProperty>(m, "ListBoxDoubleClickEvent")
-		.def("GetSource", &ListBoxDoubleClickEvent::GetSource, py::return_value_policy::reference);
-
-	// --- ListBoxMouseMoveEvent ------------------------------------------------------------
-	py::class_<ListBoxMouseMoveEvent, ItemMouseMoveEvent, ListBoxEventProperty>(m, "ListBoxMouseMoveEvent")
-		.def("GetSource", &ListBoxMouseMoveEvent::GetSource, py::return_value_policy::reference);
-
-	// --- ListBoxItemUpdateEvent -----------------------------------------------------------
-	py::class_<ListBoxItemUpdateEvent, ItemUpdateEvent>(m, "ListBoxItemUpdateEvent")
-		.def("GetSource", &ListBoxItemUpdateEvent::GetSource, py::return_value_policy::reference)
-		.def("GetListItem",&ListBoxItemUpdateEvent::GetListItem)
-		.def("GetDrawContext", &ListBoxItemUpdateEvent::GetDrawContext)
-		.def("GetWidth", &ListBoxItemUpdateEvent::GetWidth)
-		.def("GetHeight", &ListBoxItemUpdateEvent::GetHeight)
-		.def("IsUpdatedListItemHighlighted", &ListBoxItemUpdateEvent::IsUpdatedListItemHighlighted)
-		.def("GetForeColor", &ListBoxItemUpdateEvent::GetForeColor)
-		.def("GetBackColor", &ListBoxItemUpdateEvent::GetBackColor);
-
-	//--- ListBoxTabItemUpdateEvent ---------------------------------------------------------
-	py::class_<ListBoxTabItemUpdateEvent, ItemUpdateEvent>(m, "ListBoxTabItemUpdateEvent")
-		.def("GetSource", &ListBoxTabItemUpdateEvent::GetSource, py::return_value_policy::reference)
-		.def("GetListItem",&ListBoxTabItemUpdateEvent::GetListItem)
-		.def("GetTabFieldIndex", &ListBoxTabItemUpdateEvent::GetTabFieldIndex)
-		.def("GetDrawContext", &ListBoxTabItemUpdateEvent::GetDrawContext)
-		.def("GetWidth", &ListBoxTabItemUpdateEvent::GetWidth)
-		.def("GetHeight", &ListBoxTabItemUpdateEvent::GetHeight)
-		.def("IsUpdatedListItemHighlighted", &ListBoxTabItemUpdateEvent::IsUpdatedListItemHighlighted)
-		.def("GetTabItemText", &ListBoxTabItemUpdateEvent::GetTabItemText)
-		.def("GetForeColor", &ListBoxTabItemUpdateEvent::GetForeColor)
-		.def("GetBackColor", &ListBoxTabItemUpdateEvent::GetBackColor);
-
-	// --- ListBoxHoverEvent ----------------------------------------------------------------
-	py::class_<ListBoxHoverEvent, ItemHoverEvent>(m, "ListBoxHoverEvent")
-		.def("GetSource", &ListBoxHoverEvent::GetSource, py::return_value_policy::reference)
-		.def("GetListItem", &ListBoxHoverEvent::GetListItem);
-
-	// --- ListBoxHeaderItemClickEvent ------------------------------------------------------
-	py::class_<ListBoxHeaderItemClickEvent, ItemEvent>(m, "ListBoxHeaderItemClickEvent")
-		.def("GetSource", &ListBoxHeaderItemClickEvent::GetSource, py::return_value_policy::reference)
-		.def("GetHeaderItem", &ListBoxHeaderItemClickEvent::GetHeaderItem);
-
-	// --- ListBoxHeaderItemDragEvent -------------------------------------------------------
-	py::class_<ListBoxHeaderItemDragEvent, ItemEvent>(m, "ListBoxHeaderItemDragEvent")
-		.def("GetSource", &ListBoxHeaderItemDragEvent::GetSource, py::return_value_policy::reference)
-		.def("GetOldPos", &ListBoxHeaderItemDragEvent::GetOldPos)
-		.def("GetNewPos", &ListBoxHeaderItemDragEvent::GetNewPos);
-
-	// --- ListBoxHeaderItemResizeEvent -----------------------------------------------------
-	py::class_<ListBoxHeaderItemResizeEvent, ItemEvent>(m, "ListBoxHeaderItemResizeEvent")
-		.def("GetSource", &ListBoxHeaderItemResizeEvent::GetSource, py::return_value_policy::reference)
-		.def("GetHeaderItem", &ListBoxHeaderItemResizeEvent::GetHeaderItem)
-		.def("GetChange", &ListBoxHeaderItemResizeEvent::GetChange);
-
-	// --- ListBoxHeaderButtonClickEvent ----------------------------------------------------
-	py::class_<ListBoxHeaderButtonClickEvent, ItemEvent>(m, "ListBoxHeaderButtonClickEvent")
-		.def("GetSource", &ListBoxHeaderButtonClickEvent::GetSource, py::return_value_policy::reference);
-
-	// --- PyListBoxObserver ----------------------------------------------------------------
-	py::class_<PyListBoxObserver>(m, "ListBoxObserver", py::dynamic_attr())
-		.def(py::init<ListBox &>());
-
 	// --- ListBox --------------------------------------------------------------------------
 	py::class_<ListBox, Item, ItemFontProperty, FocusableProperty> m_listBox(m, "ListBox");
 
@@ -421,6 +316,111 @@ void load_ListBox(py::module m) {
 		.def("GetItemFromPosition", &ListBox::GetItemFromPosition)
 		.def("SetHelpStyle", &ListBox::SetHelpStyle)
 		.def("GetHelpStyle", &ListBox::GetHelpStyle);
+
+	// --- ListBoxDragSourceEvent -----------------------------------------------------------
+	//py::class_<ListBoxDragSourceEvent, ItemDragSourceEvent>(m, "ListBoxDragSourceEvent")
+	//	.def("GetSource", &ListBoxDragSourceEvent::GetSource, py::return_value_policy::reference);
+
+	// --- ListBoxDropTargetEvent -----------------------------------------------------------
+	//py::class_<ListBoxDropTargetEvent, ItemDropTargetEvent>(m, "ListBoxDropTargetEvent")
+	//	.def("GetInsertPosition", &ListBoxDropTargetEvent::GetInsertPosition)
+	//	.def("GetRelativePosition", &ListBoxDropTargetEvent::GetRelativePosition)
+	//	.def("GetSource", &ListBoxDropTargetEvent::GetSource, py::return_value_policy::reference);
+
+	// --- ListBoxDragEvent -----------------------------------------------------------------
+	py::class_<ListBoxDragEvent, ItemChangeEvent>(m, "ListBoxDragEvent")
+		.def("GetSource", &ListBoxDragEvent::GetSource, py::return_value_policy::reference)
+		.def("GetPreviousIndex", &ListBoxDragEvent::GetPreviousIndex)
+		.def("GetNewIndex", &ListBoxDragEvent::GetNewIndex);
+
+	// --- ListBoxEventProperty -------------------------------------------------------------
+	py::class_<ListBoxEventProperty>(m, "ListBoxEventProperty")
+		.def("GetListItem", &ListBoxEventProperty::GetListItem)
+		.def("GetMouseOffset", &ListBoxEventProperty::GetMouseOffset)
+		.def("IsCommandPressed", &ListBoxEventProperty::IsCommandPressed)
+		.def("IsOptionPressed", &ListBoxEventProperty::IsOptionPressed)
+		.def("IsShiftPressed", &ListBoxEventProperty::IsShiftPressed);
+
+	// --- ListBoxSelectionEvent ------------------------------------------------------------
+	py::class_<ListBoxSelectionEvent, ItemChangeEvent>(m, "ListBoxSelectionEvent")
+		.def("GetSource", &ListBoxSelectionEvent::GetSource, py::return_value_policy::reference);
+
+	// --- ListBoxClickEvent ----------------------------------------------------------------
+	py::class_<ListBoxClickEvent, ItemClickEvent, ListBoxEventProperty>(m, "ListBoxClickEvent")
+		.def("GetSource", &ListBoxClickEvent::GetSource, py::return_value_policy::reference);
+
+	// --- ListBoxMouseDownEvent ------------------------------------------------------------
+	py::class_<ListBoxMouseDownEvent, ItemMouseDownEvent, ListBoxEventProperty>(m, "ListBoxMouseDownEvent")
+		.def("GetSource", &ListBoxMouseDownEvent::GetSource, py::return_value_policy::reference);
+
+	// --- ListBoxContextMenuEvent ----------------------------------------------------------
+	py::class_<ListBoxContextMenuEvent, ItemContextMenuEvent>(m, "ListBoxContextMenuEvent")
+		.def("GetSource", &ListBoxContextMenuEvent::GetSource, py::return_value_policy::reference)
+		.def("GetItem", &ListBoxContextMenuEvent::GetItem)
+		.def("GetHeaderItem", &ListBoxContextMenuEvent::GetHeaderItem)
+		.def("IsInHeaderButton", &ListBoxContextMenuEvent::IsInHeaderButton);
+
+	// --- ListBoxDoubleClickEvent ----------------------------------------------------------
+	py::class_<ListBoxDoubleClickEvent, ItemDoubleClickEvent, ListBoxEventProperty>(m, "ListBoxDoubleClickEvent")
+		.def("GetSource", &ListBoxDoubleClickEvent::GetSource, py::return_value_policy::reference);
+
+	// --- ListBoxMouseMoveEvent ------------------------------------------------------------
+	py::class_<ListBoxMouseMoveEvent, ItemMouseMoveEvent, ListBoxEventProperty>(m, "ListBoxMouseMoveEvent")
+		.def("GetSource", &ListBoxMouseMoveEvent::GetSource, py::return_value_policy::reference);
+
+	// --- ListBoxItemUpdateEvent -----------------------------------------------------------
+	py::class_<ListBoxItemUpdateEvent, ItemUpdateEvent>(m, "ListBoxItemUpdateEvent")
+		.def("GetSource", &ListBoxItemUpdateEvent::GetSource, py::return_value_policy::reference)
+		.def("GetListItem",&ListBoxItemUpdateEvent::GetListItem)
+		.def("GetDrawContext", &ListBoxItemUpdateEvent::GetDrawContext)
+		.def("GetWidth", &ListBoxItemUpdateEvent::GetWidth)
+		.def("GetHeight", &ListBoxItemUpdateEvent::GetHeight)
+		.def("IsUpdatedListItemHighlighted", &ListBoxItemUpdateEvent::IsUpdatedListItemHighlighted)
+		.def("GetForeColor", &ListBoxItemUpdateEvent::GetForeColor)
+		.def("GetBackColor", &ListBoxItemUpdateEvent::GetBackColor);
+
+	//--- ListBoxTabItemUpdateEvent ---------------------------------------------------------
+	py::class_<ListBoxTabItemUpdateEvent, ItemUpdateEvent>(m, "ListBoxTabItemUpdateEvent")
+		.def("GetSource", &ListBoxTabItemUpdateEvent::GetSource, py::return_value_policy::reference)
+		.def("GetListItem",&ListBoxTabItemUpdateEvent::GetListItem)
+		.def("GetTabFieldIndex", &ListBoxTabItemUpdateEvent::GetTabFieldIndex)
+		.def("GetDrawContext", &ListBoxTabItemUpdateEvent::GetDrawContext)
+		.def("GetWidth", &ListBoxTabItemUpdateEvent::GetWidth)
+		.def("GetHeight", &ListBoxTabItemUpdateEvent::GetHeight)
+		.def("IsUpdatedListItemHighlighted", &ListBoxTabItemUpdateEvent::IsUpdatedListItemHighlighted)
+		.def("GetTabItemText", &ListBoxTabItemUpdateEvent::GetTabItemText)
+		.def("GetForeColor", &ListBoxTabItemUpdateEvent::GetForeColor)
+		.def("GetBackColor", &ListBoxTabItemUpdateEvent::GetBackColor);
+
+	// --- ListBoxHoverEvent ----------------------------------------------------------------
+	py::class_<ListBoxHoverEvent, ItemHoverEvent>(m, "ListBoxHoverEvent")
+		.def("GetSource", &ListBoxHoverEvent::GetSource, py::return_value_policy::reference)
+		.def("GetListItem", &ListBoxHoverEvent::GetListItem);
+
+	// --- ListBoxHeaderItemClickEvent ------------------------------------------------------
+	py::class_<ListBoxHeaderItemClickEvent, ItemEvent>(m, "ListBoxHeaderItemClickEvent")
+		.def("GetSource", &ListBoxHeaderItemClickEvent::GetSource, py::return_value_policy::reference)
+		.def("GetHeaderItem", &ListBoxHeaderItemClickEvent::GetHeaderItem);
+
+	// --- ListBoxHeaderItemDragEvent -------------------------------------------------------
+	py::class_<ListBoxHeaderItemDragEvent, ItemEvent>(m, "ListBoxHeaderItemDragEvent")
+		.def("GetSource", &ListBoxHeaderItemDragEvent::GetSource, py::return_value_policy::reference)
+		.def("GetOldPos", &ListBoxHeaderItemDragEvent::GetOldPos)
+		.def("GetNewPos", &ListBoxHeaderItemDragEvent::GetNewPos);
+
+	// --- ListBoxHeaderItemResizeEvent -----------------------------------------------------
+	py::class_<ListBoxHeaderItemResizeEvent, ItemEvent>(m, "ListBoxHeaderItemResizeEvent")
+		.def("GetSource", &ListBoxHeaderItemResizeEvent::GetSource, py::return_value_policy::reference)
+		.def("GetHeaderItem", &ListBoxHeaderItemResizeEvent::GetHeaderItem)
+		.def("GetChange", &ListBoxHeaderItemResizeEvent::GetChange);
+
+	// --- ListBoxHeaderButtonClickEvent ----------------------------------------------------
+	py::class_<ListBoxHeaderButtonClickEvent, ItemEvent>(m, "ListBoxHeaderButtonClickEvent")
+		.def("GetSource", &ListBoxHeaderButtonClickEvent::GetSource, py::return_value_policy::reference);
+
+	// --- PyListBoxObserver ----------------------------------------------------------------
+	py::class_<PyListBoxObserver>(m, "ListBoxObserver", py::dynamic_attr())
+		.def(py::init<ListBox &>());
 }
 
 

@@ -103,6 +103,9 @@ private:
 // --- ButtonItem ------------------------------------------------------------------------------
 
 void load_ButtonItem(py::module m) {
+	// --- ButtonItem --------------------------------------------------------------------------
+	py::class_<ButtonItem, Item>(m, "ButtonItem");
+
 	// --- ButtonClickEvent---------------------------------------------------------------------
 	py::class_<ButtonClickEvent, ItemClickEvent>(m, "ButtonClickEvent")
 		.def("GetSource", &ButtonClickEvent::GetSource, py::return_value_policy::reference);
@@ -110,9 +113,6 @@ void load_ButtonItem(py::module m) {
 	// --- ButtonItemObserver ------------------------------------------------------------------
 	py::class_<PyButtonItemObserver>(m, "ButtonItemObserver", py::dynamic_attr())
 		.def(py::init<ButtonItem &>());
-
-	// --- ButtonItem --------------------------------------------------------------------------
-	py::class_<ButtonItem, Item>(m, "ButtonItem");
 }
 
 
@@ -200,14 +200,6 @@ void load_ButtonItemEX(py::module m) {
 // --- SplitButton -----------------------------------------------------------------------------
 
 void load_SplitButton(py::module m) {
-	// --- SplitButtonChangeEvent --------------------------------------------------------------
-	py::class_<SplitButtonChangeEvent, ItemChangeEvent>(m, "SplitButtonChangeEvent")
-		.def("GetSource", &SplitButtonChangeEvent::GetSource, py::return_value_policy::reference);
-
-	// --- SplitButtonObserver -------------------------------------------------
-	py::class_<PySplitButtonObserver>(m, "SplitButtonObserver", py::dynamic_attr())
-		.def(py::init<SplitButton &>());
-
 	// --- SplitButton -------------------------------------------------------------------------
 	py::class_<SplitButton, SplitButtonBase>(m, "SplitButton")
 		.def(py::init<Panel &, Rect &, SplitButtonBase::ButtonForm>(),
@@ -241,20 +233,20 @@ void load_SplitButton(py::module m) {
 		.def("IsSeparatorItem", &SplitButton::IsSeparatorItem)
 		.def("EnableDraw", &SplitButton::EnableDraw)
 		.def("DisableDraw", &SplitButton::DisableDraw);
+
+	// --- SplitButtonChangeEvent --------------------------------------------------------------
+	py::class_<SplitButtonChangeEvent, ItemChangeEvent>(m, "SplitButtonChangeEvent")
+		.def("GetSource", &SplitButtonChangeEvent::GetSource, py::return_value_policy::reference);
+
+	// --- SplitButtonObserver -------------------------------------------------
+	py::class_<PySplitButtonObserver>(m, "SplitButtonObserver", py::dynamic_attr())
+		.def(py::init<SplitButton &>());
 }
 
 
 // --- CustomSplitButton -----------------------------------------------------------------------
 
 void load_CustomSplitButton(py::module m) {
-	// --- CustomSplitButtonOpenRequestedEvent -------------------------------------------------
-	py::class_<CustomSplitButtonOpenRequestedEvent, ItemEvent>(m, "CustomSplitButtonOpenRequestedEvent")
-		.def("GetSource", &CustomSplitButtonOpenRequestedEvent::GetSource, py::return_value_policy::reference);
-
-	// --- PyCustomSplitButtonObserver ---------------------------------------------------------
-	py::class_<PyCustomSplitButtonObserver>(m, "CustomSplitButtonObserver", py::dynamic_attr())
-		.def(py::init<CustomSplitButton &>());
-
 	// --- CustomSplitButton -------------------------------------------------------------------
 	py::class_<CustomSplitButton, SplitButtonBase>(m, "CustomSplitButton")
 		.def(py::init<Panel &, Rect &, SplitButtonBase::ButtonForm>(),
@@ -265,4 +257,12 @@ void load_CustomSplitButton(py::module m) {
 		.def("DisableArrowPart", &CustomSplitButton::DisableArrowPart)
 		.def("SetArrowPartStatus", &CustomSplitButton::SetArrowPartStatus)
 		.def("IsArrowPartEnabled", &CustomSplitButton::IsArrowPartEnabled);
+
+	// --- CustomSplitButtonOpenRequestedEvent -------------------------------------------------
+	py::class_<CustomSplitButtonOpenRequestedEvent, ItemEvent>(m, "CustomSplitButtonOpenRequestedEvent")
+		.def("GetSource", &CustomSplitButtonOpenRequestedEvent::GetSource, py::return_value_policy::reference);
+
+	// --- PyCustomSplitButtonObserver ---------------------------------------------------------
+	py::class_<PyCustomSplitButtonObserver>(m, "CustomSplitButtonObserver", py::dynamic_attr())
+		.def(py::init<CustomSplitButton &>());
 }

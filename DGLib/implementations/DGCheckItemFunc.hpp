@@ -40,6 +40,13 @@ private:
 // --- CheckItem ------------------------------------------------------------------------------
 
 void load_CheckItem(py::module m) {
+	// --- CheckItem --------------------------------------------------------------------------
+	py::class_<CheckItem, Item>(m, "CheckItem")
+		.def("Check", &CheckItem::Check)
+		.def("Uncheck", &CheckItem::Uncheck)
+		.def("SetState", &CheckItem::SetState)
+		.def("IsChecked", &CheckItem::IsChecked);
+
 	// --- CheckItemChangeEvent ---------------------------------------------------------------
 	py::class_<CheckItemChangeEvent, ItemChangeEvent>(m, "CheckItemChangeEvent")
 		.def("GetSource", &CheckItemChangeEvent::GetSource,py::return_value_policy::reference);
@@ -51,13 +58,6 @@ void load_CheckItem(py::module m) {
 	// --- CheckItemObserver ------------------------------------------------------------------
 	py::class_<PyCheckItemObserver>(m, "CheckItemObserver", py::dynamic_attr())
 		.def(py::init<CheckItem &>());
-
-	// --- CheckItem --------------------------------------------------------------------------
-	py::class_<CheckItem, Item>(m, "CheckItem")
-		.def("Check", &CheckItem::Check)
-		.def("Uncheck", &CheckItem::Uncheck)
-		.def("SetState", &CheckItem::SetState)
-		.def("IsChecked", &CheckItem::IsChecked);
 }
 
 

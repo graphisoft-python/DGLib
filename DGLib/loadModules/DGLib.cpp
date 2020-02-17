@@ -19,32 +19,39 @@
 
 PYBIND11_MODULE(DGLib, m) {
 
-	m.def("version", []() {	return "version 0.0.3"; });
+	m.def("version", []() {	return "version 0.1.1"; });
 
 // --- Add bindings here ------------------------------------------------------------------
 
-	// --- DGItem
-	load_ItemBase(m);
-	load_Item(m);
+	
+	auto m_Panel = init_Panel(m);
 
-	// --- DGItemProperty
-	load_Font(m.def_submodule("Font"));
-	load_ItemBaseEX(m);
-
-	// --- DGUtility
 	load_EOL(m.def_submodule("EOL"));
 	load_Key(m.def_submodule("Key"));
 	load_CharRange(m);
 	load_Image(m);
 	load_ImageEX(m);
 	load_NativeImage(m);
+
 	load_NativeUnit(m);
+	auto m_NativePoint = init_NativePoint(m);
 	load_TPointEX(m);
+	load_NativePoint(m_NativePoint);
+	auto m_NativeRect = init_NativeRect(m);
 	load_TRectEX(m);
+	load_NativeRect(m_NativeRect);
+
+	load_ItemBase(m);
+	load_Item(m);
+
 	load_MousePosData(m);
 
+	load_Font(m.def_submodule("Font"));
+	load_ItemBaseEX(m);	
+
 	// --- DGPanel
-	load_Panel(m);
+	load_Panel(m_Panel);
+	load_PanelEvent(m);
 
 	// --- DGDialog
 	load_Dialog(m);

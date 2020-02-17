@@ -5,6 +5,8 @@
 #include "DGWImageCache.hpp"
 #include "DGUtility.hpp"
 #include "GXImage.hpp"
+#include "Point.hpp"
+#include "Rect.hpp"
 
 using namespace DG;
 
@@ -187,7 +189,7 @@ void load_NativeImage(py::module m) {
 		}))
 		
 		/*.def(py::init<NativeImage &>())*/
-		.def("GetNativeImage",&NativeImage::GetNativeImage)
+		//.def("GetNativeImage",&NativeImage::GetNativeImage)
 		;
 }
 
@@ -214,11 +216,75 @@ void load_NativeUnit(py::module m) {
 		.def(-py::self)
 		.def("Add", &NativeUnit::Add)
 		.def("GetValue",&NativeUnit::GetValue);
+
+	// --- GS::NativeUnitPoint ---------------------------------------------------------------------------------------------------------------------
+	/*py::class_<GS::Point<DG::NativeUnit>>(m, "GNativeUnitPoint")
+		.def(py::init<>())
+		.def(py::init<DG::NativeUnit &, DG::NativeUnit &>())
+		.def("Set", &GS::Point<DG::NativeUnit>::Set)
+		.def("GetX", &GS::Point<DG::NativeUnit>::GetX)
+		.def("GetY", &GS::Point<DG::NativeUnit>::GetY)
+		.def("SetX", &GS::Point<DG::NativeUnit>::SetX)
+		.def("SetY", &GS::Point<DG::NativeUnit>::SetY)
+		.def("Offset", &GS::Point<DG::NativeUnit>::Offset)
+		.def(py::self == py::self)
+		.def(py::self != py::self);*/
+
+	// --- GS::NativeUnitRect ----------------------------------------------------------------
+	/*py::class_<GS::Rect<DG::NativeUnit>>(m, "GNativeUnitRect")
+		.def(py::init<>())
+		.def(py::init<DG::NativeUnit &, DG::NativeUnit &, DG::NativeUnit &, DG::NativeUnit &>())
+		.def(py::init<GS::Point<DG::NativeUnit> &>())
+		.def("Reset", &GS::Rect<DG::NativeUnit>::Reset)
+		.def("Set", (void (GS::Rect<DG::NativeUnit>::*)(const DG::NativeUnit &, const DG::NativeUnit &, const DG::NativeUnit &, const DG::NativeUnit &)) &GS::Rect<DG::NativeUnit>::Set)
+		.def("Set", (void (GS::Rect<DG::NativeUnit>::*)(const GS::Point<DG::NativeUnit> &)) &GS::Rect<DG::NativeUnit>::Set)
+		.def("SetWithSize", &GS::Rect<DG::NativeUnit>::SetWithSize)
+		.def("GetLeft", &GS::Rect<DG::NativeUnit>::GetLeft)
+		.def("GetTop", &GS::Rect<DG::NativeUnit>::GetTop)
+		.def("GetRight", &GS::Rect<DG::NativeUnit>::GetRight)
+		.def("GetBottom", &GS::Rect<DG::NativeUnit>::GetBottom)
+		.def("GetWidth", &GS::Rect<DG::NativeUnit>::GetWidth)
+		.def("GetHeight", &GS::Rect<DG::NativeUnit>::GetHeight)
+		.def("SetLeft", &GS::Rect<DG::NativeUnit>::SetLeft)
+		.def("SetTop", &GS::Rect<DG::NativeUnit>::SetTop)
+		.def("SetRight", &GS::Rect<DG::NativeUnit>::SetRight)
+		.def("SetBottom", &GS::Rect<DG::NativeUnit>::SetBottom)
+		.def("SetWidth", &GS::Rect<DG::NativeUnit>::SetWidth)
+		.def("SetHeight", &GS::Rect<DG::NativeUnit>::SetHeight)
+		.def("SetSize", &GS::Rect<DG::NativeUnit>::SetSize)
+		.def("Resize", &GS::Rect<DG::NativeUnit>::Resize)
+		.def("Inset", &GS::Rect<DG::NativeUnit>::Inset)
+		.def("Offset", &GS::Rect<DG::NativeUnit>::Offset)
+		.def(py::self == py::self)
+		.def(py::self != py::self)
+		.def("IsOverlapping", &GS::Rect<DG::NativeUnit>::IsOverlapping)
+		.def("IsInside", (bool (GS::Rect<DG::NativeUnit>::*)(const DG::NativeUnit &, const DG::NativeUnit &)const) &GS::Rect<DG::NativeUnit>::IsInside)
+		.def("IsInside", (bool (GS::Rect<DG::NativeUnit>::*)(const GS::Point<DG::NativeUnit> &)const) &GS::Rect<DG::NativeUnit>::IsInside)
+		.def("IsInside", (bool (GS::Rect<DG::NativeUnit>::*)(const GS::Rect<DG::NativeUnit> &)const) &GS::Rect<DG::NativeUnit>::IsInside)
+		.def("IsOutside", &GS::Rect<DG::NativeUnit>::IsOutside)
+		.def("IsEmpty", &GS::Rect<DG::NativeUnit>::IsEmpty)
+		.def("Union", (GS::Rect<DG::NativeUnit>(GS::Rect<DG::NativeUnit>::*)(const GS::Rect<DG::NativeUnit> &)const) &GS::Rect<DG::NativeUnit>::Union)
+		.def("Union", (GS::Rect<DG::NativeUnit>(GS::Rect<DG::NativeUnit>::*)(const GS::Point<DG::NativeUnit> &)const) &GS::Rect<DG::NativeUnit>::Union)
+		.def("Intersection", &GS::Rect<DG::NativeUnit>::Intersection)
+		.def("Unify", (void (GS::Rect<DG::NativeUnit>::*)(const GS::Rect<DG::NativeUnit> &)) &GS::Rect<DG::NativeUnit>::Unify)
+		.def("Unify", (void (GS::Rect<DG::NativeUnit>::*)(const GS::Point<DG::NativeUnit> &)) &GS::Rect<DG::NativeUnit>::Unify)
+		.def("Intersect", &GS::Rect<DG::NativeUnit>::Intersect)
+		;*/
 }
+
 
 // --- TPointEX ---------------------------------------------------------------------------
 
 void load_TPointEX(py::module m) {
+	// --- Point --------------------------------------------------------------------------
+	py::class_<Point, TPoint<short>>(m, "Point")
+		.def(py::init<short, short>())
+		.def("Scale", &Point::Scale)
+		.def("__str__", [](const Point &p) {
+			return "Point = (" + std::to_string(p.GetX()) + "," + std::to_string(p.GetY()) + ")"; });
+}
+
+py::class_< NativePoint> init_NativePoint(py::module m) {
 	// --- TPoint<short> ------------------------------------------------------------------
 	py::class_<TPoint<short>>(m, "ShortPoint")
 		.def(py::self == py::self)
@@ -241,15 +307,14 @@ void load_TPointEX(py::module m) {
 		.def("GetY", &TPoint<NativeUnit>::GetY)
 		.def("Offset", &TPoint<NativeUnit>::Offset);
 
-	// --- Point --------------------------------------------------------------------------
-	py::class_<Point, TPoint<short>>(m, "Point")
-		.def(py::init<short, short>())
-		.def("Scale", &Point::Scale)
-		.def("__str__", [](const Point &p) {
-			return "Point = (" + std::to_string(p.GetX()) + "," + std::to_string(p.GetY()) + ")"; });
+	// --- NativePoint----------------------------------------------------------------------
+	py::class_<NativePoint, TPoint<NativeUnit>> m_NativePoint(m, "NativePoint");
 
-	// --- NativePoint	-------------------------------------------------------------------
-	py::class_<NativePoint, TPoint<NativeUnit>>(m, "NativePoint")
+	return m_NativePoint;
+}
+
+void load_NativePoint(py::class_< NativePoint> m_NativePoint) {
+	m_NativePoint
 		//.def(py::init<TPoint<NativeUnit> &>())
 		.def(py::init<NativeUnit &, NativeUnit &>())
 		.def("Scale", &NativePoint::Scale);
@@ -259,6 +324,18 @@ void load_TPointEX(py::module m) {
 // --- TRectEX ----------------------------------------------------------------------------
 
 void load_TRectEX(py::module m) {
+	// --- Rect ---------------------------------------------------------------------------
+	py::class_<Rect, TRect<short>>(m, "Rect")
+		.def(py::init<Point &, Point &>())
+		.def(py::init<Point &, short, short>())
+		.def(py::init<short, short, short, short>())
+		.def("Scale", &Rect::Scale)
+		.def("__str__", [](const Rect &r) {
+			return "Rect = (" + std::to_string(r.GetTop()) + "," + std::to_string(r.GetLeft())
+				+ "," + std::to_string(r.GetRight()) + "," + std::to_string(r.GetBottom()) + ")"; });
+}
+
+py::class_< NativeRect> init_NativeRect(py::module m) {
 	// --- TRect<short> -------------------------------------------------------------------
 	py::class_<TRect<short>>(m, "ShortRect")
 		.def(py::self == py::self)
@@ -296,10 +373,11 @@ void load_TRectEX(py::module m) {
 		.def("IsEmpty", &TRect<short>::IsEmpty)
 		.def("Contains", (bool (TRect<short>::*)(const TPoint<short> &)const) &TRect<short>::Contains)
 		.def("Contains", (bool (TRect<short>::*)(const short &, const short &)const) &TRect<short>::Contains)
-		.def("ToGSRect", &TRect<short>::ToGSRect)
+		//.def("ToGSRect", &TRect<short>::ToGSRect)
 		.def("IsIntersecting", &TRect<short>::IsIntersecting)
-		.def("Intersect", &TRect<short>::Intersect);
-	
+		.def("Intersect", &TRect<short>::Intersect)
+		;
+
 	// --- TRect<NativeUnit> --------------------------------------------------------------
 	py::class_<TRect<NativeUnit>>(m, "NativeUnitRect")
 		.def(py::self == py::self)
@@ -337,27 +415,24 @@ void load_TRectEX(py::module m) {
 		.def("IsEmpty", &TRect<NativeUnit>::IsEmpty)
 		.def("Contains", (bool (TRect<NativeUnit>::*)(const TPoint<NativeUnit> &)const) &TRect<NativeUnit>::Contains)
 		.def("Contains", (bool (TRect<NativeUnit>::*)(const NativeUnit &, const NativeUnit &)const) &TRect<NativeUnit>::Contains)
-		.def("ToGSRect", &TRect<NativeUnit>::ToGSRect)
+		//.def("ToGSRect", &TRect<NativeUnit>::ToGSRect)
 		.def("IsIntersecting", &TRect<NativeUnit>::IsIntersecting)
-		.def("Intersect", &TRect<NativeUnit>::Intersect);
-	
+		.def("Intersect", &TRect<NativeUnit>::Intersect)
+		;
+
 	// --- NativeRect ---------------------------------------------------------------------
-	py::class_<NativeRect, TRect<NativeUnit>>(m, "NativeRect")
+	py::class_<NativeRect, TRect<NativeUnit>> m_NativeRect(m, "NativeRect");
+
+	return m_NativeRect;
+}
+
+void load_NativeRect(py::class_< NativeRect> m_NativeRect) {
+	m_NativeRect
 		.def(py::init<>())
 		.def(py::init< NativePoint &, NativePoint &>())
 		.def(py::init< NativePoint &, NativeUnit &, NativeUnit &>())
 		.def(py::init<NativeUnit &, NativeUnit &, NativeUnit &, NativeUnit &>())
 		.def("Scale", &NativeRect::Scale);
-	
-	// --- Rect ---------------------------------------------------------------------------
-	py::class_<Rect, TRect<short>>(m, "Rect")
-		.def(py::init<Point &, Point &>())
-		.def(py::init<Point &, short, short>())
-		.def(py::init<short, short, short, short>())
-		.def("Scale", &Rect::Scale)
-		.def("__str__", [](const Rect &r) {
-			return "Rect = (" + std::to_string(r.GetTop()) + "," + std::to_string(r.GetLeft())
-				+ "," + std::to_string(r.GetRight()) + "," + std::to_string(r.GetBottom()) + ")"; });
 }
 
 

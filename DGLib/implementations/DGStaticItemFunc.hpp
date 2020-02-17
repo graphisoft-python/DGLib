@@ -59,22 +59,6 @@ void load_StaticItemEventProperty(py::module m) {
 // --- StaticText ------------------------------------------------------------------------------
 
 void load_StaticText(py::module m) {
-	// --- StaticTextClickEvent
-	py::class_<StaticTextClickEvent, ItemClickEvent>(m, "StaticTextClickEvent")
-		.def("GetSource", &StaticTextClickEvent::GetSource, py::return_value_policy::reference);
-
-	// --- StaticTextDoubleClickEvent
-	py::class_<StaticTextDoubleClickEvent, ItemDoubleClickEvent>(m, "StaticTextDoubleClickEvent")
-		.def("GetSource", &StaticTextDoubleClickEvent::GetSource, py::return_value_policy::reference);
-	
-	// --- StaticTextMouseMoveEvent
-		py::class_<StaticTextMouseMoveEvent, ItemMouseMoveEvent, StaticItemEventProperty>(m, "StaticTextMouseMoveEvent")
-			.def("GetSource", &StaticTextMouseMoveEvent::GetSource, py::return_value_policy::reference);
-
-	// --- BarControlObserver ------------------------------------------------------------------
-	py::class_<PyStaticTextObserver>(m, "StaticTextObserver", py::dynamic_attr())
-		.def(py::init<StaticText &>());
-
 	// --- StaticText --------------------------------------------------------------------------
 	py::class_<StaticText, Item, ItemFontProperty, ItemTextProperty, ItemColorProperty> m_staticText(m, "StaticText");
 		
@@ -99,6 +83,22 @@ void load_StaticText(py::module m) {
 
 	m_staticText
 		.def("EnableMouseMoveEvent", &StaticText::EnableMouseMoveEvent);
+
+	// --- StaticTextClickEvent
+	py::class_<StaticTextClickEvent, ItemClickEvent>(m, "StaticTextClickEvent")
+		.def("GetSource", &StaticTextClickEvent::GetSource, py::return_value_policy::reference);
+
+	// --- StaticTextDoubleClickEvent
+	py::class_<StaticTextDoubleClickEvent, ItemDoubleClickEvent>(m, "StaticTextDoubleClickEvent")
+		.def("GetSource", &StaticTextDoubleClickEvent::GetSource, py::return_value_policy::reference);
+	
+	// --- StaticTextMouseMoveEvent
+		py::class_<StaticTextMouseMoveEvent, ItemMouseMoveEvent, StaticItemEventProperty>(m, "StaticTextMouseMoveEvent")
+			.def("GetSource", &StaticTextMouseMoveEvent::GetSource, py::return_value_policy::reference);
+
+	// --- BarControlObserver ------------------------------------------------------------------
+	py::class_<PyStaticTextObserver>(m, "StaticTextObserver", py::dynamic_attr())
+		.def(py::init<StaticText &>());
 }
 
 
