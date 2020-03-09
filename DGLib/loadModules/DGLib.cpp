@@ -34,12 +34,12 @@ PYBIND11_MODULE(DGLib, m) {
 	load_NativeImage(m);
 
 	load_NativeUnit(m);
-	auto m_NativePoint = init_NativePoint(m);
-	load_TPointEX(m);
-	load_NativePoint(m_NativePoint);
-	auto m_NativeRect = init_NativeRect(m);
-	load_TRectEX(m);
-	load_NativeRect(m_NativeRect);
+	//auto m_NativePoint = init_NativePoint(m);
+	//load_TPointEX(m);
+	//load_NativePoint(m_NativePoint);
+	//auto m_NativeRect = init_NativeRect(m);
+	//load_TRectEX(m);
+	//load_NativeRect(m_NativeRect);
 
 	load_ItemBase(m);
 	load_Item(m);
