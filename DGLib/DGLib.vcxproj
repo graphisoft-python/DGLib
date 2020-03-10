@@ -84,7 +84,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
     <TargetExt>.pyd</TargetExt>
-    <OutDir>C:\Program Files\GRAPHISOFT\ARCHICAD 22\Add-Ons\VirtualPyEnv\ACLibs\</OutDir>
+    <OutDir>C:\Program Files\GRAPHISOFT\ARCHICAD 22\Add-Ons\GraphisoftPython\ACLibs\</OutDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
