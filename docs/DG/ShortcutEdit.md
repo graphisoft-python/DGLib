@@ -7,9 +7,9 @@
 
 ## Methods
 ```
-__init__(self,Panel,Rect,
+__init__(self, DGLib.Panel, GSRoot.Rect,
 short lengthLimit = 0,
-EditControl.FrameType = EditControl.FrameType.Frame, 
-EditControl.UpdateType = EditControl.UpdateType.Update
+DGLib.EditControl.FrameType = FrameType.Frame, 
+DGLib.EditControl.UpdateType = UpdateType.Update
 ) -> None
 ```

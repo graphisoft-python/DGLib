@@ -91,105 +91,105 @@
 ## Methods
 ```
 AppendItem(self) -> bool
-InsertItem(self,short) -> bool
-DeleteItem(self,short) -> None
-GetItemCount(self) -> short
-InsertSeparator(self,short) -> bool
-IsSeparator(self,short) -> bool
+InsertItem(self, int) -> bool
+DeleteItem(self, int) -> None
+GetItemCount(self) ->  int
+InsertSeparator(self, int) -> bool
+IsSeparator(self, int) -> bool
 HasHeader(self) -> bool
-GetHeaderHeight(self) -> short
+GetHeaderHeight(self) ->  int
 SetHeaderSynchronState(self,bool) -> None
 IsHeaderInSynchronState(self) -> bool
 SetHeaderPushableButtons(self,bool) -> None
 HasHeaderPushableButtons(self) -> bool
 SetHeaderDragableButtons(self,bool) -> None
 HasHeaderDragableButtons(self) -> bool
-SetHeaderItemCount(self,short) -> None
-GetHeaderItemCount(self) -> short
-SetHeaderItemText(self,short,unicode) -> None
-GetHeaderItemText(self,short) -> unicode
-SetHeaderItemFont(self,short,Font.Size,Font.Style) -> None
-GetHeaderItemFontSize(self,short) -> Font.Size
-GetHeaderItemFontStyle(self,short) -> Font.Style
-SetHeaderItemStyle(self,short,Justification,Truncation) -> None
-GetHeaderItemJustification(self,short) -> Justification
-GetHeaderItemTruncation(self,short) -> Truncation
-SetHeaderItemSizeableFlag(self,short,bool) -> None
-IsHeaderItemSizeable(self,short) -> bool
-SetHeaderItemSize(self,short,short) -> None
-GetHeaderItemSize(self,short) -> short
-SetHeaderItemMinSize(self,short,short) -> None
-GetHeaderItemMinSize(self,short) -> short
-SetHeaderItemArrowType(self,short,ArrowType) -> None
-GetHeaderItemArrowType(self,short) -> ArrowType
+SetHeaderItemCount(self, int) -> None
+GetHeaderItemCount(self) ->  int
+SetHeaderItemText(self, int,unicode) -> None
+GetHeaderItemText(self, int) -> unicode
+SetHeaderItemFont(self, int, DGLib.Font.Size, DGLib.Font.Style) -> None
+GetHeaderItemFontSize(self, int) -> DGLib.Font.Size
+GetHeaderItemFontStyle(self, int) -> DGLib.Font.Style
+SetHeaderItemStyle(self, int, DGLib.Justification, DGLib.ListBox.Truncation) -> None
+GetHeaderItemJustification(self, int) -> DGLib.ListBox.Justification
+GetHeaderItemTruncation(self, int) -> DGLib.ListBox.Truncation
+SetHeaderItemSizeableFlag(self, int,bool) -> None
+IsHeaderItemSizeable(self, int) -> bool
+SetHeaderItemSize(self, int, int) -> None
+GetHeaderItemSize(self, int) ->  int
+SetHeaderItemMinSize(self, int, int) -> None
+GetHeaderItemMinSize(self, int) ->  int
+SetHeaderItemArrowType(self, int, DGLib.ListBox.ArrowType) -> None
+GetHeaderItemArrowType(self, int) -> DGLib.ListBox.ArrowType
 EnableHeaderButton(self) -> None
 DisableHeaderButton(self) -> None
 IsHeaderButtonEnabled(self) -> bool
-SetTabFieldCount(self,short) -> bool
-GetTabFieldCount(self) -> ushort
-SetTabFieldProperties(self,short,short,short,Justification,Truncation,bool = false, bool = true) -> None
-SetTabFieldBeginPosition(self,short,short) -> None
-SetTabFieldEndPosition(self,short,short) -> None
-SetTabFieldBeginEndPosition(self,short,short,short) -> None
-SetTabFieldJustification(self,short,Justification) -> None
-SetTabFieldTruncation(self,short,Truncation) -> None
-SetTabFieldSeparator(self,short,bool) -> None
-SetTabFieldStatus(self,short,bool) -> None
-GetTabFieldBeginPosition(self,short) -> short
-GetTabFieldEndPosition(self,short) -> short
-GetTabFieldWidth(self,short) -> short
-GetTabFieldJustification(self,short) -> Justification
-GetTabFieldTruncation(self,short) -> Truncationa
-HasTabFieldSeparator(self,short) -> bool
-IsTabFieldEnabled(self,short) -> bool
-SetTabFieldOwnerDrawFlag(self,short,bool) -> None
-GetTabFieldOwnerDrawFlag(self,short) -> bool
-SetTabFieldToSearch(self,short) -> None
-GetTabFieldToSearch(self) -> short
-SetTabItemText(self,short,short,unicode) -> None
-GetTabItemText(self,short,short) -> unicode
-SetTabItemFontStyle(self,short,short,Font.Style) -> None
-GetTabItemFontStyle(self,short,short) -> Font.Style
-SetOnTabItem(self,short,Item) -> None
-RemoveOnTabItem(self,short) -> None
-GetOnTabItem(self,short) -> Item
-SetItemFontStyle(self,short,Font.Style) -> None
-GetItemFontStyle(self,short) -> Font.Style
-SetItemStatus(self,short,ItemStatus) -> None
-GetItemStatus(self,short) -> ItemStatus
-EnableItem(self,short) -> None
-GrayItem(self,short) -> None
-DisableItem(self,short) -> None
-IsItemEnabled(self,short) -> bool
-IsItemGrayed(self,short) -> bool
-IsItemDisabled(self,short) -> bool
-IsItemVisible(self,short) -> bool
-SetItemOwnerDrawFlag(self,short,bool) -> None
-GetItemOwnerDrawFlag(self,short) -> bool
-SetItemHeight(self,short) -> None
-GetItemHeight(self) -> short
-GetItemWidth(self) -> short
-GetItemRect(self,short,Rect) -> bool
+SetTabFieldCount(self, int) -> bool
+GetTabFieldCount(self) -> int
+SetTabFieldProperties(self, int, int, int, DGLib.ListBox.Justification,DGLib.ListBox.Truncation ,bool = false, bool = true) -> None
+SetTabFieldBeginPosition(self, int, int) -> None
+SetTabFieldEndPosition(self, int, int) -> None
+SetTabFieldBeginEndPosition(self, int, int, int) -> None
+SetTabFieldJustification(self, int, DGLib.ListBox.Justification) -> None
+SetTabFieldTruncation(self, int, DGLib.ListBox.Truncation) -> None
+SetTabFieldSeparator(self, int,bool) -> None
+SetTabFieldStatus(self, int,bool) -> None
+GetTabFieldBeginPosition(self, int) ->  int
+GetTabFieldEndPosition(self, int) ->  int
+GetTabFieldWidth(self, int) ->  int
+GetTabFieldJustification(self, int) -> DGLib.ListBox.Justification
+GetTabFieldTruncation(self, int) -> DGLib.ListBox.Truncationa
+HasTabFieldSeparator(self, int) -> bool
+IsTabFieldEnabled(self, int) -> bool
+SetTabFieldOwnerDrawFlag(self, int,bool) -> None
+GetTabFieldOwnerDrawFlag(self, int) -> bool
+SetTabFieldToSearch(self, int) -> None
+GetTabFieldToSearch(self) ->  int
+SetTabItemText(self, int, int,unicode) -> None
+GetTabItemText(self, int, int) -> unicode
+SetTabItemFontStyle(self, int, int, DGLib.Font.Style) -> None
+GetTabItemFontStyle(self, int, int) -> DGLib.Font.Style
+SetOnTabItem(self, int,Item) -> None
+RemoveOnTabItem(self, int) -> None
+GetOnTabItem(self, int) -> Item
+SetItemFontStyle(self, int, DGLib.Font.Style) -> None
+GetItemFontStyle(self, int) -> DGLib.Font.Style
+SetItemStatus(self, int, bool) -> None
+GetItemStatus(self, int) -> bool
+EnableItem(self, int) -> None
+GrayItem(self, int) -> None
+DisableItem(self, int) -> None
+IsItemEnabled(self, int) -> bool
+IsItemGrayed(self, int) -> bool
+IsItemDisabled(self, int) -> bool
+IsItemVisible(self, int) -> bool
+SetItemOwnerDrawFlag(self, int, bool) -> None
+GetItemOwnerDrawFlag(self, int) -> bool
+SetItemHeight(self, int) -> None
+GetItemHeight(self) ->  int
+GetItemWidth(self) ->  int
+GetItemRect(self, int, GSRoot.Rect) -> bool
 SetNoPartialItem(self) -> None
 EnableSeparatorLines(self,bool) -> None
 HasSeparatorLines(self) -> bool
-SelectItem(self,short) -> None
-DeselectItem(self,short) -> None
-GetSelectedCount(self) -> short
-GetSelectedItem(self,short = ItemType.TopItem) -> short
+SelectItem(self, int) -> None
+DeselectItem(self, int) -> None
+GetSelectedCount(self) ->  int
+GetSelectedItem(self, int = ItemType.TopItem) ->  int
 EnableDraw(self) -> None
 DisableDraw(self) -> None
-RedrawItem(self,short) -> None
-RedrawTabItem(self,short,short) -> None
+RedrawItem(self, int) -> None
+RedrawTabItem(self, int, int) -> None
 EnableMouseMoveEvent(self) -> None
 EnableHoverEvent(self) -> None
-SetScrollPosition(self,short) -> None
-GetScrollPosition(self) -> short
+SetScrollPosition(self, int) -> None
+GetScrollPosition(self) ->  int
 ScrollUp(self) -> None
 ScrollDown(self) -> None
-SetHScrollPosition(self,short) -> None
-GetHScrollPosition(self) -> short
-GetItemFromPosition(self,Point) -> short
-SetHelpStyle(self,HelpStyle) -> None
-GetHelpStyle(self) -> HelpStyle
+SetHScrollPosition(self, int) -> None
+GetHScrollPosition(self) ->  int
+GetItemFromPosition(self, GSRoot.Point) ->  int
+SetHelpStyle(self,DGLib.ListBox.HelpStyle) -> None
+GetHelpStyle(self) -> DGLib.ListBox.HelpStyle
 ```

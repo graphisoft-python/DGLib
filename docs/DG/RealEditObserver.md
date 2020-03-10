@@ -6,7 +6,7 @@
 
 ## Methods
 ```
-__init__(self,RealEdit) -> None
+__init__(self,DGLib.RealEdit) -> None
 ```
 
 ## Events
@@ -21,6 +21,6 @@ __init__(self,RealEdit) -> None
 
 ### Methods
 
-* GetSource(self) -> RealEdit
-* GetPreviousValue(self) -> double
+* GetSource(self) -> DGLib.RealEdit
+* GetPreviousValue(self) -> float
 * WasRelativeInput(self) -> bool

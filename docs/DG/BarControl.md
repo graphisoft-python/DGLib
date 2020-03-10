@@ -6,10 +6,11 @@
 
 ## Methods
 ```
-SetMin(self,Int32) -> None
-SetMax(self,Int32) -> None
-SetValue(self,Int32) -> None
-GetMin(self) -> Int32
-GetMax(self) -> Int32
-GetValue(self) -> Int32
+GetMin(self) -> int
+GetMax(self) -> int
+GetValue(self) -> int
+
+SetMin(self, int) -> None
+SetMax(self, int) -> None
+SetValue(self, int) -> None
 ```

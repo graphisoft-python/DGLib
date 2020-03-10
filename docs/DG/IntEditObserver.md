@@ -6,7 +6,7 @@
 
 ## Methods
 ```
-__init__(self,IntEdit) -> None
+__init__(self,DGLib.IntEdit) -> None
 ```
 
 ## Events
@@ -21,6 +21,6 @@ __init__(self,IntEdit) -> None
 
 ### Methods
 
-* GetSource(self) -> IntEdit
-* GetPreviousValue(self) -> Int32
+* GetSource(self) -> DGLib.IntEdit
+* GetPreviousValue(self) -> int
 * WasRelativeInput(self) -> bool

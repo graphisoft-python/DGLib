@@ -6,22 +6,22 @@
 
 ## Methods
 ```
-__init__(self,NativePoint,short,short,GSRoot.Guid, 
-Dialog.GrowType = Dialog.GrowType.NoGrow, 
-Dialog.CloseType = Dialog.CloseType.NoClose,
-Dialog.CaptionType = Dialog.CaptionType.TopCaption, 
-Dialog.FrameType = Dialog.FrameType.NormalFrame, 
-Dialog.SpecialFeatures = Dialog.SpecialFeatures.NothingSpecial
+__init__(self, GSRoot.Point, int, int,GSRoot.Guid, 
+DGLib.Dialog.GrowType = GrowType.NoGrow, 
+DGLib.Dialog.CloseType = CloseType.NoClose,
+DGLib.Dialog.CaptionType = CaptionType.TopCaption, 
+DGLib.Dialog.FrameType = FrameType.NormalFrame, 
+DGLib.Dialog.SpecialFeatures = SpecialFeatures.NothingSpecial
 ) -> None
 
-SendBehind(self,Palette) -> None
-GetNextPalette(self) -> Palette
-GetPrevPalette(self) -> Palette
-GetNextVisiblePalette(self) -> Palette
-GetPrevVisiblePalette(self) -> Palette
-DisableDock(self,short) -> short
+SendBehind(self, DGLib.Palette) -> None
+GetNextPalette(self) -> DGLib.Palette
+GetPrevPalette(self) -> DGLib.Palette
+GetNextVisiblePalette(self) -> DGLib.Palette
+GetPrevVisiblePalette(self) -> DGLib.Palette
+DisableDock(self, int) ->  int
 Dock(self) -> None
 UnDock(self) -> None
 IsDocked(self) -> bool
-GetCaptionType(self) -> short
+GetCaptionType(self) ->  int
 ```

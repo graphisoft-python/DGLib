@@ -6,11 +6,11 @@
 
 ## Methods
 ```
-__init__(self,Panel,Rect,
-ListBox.ScrollType = ListBox.ScrollType.VScroll, 
-ListBox.PartialItemType = ListBox.PartialItemType.PartialItems, 
-ListBox.HeaderFlag = ListBox.HeaderFlag.NoHeader,
+__init__(self, DGLib.Panel, GSRoot.Rect,
+DGLib.ListBox.ScrollType = ScrollType.VScroll, 
+DGLib.ListBox.PartialItemType = PartialItemType.PartialItems, 
+DGLib.ListBox.HeaderFlag = HeaderFlag.NoHeader,
 short headerSize = 0, 
-ListBox.FrameType = ListBox.FrameType.NoFrame
+DGLib.ListBox.FrameType = FrameType.NoFrame
 ) -> None
 ```

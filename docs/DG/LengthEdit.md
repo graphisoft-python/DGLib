@@ -13,11 +13,11 @@
 
 ## Methods
 ```
-__init__(self,Panel,Rect,
-LengthEdit.ChangeFontType = LengthEdit.ChangeFontType.ChangeFont,
-EditControl.FrameType = EditControl.FrameType.Frame, 
-RealEdit.AbsRelType = RealEdit.AbsRelType.Absolute,
-EditControl.UpdateType = EditControl.UpdateType.Update,
-EditControl.ReadOnlyType = EditControl.ReadOnlyType.Editable
+__init__(self, DGLib.Panel, GSRoot.Rect,
+DGLib.LengthEdit.ChangeFontType = ChangeFontType.ChangeFont,
+DGLib.EditControl.FrameType = FrameType.Frame, 
+DGLib.RealEdit.AbsRelType = AbsRelType.Absolute,
+DGLib.EditControl.UpdateType = UpdateType.Update,
+DGLib.EditControl.ReadOnlyType = ReadOnlyType.Editable
 ) -> None
 ```

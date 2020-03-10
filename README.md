@@ -7,14 +7,6 @@
 #### Utility
 
 * [NativeUnit](./docs/DG/NativeUnit.md)
-* [ShortPoint](./docs/DG/ShortPoint.md)
-* [Point](./docs/DG/Point.md)
-* [NativeUnitPoint](./docs/DG/NativeUnitPoint.md)
-* [NativePoint](./docs/DG/NativePoint.md)
-* [ShortRect](./docs/DG/ShortRect.md)
-* [Rect](./docs/DG/Rect.md)
-* [NativeUnitRect](./docs/DG/NativeUnitRect.md)
-* [NativeRect](./docs/DG/NativeRect.md)
 * [CharRange](./docs/DG/CharRange.md)
 
 #### Panel

@@ -6,8 +6,8 @@
 
 ## Methods
 ```
-GetListItem(self) -> short
-GetMouseOffset(self) -> Point
+GetListItem(self) -> int
+GetMouseOffset(self) -> GSRoot.Point
 IsCommandPressed(self) -> bool
 IsOptionPressed(self) -> bool
 IsShiftPressed(self -> bool

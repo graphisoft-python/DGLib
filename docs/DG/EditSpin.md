@@ -6,6 +6,6 @@
 
 ## Methods
 ```
-__init__(self,Panel,Rect,PosIntEdit) -> None
-__init__(self,Panel,Rect,IntEdit) -> None
+__init__(self, DGLib.Panel, GSRoot.Rect, DGLib.PosIntEdit) -> None
+__init__(self, DGLib.Panel, GSRoot.Rect, DGLib.IntEdit) -> None
 ```

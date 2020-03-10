@@ -44,7 +44,7 @@ __init__(self,Item) -> None
 
 ### Methods
 
-GetSource(self) -> Item
+GetSource(self) -> DGLib.Item
 
 ## Class ItemChangeEvent
 
@@ -60,7 +60,7 @@ GetSource(self) -> Item
 
 ### Methods
 
-* GetCharCode(self) -> ushort
+* GetCharCode(self) -> int
 
 ## Class ItemClickEvent
 
@@ -86,7 +86,7 @@ GetSource(self) -> Item
 
 ### Methods
 
-* GetPosition(self) -> DG.NativePoint
+* GetPosition(self) -> GSRoot.Point
 
 ## Class ItemDoubleClickEvent
 
@@ -108,9 +108,9 @@ GetSource(self) -> Item
 
 ### Methods
 
-* GetSubItem(self) -> short
-* GetTreeItem(self) -> Int32
-* GetTabBarItemId(self) -> Int32
+* GetSubItem(self) -> int
+* GetTreeItem(self) -> int
+* GetTabBarItemId(self) -> int
 
 ## Class ItemMouseMoveEvent
 
@@ -144,9 +144,9 @@ GetSource(self) -> Item
 
 ### Methods
 
-* GeGetXTrackValuetSource(self) -> short
-* GetYTrackValue(self) -> short
-* GetMouseOffset(self) -> Point
+* GeGetXTrackValuetSource(self) ->  int
+* GetYTrackValue(self) -> int
+* GetMouseOffset(self) -> GSRoot.Point
 * IsCommandPressed(self) -> bool
 * IsOptionPressed(self) -> bool
 * IsShiftPressed(self) -> bool
@@ -163,7 +163,7 @@ GetSource(self) -> Item
 
 ### Methods
 
-* GetOldResolutionFactor(self) -> double
+* GetOldResolutionFactor(self) -> float
 
 ## Class ItemHoverEvent
 

@@ -6,10 +6,10 @@
 
 ## Methods
 ```
-__init__(self,Panel,Rect,
-EditControl.FrameType = EditControl.FrameType.Frame,
-EditControl.AbsRelType = EditControl.AbsRelType.Absolute,
-EditControl.UpdateType = EditControl.UpdateType.Update, 
-EditControl.ReadOnlyType = EditControl.ReadOnlyType.Editable
+__init__(self, DGLib.Panel, GSRoot.Rect,
+DGLib.EditControl.FrameType = FrameType.Frame, 
+DGLib.RealEdit.AbsRelType = AbsRelType.Absolute, 
+DGLib.EditControl.UpdateType = UpdateType.Update, 
+DGLib.EditControl.ReadOnlyType = ReadOnlyType.Editable
 ) -> None
 ```

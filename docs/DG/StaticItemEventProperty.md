@@ -6,7 +6,7 @@
 
 ## Methods
 ```
-GetMouseOffset(self) -> Point
+GetMouseOffset(self) -> GSRoot.Point
 IsCommandPressed(self) -> bool
 IsOptionPressed(self) -> bool
 IsShiftPressed(self) -> bool

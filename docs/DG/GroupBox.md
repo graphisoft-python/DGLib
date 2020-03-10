@@ -15,5 +15,5 @@
 
 ## Methods
 ```
-__init__(self,Panel,Rect,GroupBoxType) -> None
+__init__(self, DGLib.Panel, GSRoot.Rect, DGLib.GroupBox.GroupBoxType) -> None
 ```

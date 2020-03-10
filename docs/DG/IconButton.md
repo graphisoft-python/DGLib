@@ -18,8 +18,8 @@
 
 ## Methods
 ```
-__init__(self,Panel,Rect,
-IconButton.ButtonForm = IconButton.ButtonForm.BevelEdge,
-IconButton.FrameType = IconButton.FrameType.Frame
+__init__(self, DGLib.Panel, GSRoot.Rect,
+DGLib.IconButton.ButtonForm = ButtonForm.BevelEdge,
+DGLib.IconButton.FrameType = FrameType.Frame
 ) -> None
 ```

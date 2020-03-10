@@ -7,10 +7,10 @@
 
 ## Methods
 ```
-__init__(self,Panel,Rect,
+__init__(self, DGLib.Panel, GSRoot.Rect,
 short lengthLimit = 0,
-Dialog.FrameType = Dialog.FrameType.Frame, 
-Dialog.UpdateType = Dialog.UpdateType.Update, 
-Dialog.ReadOnlyType = Dialog.ReadOnlyType.Editable
+DGLib.Dialog.FrameType = FrameType.Frame, 
+DGLib.Dialog.UpdateType = UpdateType.Update, 
+DGLib.Dialog.ReadOnlyType = ReadOnlyType.Editable
 ) -> None
 ```

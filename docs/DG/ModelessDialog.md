@@ -19,39 +19,39 @@
 
 ## Methods
 ```
-__init__(self,DG.NativePoint,short,short,GSRoot.Guid,
-Dialog.GrowType = Dialog.GrowType.NoGrow,
-Dialog.CloseType = Dialog.CloseType.NoClose,
-Dialog.MinimizeType = Dialog.MinimizeType.NoMinimize,
-Dialog.MaximizeType = Dialog.MaximizeType.NoMaximize, 
-Dialog.CaptionType = Dialog.CaptionType.TopCaption,
-Dialog.FrameType = Dialog.FrameType.NormalFrame,
-Dialog.SpecialFeatures = Dialog.SpecialFeatures.NothingSpecial
+__init__(self, GSRoot.Point, int, int,GSRoot.Guid,
+DGLib.Dialog.GrowType = GrowType.NoGrow,
+DGLib.Dialog.CloseType = CloseType.NoClose,
+DGLib.Dialog.MinimizeType = MinimizeType.NoMinimize,
+DGLib.Dialog.MaximizeType = MaximizeType.NoMaximize, 
+DGLib.Dialog.CaptionType = CaptionType.TopCaption,
+DGLib.Dialog.FrameType = FrameType.NormalFrame,
+DGLib.Dialog.SpecialFeatures = SpecialFeatures.NothingSpecial
 ) -> None
 
-SendBehind(self,ModelessDialog) -> None
-GetNextModelessDialog(self) -> ModelessDialog
-GetPrevModelessDialog(self) -> ModelessDialog
-GetNextVisibleModelessDialog(self) -> ModelessDialog
-GetPrevVisibleModelessDialog(self) -> ModelessDialog
-GetRestoredClientPosition(self) -> NativePoint
-GetRestoredClientWidth(self) -> short
-GetRestoredClientHeight(self) -> short
-GetRestoredFramePosition(self) -> NativePoint
-GetRestoredFrameRect(self) -> NativeRect
-GetRestoredFrameWidth(self) -> NativeUnit
-GetRestoredFrameHeight(self) -> NativeUnit
+SendBehind(self, DGLib.ModelessDialog) -> None
+GetNextModelessDialog(self) -> DGLib.ModelessDialog
+GetPrevModelessDialog(self) -> DGLib.ModelessDialog
+GetNextVisibleModelessDialog(self) -> DGLib.ModelessDialog
+GetPrevVisibleModelessDialog(self) -> DGLib.ModelessDialog
+GetRestoredClientPosition(self) -> GSRoot.Point
+GetRestoredClientWidth(self) ->  int
+GetRestoredClientHeight(self) ->  int
+GetRestoredFramePosition(self) -> GSRoot.Point
+GetRestoredFrameRect(self) -> GSRoot.Rect
+GetRestoredFrameWidth(self) -> DGLib.NativeUnit
+GetRestoredFrameHeight(self) -> DGLib.NativeUnit
 Maximize(self,bool = false) -> None
 Minimize(self) -> None
 Restore(self) -> None
-SetState(self,DialogState, bool = false) -> None
+SetState(self, DGLib.ModelessDialog.DialogState, bool = false) -> None
 IsMaximizedState(self) -> bool
 IsMinimizedState(self) -> bool
 IsRestoredState(self) -> bool
-GetState(self) -> DialogState
+GetState(self) -> DGLib.ModelessDialog.DialogState
 Dock(self) -> None
 Undock(self) -> None
 IsDocked(self) -> bool
-SetDockState(self,DockState) -> None
+SetDockState(self, DGLib.ModelessDialog.DockState) -> None
 GetDockState(self) -> DockState
 ```

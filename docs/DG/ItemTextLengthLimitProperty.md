@@ -6,6 +6,6 @@
 
 ## Methods
 ```
-SetMaxTextLength(self,Int32) -> None
-GetMaxTextLength(self) -> Int32
+SetMaxTextLength(self, int) -> None
+GetMaxTextLength(self) -> int
 ```

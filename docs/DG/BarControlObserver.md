@@ -7,7 +7,7 @@
 ## Methods
 
 ```
-__init__(self,BarControl) -> None
+__init__(self, DGLib.BarControl) -> None
 ```
 
 ## Events
@@ -25,8 +25,8 @@ __init__(self,BarControl) -> None
 
 ### Methods
 
-* GetSource(self) -> BarControl
-* GetPreviousValue(self) -> Int32
+* GetSource(self) -> DGLib.BarControl
+* GetPreviousValue(self) -> int
 
 ## Class BarControlTrackEvent
 
@@ -36,4 +36,4 @@ __init__(self,BarControl) -> None
 
 ### Methods
 
-* GetSource(self) -> BarControl
+* GetSource(self) -> DGLib.BarControl

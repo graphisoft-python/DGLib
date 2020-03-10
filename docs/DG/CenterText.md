@@ -6,9 +6,9 @@
 
 ## Methods
 ```
-__init__(self,Panel,Rect,
-StaticText.FrameType = StaticText.FrameType.NoFrame,
-StaticText.VAlignType = StaticText.VAlignType.VTop, 
-StaticText.Truncation = StaticText.Truncation.NoTruncate
+__init__(self, DGLib.Panel, GSRoot.Rect,
+DGLib.StaticText.FrameType = FrameType.NoFrame,
+DGLib.StaticText.VAlignType = VAlignType.VTop, 
+DGLib.StaticText.Truncation = Truncation.NoTruncate
 ) -> None
 ```

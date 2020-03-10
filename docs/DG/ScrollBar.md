@@ -23,18 +23,18 @@
 
 ## Methods
 ```
-__init__(self,Panel,Rect,
-ThumbType = Normal, 
-FocusableType = Focusable,
-AutoScrollType = AutoScroll
+__init__(self, DGLib.Panel, GSRoot.Rect,
+DGLib.ScrollBar.ThumbType = ThumbType.Normal,
+DGLib.ScrollBar.FocusableType = FocusableType.Focusable,
+DGLib.ScrollBar.AutoScrollType = AutoScrollType.AutoScroll
 ) -> None
 
-SetMin(self,Int32) -> None
-SetMax(self,Int32) -> None
-SetValue(self,Int32) -> None
-GetMin(self) -> Int32
-GetMax(self) -> Int32
-GetValue(self) -> Int32
-SetPageSize(self,Int32) -> None
-GetPageSize(self) -> Int32
+SetMin(self,int) -> None
+SetMax(self,int) -> None
+SetValue(self,int) -> None
+GetMin(self) -> int
+GetMax(self) -> int
+GetValue(self) -> int
+SetPageSize(self,int) -> None
+GetPageSize(self) -> int
 ```

@@ -15,12 +15,12 @@
 
 ## Methods
 ```
-__init__(self,Panel,Rect,
-MultiLineEdit.ScrollType = MultiLineEdit.ScrollType.NoScroll,
-EditControl.FrameType = EditControl.FrameTypeFrame, 
-EditControl.UpdateType = EditControl.UpdateType.Update, 
-EditControl.ReadOnlyType = EditControl.ReadOnlyType.Editable
+__init__(self, DGLib.Panel, GSRoot.Rect,
+DGLib.MultiLineEdit.ScrollType = ScrollType.NoScroll,
+DGLib.EditControl.FrameType = FrameTypeFrame, 
+DGLib.EditControl.UpdateType = UpdateType.Update, 
+DGLib.EditControl.ReadOnlyType = ReadOnlyType.Editable
 ) -> None
 
-GetText(self,EOL.Type = EOL.Type.Default) -> unicode
+GetText(self, DGLib.EOL.Type = EOL.Type.Default) -> unicode
 ```
