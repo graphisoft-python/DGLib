@@ -7,7 +7,7 @@
 ## Methods
 ```
 __init__(self) -> None
-__init__(self,int,int) -> None
+__init__(self, int, int) -> None
 __eq__(self, DGLib.CharRange) -> bool
 __ne__(self, DGLib.CharRange) -> bool
 

@@ -78,7 +78,7 @@ IsDGDialog(self) -> bool
 Center(self) -> None
 Move(self, int, int) -> None
 Move(self, DGLib.NativeUnit, DGLib.NativeUnit) -> None
-Resize(self, int, int, DGLib.Dialog.FixPoint = Dialog.FixPoint.TopLeft,bool = false) -> None
+Resize(self, int, int, DGLib.Dialog.FixPoint = FixPoint.TopLeft, bool = false) -> None
 SetGrowType(self, DGLib.Dialog.GrowType) -> None
 GetGrowType(self) -> DGLib.Dialog.GrowType
 GetOriginalClientWidth(self) -> int
@@ -88,13 +88,13 @@ SetMinClientSize(self, int, int) -> None
 SetMinClientWidth(self, int) -> None
 SetMinClientHeight(self, int) -> None
 GetMinClientWidth(self) -> int
-GetMinClientHeight(self -> int
+GetMinClientHeight(self) -> int
 SetClientPosition(self, GSRoot.Point) -> None
 SetClientPosition(self, DGLib.NativeUnit, DGLib.NativeUnit) -> None
-SetClientRect(self, GSRoot.Rect, DGLib.Dialog.FixPoint = Dialog.FixPoint.TopLeft, bool = false) -> None
-SetClientSize(self, int, int, DGLib.Dialog.FixPoint = Dialog.FixPoint.TopLeft,bool = false -> None
-SetClientWidth(self, int, DGLib.Dialog.FixPoint = Dialog.FixPoint.TopLeft, bool = false) -> None
-SetClientHeight(self, int, DGLib.Dialog.FixPoint = Dialog.FixPoint.TopLeft, bool = false) -> None
+SetClientRect(self, GSRoot.Rect, DGLib.Dialog.FixPoint = FixPoint.TopLeft, bool = false) -> None
+SetClientSize(self, int, int, DGLib.Dialog.FixPoint = FixPoint.TopLeft,bool = false -> None
+SetClientWidth(self, int, DGLib.Dialog.FixPoint = FixPoint.TopLeft, bool = false) -> None
+SetClientHeight(self, int, DGLib.Dialog.FixPoint = FixPoint.TopLeft, bool = false) -> None
 GetClientPosition(self) -> GSRoot.Point
 GetClientRect(self) -> GSRoot.Rect
 GetClientWidth(self) -> int
@@ -108,10 +108,10 @@ GetMinFrameWidth(self) -> DGLib.NativeUnit
 GetMinFrameHeight(self) -> DGLib.NativeUnit
 SetFramePosition(self, GSRoot.Point) -> None
 SetFramePosition(self, DGLib.NativeUnit, DGLib.NativeUnit) -> None
-SetFrameRect(self, GSRoot.Rect , DGLib.Dialog.FixPoint = Dialog.FixPoint.TopLeft,bool = false) -> None
-SetFrameSize(self, DGLib.NativeUnit, DGLib.NativeUnit,Dialog.FixPoint = Dialog.FixPoint.TopLeft,bool = false) -> None
-SetFrameWidth(self, DGLib.NativeUnit,Dialog.FixPoint = Dialog.FixPoint.TopLeft,bool = false) -> None
-SetFrameHeight(self,DGLib.NativeUnit,Dialog.FixPoint = Dialog.FixPoint.TopLeft,bool = false) -> None
+SetFrameRect(self, GSRoot.Rect, DGLib.Dialog.FixPoint = FixPoint.TopLeft, bool = false) -> None
+SetFrameSize(self, DGLib.NativeUnit, DGLib.NativeUnit, Dialog.FixPoint = FixPoint.TopLeft,bool = false) -> None
+SetFrameWidth(self, DGLib.NativeUnit, Dialog.FixPoint = FixPoint.TopLeft, bool = false) -> None
+SetFrameHeight(self, DGLib.NativeUnit, Dialog.FixPoint = FixPoint.TopLeft, bool = false) -> None
 GetFramePosition(self) -> GSRoot.Point
 GetFrameRect(self) -> GSRoot.Rect
 GetFrameWidth(self) -> DGLib.NativeUnit

@@ -7,14 +7,14 @@
 ## Methods
 ```
 __init__(self) -> None
-__init__(self,Special) -> None
-__init__(self,chr) -> None
-__eq__(self,Code) -> bool
-__ne__(self,Code) -> bool
+__init__(self, DGLib.Key.Special) -> None
+__init__(self, unicode) -> None
+__eq__(self, DGLib.Key.Code) -> bool
+__ne__(self, DGLib.Key.Code) -> bool
 
 IsSpecial(self) -> bool
-GetChar(self) -> chr
-GetSpecialKey(self) -> Special
-GetValue(self) -> short
+GetChar(self) -> unicode
+GetSpecialKey(self) -> DGLib.Key.Special
+GetValue(self) -> int
 
 ```

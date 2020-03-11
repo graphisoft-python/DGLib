@@ -28,12 +28,12 @@
 ## Methods
 ```
 __init__(self, DGLib.Panel, GSRoot.Rect,
-DGLib.Button.ButtonType = Button.ButtonType.Normal,
-DGLib.Button.FrameType = Button.FrameType.Frame
+DGLib.Button.ButtonType = ButtonType.Normal,
+DGLib.Button.FrameType = FrameType.Frame
 ) -> None
 
 SetAsDefault(self) -> None
 SetAsCancel(self) -> None
 SetAlignment(self,DGLib.Button.Alignment) -> None
-GetAlignment(self) -> Button.Alignment
+GetAlignment(self) -> DGLib.Button.Alignment
 ```
