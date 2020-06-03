@@ -6,7 +6,7 @@
 
 ## Methods
 ```
-__init__(self,TextEditBase) -> None
+__init__(self, DGLib.TextEditBase) -> None
 ```
 
 ## Events
@@ -21,4 +21,4 @@ __init__(self,TextEditBase) -> None
 
 ### Methods
 
-* GetSource(self) -> TextEditBase
+* GetSource(self) -> DGLib.TextEditBase

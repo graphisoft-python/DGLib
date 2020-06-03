@@ -14,17 +14,17 @@
 
 ## Methods
 ```
-__init__(self,Panel,Rect,
-EditControl.FrameType = EditControl.FrameType.Frame,
-AbsRelType = Absolute, 
-EditControl.UpdateType = EditControl.UpdateType.Update, 
-EditControl.ReadOnlyType = EditControl.ReadOnlyType.Editable
+__init__(self, DGLib.Panel, GSRoot.Rect,
+DGLib.EditControl.FrameType = FrameType.Frame,
+DGLib.RealEdit.AbsRelType = AbsRelType.Absolute, 
+DGLib.EditControl.UpdateType = UpdateType.Update, 
+DGLib.EditControl.ReadOnlyType = ReadOnlyType.Editable
 ) -> None
 
-SetMin(self,double) -> None
-SetMax(self,double) -> None
-SetValue(self,double) -> None
-GetMin(self) -> double
-GetMax(self) -> double
-GetValue(self) -> double
+SetMin(self,float) -> None
+SetMax(self,float) -> None
+SetValue(self,float) -> None
+GetMin(self) -> float
+GetMax(self) -> float
+GetValue(self) -> float
 ```

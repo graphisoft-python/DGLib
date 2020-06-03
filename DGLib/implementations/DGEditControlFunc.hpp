@@ -188,16 +188,6 @@ void load_EditControl(py::module m) {
 // --- PosIntEdit --------------------------------------------------------------------------
 
 void load_PosIntEdit(py::module m) {
-	// --- PosIntEditChangeEvent -----------------------------------------------------------
-	py::class_<PosIntEditChangeEvent, ItemChangeEvent>(m, "PosIntEditChangeEvent")
-		.def("GetSource", &PosIntEditChangeEvent::GetSource, py::return_value_policy::reference)
-		.def("GetPreviousValue", &PosIntEditChangeEvent::GetPreviousValue)
-		.def("WasRelativeInput", &PosIntEditChangeEvent::WasRelativeInput);
-
-	// --- PosIntEditObserver --------------------------------------------------------------
-	py::class_<PyPosIntEditObserver>(m, "PosIntEditObserver", py::dynamic_attr())
-		.def(py::init<PosIntEdit &>());
-
 	// --- PosIntEdit ----------------------------------------------------------------------
 	py::class_<PosIntEdit, EditControl, ItemVariousProperty> m_posIntEdit(m, "PosIntEdit");
 
@@ -208,7 +198,7 @@ void load_PosIntEdit(py::module m) {
 
 	m_posIntEdit
 		.def(py::init<Panel &, Rect &, PosIntEdit::FrameType, PosIntEdit::AbsRelType, PosIntEdit::UpdateType, PosIntEdit::ReadOnlyType>(),
-			py::arg("panel"), 
+			py::arg("panel"),
 			py::arg("rect"),
 			py::arg("frame") = PosIntEdit::FrameType::Frame,
 			py::arg("absRel") = PosIntEdit::AbsRelType::Absolute,
@@ -220,22 +210,22 @@ void load_PosIntEdit(py::module m) {
 		.def("GetMin", &PosIntEdit::GetMin)
 		.def("GetMax", &PosIntEdit::GetMax)
 		.def("GetValue", &PosIntEdit::GetValue);
+
+	// --- PosIntEditChangeEvent -----------------------------------------------------------
+	py::class_<PosIntEditChangeEvent, ItemChangeEvent>(m, "PosIntEditChangeEvent")
+		.def("GetSource", &PosIntEditChangeEvent::GetSource, py::return_value_policy::reference)
+		.def("GetPreviousValue", &PosIntEditChangeEvent::GetPreviousValue)
+		.def("WasRelativeInput", &PosIntEditChangeEvent::WasRelativeInput);
+
+	// --- PosIntEditObserver --------------------------------------------------------------
+	py::class_<PyPosIntEditObserver>(m, "PosIntEditObserver", py::dynamic_attr())
+		.def(py::init<PosIntEdit &>());
 }
 
 
 // --- IntEdit -----------------------------------------------------------------------------
 
 void load_IntEdit(py::module m) {
-	// --- IntEditChangeEvent --------------------------------------------------------------
-	py::class_<IntEditChangeEvent, ItemChangeEvent>(m, "IntEditChangeEvent")
-		.def("GetSource", &IntEditChangeEvent::GetSource, py::return_value_policy::reference)
-		.def("GetPreviousValue", &IntEditChangeEvent::GetPreviousValue)
-		.def("WasRelativeInput", &IntEditChangeEvent::WasRelativeInput);
-
-	// --- IntEditObserver -----------------------------------------------------------------
-	py::class_<PyIntEditObserver>(m, "IntEditObserver", py::dynamic_attr())
-		.def(py::init<IntEdit &>());
-
 	// --- IntEdit -------------------------------------------------------------------------
 	py::class_<IntEdit, EditControl, ItemVariousProperty> m_intEdit(m, "IntEdit");
 
@@ -246,7 +236,7 @@ void load_IntEdit(py::module m) {
 
 	m_intEdit
 		.def(py::init<Panel &, Rect &, IntEdit::FrameType, IntEdit::AbsRelType, IntEdit::UpdateType, IntEdit::ReadOnlyType>(),
-			py::arg("panel"), 
+			py::arg("panel"),
 			py::arg("rect"),
 			py::arg("frame") = IntEdit::FrameType::Frame,
 			py::arg("absRel") = IntEdit::AbsRelType::Absolute,
@@ -258,22 +248,22 @@ void load_IntEdit(py::module m) {
 		.def("GetMin", &IntEdit::GetMin)
 		.def("GetMax", &IntEdit::GetMax)
 		.def("GetValue", &IntEdit::GetValue);
+
+	// --- IntEditChangeEvent --------------------------------------------------------------
+	py::class_<IntEditChangeEvent, ItemChangeEvent>(m, "IntEditChangeEvent")
+		.def("GetSource", &IntEditChangeEvent::GetSource, py::return_value_policy::reference)
+		.def("GetPreviousValue", &IntEditChangeEvent::GetPreviousValue)
+		.def("WasRelativeInput", &IntEditChangeEvent::WasRelativeInput);
+
+	// --- IntEditObserver -----------------------------------------------------------------
+	py::class_<PyIntEditObserver>(m, "IntEditObserver", py::dynamic_attr())
+		.def(py::init<IntEdit &>());
 }
 
 
 // --- RealEdit ----------------------------------------------------------------------------
 
 void load_RealEdit(py::module m) {
-	// --- RealEditChangeEvent -------------------------------------------------------------
-	py::class_<RealEditChangeEvent, ItemChangeEvent>(m, "RealEditChangeEvent")
-		.def("GetSource", &RealEditChangeEvent::GetSource, py::return_value_policy::reference)
-		.def("GetPreviousValue", &RealEditChangeEvent::GetPreviousValue)
-		.def("WasRelativeInput", &RealEditChangeEvent::WasRelativeInput);
-
-	// --- RealEditObserver
-	py::class_<PyRealEditObserver>(m, "RealEditObserver", py::dynamic_attr())
-		.def(py::init<RealEdit &>());
-
 	// --- RealEdit -------------------------------------------------------------------------
 	py::class_<RealEdit, EditControl, ItemVariousProperty> m_realEdit(m, "RealEdit");
 
@@ -284,7 +274,7 @@ void load_RealEdit(py::module m) {
 
 	m_realEdit
 		.def(py::init<Panel &, Rect &, RealEdit::FrameType, RealEdit::AbsRelType, RealEdit::UpdateType, RealEdit::ReadOnlyType>(),
-			py::arg("panel"), 
+			py::arg("panel"),
 			py::arg("rect"),
 			py::arg("frame") = RealEdit::FrameType::Frame,
 			py::arg("absRel") = RealEdit::AbsRelType::Absolute,
@@ -296,6 +286,16 @@ void load_RealEdit(py::module m) {
 		.def("GetMin", &RealEdit::GetMin)
 		.def("GetMax", &RealEdit::GetMax)
 		.def("GetValue", &RealEdit::GetValue);
+
+	// --- RealEditChangeEvent -------------------------------------------------------------
+	py::class_<RealEditChangeEvent, ItemChangeEvent>(m, "RealEditChangeEvent")
+		.def("GetSource", &RealEditChangeEvent::GetSource, py::return_value_policy::reference)
+		.def("GetPreviousValue", &RealEditChangeEvent::GetPreviousValue)
+		.def("WasRelativeInput", &RealEditChangeEvent::WasRelativeInput);
+
+	// --- RealEditObserver
+	py::class_<PyRealEditObserver>(m, "RealEditObserver", py::dynamic_attr())
+		.def(py::init<RealEdit &>());
 }
 
 
@@ -375,6 +375,11 @@ void load_RealEditEX(py::module m) {
 // --- TextEditBase ------------------------------------------------------------------------
 
 void load_TextEditBase(py::module m) {
+	// --- TextEditBase --------------------------------------------------------------------
+	py::class_<TextEditBase, EditControl, ItemTextProperty>(m, "TextEditBase")
+		.def("SetSelection", &TextEditBase::SetSelection)
+		.def("GetSelection", &TextEditBase::GetSelection);
+
 	// --- TextEditChangeEvent -------------------------------------------------------------
 	py::class_<TextEditChangeEvent, ItemChangeEvent>(m, "TextEditChangeEvent")
 		.def("GetSource",&TextEditChangeEvent::GetSource, py::return_value_policy::reference);
@@ -382,11 +387,6 @@ void load_TextEditBase(py::module m) {
 	// --- RealEditObserver ----------------------------------------------------------------
 	py::class_<PyTextEditBaseObserver>(m, "TextEditBaseObserver", py::dynamic_attr())
 		.def(py::init<TextEditBase &>());
-
-	// --- TextEditBase --------------------------------------------------------------------
-	py::class_<TextEditBase, EditControl, ItemTextProperty>(m, "TextEditBase")
-		.def("SetSelection", &TextEditBase::SetSelection)
-		.def("GetSelection", &TextEditBase::GetSelection);
 }
 
 
@@ -438,6 +438,15 @@ void load_TextEditBaseEX(py::module m) {
 // --- ShortcutEdit ------------------------------------------------------------------------
 
 void load_ShortcutEdit(py::module m) {
+	// --- ShortcutEdit --------------------------------------------------------------------
+	py::class_<ShortcutEdit, TextEditBase, ItemTextLengthLimitProperty>(m, "ShortcutEdit")
+		.def(py::init<Panel &, Rect &, short, ShortcutEdit::FrameType, ShortcutEdit::UpdateType>(),
+			py::arg("panel"),
+			py::arg("rect"),
+			py::arg("lengthLimit") = 0,
+			py::arg("frame") = ShortcutEdit::FrameType::Frame,
+			py::arg("update") = ShortcutEdit::UpdateType::Update);
+
 	// --- ShortcutHitEvent ----------------------------------------------------------------
 	py::class_<ShortcutHitEvent, ItemChangeEvent>(m, "ShortcutHitEvent")
 		.def("GetKey", &ShortcutHitEvent::GetKey)
@@ -447,13 +456,4 @@ void load_ShortcutEdit(py::module m) {
 	// --- ShortcutEditObserver ------------------------------------------------------------
 	py::class_<PyShortcutEditObserver>(m, "ShortcutEditObserver", py::dynamic_attr())
 		.def(py::init<ShortcutEdit &>());
-
-	// --- ShortcutEdit --------------------------------------------------------------------
-	py::class_<ShortcutEdit, TextEditBase, ItemTextLengthLimitProperty>(m, "ShortcutEdit")
-		.def(py::init<Panel &, Rect &, short, ShortcutEdit::FrameType, ShortcutEdit::UpdateType>(),
-			py::arg("panel"),
-			py::arg("rect"),
-			py::arg("lengthLimit") = 0,
-			py::arg("frame") = ShortcutEdit::FrameType::Frame,
-			py::arg("update") = ShortcutEdit::UpdateType::Update);
 }

@@ -6,7 +6,7 @@
 
 ## Methods
 ```
-__init__(self,ButtonItem) -> None
+__init__(self, DGLib.ButtonItem) -> None
 ```
 
 ## Events
@@ -21,4 +21,4 @@ __init__(self,ButtonItem) -> None
 
 ### Methods
 
-* GetSource(self) -> ButtonItem
+* GetSource(self) -> DGLib.ButtonItem

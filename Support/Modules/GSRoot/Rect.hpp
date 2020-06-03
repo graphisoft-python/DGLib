@@ -135,10 +135,10 @@ Rect<TYPE>::Rect (const Point<TYPE>& p):
 template <class TYPE>
 void	Rect<TYPE>::Reset (void)
 {
-	left	= 0;
-	top		= 0;
-	right	= 0;
-	bottom	= 0;
+	left	= TYPE(0);
+	top		= TYPE(0);
+	right	= TYPE(0);
+	bottom	= TYPE(0);
 }
 
 
@@ -376,7 +376,7 @@ Rect<TYPE>	Rect<TYPE>::Union (const Rect<TYPE>& toUnion) const
 {
 	Rect<TYPE> t (toUnion);
 
-	if (left != 0 || top != 0 || right != 0 || bottom != 0) {
+	if (left != TYPE(0) || top != TYPE(0) || right != TYPE(0) || bottom != TYPE(0)) {
 		t.left = Min (left, t.left);
 		t.top = Min (top, t.top);
 		t.right = Max (right, t.right);
@@ -393,7 +393,7 @@ Rect<TYPE>	Rect<TYPE>::Union (const Point<TYPE>& p) const
 	Rect<TYPE> toUnion (p);
 	Rect<TYPE> t (toUnion);
 
-	if (left != 0 || top != 0 || right != 0 || bottom != 0) {
+	if (left != TYPE(0) || top != TYPE(0) || right != TYPE(0) || bottom != TYPE(0)) {
 		t.left = Min (left, t.left);
 		t.top = Min (top, t.top);
 		t.right = Max (right, t.right);
@@ -412,7 +412,7 @@ Rect<TYPE>	Rect<TYPE>::Intersection (const Rect<TYPE>& toIntersect) const
 
 	Rect<TYPE> t (toIntersect);
 
-	if (left != 0 || top != 0 || right != 0 || bottom != 0) {
+	if (left != TYPE(0) || top != TYPE(0) || right != TYPE(0) || bottom != TYPE(0)) {
 		t.left = Max (left, t.left);
 		t.top = Max (top, t.top);
 		t.right = Min (right, t.right);
@@ -428,7 +428,7 @@ Rect<TYPE>	Rect<TYPE>::Intersection (const Rect<TYPE>& toIntersect) const
 template <class TYPE>
 void	Rect<TYPE>::Unify (const Rect<TYPE>& toUnify)
 {
-	if (left != 0 || top != 0 || right != 0 || bottom != 0) {
+	if (left != TYPE(0) || top != TYPE(0) || right != TYPE(0) || bottom != TYPE(0)) {
 		left = Min (left, toUnify.left);
 		top = Min (top, toUnify.top);
 		right = Max (right, toUnify.right);
@@ -444,7 +444,7 @@ void	Rect<TYPE>::Unify (const Rect<TYPE>& toUnify)
 template <class TYPE>
 void	Rect<TYPE>::Unify (const Point<TYPE>& p)
 {
-	if (left != 0 || top != 0 || right != 0 || bottom != 0) {	// TZs SPEED: 16007
+	if (left != TYPE(0) || top != TYPE(0) || right != TYPE(0) || bottom != TYPE(0)) {	// TZs SPEED: 16007
 		left = Min (left, p.GetX ());
 		top = Min (top, p.GetY ());
 		right = Max (right, p.GetX ());
@@ -464,7 +464,7 @@ void	Rect<TYPE>::Intersect (const Rect<TYPE>& toIntersect)
 		*this = Rect <TYPE> ();
 	}
 
-	if (left != 0 || top != 0 || right != 0 || bottom != 0) {
+	if (left != TYPE(0) || top != TYPE(0) || right != TYPE(0) || bottom != TYPE(0)) {
 		left = Max (left, toIntersect.left);
 		top = Max (top, toIntersect.top);
 		right = Min (right, toIntersect.right);

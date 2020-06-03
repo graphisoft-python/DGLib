@@ -6,29 +6,29 @@
 
 ## Methods
 ```
-__init__(self,Panel,Rect,
-SplitButton.ButtonForm = SplitButton.ButtonForm.Normal
+__init__(self, DGLib.Panel, GSRoot.Rect,
+DGLib.SplitButton.ButtonForm = ButtonForm.Normal
 ) -> None
 
 AppendItem(self,unicode) -> None
 AppendSeparator(self) -> None
-InsertItem(self,short,unicode) -> None
-InsertSeparator(self,short) -> None
-DeleteItem(self,short) -> None
+InsertItem(self,int,unicode) -> None
+InsertSeparator(self,int) -> None
+DeleteItem(self,int) -> None
 DeleteAllItems(self) -> None
-GetItemCount(self) -> uint32
-GetSelectedItem(self) -> uint32
-SetItemText(self,short,unicode) -> None
-GetItemText(self,short) -> unicode
-SetItemTextSize(self,short,Font.Size) -> None
-GetItemTextSize(self,short) -> Font.Size
-SetItemTextStyle(self,short,Font.Style) -> None
-GetItemTextStyle(self,short) -> Font.Style
-EnableItem(self,short) -> None
-DisableItem(self,short) -> None
-SetItemStatus(self,short,bool) -> None
-IsItemEnabled(self,short) -> bool
-IsSeparatorItem(self,short) -> bool
+GetItemCount(self) -> int
+GetSelectedItem(self) -> int
+SetItemText(self,int,unicode) -> None
+GetItemText(self,int) -> unicode
+SetItemTextSize(self,int, DGLib.Font.Size) -> None
+GetItemTextSize(self,int) ->  DGLib.Font.Size
+SetItemTextStyle(self,int, DGLib.Font.Style) -> None
+GetItemTextStyle(self,int) ->  DGLib.Font.Style
+EnableItem(self,int) -> None
+DisableItem(self,int) -> None
+SetItemStatus(self,int,bool) -> None
+IsItemEnabled(self,int) -> bool
+IsSeparatorItem(self,int) -> bool
 EnableDraw(self) -> None
 DisableDraw(self) -> None
 ```

@@ -22,12 +22,12 @@
 
 ## Methods
 ```
-__init__(self,Panel,Rect,SplitButtonBase.ButtonForm=SplitButtonBase.ButtonForm.Normal
+__init__(self, DGLib.Panel, GSRoot.Rect, DGLib.SplitButtonBase.ButtonForm = ButtonForm.Normal
 ) -> None
 
-SetButtonAlignment(self,Alignment) -> None
-GetButtonAlignment(self) -> Alignment
-SetArrowPartWidth(self,short) -> None
-GetArrowPartWidth(self) -> short
+SetButtonAlignment(self, DGLib.SplitButtonBase.Alignment) -> None
+GetButtonAlignment(self) -> DGLib.SplitButtonBase.Alignment
+SetArrowPartWidth(self,int) -> None
+GetArrowPartWidth(self) -> int
 ```
 

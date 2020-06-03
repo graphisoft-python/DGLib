@@ -8,12 +8,12 @@
 ```
 IsValid(self) -> bool
 IsExist(self) -> bool
-GetId(self) -> short
+GetId(self) ->  int
 GetAnchorString(self) -> unicode
-GetItemCount(self) -> short
-GetItem(self,short) -> Item
-GetWidth(self) -> short
-GetHeight(self) -> short
+GetItemCount(self) ->  int
+GetItem(self, int) -> DGLib.Item
+GetWidth(self) ->  int
+GetHeight(self) ->  int
 ClearFocus(self) -> None
 ShowItems(self) -> None
 HideItems(self) -> None
@@ -22,25 +22,26 @@ MaskItemsVisibility(self,bool) -> None
 EnableItems(self) -> None
 DisableItems(self) -> None
 SetItemStatus(self,bool) -> None
-MoveItems(self,short,short) -> None
+MoveItems(self, int, int) -> None
 RedrawItems(self) -> None
-RegisterHotKey(self,Key.Special, 
-Key.Modifier = Key.Modifier.NoModifier,
-Key.Modifier = Key.Modifier.NoModifier, 
-Key.Modifier = Key.Modifier.NoModifier
-) -> short
-RegisterHotKey(self,short, 
-Key.Modifier = Key.Modifier.NoModifier,
-Key.Modifier = Key.Modifier.NoModifier, 
-Key.Modifier = Key.Modifier.NoModifier
-) -> short
-UnregisterHotKey(self,short) -> None
+RegisterHotKey(self,
+DGLib.Key.Special, 
+DGLib.Key.Modifier = Modifier.NoModifier,
+DGLib.Key.Modifier = Modifier.NoModifier, 
+DGLib.Key.Modifier = Modifier.NoModifier
+) ->  int
+RegisterHotKey(self, int, 
+DGLib.Key.Modifier = Modifier.NoModifier,
+DGLib.Key.Modifier = Modifier.NoModifier, 
+DGLib.Key.Modifier = Modifier.NoModifier
+) ->  int
+UnregisterHotKey(self, int) -> None
 EnableHotKeys(self) -> None
 DisableHotKeys(self) -> None
 EnableDragAndDropEvent(self) -> None
 EnableInputFiltering(self) -> None
 DisableInputFiltering(self) -> None
-GetScaleFactor(self) -> double
+GetScaleFactor(self) -> float
 IsDGDialog(self) -> bool
 IsSystemDialog(self) -> bool
 IsTabPage(self) -> bool

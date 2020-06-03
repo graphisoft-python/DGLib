@@ -112,38 +112,6 @@ void load_UserItemEventProperty(py::module m) {
 // --- UserItem ---------------------------------------------------------------------------------
 
 void load_UserItem(py::module m) {
-	// --- UserItemDropSourceEvent --------------------------------------------------------------
-	//py::class_<UserItemDragSourceEvent, ItemDragSourceEvent>(m, "UserItemDragSourceEvent")
-	//	.def("GetSource", &UserItemDragSourceEvent::GetSource, py::return_value_policy::reference);
-
-	// --- UserItemDropTargetEvent --------------------------------------------------------------
-	//py::class_<UserItemDropTargetEvent, ItemDragSourceEvent>(m, "UserItemDropTargetEvent")
-	//	.def("GetSource", &UserItemDropTargetEvent::GetSource, py::return_value_policy::reference)
-	//	.def("GetInsertPosition", &UserItemDropTargetEvent::GetInsertPosition);
-
-	// --- UserItemClickEvent -------------------------------------------------------------------
-	py::class_<UserItemClickEvent, ItemClickEvent, UserItemEventProperty>(m, "UserItemClickEvent")
-		.def("GetSource", &UserItemClickEvent::GetSource, py::return_value_policy::reference);
-
-	// --- UserItemDoubleClickEvent -------------------------------------------------------------
-	py::class_<UserItemDoubleClickEvent, ItemDoubleClickEvent, UserItemEventProperty>(m, "UserItemDoubleClickEvent")
-		.def("GetSource", &UserItemDoubleClickEvent::GetSource, py::return_value_policy::reference);
-
-	// --- UserItemMouseMoveEvent ---------------------------------------------------------------
-	py::class_<UserItemMouseMoveEvent, ItemMouseMoveEvent, UserItemEventProperty>(m, "UserItemMouseMoveEvent")
-		.def("GetSource", &UserItemMouseMoveEvent::GetSource, py::return_value_policy::reference);
-
-	// --- UserItemUpdateEvent ------------------------------------------------------------------
-	py::class_<UserItemUpdateEvent, ItemUpdateEvent>(m, "UserItemUpdateEvent")
-		.def("GetSource", &UserItemUpdateEvent::GetSource, py::return_value_policy::reference)
-		.def("IsNormalUpdate", &UserItemUpdateEvent::IsNormalUpdate)
-		.def("IsPartialUpdate", &UserItemUpdateEvent::IsPartialUpdate)
-		.def("IsUpdateInUpdate", &UserItemUpdateEvent::IsUpdateInUpdate);
-
-	// --- UserItemObserver ---------------------------------------------------------------------
-	py::class_<PyUserItemObserver>(m, "UserItemObserver", py::dynamic_attr())
-		.def(py::init<UserItem &>());
-
 	// --- UserItem -----------------------------------------------------------------------------
 	py::class_<UserItem, Item, ItemFontProperty> m_userItem(m, "UserItem");
 
@@ -193,4 +161,36 @@ void load_UserItem(py::module m) {
 		.def("SetCursorPosition", &UserItem::SetCursorPosition)
 		.def("SetGestureHandlingMode", &UserItem::SetGestureHandlingMode)
 		.def("GetGestureHandlingMode", &UserItem::GetGestureHandlingMode);
+
+	// --- UserItemDropSourceEvent --------------------------------------------------------------
+	//py::class_<UserItemDragSourceEvent, ItemDragSourceEvent>(m, "UserItemDragSourceEvent")
+	//	.def("GetSource", &UserItemDragSourceEvent::GetSource, py::return_value_policy::reference);
+
+	// --- UserItemDropTargetEvent --------------------------------------------------------------
+	//py::class_<UserItemDropTargetEvent, ItemDragSourceEvent>(m, "UserItemDropTargetEvent")
+	//	.def("GetSource", &UserItemDropTargetEvent::GetSource, py::return_value_policy::reference)
+	//	.def("GetInsertPosition", &UserItemDropTargetEvent::GetInsertPosition);
+
+	// --- UserItemClickEvent -------------------------------------------------------------------
+	py::class_<UserItemClickEvent, ItemClickEvent, UserItemEventProperty>(m, "UserItemClickEvent")
+		.def("GetSource", &UserItemClickEvent::GetSource, py::return_value_policy::reference);
+
+	// --- UserItemDoubleClickEvent -------------------------------------------------------------
+	py::class_<UserItemDoubleClickEvent, ItemDoubleClickEvent, UserItemEventProperty>(m, "UserItemDoubleClickEvent")
+		.def("GetSource", &UserItemDoubleClickEvent::GetSource, py::return_value_policy::reference);
+
+	// --- UserItemMouseMoveEvent ---------------------------------------------------------------
+	py::class_<UserItemMouseMoveEvent, ItemMouseMoveEvent, UserItemEventProperty>(m, "UserItemMouseMoveEvent")
+		.def("GetSource", &UserItemMouseMoveEvent::GetSource, py::return_value_policy::reference);
+
+	// --- UserItemUpdateEvent ------------------------------------------------------------------
+	py::class_<UserItemUpdateEvent, ItemUpdateEvent>(m, "UserItemUpdateEvent")
+		.def("GetSource", &UserItemUpdateEvent::GetSource, py::return_value_policy::reference)
+		.def("IsNormalUpdate", &UserItemUpdateEvent::IsNormalUpdate)
+		.def("IsPartialUpdate", &UserItemUpdateEvent::IsPartialUpdate)
+		.def("IsUpdateInUpdate", &UserItemUpdateEvent::IsUpdateInUpdate);
+
+	// --- UserItemObserver ---------------------------------------------------------------------
+	py::class_<PyUserItemObserver>(m, "UserItemObserver", py::dynamic_attr())
+		.def(py::init<UserItem &>());
 }

@@ -6,5 +6,5 @@
 
 ## Methods
 ```
-__init__(self,Panel,Rect) -> None
+__init__(self, DGLib.Panel, GSRoot.Rect) -> None
 ```

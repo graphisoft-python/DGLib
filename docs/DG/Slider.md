@@ -13,7 +13,7 @@
 
 ## Methods
 ```
-__init__(self,Panel,Rect,short,
-SliderType = BottomRight
+__init__(self, DGLib.Panel, GSRoot.Rect, int,
+DGLib.Slider.SliderType = SliderType.BottomRight
 ) -> None
 ```

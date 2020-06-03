@@ -6,7 +6,7 @@
 
 ## Methods
 ```
-__init__(self,ScrollBar) -> None
+__init__(self, DGLib.ScrollBar) -> None
 ```
 
 ## Events
@@ -24,8 +24,8 @@ __init__(self,ScrollBar) -> None
 
 ### Methods
 
-* GetSource(self) -> ScrollBar
-* GetPreviousValue(self) -> Int32
+* GetSource(self) -> DGLib.ScrollBar
+* GetPreviousValue(self) -> int
 
 ## Class ScrollBarTrackEvent
 
@@ -35,7 +35,7 @@ __init__(self,ScrollBar) -> None
 
 ### Methods
 
-* GetSource(self) -> ScrollBar
+* GetSource(self) -> DGLib.ScrollBar
 * IsLineUp(self) -> bool
 * IsLineLeft(self) -> bool
 * IsLineDown(self) -> bool

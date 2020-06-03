@@ -6,7 +6,7 @@
 
 ## Methods
 ```
-__init__(self,ListBox) -> None
+__init__(self, DGLib.ListBox) -> None
 ```
 
 ## Events
@@ -22,7 +22,7 @@ __init__(self,ListBox) -> None
 * ListBoxTabFieldUpdate = (ListBoxTabItemUpdateEvent ev) -> None
 * ListBoxHoverStarted = (ListBoxHoverEvent ev) -> None
 * ListBoxHoverEnded = (ListBoxHoverEvent ev) -> None
-* ListBoxOverlayUpdate = (ListBoxItemUpdateEvent ev) -> Rect
+* ListBoxOverlayUpdate = (ListBoxItemUpdateEvent ev) -> GSRoot.Rect
 * ListBoxOverlayUpdate = (ListBoxItemUpdateEvent ev) -> None
 * ListBoxHeaderItemClicked = (ListBoxHeaderItemClickEvent ev) -> None
 * ListBoxHeaderItemDragged = (ListBoxHeaderItemDragEvent ev) -> None
@@ -36,7 +36,7 @@ __init__(self,ListBox) -> None
 
 ### Methods
 
-* GetSource(self) -> ListBox
+* GetSource(self) -> DGLib.ListBox
 
 ## Class ListBoxDragEvent
 
@@ -46,9 +46,9 @@ __init__(self,ListBox) -> None
 
 ### Methods
 
-* GetSource(self) -> ListBox
-* GetPreviousIndex(self) -> short
-* GetNewIndex(self) -> short
+* GetSource(self) -> DGLib.ListBox
+* GetPreviousIndex(self) -> int
+* GetNewIndex(self) -> int
 
 ## Class ListBoxClickEvent
 
@@ -70,7 +70,7 @@ __init__(self,ListBox) -> None
 
 ### Methods
 
-* GetSource(self) -> ListBox
+* GetSource(self) -> DGLib.ListBox
 
 ## Class ListBoxContextMenuEvent
 
@@ -80,9 +80,9 @@ __init__(self,ListBox) -> None
 
 ### Methods
 
-* GetSource(self) -> ListBox
-* GetItem(self) -> short
-* GetHeaderItem(self) -> short
+* GetSource(self) -> DGLib.ListBox
+* GetItem(self) -> int
+* GetHeaderItem(self) -> int
 * IsInHeaderButton(self) -> bool
 
 ## Class ListBoxDoubleClickEvent
@@ -115,11 +115,11 @@ __init__(self,ListBox) -> None
 
 ### Methods
 
-* GetSource(self) -> ListBox
-* GetItem(self) -> short
+* GetSource(self) -> DGLib.ListBox
+* GetItem(self) -> int
 * GetDrawContext(self) -> None
-* GetWidth(self) -> short
-* GetHeight(self) -> short
+* GetWidth(self) -> int
+* GetHeight(self) -> int
 * IsUpdatedListItemHighlighted(self) -> bool
 * GetForeColor(self) -> GSRoot.Color
 * GetBackColor(self) -> GSRoot.Color
@@ -133,12 +133,12 @@ __init__(self,ListBox) -> None
 
 ### Methods
 
-* GetSource(self) -> ListBox
-* GetListItem(self) -> short
-* GetTabFieldIndex(self) -> short
+* GetSource(self) -> DGLib.ListBox
+* GetListItem(self) -> int
+* GetTabFieldIndex(self) -> int
 * GetDrawContext(self) -> None
-* GetWidth(self) -> short
-* GetHeight(self) -> short
+* GetWidth(self) -> int
+* GetHeight(self) -> int
 * IsUpdatedListItemHighlighted(self) -> bool
 * GetTabItemText(self) -> unicode
 * GetForeColor(self) -> GSRoot.Color
@@ -152,8 +152,8 @@ __init__(self,ListBox) -> None
 
 ### Methods
 
-* GetSource(self) -> ListBox
-* GetListItem(self) -> short
+* GetSource(self) -> DGLib.ListBox
+* GetListItem(self) -> int
 
 ## Class ListBoxHeaderItemClickEvent
 
@@ -163,8 +163,8 @@ __init__(self,ListBox) -> None
 
 ### Methods
 
-* GetSource(self) -> ListBox
-* GetHeaderItem(self) -> short
+* GetSource(self) -> DGLib.ListBox
+* GetHeaderItem(self) -> int
 
 ## Class ListBoxHeaderItemDragEvent
 
@@ -174,9 +174,9 @@ __init__(self,ListBox) -> None
 
 ### Methods
 
-* GetSource(self) -> ListBox
-* GetOldPos(self) -> short
-* GetNewPos(self) -> short
+* GetSource(self) -> DGLib.ListBox
+* GetOldPos(self) -> int
+* GetNewPos(self) -> int
 
 ## Class ListBoxHeaderButtonClickEvent
 
@@ -186,4 +186,4 @@ __init__(self,ListBox) -> None
 
 ### Methods
 
-* GetSource(self) -> ListBox
+* GetSource(self) -> DGLib.ListBox

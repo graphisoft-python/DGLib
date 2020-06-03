@@ -6,7 +6,7 @@
 
 ## Methods
 ```
-__init__(self,StaticText) -> None
+__init__(self, DGLib.StaticText) -> None
 ```
 
 ## Events
@@ -23,7 +23,7 @@ __init__(self,StaticText) -> None
 
 ### Methods
 
-* GetSource(self) -> StaticText
+* GetSource(self) -> DGLib.StaticText
 
 ## Class StaticTextMouseMoveEvent
 
@@ -34,7 +34,7 @@ __init__(self,StaticText) -> None
 
 ### Methods
 
-* GetSource(self) -> StaticText
+* GetSource(self) -> DGLib.StaticText
 
 ## Class StaticTextDoubleClickEvent
 
@@ -44,4 +44,4 @@ __init__(self,StaticText) -> None
 
 ### Methods
 
-* GetSource(self) -> StaticText
+* GetSource(self) -> DGLib.StaticText

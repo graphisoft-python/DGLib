@@ -7,7 +7,7 @@
 ## Methods
 ```
 IsValid(self) -> bool
-GetPanel(self) -> Panel
-GetPanelId(self) -> short
-GetId(self) -> short
+GetPanel(self) -> DGLib.Panel
+GetPanelId(self) -> int
+GetId(self) -> int
 ```

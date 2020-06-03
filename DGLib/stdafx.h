@@ -18,6 +18,7 @@
 #include "ACExport.h"
 #include "ACCast.h"
 #include "ACObserver.h"
-
+#include "adapter/gs_point.hpp"
+#include "adapter/gs_rect.hpp"
 
 namespace py = pybind11;

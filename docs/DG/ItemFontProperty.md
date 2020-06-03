@@ -6,8 +6,8 @@
 
 ## Methods
 ```
-SetFontSize(self,Font.Size) -> None
-GetFontSize(self) -> Font.Size
-SetFontStyle(self,Font.Style) -> None
-GetFontStyle(self) -> Font.Style
+SetFontSize(self,DGLib.Font.Size) -> None
+GetFontSize(self) -> DGLib.Font.Size
+SetFontStyle(self,DGLib.Font.Style) -> None
+GetFontStyle(self) -> DGLib.Font.Style
 ```

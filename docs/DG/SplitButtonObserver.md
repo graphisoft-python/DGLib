@@ -6,7 +6,7 @@
 
 ## Methods
 ```
-__init__(self,SplitButton) -> None
+__init__(self,DGLib.SplitButton) -> None
 ```
 
 ## Events
@@ -21,6 +21,6 @@ __init__(self,SplitButton) -> None
 
 ### Methods
 
-* GetSource(self) -> SplitButton
+* GetSource(self) -> DGLib.SplitButton
 
 

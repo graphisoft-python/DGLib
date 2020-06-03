@@ -4,6 +4,7 @@
 
 * [Dialog](Dialog.md)
 
+
 ## Enum
 
 ### ModalResponse
@@ -14,15 +15,15 @@
 
 ## Methods
 ```
-__init__(self,DG.NativePoint,short,short,GSRoot.Guid,
-Dialog.GrowType = Dialog.GrowType.NoGrow,
-Dialog.CaptionType = Dialog.CaptionType.TopCaption,
-Dialog.FrameType = Dialog.FrameType.NormalFrame
+__init__(self, GSRoot.Point, int, int,GSRoot.Guid,
+DGLib.Dialog.GrowType = GrowType.NoGrow,
+DGLib.Dialog.CaptionType = CaptionType.TopCaption,
+DGLib.Dialog.FrameType = FrameType.NormalFrame
 ) -> None
 
 Invoke(self) -> None
 Abort(self) -> None
-PostCloseRequest(self,ModalResponse) -> None
-GetNextModalDialog(self) -> ModalDialog
-GetPrevModalDialog(self) -> ModalDialog
+PostCloseRequest(self, DGLib.ModalDialog.ModalResponse) -> None
+GetNextModalDialog(self) -> DGLib.ModalDialog
+GetPrevModalDialog(self) -> DGLib.ModalDialog
 ```

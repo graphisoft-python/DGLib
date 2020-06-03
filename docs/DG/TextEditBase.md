@@ -7,6 +7,6 @@
 
 ## Methods
 ```
-SetSelection(self,CharRange) -> None
-SetSelection(self) -> CharRange
+SetSelection(self, DGLib.CharRange) -> None
+SetSelection(self) -> DGLib.CharRange
 ```

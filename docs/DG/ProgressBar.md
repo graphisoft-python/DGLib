@@ -15,12 +15,12 @@
 
 ## Methods
 ```
-__init__(self,Panel,Rect,FrameType = NoFrame) -> None
+__init__(self, DGLib.Panel, GSRoot.Rect, DGLib.ProgressBar.FrameType = NoFrame) -> None
 
-SetMin(self,Int32) -> None
-SetMax(self,Int32) -> None
-SetValue(self,Int32) -> None
-GetMin(self) -> Int32
-GetMax(self) -> Int32
+SetMin(self, int) -> None
+SetMax(self, int) -> None
+SetValue(self, int) -> None
+GetMin(self) ->  int
+GetMax(self) ->  int
 GetValue(self) -> NonInt32e
 ```

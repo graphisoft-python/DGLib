@@ -6,7 +6,7 @@
 
 ## Methods
 ```
-__init__(self,ShortcutEdit) -> None
+__init__(self,DGLib.ShortcutEdit) -> None
 ```
 
 ## Events
@@ -22,5 +22,5 @@ __init__(self,ShortcutEdit) -> None
 ### Methods
 
 * GetKey(self) -> DG.Key.Code
-* GetModifierFlags(self) -> ULong
-* GetSource(self) -> ShortcutEdit
+* GetModifierFlags(self) -> int
+* GetSource(self) -> DGLib.ShortcutEdit

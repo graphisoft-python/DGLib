@@ -17,7 +17,7 @@ __init__(self,Panel) -> None
 * PanelOpened = (PanelOpenEvent ev) -> None
 * PanelResizeEntered = (PanelResizeEvent ev) -> None
 * PanelResizing = (PanelResizeEvent ev) -> None
-* PanelResizing = (PanelResizeEvent ev) -> Point
+* PanelResizing = (PanelResizeEvent ev) -> GSRoot.Point
 * PanelResized = (PanelResizeEvent ev) -> None
 * PanelResizeExited = (PanelResizeEvent ev) -> None
 * PanelMoveEntered = (PanelMoveEvent ev) -> None
@@ -56,9 +56,9 @@ __init__(self,Panel) -> None
 
 ### Methods
 
-* GetPanel(self) -> Panel
-* GetItem(self) -> Item
-* GetPosition(self) -> NativePoint
+* GetPanel(self) -> DGLib.Panel
+* GetItem(self) -> DGLib.Item
+* GetPosition(self) -> GSRoot.Point
 
 ## Class PanelHelpEvent
 
@@ -68,7 +68,7 @@ __init__(self,Panel) -> None
 
 ### Methods
 
-* GetItem(self) -> Item
+* GetItem(self) -> DGLib.Item
 
 ## Class PanelHotKeyEvent
 
@@ -78,7 +78,7 @@ __init__(self,Panel) -> None
 
 ### Methods
 
-* GetKeyId(self) -> short
+* GetKeyId(self) -> int
 
 ## Class PanelIdleEvent
 
@@ -107,8 +107,8 @@ __init__(self,Panel) -> None
 ### Methods
 
 * IsUserResize(self) -> bool
-* GetHorizontalChange(self) -> short
-* GetVerticalChange(self) -> short
+* GetHorizontalChange(self) -> int
+* GetVerticalChange(self) -> int
 
 ## Class PanelScaleChangeEvent
 
@@ -118,8 +118,8 @@ __init__(self,Panel) -> None
 
 ### Methods
 
-* GetOldScale(self) -> double
-* GetNewScale(self) -> double
+* GetOldScale(self) -> float
+* GetNewScale(self) -> float
 
 ## Class PanelMoveEvent
 
@@ -135,8 +135,8 @@ __init__(self,Panel) -> None
 
 ### Methods
 
-* GetPreviousTopStatusPanel(self) -> Panel
-* GetNextTopStatusPanel(self) -> Panel
+* GetPreviousTopStatusPanel(self) -> DGLib.Panel
+* GetNextTopStatusPanel(self) -> DGLib.Panel
 * ByUser(self) -> bool
 
 ## Class PanelWheelEvent
@@ -147,7 +147,7 @@ __init__(self,Panel) -> None
 
 ### Methods
 
-* GetItem(self) -> Item
+* GetItem(self) -> DGLib.Item
 
 ## Class PanelWheelTrackEvent
 
@@ -157,9 +157,9 @@ __init__(self,Panel) -> None
 
 ### Methods
 
-* GetXTrackValue(self) -> short
-* GetYTrackValue(self) -> short
-* GetMouseOffset(self) -> Point
+* GetXTrackValue(self) -> int
+* GetYTrackValue(self) -> int
+* GetMouseOffset(self) -> GSRoot.Point
 * IsCommandPressed(self) -> bool
 * IsOptionPressed(self) -> bool
 * IsShiftPressed(self) -> bool
@@ -172,8 +172,8 @@ __init__(self,Panel) -> None
 
 ### Methods
 
-* GetWidth(self) -> short
-* GetHeight(self) -> short
+* GetWidth(self) -> int
+* GetHeight(self) -> int
 
 ## Class PanelActivateEvent
 

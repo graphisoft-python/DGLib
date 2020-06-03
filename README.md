@@ -7,21 +7,12 @@
 #### Utility
 
 * [NativeUnit](./docs/DG/NativeUnit.md)
-* [ShortPoint](./docs/DG/ShortPoint.md)
-* [Point](./docs/DG/Point.md)
-* [NativeUnitPoint](./docs/DG/NativeUnitPoint.md)
-* [NativePoint](./docs/DG/NativePoint.md)
-* [ShortRect](./docs/DG/ShortRect.md)
-* [Rect](./docs/DG/Rect.md)
-* [NativeUnitRect](./docs/DG/NativeUnitRect.md)
-* [NativeRect](./docs/DG/NativeRect.md)
 * [CharRange](./docs/DG/CharRange.md)
 
 #### Panel
 
 * [Panel](./docs/DG/Panel.md)
 * [PanelObserver](./docs/DG/PanelObserver.md)
-
 
 #### Dialog
 
@@ -30,7 +21,6 @@
 * [ModelessBase](./docs/DG/ModelessBase.md)
 * [ModelessDialog](./docs/DG/ModelessDialog.md)
 * [Palette](./docs/DG/Palette.md)
-
 
 #### BarControl
 
@@ -54,7 +44,6 @@
 * [ButtonItemObserver](./docs/DG/ButtonItemObserver.md)
 * [SplitButtonObserver](./docs/DG/SplitButtonObserver.md)
 * [CustomSplitButtonObserver](./docs/DG/CustomSplitButtonObserver.md)
-
 
 #### EditControl
 
