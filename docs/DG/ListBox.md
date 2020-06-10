@@ -138,6 +138,11 @@ SetTabFieldStatus(self, int,bool) -> None
 GetTabFieldBeginPosition(self, int) ->  int
 GetTabFieldEndPosition(self, int) ->  int
 GetTabFieldWidth(self, int) ->  int
+GetTabItemColor(self, int, int) -> GSRoot.Color
+GetTabItemBackgroundColor(self, int, int) -> GSRoot.Color
+GetItemColor(self, int) -> GSRoot.Color
+GetItemBackgroundColor(self, int) -> GSRoot.Color
+GetItemRect(self, int) -> GSRoot.Rect
 GetTabFieldJustification(self, int) -> DGLib.ListBox.Justification
 GetTabFieldTruncation(self, int) -> DGLib.ListBox.Truncationa
 HasTabFieldSeparator(self, int) -> bool
@@ -177,6 +182,7 @@ SelectItem(self, int) -> None
 DeselectItem(self, int) -> None
 GetSelectedCount(self) ->  int
 GetSelectedItem(self, int = ItemType.TopItem) ->  int
+GetSelectedItems(self) -> List[int]
 EnableDraw(self) -> None
 DisableDraw(self) -> None
 RedrawItem(self, int) -> None
