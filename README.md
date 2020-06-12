@@ -101,6 +101,13 @@
 * [StaticTextObserver](./docs/DG/StaticTextObserver.md)
 * [StaticItemEventProperty](./docs/DG/StaticItemEventProperty.md)
 
+#### TabControl & TabPage
+
+* [TabControl](./docs/DG/TabControl.md)
+* [NormalTab](./docs/DG/NormalTab.md)
+* [TabPage](./docs/DG/TabPage.md)
+* [NormalTabObserver](./docs/DG/NormalTabObserver.md)
+
 ### Namespace DG.EOL
 
 #### Utility
