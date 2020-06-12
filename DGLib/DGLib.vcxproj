@@ -167,6 +167,8 @@
     <ClInclude Include="implementations\DGListBoxFunc.hpp" />
     <ClInclude Include="implementations\DGPanelFunc.hpp" />
     <ClInclude Include="implementations\DGStaticItemFunc.hpp" />
+    <ClInclude Include="implementations\DGTabControlFunc.hpp" />
+    <ClInclude Include="implementations\DGTabPageFunc.hpp" />
     <ClInclude Include="implementations\DGUserItemFunc.hpp" />
     <ClInclude Include="implementations\DGUtilityFunc.hpp" />
     <ClInclude Include="stdafx.h" />

@@ -15,7 +15,7 @@
 
 ## Methods
 ```
-__init__(self, GSRoot.Point, int, int,GSRoot.Guid,
+__init__(self, GSRoot.Point, int, int, GSRoot.Guid,
 DGLib.Dialog.GrowType = GrowType.NoGrow,
 DGLib.Dialog.CaptionType = CaptionType.TopCaption,
 DGLib.Dialog.FrameType = FrameType.NormalFrame

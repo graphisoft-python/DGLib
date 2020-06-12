@@ -15,6 +15,8 @@
 #include "../implementations/DGUserItemFunc.hpp"
 #include "../implementations/DGCheckItemFunc.hpp"
 #include "../implementations/DGImageFunc.hpp"
+#include "../implementations/DGTabControlFunc.hpp"
+#include "../implementations/DGTabPageFunc.hpp"
 
 
 PYBIND11_MODULE(DGLib, m) {
@@ -23,7 +25,6 @@ PYBIND11_MODULE(DGLib, m) {
 
 // --- Add bindings here ------------------------------------------------------------------
 
-	
 	auto m_Panel = init_Panel(m);
 
 	load_EOL(m.def_submodule("EOL"));
@@ -102,6 +103,13 @@ PYBIND11_MODULE(DGLib, m) {
 	// --- DGImage
 	load_ImageItem(m);
 	load_ImageItemEX(m);
+
+	// --- DGTabPage & DGTabControl
+	auto m_tabPage = init_TabPage(m);
+
+	load_TabControl(m);
+	load_NormalTab(m);
+	load_TabPage(m_tabPage);
 
 // --- Add bindings end -------------------------------------------------------------------
 }

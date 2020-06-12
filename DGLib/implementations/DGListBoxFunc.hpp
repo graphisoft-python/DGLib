@@ -6,6 +6,7 @@
 #include "DGItemProperty.hpp"
 #include "DGUtility.hpp"
 #include "DGListBox.hpp"
+#include "Color.hpp"
 
 using namespace DG;
 
@@ -256,8 +257,26 @@ void load_ListBox(py::module m) {
 		.def("GetTabItemFontStyle", &ListBox::GetTabItemFontStyle)
 		.def("SetTabItemColor", &ListBox::SetTabItemColor)
 		.def("SetTabItemBackgroundColor", &ListBox::SetTabItemBackgroundColor)
-		.def("GetTabItemColor", &ListBox::GetTabItemColor)
-		.def("GetTabItemBackgroundColor", &ListBox::GetTabItemBackgroundColor)
+		.def("GetTabItemColor", [](ListBox &self,short listItem, short tabIndex) {
+			Gfx::Color *color = new Gfx::Color();
+			if (self.GetTabItemColor(listItem, tabIndex,color)) {
+				return color;
+			}
+			else {
+				delete color;
+				return (Gfx::Color *)nullptr;
+			}
+		})
+		.def("GetTabItemBackgroundColor", [](ListBox &self, short listItem, short tabIndex) {
+			Gfx::Color *color = new Gfx::Color();
+			if (self.GetTabItemBackgroundColor(listItem, tabIndex, color)) {
+				return color;
+			}
+			else {
+				delete color;
+				return (Gfx::Color *)nullptr;
+			}
+		})
 		.def("SetOnTabItem", &ListBox::SetOnTabItem)
 		.def("RemoveOnTabItem", &ListBox::RemoveOnTabItem)
 		.def("GetOnTabItem", &ListBox::GetOnTabItem,py::return_value_policy::reference)
@@ -265,8 +284,26 @@ void load_ListBox(py::module m) {
 		.def("GetItemFontStyle", &ListBox::GetItemFontStyle)
 		.def("SetItemColor", &ListBox::SetItemColor)
 		.def("SetItemBackgroundColor", &ListBox::SetItemBackgroundColor)
-		.def("GetItemColor", &ListBox::GetItemColor)
-		.def("GetItemBackgroundColor", &ListBox::GetItemBackgroundColor)
+		.def("GetItemColor", [](ListBox &self, short listItem) {
+			Gfx::Color *color = new Gfx::Color();
+			if (self.GetItemColor(listItem, color)) {
+				return color;
+			}
+			else {
+				delete color;
+				return (Gfx::Color *)nullptr;
+			}
+		})
+		.def("GetItemBackgroundColor", [](ListBox &self, short listItem) {
+			Gfx::Color *color = new Gfx::Color();
+			if (self.GetItemBackgroundColor(listItem, color)) {
+				return color;
+			}
+			else {
+				delete color;
+				return (Gfx::Color *)nullptr;
+			}
+		})
 
 		//.def("SetItemValue", &ListBox::SetItemValue)
 		//.def("GetItemValue", &ListBox::GetItemValue)
@@ -287,7 +324,16 @@ void load_ListBox(py::module m) {
 		.def("SetItemHeight", &ListBox::SetItemHeight)
 		.def("GetItemHeight", &ListBox::GetItemHeight)
 		.def("GetItemWidth", &ListBox::GetItemWidth)
-		.def("GetItemRect", &ListBox::GetItemRect)
+		.def("GetItemRect", [](ListBox &self, short listItem) {
+			Rect *rect = new Rect();
+			if (self.GetItemRect(listItem, rect)) {
+				return rect;
+			}
+			else {
+				delete rect;
+				return (Rect *)nullptr;
+			}
+		})
 		.def("SetNoPartialItem", &ListBox::SetNoPartialItem)
 		.def("EnableSeparatorLines", &ListBox::EnableSeparatorLines)
 		.def("HasSeparatorLines", &ListBox::HasSeparatorLines)
@@ -299,7 +345,6 @@ void load_ListBox(py::module m) {
 		.def("GetSelectedCount", &ListBox::GetSelectedCount)
 		.def("GetSelectedItem", &ListBox::GetSelectedItem,
 			py::arg("listItem") = ListBox::ItemType::TopItem)
-		.def("GetSelectedItems", (short (ListBox::*)(short *, short) const) &ListBox::GetSelectedItems)
 		.def("GetSelectedItems", (GS::Array<short> (ListBox::*)(void) const) &ListBox::GetSelectedItems)
 		.def("EnableDraw", &ListBox::EnableDraw)
 		.def("DisableDraw", &ListBox::DisableDraw)
