@@ -1,4 +1,4 @@
-# Class ButtonItemObserver
+# Class NormalTabObserver
 
 ## Inherit
 
@@ -22,7 +22,7 @@ __init__(self, DGLib.NormalTab) -> None
 
 ### Methods
 
-* GetSource(self) -> DGLib.NormalTa
+* GetSource(self) -> DGLib.NormalTab
 * GetPreviousItem(self) -> int
 
 ## Class NormalTabClickEvent
@@ -33,5 +33,5 @@ __init__(self, DGLib.NormalTab) -> None
 
 ### Methods
 
-* GetSource(self) -> DGLib.NormalTa
+* GetSource(self) -> DGLib.NormalTab
 * GetRequestedItem(self) -> int
